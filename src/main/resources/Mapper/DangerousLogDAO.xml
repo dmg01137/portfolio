@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.DangerousLogDAO">
+
+    <!-- Select by ID -->
+    <select id="findById" resultType="com.example.demo.dto.DangerousLog" parameterType="int">
+        SELECT * FROM Dangerous_Log WHERE id = #{id}
+    </select>
+
+    <!-- Select all -->
+    <select id="findAll" resultType="com.example.demo.dto.DangerousLog">
+        SELECT * FROM Dangerous_Log
+    </select>
+
+    <!-- Insert -->
+    <insert id="save" parameterType="com.example.demo.dto.DangerousLog">
+        INSERT INTO Dangerous_Log (ip, port, policy_number)
+        VALUES (#{ip}, #{port}, #{policyNumber})
+    </insert>
+
+    <!-- Update -->
+    <update id="update" parameterType="com.example.demo.dto.DangerousLog">
+        UPDATE Dangerous_Log
+        SET ip = #{ip}, port = #{port}, policy_number = #{policyNumber}
+        WHERE id = #{id}
+    </update>
+
+    <!-- Delete -->
+    <delete id="delete" parameterType="int">
+        DELETE FROM Dangerous_Log WHERE id = #{id}
+    </delete>
+
+    <!-- Search -->
+    <select id="search" resultType="com.example.demo.dto.DangerousLog">
+        SELECT * FROM Dangerous_Log
+        WHERE 
+        <if test="id != null">
+            id = #{id}
+        </if>
+        <if test="ip != null and ip != ''">
+            AND ip = #{ip}
+        </if>
+        <if test="port != null">
+            AND port = #{port}
+        </if>
+        <if test="policyNumber != null and policyNumber != ''">
+            AND policy_number = #{policyNumber}
+        </if>
+    </select>
+
+</mapper>

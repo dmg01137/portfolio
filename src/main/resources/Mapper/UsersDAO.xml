@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.UsersDAO">
+
+    <!-- 사용자 ID로 사용자 조회 -->
+    <select id="getUserById" resultType="com.example.demo.dto.Users" parameterType="java.lang.String">
+        SELECT * FROM User_data WHERE user_id = #{user_id}
+    </select>
+
+    <!-- 사용자 ID와 비밀번호로 사용자 조회 -->
+    <select id="getUserByIdAndPw" resultType="com.example.demo.dto.Users" parameterType="java.util.Map">
+        SELECT * FROM User_data WHERE user_id = #{user_id} AND password = #{password}
+    </select>
+
+    <!-- 사용자 추가 -->
+    <insert id="addUser" parameterType="com.example.demo.dto.Users">
+        INSERT INTO User_data (user_id, password, user_privilege, user_name)
+        VALUES (#{user_id}, #{password}, #{user_privilege}, #{user_name})
+    </insert>
+
+    <!-- 모든 사용자 조회 -->
+    <select id="getAllUsers" resultType="com.example.demo.dto.Users">
+        SELECT * FROM User_data
+    </select>
+
+<!-- 사용자 정보 수정 -->
+<update id="updateUser" parameterType="com.example.demo.dto.Users">
+    UPDATE User_data 
+    SET user_name = #{user_name},
+        user_privilege = #{user_privilege},
+        password = #{password}
+    WHERE user_id = #{user_id}
+</update>
+
+
+ <!-- 사용자 삭제 -->
+    <delete id="deleteUserById" parameterType="java.lang.String">
+        DELETE FROM User_data WHERE user_id = #{user_id}
+    </delete>
+
+
+
+</mapper>

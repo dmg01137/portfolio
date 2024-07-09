@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behavior_Log</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <style>
+        /* 네비게이션바 스타일 */
+        .navbar {
+            background-color: #222;
+            padding: 14px 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+        .navbar-nav .nav-item {
+            margin-right: 10px;
+        }
+        .nav-link {
+            color: #fff !important;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #17a2b8 !important;
+        }
+        .nav-link i {
+            margin-right: 5px;
+        }
+        .nav-sidebar .nav-link {
+            color: #d1d1d1;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+        .nav-sidebar .nav-link-custom {
+            color: #ffffff; /* 기본 텍스트 색상 */
+        }
+        .nav-sidebar .nav-link-custom i {
+            color: #17a2b8; /* 기본 아이콘 색상 */
+            margin-right: 10px; /* 기본 아이콘 오른쪽 마진 설정 */
+        }
+        /* 마우스 호버 또는 활성 상태에 따라 일관된 아이콘 색상 설정 */
+        .nav-sidebar .nav-link-custom:hover,
+        .nav-sidebar .nav-link-custom.active { /* 현재 활성화된 항목에 대해서도 적용 */
+            background-color: #222; /* 배경색 변경 */
+            color: #ffffff; /* 텍스트 색상 변경 */
+        }
+        /* Icon color adjustment specifically for pattern-icon */
+        .pattern-icon {
+            color: #17a2b8; /* 아이콘 색상을 특정 색상으로 설정 */
+        }
+        .nav-sidebar .nav-link-custom {
+            color: #17a2b8 !important; /* 텍스트 색상 변경 */
+        }
+        /* 왼쪽 세로 메뉴바 스타일 */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 64px;
+            width: 200px; /* 사이드바 너비를 200px로 조정 */
+            background-color: #222;
+            height: 100%;
+            padding-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden; /* 가로 스크롤바를 숨기는 속성 */
+        }
+        .sidebar-heading {
+            font-size: 1.2rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            padding-top: 50px;
+            margin: 0; /* 페이지 전체 마진 초기화 */
+        }
+        .container {
+            margin-top: 30px;
+            padding-left: 150px; /* 예시로 왼쪽으로 이동시키기 */
+            overflow-x: hidden; /* 가로 스크롤바를 숨김 */
+        }
+
+        table {
+            margin-left: 5px;
+            width: auto;
+            max-width: 1000px;
+            border-collapse: collapse; /* 셀 간격 제거 */
+            border: 1px solid #dee2e6;
+            font-size: 0.8em;
+            background-color: #f5f7f8;
+            color: #060606;
+            table-layout: auto;
+            white-space: nowrap;
+        }
+
+        th, td {
+            padding: 0.3rem; /* 예시로 줄여본 패딩 */
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+            color: #060606;
+            white-space: nowrap; /* 텍스트 줄 바꿈 금지 */
+        }
+
+        thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dee2e6;
+            background-color: #5882ad; /* 테이블 헤더 배경색 */
+            color: #ffffff;
+        }
+
+        tbody+tbody {
+            border-top: 2px solid #dee2e6;
+        }
+
+        tbody tr:nth-of-type(even) {
+            background-color: #dae1e7; /* 짝수 행 배경색 */
+        }
+
+        .searchContainer {
+            text-align: center;
+            margin-top: 20px;
+            margin-right: 100px;
+        }
+
+        .searchForm {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            margin-left: 5px;
+            width: 900px;
+        }
+
+        .searchForm .searchInput {
+            margin-bottom: 0px; /* 입력 창 아래 간격을 0px로 조정 */
+            font-size: 0.9rem;
+        }
+
+        /* Clear 버튼 스타일 */
+        .searchForm .btn-secondary {
+            background-color: #8a8888;
+            color: #fff;
+            border: none;
+        }
+
+        .searchForm .btn-secondary:hover {
+            background-color: #656565;
+        }
+
+        /* Search 버튼 스타일 */
+        .searchForm .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+
+        .searchForm .btn-primary:hover {
+            background-color: #0069d9;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <a class="navbar-brand" href="#">로그 관리</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+   <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+        <a class="nav-link" href="/policylist"><i class="fas fa-shield-alt"></i> 정책 관리</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/userlist"><i class="fas fa-users-cog"></i> 사용자 관리</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/admin"><i class="fas fa-user-cog"></i> 관리자</a>
+    </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/dashboard"><i class="fas fa-home"></i> 홈</a>
+</li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="/signin"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
+    </li>
+</ul>
+    </div>
+</nav>
+
+<div class="sidebar">
+    <h5 class="sidebar-heading">메뉴</h5>
+    <ul class="nav flex-column nav-sidebar">
+        <li class="nav-item">
+            <a class="nav-link nav-link-custom pattern-icon" href="#"><i class="fas fa-walking"></i> 행동 로그</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/patternlog" style="color: #007bff;"><i class="fas fa-chart-line"></i> 패턴 로그</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/dangerouslog" style="color: #007bff;"><i class="fas fa-exclamation-triangle"></i> 위험 로그</a>
+        </li>
+    </ul>
+</div>
+
+<div class="container">
+    <div class="searchContainer">
+        <h3>행동 로그</h3>
+        <div id="searchForm" class="searchForm">
+            <div style="flex: 1;">
+                <input type="text" id="searchValue1" class="form-control searchInput" placeholder="번호">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" id="searchValue2" class="form-control searchInput" placeholder="탐지시간">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" id="searchValue3" class="form-control searchInput" placeholder="출발지IP">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" id="searchValue4" class="form-control searchInput" placeholder="출발지PORT">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" id="searchValue5" class="form-control searchInput" placeholder="도착지IP">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" id="searchValue6" class="form-control searchInput" placeholder="도착지PORT">
+            </div>
+        </div>
+        <div id="searchForm" class="searchForm">
+            <div style="flex: 1;">
+                <input type="text" id="searchValue7" class="form-control searchInput" placeholder="패턴길이">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" id="searchValue8" class="form-control searchInput" placeholder="패턴">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" id="searchValue9" class="form-control searchInput" placeholder="패킷">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" id="searchValue10" class="form-control searchInput" placeholder="탐지횟수">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" id="searchValue11" class="form-control searchInput" placeholder="탐지범위시간">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" id="searchValue12" class="form-control searchInput" placeholder="정책이름">
+            </div>
+        </div>
+        <div class="searchButtons">
+            <button id="searchButton" class="btn btn-primary">Search</button>
+            <button id="clearButton" class="btn btn-secondary">Clear</button>
+        </div>
+    </div>
+  <div style="overflow-x: auto;">
+        <table id="logTable" class="table">
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>탐지시간</th>
+                <th>출발지IP</th>
+                <th>출발지PORT</th>
+                <th>도착지IP</th>
+                <th>도착지PORT</th>
+                <th>패턴 길이</th>
+                <th>패턴</th>
+                <th>패킷</th>
+                <th>탐지횟수</th>
+                <th>탐지범위시간</th>
+                <th>정책이름</th>
+            </tr>
+            </thead>
+         <tbody>
+    <tr th:each="log : ${logs}">
+        <td th:text="${log.id}"></td>
+        <td th:text="${log.time}"></td>
+        <td th:text="${log.sIp}"></td>
+        <td th:text="${log.sPort}"></td>
+        <td th:text="${log.dIp}"></td>
+        <td th:text="${log.dPort}"></td>
+        <td th:text="${log.len}"></td>
+        <td th:text="${log.pattern}"></td>
+        <td>
+            <!-- 패킷 데이터는 Base64로 인코딩된 바이트 배열을 문자열로 변환하여 출력 -->
+            <span th:text="${T(org.apache.tomcat.util.codec.binary.Base64).encodeBase64String(log.packet)}"></span>
+        </td>
+        <td th:text="${log.count}"></td>
+        <td th:text="${log.detectionTime}"></td>
+        <td th:text="${log.policyName}"></td>
+    </tr>
+</tbody>
+
+        </table>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<script>
+    // 검색 처리 함수
+    function handleSearch() {
+        let rows = document.querySelectorAll("#logTable tbody tr");
+
+        rows.forEach(row => {
+            let shouldDisplay = true;
+
+            for (let i = 0; i < 12; i++) { // 검색 입력창 개수에 맞게 수정
+                let value = document.getElementById(`searchValue${i + 1}`).value.trim().toLowerCase();
+                let cellValue = row.cells[i].textContent.trim().toLowerCase();
+
+                if (cellValue.includes(value) || value === "") {
+                    continue;
+                } else {
+                    shouldDisplay = false;
+                    break;
+                }
+            }
+
+            if (shouldDisplay) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
+    }
+
+    // 검색 버튼 클릭 이벤트 리스너
+    $("#searchButton").click(function () {
+        handleSearch();
+    });
+
+    // 초기화 버튼 클릭 이벤트 리스너
+    $("#clearButton").click(function () {
+        // 모든 검색 필드 초기화
+        for (let i = 1; i <= 12; i++) {
+            document.getElementById(`searchValue${i}`).value = '';
+        }
+
+        // 모든 테이블 행 보이기
+        $("#logTable tbody tr").each(function () {
+            $(this).show();
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete User</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* 네비게이션바 스타일 */
+        .navbar {
+            background-color: #222;
+            padding: 14px 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+        .navbar-nav .nav-item {
+            margin-right: 10px;
+        }
+        .nav-link {
+            color: #fff !important;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #17a2b8 !important;
+        }
+        .nav-link i {
+            margin-right: 5px;
+        }
+        .nav-sidebar .nav-link {
+            color: #d1d1d1;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+        .nav-sidebar .nav-link:hover {
+            background-color: #222;
+            color: #fff;
+        }
+        .nav-sidebar .nav-link i {
+            margin-right: 10px;
+        }
+
+        /* 왼쪽 세로 메뉴바 스타일 */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 64px;
+            width: 200px; /* 사이드바 너비를 200px로 조정 */
+            background-color: #222;
+            height: 100%;
+            padding-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden; /* 가로 스크롤바를 숨기는 속성 */
+        }
+        .sidebar-heading {
+            font-size: 1.2rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .nav-sidebar .nav-link.active {
+            color: #17a2b8 !important; /* Active 상태에서의 텍스트 색상 변경 */
+        }
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            margin-top: 100px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+        .card:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+        .card-body {
+            padding: 30px; /* Increased padding for better spacing */
+        }
+        .form-group {
+            margin-bottom: 20px; /* Increased margin between form groups */
+        }
+        .btn-custom {
+            border-radius: 25px;
+            width: 100%; /* Button width 100% of parent */
+        }
+        .nav-sidebar .nav-link-custom {
+            color: #17a2b8 !important; /* 텍스트 색상 변경 */
+        }
+        .btn-custom.btn-primary {
+            background-color: #dc3545; /* 레드 컬러 */
+            border-color: #dc3545; /* 레드 컬러 */
+        }
+        .btn-custom.btn-primary:hover {
+            background-color: #c82333; /* 더 진한 레드 컬러 */
+            border-color: #bd2130; /* 더 진한 레드 컬러 */
+        }
+        .nav-sidebar .nav-link-custom {
+            color: #17a2b8 !important; /* 텍스트 색상 변경 */
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg  fixed-top">
+    <a class="navbar-brand" href="#">사용자 관리</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/behaviorlog"><i class="fas fa-file-alt mr-1"></i>로그 관리</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/policylist"><i class="fas fa-shield-alt"></i> 정책 관리</a>
+            </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/admin"><i class="fas fa-user-cog"></i> 관리자</a>
+    </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/dashboard"><i class="fas fa-home"></i> 홈</a>
+</li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="/signin"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
+    </li>
+</ul>
+    </div>
+</nav>
+
+<div class="sidebar">
+    <h5 class="sidebar-heading">메뉴</h5>
+    <ul class="nav flex-column nav-sidebar">
+        <li class="nav-item">
+            <a class="nav-link nav-link-custom" href="/deleteuser"><i class="fas fa-trash-alt"></i>사용자 삭제</a>
+        </li>
+        <li class="nav-item">
+             <a class="nav-link" href="/userlist"><i class="fas fa-users-cog"></i> 사용자 리스트</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/join"><i class="fas fa-plus"></i> 사용자 추가</a>
+        </li>
+ 
+    </ul>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">Delete User</h5>
+                    <form id="deleteForm">
+                        <div class="form-group">
+                            <label for="user_id">ID</label>
+                            <input type="text" class="form-control" id="user_id" name="user_id" placeholder="Enter ID">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Admin password">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm_password">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Admin password">
+                        </div>
+                        <button type="submit" class="btn btn-custom btn-primary">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#deleteForm').submit(function (event) {
+            event.preventDefault();
+            var formData = $(this).serialize();
+
+            // 비밀번호와 확인 비밀번호 일치 여부 확인
+            var password = $('#password').val();
+            var confirm_password = $('#confirm_password').val();
+            if (password !== confirm_password) {
+                alert("비밀번호가 일치하지 않습니다.");
+                return;
+            }
+
+            // AJAX를 이용하여 서버로 삭제 요청 전송
+            $.ajax({
+                type: 'POST',
+                url: '/deleteuser', // 실제 삭제 처리를 담당할 컨트롤러 매핑 URL
+                data: formData,
+                success: function (response) {
+                    // 서버에서 성공적으로 처리된 경우
+                    alert('사용자 삭제가 완료되었습니다.');
+                    // 추가적인 작업 수행 (예: 페이지 새로고침 등)
+                },
+                error: function (error) {
+                    // 서버에서 오류가 발생한 경우
+                    alert('사용자 삭제 중 오류가 발생했습니다.');
+                    console.error(error);
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

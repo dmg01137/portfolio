@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>Dashtreme Admin - Free Dashboard for Bootstrap 4 by Codervent</title>
+  <!-- loader-->
+  <link href="assets/css/pace.min.css" rel="stylesheet"/>
+  <script src="assets/js/pace.min.js"></script>
+  <!--favicon-->
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+  <!-- Bootstrap core CSS-->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- animate CSS-->
+  <link href="assets/css/animate.css" rel="stylesheet" type="text/css"/>
+  <!-- Icons CSS-->
+  <link href="assets/css/icons.css" rel="stylesheet" type="text/css"/>
+  <!-- Custom Style-->
+  <link href="assets/css/app-style.css" rel="stylesheet"/>
+  
+  <style>
+    body {
+      background-color: #007bff; /* 파란색 배경 */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333; /* 짙은 회색 텍스트 */
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 1000px; /* 최대 너비를 늘림 */
+      margin: 20px;
+      display: flex;
+      justify-content: space-between; /* 로그인 폼과 이미지를 가로로 띄움 */
+      align-items: center;
+    }
+
+    .login-form {
+      flex: 1;
+      background-color: #ff6347; /* 빨간색 배경 */
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      margin-left: 20px; /* 로그인 폼과 이미지 간격 조정 */
+    }
+
+    .login-image {
+      flex: 1;
+      text-align: center;
+    }
+
+    .login-image img {
+      width: 100%; /* 이미지 너비 조정 */
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-title {
+      font-size: 24px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      color: #fff; /* 흰색 텍스트 */
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-control {
+      border-radius: 5px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background-color: #f0f2f5; /* 밝은 회색 입력 배경 */
+      color: #333; /* 짙은 회색 텍스트 */
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: #007bff; /* 포커스 시 파란 테두리 */
+      box-shadow: none;
+    }
+
+    .btn-login {
+      background-color: #dc3545; /* 빨간색 로그인 버튼 */
+      border-color: #dc3545;
+      color: #fff; /* 흰색 텍스트 */
+      padding: 12px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-login:hover {
+      background-color: #c82333; /* 호버 시 더 진한 빨간색 */
+      border-color: #c82333;
+    }
+
+    .text-warning a {
+      color: #ffc107; /* 노란색 텍스트 */
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .text-warning a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="login-image">
+      <img src="../static/login.png" alt="로그인 이미지" style="width: 100%; max-width: 100%; height: auto;"> <!-- 이미지 사이즈 조정 -->
+    </div>
+    <div class="login-form">
+      <div class="card card-authentication1">
+        <div class="card-body">
+          <div class="card-content p-2">
+            <div class="text-center mb-4">
+              <img src="assets/images/logo-icon.png" alt="로고 아이콘" height="60">
+            </div>
+            <div class="card-title text-uppercase text-center mb-2">로그인</div>
+            <form>
+              <div class="form-group">
+                <label for="exampleInputUsername" class="sr-only">사용자명</label>
+                <div class="position-relative has-icon-right">
+                  <input type="text" id="exampleInputUsername" class="form-control input-shadow" placeholder="사용자명을 입력하세요">
+                  <div class="form-control-position">
+                    <i class="icon-user"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword" class="sr-only">비밀번호</label>
+                <div class="position-relative has-icon-right">
+                  <input type="password" id="exampleInputPassword" class="form-control input-shadow" placeholder="비밀번호를 입력하세요">
+                  <div class="form-control-position">
+                    <i class="icon-lock"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-6">
+                  <div class="icheck-material-white">
+                    <input type="checkbox" id="user-checkbox" checked="">
+                    <label for="user-checkbox">로그인 상태 유지</label>
+                  </div>
+                </div>
+                <div class="form-group col-6 text-right">
+                  <a href="reset-password.html">비밀번호 재설정</a>
+                </div>
+              </div>
+              <button type="button" class="btn btn-light btn-block btn-login">로그인</button>
+            </form>
+          </div>
+        </div>
+        <div class="card-footer text-center py-3">
+          <p class="text-warning mb-0">계정이 없으신가요? <a href="register.html">여기서 가입하세요</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Start Back To Top Button-->
+  <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+  <!--End Back To Top Button-->
+
+  <!--start color switcher-->
+  <div class="right-sidebar">
+    <div class="switcher-icon">
+      <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
+    </div>
+    <div class="right-sidebar-content">
+      <p class="mb-0">Gaussion Texture</p>
+      <hr>
+      <ul class="switcher">
+        <li id="theme1"></li>
+        <li id="theme2"></li>
+        <li id="theme3"></li>
+        <li id="theme4"></li>
+        <li id="theme5"></li>
+        <li id="theme6"></li>
+      </ul>
+      <p class="mb-0">Gradient Background</p>
+      <hr>
+      <ul class="switcher">
+        <li id="theme7"></li>
+        <li id="theme8"></li>
+        <li id="theme9"></li>
+        <li id="theme10"></li>
+        <li id="theme11"></li>
+        <li id="theme12"></li>
+        <li id="theme13"></li>
+        <li id="theme14"></li>
+        <li id="theme15"></li>
+      </ul>
+    </div>
+  </div>
+  <!--end color switcher-->
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  
+  <!-- sidebar-menu js -->
+  <script src="assets/js/sidebar-menu.js"></script>
+  
+  <!-- Custom scripts -->
+  <script src="assets/js/app-script.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* 네비게이션바 스타일 */
+        .navbar {
+            background-color: #222;
+            padding: 14px 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+        .navbar-nav .nav-item {
+            margin-right: 10px;
+        }
+        .nav-link {
+            color: #fff !important;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #17a2b8 !important;
+        }
+        .nav-link i {
+            margin-right: 5px;
+        }
+        .nav-sidebar .nav-link {
+            color: #d1d1d1;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+        .nav-sidebar .nav-link:hover {
+            background-color: #222;
+            color: #fff;
+        }
+        .nav-sidebar .nav-link i {
+            margin-right: 10px;
+        }
+
+        /* 왼쪽 세로 메뉴바 스타일 */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 64px;
+            width: 200px; /* 사이드바 너비를 200px로 조정 */
+            background-color: #222;
+            height: 100%;
+            padding-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden; /* 가로 스크롤바를 숨기는 속성 */
+        }
+        .sidebar-heading {
+            font-size: 1.2rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 250px;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+        .card:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+        .card-body {
+            padding: 20px;
+            text-align: center; /* 텍스트와 아이콘 가운데 정렬 */
+        }
+        .btn-custom {
+            border-radius: 25px;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#">관리자</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                 <a class="nav-link" href="/dashboard"><i class="fas fa-home"></i> 홈</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/signin"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
+            </li>
+        </ul>
+    </div>s
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow">
+            <div class="card-body">
+                <h4 class="card-title">로그 관리 <i class="fas fa-file-alt"></i></h4>
+                <p class="card-text">로그를 확인할 수 있습니다.</p>
+                <a href="/patternlog" class="btn btn-primary btn-block">로그 확인</a>
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow">
+            <div class="card-body">
+                <h4 class="card-title">정책 관리 <i class="fas fa-cogs"></i></h4>
+                <p class="card-text">정책 설정을 수정할 수 있습니다.</p>
+                <a href="/policylist" class="btn btn-primary btn-block">정책 관리</a>
+                </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow">
+        
+                
+                   <div class="card h-100 shadow">
+                <div class="card-body">
+                    <h4 class="card-title">사용자 관리 <i class="fas fa-users-cog"></i></h4>
+                    <p class="card-text">사용자를 수정할 수 있는 있습니다.</p>
+                      <a href="/userlist" class="btn btn-primary btn-block">사용자 관리</a>
+            </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<script>
+    // You can include any JavaScript specific to the admin page here
+</script>
+
+</body>
+</html>

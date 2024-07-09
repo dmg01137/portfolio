@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.BehaviorLogDAO">
+
+    <!-- Select by ID -->
+    <select id="findById" resultType="com.example.demo.dto.BehaviorLog" parameterType="int">
+        SELECT id, time, s_ip, d_ip, s_port, d_port, len, pattern,
+               CAST(packet AS CHAR) AS packet, policy_name, count, detection_time
+        FROM behavior_log
+        WHERE id = #{id}
+    </select>
+
+    <!-- Select all -->
+    <select id="findAll" resultType="com.example.demo.dto.BehaviorLog">
+        SELECT * FROM behavior_log
+    </select>
+
+    <!-- Insert -->
+    <insert id="save" parameterType="com.example.demo.dto.BehaviorLog">
+        INSERT INTO behavior_log (time, s_ip, d_ip, s_port, d_port, len, pattern, packet, policy_name, count, detection_time)
+        VALUES (#{time}, #{sIp}, #{dIp}, #{sPort}, #{dPort}, #{len}, #{pattern}, #{packet}, #{policyName}, #{count}, #{detectionTime})
+    </insert>
+
+    <!-- Update -->
+    <update id="update" parameterType="com.example.demo.dto.BehaviorLog">
+        UPDATE behavior_log
+        SET time = #{time}, s_ip = #{sIp}, d_ip = #{dIp}, s_port = #{sPort}, d_port = #{dPort},
+            len = #{len}, pattern = #{pattern}, packet = #{packet}, policy_name = #{policyName},
+            count = #{count}, detection_time = #{detectionTime}
+        WHERE id = #{id}
+    </update>
+
+    <!-- Delete -->
+    <delete id="delete" parameterType="int">
+        DELETE FROM behavior_log WHERE id = #{id}
+    </delete>
+
+</mapper>

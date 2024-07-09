@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.PatternDetectionDAO">
+
+    <select id="getAllPatternDetections" resultType="com.example.demo.dto.PatternDetection">
+        SELECT * FROM Pattern_detection
+    </select>
+
+    <select id="getPatternDetectionById" resultType="com.example.demo.dto.PatternDetection" parameterType="java.lang.Long">
+        SELECT * FROM Pattern_detection WHERE detection_number = #{detectionNumber}
+    </select>
+
+    <insert id="addPatternDetection" parameterType="com.example.demo.dto.PatternDetection">
+        INSERT INTO Pattern_detection (detection_number, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangers)
+        VALUES (#{detectionNumber}, #{sIp}, #{dIp}, #{sPort}, #{dPort}, #{createDt}, #{modifyDt}, #{actionType}, #{policyName}, #{policyInfo}, #{pattern1}, #{pattern2}, #{pattern3}, #{dangers})
+    </insert>
+
+    <update id="updatePatternDetection" parameterType="com.example.demo.dto.PatternDetection">
+        UPDATE Pattern_detection
+        SET s_ip = #{sIp}, d_ip = #{dIp}, s_port = #{sPort}, d_port = #{dPort}, create_dt = #{createDt}, modify_dt = #{modifyDt}, action_type = #{actionType},
+            policy_name = #{policyName}, policy_info = #{policyInfo}, pattern_1 = #{pattern1}, pattern_2 = #{pattern2}, pattern_3 = #{pattern3}, dangers = #{dangers}
+        WHERE detection_number = #{detectionNumber}
+    </update>
+
+    <delete id="deletePatternDetection" parameterType="java.lang.Long">
+        DELETE FROM Pattern_detection WHERE detection_number = #{detectionNumber}
+    </delete>
+
+</mapper>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify User</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* 네비게이션바 스타일 */
+        .navbar {
+            background-color: #222;
+            padding: 14px 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+        .navbar-nav .nav-item {
+            margin-right: 10px;
+        }
+        .nav-link {
+            color: #fff !important;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #17a2b8 !important;
+        }
+        .nav-link i {
+            margin-right: 5px;
+        }
+        .nav-sidebar .nav-link {
+            color: #d1d1d1;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+        .nav-sidebar .nav-link:hover {
+            background-color: #222;
+            color: #fff;
+        }
+        .nav-sidebar .nav-link i {
+            margin-right: 10px;
+        }
+
+        /* 왼쪽 세로 메뉴바 스타일 */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 64px;
+            width: 200px; /* 사이드바 너비를 200px로 조정 */
+            background-color: #222;
+            height: 100%;
+            padding-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden; /* 가로 스크롤바를 숨기는 속성 */
+        }
+        .sidebar-heading {
+            font-size: 1.2rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .nav-sidebar .nav-link.active {
+            color: #17a2b8 !important; /* Active 상태에서의 텍스트 색상 변경 */
+        }
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            margin-top: 100px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+        .card:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+        .card-body {
+            padding: 30px; /* Increased padding for better spacing */
+        }
+        .form-group {
+            margin-bottom: 20px; /* Increased margin between form groups */
+        }
+        .btn-custom {
+            border-radius: 25px;
+            width: 100%; /* Button width 100% of parent */
+        }
+        .nav-sidebar .nav-link-custom {
+            color: #17a2b8 !important; /* 텍스트 색상 변경 */
+        }
+
+        /* 추가한 스타일 */
+        .form-group.email-error {
+            position: relative;
+        }
+        .form-group.email-error .invalid-feedback {
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            font-size: 0.9em;
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+    <a class="navbar-brand" href="#">사용자 관리</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/behaviorlog"><i class="fas fa-file-alt mr-1"></i>로그 관리</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/policylist"><i class="fas fa-shield-alt"></i> 정책 관리</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin"><i class="fas fa-user-cog"></i> 관리자</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard"><i class="fas fa-home"></i> 홈</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/signin"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="sidebar">
+    <h5 class="sidebar-heading">메뉴</h5>
+    <ul class="nav flex-column nav-sidebar">
+        <li class="nav-item">
+            <a class="nav-link nav-link-custom" href="#"><i class="fas fa-pencil-alt" style="color: #17a2b8;"></i> 사용자 수정</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/userlist"><i class="fas fa-users-cog"></i> 사용자 리스트</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/join"><i class="fas fa-plus"></i> 사용자 추가</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/deleteuser"><i class="fas fa-trash-alt"></i> 사용자 삭제</a>
+        </li>
+    </ul>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">Modify User</h5>
+                    <form id="userForm">
+                        <div class="form-group">
+                            <label for="user_id">ID</label>
+                            <input type="text" class="form-control" id="user_id" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_name">Name</label>
+                            <input type="text" class="form-control" id="user_name" placeholder="사용자 이름 입력">
+                        </div>
+                        <div class="form-group">
+                            <label for="Privilege">Privilege</label>
+                            <select class="form-control" id="Privilege">
+                                <option value="admin">admin</option>
+                                <option value="user">user</option>
+                                <!-- 다른 권한을 필요에 따라 추가 -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="비밀번호 입력">
+                        </div>
+                        <div class="form-group email-error">
+                            <label for="confirm_password">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirm_password" placeholder="비밀번호 확인" required>
+                            <div class="invalid-feedback">비밀번호가 일치하지 않습니다.</div>
+                        </div>
+
+                        <button type="button" class="btn btn-primary btn-custom mt-3" onclick="modifyUser()">Modify</button>
+                        <button type="button" class="btn btn-secondary btn-custom mt-2" onclick="resetForm()">Clear</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const selectedUserId = localStorage.getItem('selectedUserId');
+
+    // Ajax 요청을 사용하여 서버에서 사용자 정보 가져오기
+    fetch(`/api/users/${selectedUserId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // 서버에서 가져온 데이터로 사용자 정보 채우기
+            document.getElementById('user_id').value = data.id;
+            document.getElementById('user_name').value = data.name;
+            document.getElementById('Privilege').value = data.privilege;
+        })
+        .catch(error => {
+            console.error('Error fetching user data:', error);
+            // 에러 처리: 사용자에게 메시지 표시나 다른 처리 방법 선택
+        });
+});
+
+
+
+function modifyUser() {
+    const userId = document.getElementById('user_id').value;
+    const userName = document.getElementById('user_name').value;
+    const privilege = document.getElementById('Privilege').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm_password').value;
+
+    // 비밀번호 확인 로직 추가
+    if (password !== confirmPassword) {
+        document.getElementById('confirm_password').classList.add('is-invalid');
+        return;
+    }
+
+    // 서버로 전송할 사용자 데이터
+    const userData = {
+        id: userId,
+        name: userName,
+        privilege: privilege,
+        password: password // 실제로는 서버에서 보안을 위해 암호화해서 전송해야 함
+    };
+
+    // Ajax 요청을 사용하여 서버에 데이터 전송
+    fetch(`/api/users/${userId}`, {
+        method: 'PUT', // 수정 요청이므로 PUT 메서드 사용
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // 서버에서 응답을 받으면 사용자에게 메시지 표시
+        alert('사용자 정보가 수정되었습니다.');
+        // 필요에 따라 리디렉션 또는 화면 갱신
+        window.location.href = '/userlist';
+    })
+    .catch(error => {
+        console.error('Error updating user data:', error);
+        // 에러 처리: 사용자에게 메시지 표시나 다른 처리 방법 선택
+    });
+}
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBMS Solution Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* 기본적인 스타일 */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #848080; /* 진회색 배경 */
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            color: #fff !important;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #17a2b8 !important;
+        }
+        .nav-link i {
+            margin-right: 5px;
+        }
+
+        .navbar {
+            background-color: #222;
+            padding: 14px 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative; /* 네비게이션 바를 상대적으로 위치 지정 */
+            z-index: 1; /* 네비게이션 바를 가장 위에 위치시킴 */
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #fff; /* 원하는 색상으로 설정 */
+        }
+
+        .navbar-brand:hover {
+            color: #fff; /* 마우스를 올렸을 때 색상 변경 없음 */
+        }
+
+        .navbar-nav .nav-item {
+            margin-right: 10px;
+        }
+
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 64px;
+            width: 220px;
+            background-color: #222 ;/* 네비게이션바와 동일한 배경색으로 설정 */
+            height: 100%;
+            padding-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-heading {
+            font-size: 1.2rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .nav-sidebar .nav-link {
+            color: #d1d1d1;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-sidebar .nav-link:hover {
+            background-color: #222;
+            color : #fff;
+        }
+
+        /* 콘텐츠 영역 */
+        .content-area {
+            margin-left: 220px; /* 메뉴바 너비만큼 내용 영역을 조정 */
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        /* 차트 컨테이너 */
+        .chart-container {
+            background-color: rgba(248, 249, 250, 0.9); /* 반투명 유리 효과 */
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .chart-container h4 {
+            color: #333; /* 텍스트 색상 변경 */
+        }
+
+        .chart-container canvas {
+            background-color: #fff; /* 차트 배경색 변경 */
+            border-radius: 5px; /* 차트 둥근 모서리 추가 */
+        }
+
+        /* 검색 폼 */
+        .search-form {
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+
+        .search-form select,
+        .search-form input[type="text"],
+        .search-form button {
+            border-radius: 3px; /* 선택 상자와 버튼 둥근 모서리 추가 */
+        }
+
+        .search-form select {
+            width: 150px;
+            margin-right: 5px;
+        }
+
+        .search-form input[type="text"] {
+            flex: 1;
+            border: none;
+            padding: 10px;
+            margin-right: 5px;
+        }
+
+        .search-form button {
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* 이벤트 테이블 */
+        .event-table {
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%; /* 테이블 전체 너비 설정 */
+        }
+
+        .event-table th,
+        .event-table td {
+            text-align: center;
+            vertical-align: middle;
+            font-size: 12px;
+        }
+
+        .event-table thead {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .event-table tbody tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        /* 미디어 쿼리 */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: static;
+                width: 100%;
+                margin-top: 20px; /* 작은 화면에서 네비게이션 바 위 여백 추가 */
+                box-shadow: none;
+                z-index: 0; /* 작은 화면에서도 사이드바가 네비게이션 바 뒤에 있도록 설정 */
+            }
+
+            .content-area {
+                margin-left: 0;
+            }
+        }
+
+        /* 추가적인 스타일링 */
+        .bg-primary {
+            background-color: #3498db !important; /* 색상 변경 */
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#">Attack 상세 모니터링</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+ 
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="/userlist"><i class="fas fa-users-cog mr-1"></i>사용자 관리</a>
+        </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin"><i class="fas fa-user-cog mr-1"></i>관리자</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/signin"><i class="fas fa-sign-out-alt mr-1"></i>로그아웃</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="sidebar">
+    <h5 class="sidebar-heading">메뉴</h5>
+    <ul class="nav flex-column nav-sidebar">
+        <li class="nav-item">
+            <a class="nav-link" href="/patternlog"><i class="fas fa-file-alt mr-1"></i>로그 관리</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/policylist"><i class="fas fa-shield-alt mr-1"></i>정책 관리</a>
+        </li>
+        
+    </ul>
+</div>
+
+<div class="content-area">
+    <div class="container">
+        <div class="chart-container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="text-center mb-4">IP 탐지 이벤트 Top 5</h4>
+                    <canvas id="sourceIPChart"></canvas>
+                </div>
+                <div class="col-md-6">
+                    <h4 class="text-center mb-4">블랙리스트 Top 5</h4>
+                    <canvas id="destinationIPChart"></canvas>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-5">
+                    <h4 class="text-center mb-4">패턴 탐지 이벤트 Top 3</h4>
+                    <canvas id="destinationPortChart"></canvas>
+                </div>
+                <div class="col-md-7">
+                    <h4 class="text-center mb-4">일일 경보 발생 현황</h4>
+                    <div class="search-form">
+                        <select id="searchType" class="form-control mb-2 mr-sm-2">
+                            <option value="time">시간</option>
+                            <option value="logSourceIP">로그소스 IP</option>
+                            <option value="sourceIP">출발 IP</option>
+                            <option value="sourcePort">출발 Port</option>
+                            <option value="destinationIP">목적 IP</option>
+                            <option value="destinationPort">목적 Port</option>
+                            <option value="severity">평가</option>
+                        </select>
+                        <input type="text" id="searchInput" class="form-control mb-2 mr-sm-2" placeholder="검색어 입력">
+                        <button type="button" class="btn btn-primary mb-2" onclick="handleSearch()">Search</button>
+                        <button type="button" class="btn btn-secondary mb-2 ml-2" onclick="clearSearch()">Clear</button>
+                    </div>
+                    <div class="event-table">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>시간</th>
+                                    <th>로그소스 IP</th>
+                                    <th>출발 IP</th>
+                                    <th>출발 Port</th>
+                                    <th>목적 IP</th>
+                                    <th>목적 Port</th>
+                                    <th>평가</th>
+                                    <th>건 수</th>
+                                </tr>
+                            </thead>
+                            <tbody id="eventTableBody">
+                                <!-- 검색 결과 행이 여기에 추가됨 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<script>
+    // 샘플 데이터 (실제 데이터로 교체)
+    var sourceIPData = {
+        labels: ['IP1', 'IP2', 'IP3', 'IP4', 'IP5'],
+        datasets: [{
+            label: '출발지 IP 이벤트',
+            data: [20, 15, 10, 8, 5],
+            backgroundColor: '#3498db', // 색상 변경
+            borderWidth: 1
+        }]
+    };
+
+    var destinationIPData = {
+        labels: ['IP6', 'IP7', 'IP8', 'IP9', 'IP10'],
+        datasets: [{
+            label: '블랙리스트 IP 이벤트',
+            data: [20, 15, 10, 8, 5],
+            backgroundColor: '#2ecc71', // 색상 변경
+            borderWidth: 1
+        }]
+    };
+
+    var destinationPortData = {
+        labels: ['패턴1', '패턴2', '패턴3'],
+        datasets: [{
+            label: '패턴 이벤트',
+            data: [25, 20, 15],
+            backgroundColor: ['#f39c12', '#e74c3c', '#f1c40f'], // 색상 변경
+            borderWidth: 1
+        }]
+    };
+
+    // 샘플 이벤트 상세 정보 데이터 (동적으로 채워짐)
+    var eventDetailsData = [
+        { time: '10:00', logSourceIP: '192.168.1.1', sourceIP: '10.0.0.1', sourcePort: '1234', destinationIP: '8.8.8.8', destinationPort: '80', severity: '높음', count: 5 },
+        { time: '11:00', logSourceIP: '192.168.1.2', sourceIP: '10.0.0.2', sourcePort: '4321', destinationIP: '8.8.8.8', destinationPort: '443', severity: '중간', count: 3 },
+        // 필요에 따라 더 많은 데이터 추가
+    ];
+
+    // 이벤트 상세 정보 테이블을 채우는 함수
+    function populateEventDetailsTable(data) {
+        var tableBody = document.getElementById('eventTableBody');
+        tableBody.innerHTML = ''; // 이전 데이터 삭제
+
+        data.forEach(function(event) {
+            var row = '<tr>' +
+                '<td>' + event.time + '</td>' +
+                '<td>' + event.logSourceIP + '</td>' +
+                '<td>' + event.sourceIP + '</td>' +
+                '<td>' + event.sourcePort + '</td>' +
+                '<td>' + event.destinationIP + '</td>' +
+                '<td>' + event.destinationPort + '</td>' +
+                '<td>' + event.severity + '</td>' +
+                '<td>' + event.count + '</td>' +
+                '</tr>';
+            tableBody.innerHTML += row;
+        });
+    }
+
+    // 차트 초기화
+    var ctxSourceIP = document.getElementById('sourceIPChart').getContext('2d');
+    var sourceIPChart = new Chart(ctxSourceIP, {
+        type: 'bar',
+        data: sourceIPData,
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    var ctxDestinationIP = document.getElementById('destinationIPChart').getContext('2d');
+    var destinationIPChart = new Chart(ctxDestinationIP, {
+        type: 'bar',
+        data: destinationIPData,
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    var ctxDestinationPort = document.getElementById('destinationPortChart').getContext('2d');
+    var destinationPortChart = new Chart(ctxDestinationPort, {
+        type: 'doughnut',
+        data: destinationPortData
+    });
+
+    // 초기 이벤트 상세 정보 테이블 채우기
+    populateEventDetailsTable(eventDetailsData);
+
+    // 검색 필드를 지우는 함수
+    function clearSearch() {
+        document.getElementById('searchInput').value = '';
+        populateEventDetailsTable(eventDetailsData);
+    }
+
+    // 검색 필드에서 입력한 값을 기반으로 필터링하는 함수
+    function handleSearch() {
+        var searchType = document.getElementById('searchType').value;
+        var searchInput = document.getElementById('searchInput').value.trim().toLowerCase();
+
+        var filteredData = eventDetailsData.filter(function(event) {
+            switch (searchType) {
+                case 'time':
+                    return event.time.toLowerCase().includes(searchInput);
+                case 'logSourceIP':
+                    return event.logSourceIP.toLowerCase().includes(searchInput);
+                case 'sourceIP':
+                    return event.sourceIP.toLowerCase().includes(searchInput);
+                case 'sourcePort':
+                    return event.sourcePort.includes(searchInput);
+                case 'destinationIP':
+                    return event.destinationIP.toLowerCase().includes(searchInput);
+                case 'destinationPort':
+                    return event.destinationPort.includes(searchInput);
+                case 'severity':
+                    return event.severity.toLowerCase().includes(searchInput);
+                default:
+                    return true;
+            }
+        });
+
+        populateEventDetailsTable(filteredData);
+    }
+</script>
+
+</body>
+</html>
