@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Policy</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* 네비게이션바 스타일 */
+        .navbar {
+            background-color: #222;
+            padding: 14px 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+        .navbar-nav .nav-item {
+            margin-right: 10px;
+        }
+        .nav-link {
+            color: #fff !important;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #17a2b8 !important;
+        }
+        .nav-link i {
+            margin-right: 5px;
+        }
+        .nav-sidebar .nav-link {
+            color: #d1d1d1;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+        .nav-sidebar .nav-link-custom {
+            color: #ffffff; /* 기본 텍스트 색상 */
+        }
+        .nav-sidebar .nav-link-custom i {
+            color: #17a2b8; /* 기본 아이콘 색상 */
+            margin-right: 10px; /* 기본 아이콘 오른쪽 마진 설정 */
+        }
+        /* 마우스 호버 또는 활성 상태에 따라 일관된 아이콘 색상 설정 */
+        .nav-sidebar .nav-link-custom:hover,
+        .nav-sidebar .nav-link-custom.active { /* 현재 활성화된 항목에 대해서도 적용 */
+            background-color: #222; /* 배경색 변경 */
+            color: #ffffff; /* 텍스트 색상 변경 */
+        }
+        /* Icon color adjustment specifically for pattern-icon */
+        .pattern-icon {
+            color: #17a2b8; /* 아이콘 색상을 특정 색상으로 설정 */
+        }
+        .nav-sidebar .nav-link-custom {
+            color: #17a2b8 !important; /* 텍스트 색상 변경 */
+        }
+        /* 왼쪽 세로 메뉴바 스타일 */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 64px;
+            width: 200px; /* 사이드바 너비를 200px로 조정 */
+            background-color: #222;
+            height: 100%;
+            padding-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden; /* 가로 스크롤바를 숨기는 속성 */
+        }
+        .sidebar-heading {
+            font-size: 1.2rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            margin-top: 50px; /* 카드를 아래로 이동 */
+        }
+        .card:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+        .card-body {
+            padding: 20px; /* 간격을 줄임 */
+        }
+        .form-group {
+            margin-bottom: 15px; /* 간격을 줄임 */
+        }
+        .btn-custom {
+            border-radius: 25px;
+        }
+        .btn-clear {
+            border-radius: 25px;
+            background-color: #6c757d; /* 회색 배경색 */
+            color: #fff; /* 흰색 텍스트 */
+            border-color: #6c757d; /* 테두리 색상 */
+        }
+        .btn-clear:hover {
+            background-color: #495057; /* 호버 시 더 짙은 회색 배경색 */
+            border-color: #495057; /* 호버 시 테두리 색상 변경 */
+        }
+       
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #222;">
+    <a class="navbar-brand" href="#">정책 관리</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-file-alt mr-1"></i>로그 관리</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-users-cog"></i>사용자 관리</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-user-cog"></i> 관리자</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-home"></i> 홈</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="sidebar">
+    <h5 class="sidebar-heading">메뉴</h5>
+    <ul class="nav flex-column nav-sidebar">
+        <li class="nav-item">
+            <a class="nav-link nav-link-custom" href="#"><i class="fas fa-plus"></i> <span style="color: #17a2b8;">정책 추가</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-shield-alt"></i> 정책 리스트</a>
+        </li>
+    </ul>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6"> <!-- 카드의 너비를 줄임 -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">Add Policy</h5>
+                    <form id="policyForm" action="policy_modify_handler.php" method="POST">
+                        <div class="form-group">
+                            <label for="policyName">정책명</label>
+                            <input type="text" class="form-control" id="policyName" name="policyName" placeholder="정책명 입력" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="policyDescription">정책 설명</label>
+                            <textarea class="form-control" id="policyDescription" name="policyDescription" rows="3" placeholder="정책 설명 입력" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="policyType">정책 유형</label>
+                            <select class="form-control" id="policyType" name="policyType" required>
+                                <option value="security">보안 정책</option>
+                                <option value="access">접근 제어 정책</option>
+                                <option value="dataProtection">데이터 보호 정책</option>
+                                <!-- 기타 정책 유형 추가 -->
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="target">적용 대상</label>
+                            <select class="form-control" id="target" name="target" required>
+                                <option value="allUsers">모든 사용자</option>
+                                <option value="specificDepartments">특정 부서</option>
+                                <option value="specificObjects">특정 데이터베이스 객체</option>
+                                <!-- 기타 적용 대상 추가 -->
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="startDate">시작 날짜</label>
+                            <input type="date" class="form-control" id="startDate" name="startDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="endDate">종료 날짜</label>
+                            <input type="date" class="form-control" id="endDate" name="endDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="priority">우선 순위</label>
+                            <input type="number" class="form-control" id="priority" name="priority" placeholder="우선 순위 입력" min="1" required>
+                        </div>
+
+                        <div class="text-center"> <!-- 버튼 가운데 정렬을 위한 text-center 클래스 -->
+                            <button type="submit" class="btn btn-custom btn-primary btn-block">Add</button>
+                            <button type="button" class="btn btn-clear btn-block" onclick="resetForm()">Clear</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function resetForm() {
+        document.getElementById("policyForm").reset();
+    }
+</script>
+
+</body>
+</html>

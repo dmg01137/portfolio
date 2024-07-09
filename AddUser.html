@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add User</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* 네비게이션바 스타일 */
+        .navbar {
+            background-color: #222;
+            padding: 14px 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+        .navbar-nav .nav-item {
+            margin-right: 10px;
+        }
+        .nav-link {
+            color: #fff !important;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #17a2b8 !important;
+        }
+        .nav-link i {
+            margin-right: 5px;
+        }
+        .nav-sidebar .nav-link {
+            color: #d1d1d1;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+        .nav-sidebar .nav-link:hover {
+            background-color: #222;
+            color: #fff;
+        }
+        .nav-sidebar .nav-link i {
+            margin-right: 10px;
+        }
+
+        /* 왼쪽 세로 메뉴바 스타일 */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 64px;
+            width: 200px; /* 사이드바 너비를 200px로 조정 */
+            background-color: #222;
+            height: 100%;
+            padding-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden; /* 가로 스크롤바를 숨기는 속성 */
+        }
+        .sidebar-heading {
+            font-size: 1.2rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .nav-sidebar .nav-link.active {
+            color: #17a2b8 !important; /* Active 상태에서의 텍스트 색상 변경 */
+        }
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            margin-top: 100px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+        .card:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+        .card-body {
+            padding: 30px; /* Increased padding for better spacing */
+        }
+        .form-group {
+            margin-bottom: 20px; /* Increased margin between form groups */
+        }
+        .btn-custom {
+            border-radius: 25px;
+            width: 100%; /* Button width 100% of parent */
+        }
+        .nav-sidebar .nav-link-custom {
+            color: #17a2b8 !important; /* 텍스트 색상 변경 */
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg  fixed-top">
+    <a class="navbar-brand" href="#">사용자 관리</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-file-alt mr-1"></i>로그 관리</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-shield-alt"></i> 정책 관리</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-user-cog"></i> 관리자</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-home"></i> 홈</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="sidebar">
+    <h5 class="sidebar-heading">메뉴</h5>
+    <ul class="nav flex-column nav-sidebar">
+        <li class="nav-item">
+            <a class="nav-link nav-link-custom" href="#"><i class="fas fa-plus" style="color: #17a2b8;"></i> 사용자 추가</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-users-cog"></i> 사용자 리스트</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-trash-alt"></i> 사용자 삭제</a>
+        </li>
+    </ul>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">Add User</h5>
+                    <form id="userForm">
+                        <div class="form-group">
+                            <label for="user_id">사용자 ID</label>
+                            <input type="text" class="form-control" id="user_id" placeholder="사용자 ID 입력">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">비밀번호</label>
+                            <input type="password" class="form-control" id="password" placeholder="비밀번호 입력">
+                        </div>
+                        <div class="form-group">
+                            <label for="user_privilege">사용자 권한</label>
+                            <select class="form-control" id="user_privilege">
+                                <option value="admin">admin</option>
+                                <option value="user">user</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_name">사용자 이름</label>
+                            <input type="text" class="form-control" id="user_name" placeholder="사용자 이름 입력">
+                        </div>
+                        <button type="button" class="btn btn-primary btn-custom mt-3" onclick="addUser()">추가</button>
+                        <button type="button" class="btn btn-secondary btn-custom mt-2" onclick="resetForm()">초기화</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function addUser() {
+        var user_id = document.getElementById('user_id').value.trim();
+        var password = document.getElementById('password').value;
+        var user_privilege = document.getElementById('user_privilege').value;
+        var user_name = document.getElementById('user_name').value.trim();
+
+        // 필수 입력 필드 체크
+        if (user_id === '' || password === '' || user_privilege === '' || user_name === '') {
+            alert('모든 필드를 입력해주세요.');
+            return;
+        }
+
+        // 여기서 서버로 사용자 추가 요청을 보내는 로직을 추가해야 합니다.
+        // 예를 들어, fetch API 또는 XMLHttpRequest를 사용하여 백엔드로 데이터를 전송할 수 있습니다.
+
+        // 추가 성공 메시지
+        alert("사용자가 추가되었습니다.");
+
+        // 폼 초기화
+        resetForm();
+    }
+
+    function resetForm() {
+        document.getElementById("userForm").reset();
+    }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
