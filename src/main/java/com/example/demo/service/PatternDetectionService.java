@@ -1,13 +1,14 @@
 package com.example.demo.service;
 
-import com.example.demo.dao.PatternDetectionDAO;
-import com.example.demo.dto.PatternDetection;
-import com.example.demo.controller.SearchCriteria;
+import java.time.LocalDateTime;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import com.example.demo.controller.SearchCriteria;
+import com.example.demo.dao.PatternDetectionDAO;
+import com.example.demo.dto.PatternDetection;
 
 @Service
 public class PatternDetectionService {
@@ -24,19 +25,14 @@ public class PatternDetectionService {
     }
 
     public List<PatternDetection> searchPatternDetections(SearchCriteria searchCriteria) {
-        // Implement search logic based on searchCriteria
-        // Example: Searching by name
         if (searchCriteria.getSearchInputName() != null && !searchCriteria.getSearchInputName().isEmpty()) {
-            return patternDetectionDAO.getPatternDetectionsByName(searchCriteria.getSearchInputName());
+            return patternDetectionDAO.getPatternDetectionByName(searchCriteria.getSearchInputName());
         }
-        // Add more conditions based on other fields in SearchCriteria
-
-        // Default return if no specific criteria match
         return patternDetectionDAO.getAllPatternDetections();
     }
 
-    public PatternDetection getPatternDetectionById(Long detectionNumber) {
-        return patternDetectionDAO.getPatternDetectionById(detectionNumber);
+    public List<PatternDetection> getPatternDetectionById(String name) {
+        return patternDetectionDAO.getPatternDetectionByName(name);
     }
 
     public void addPatternDetection(PatternDetection patternDetection) {
@@ -57,5 +53,10 @@ public class PatternDetectionService {
 
     public List<PatternDetection> getPatternDetectionsByTimeRange(LocalDateTime start, LocalDateTime end) {
         return patternDetectionDAO.getPatternDetectionsByTimeRange(start, end);
+    }
+
+    // 추가한 메서드
+    public List<PatternDetection> getPatternDetectionsByName(String name) {
+        return patternDetectionDAO.getPatternDetectionByName(name);
     }
 }

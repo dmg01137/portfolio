@@ -15,18 +15,18 @@
 
     <!-- 사용자 추가 -->
     <insert id="addUser" parameterType="com.example.demo.dto.Users">
-        INSERT INTO User_data (user_id, password, user_privilege, user_name)
+        INSERT INTO  User_data (user_id, password, user_privilege, user_name)
         VALUES (#{user_id}, #{password}, #{user_privilege}, #{user_name})
     </insert>
 
     <!-- 모든 사용자 조회 -->
     <select id="getAllUsers" resultType="com.example.demo.dto.Users">
-        SELECT * FROM User_data
+        SELECT * FROM  User_data
     </select>
 
 <!-- 사용자 정보 수정 -->
 <update id="updateUser" parameterType="com.example.demo.dto.Users">
-    UPDATE User_data 
+    UPDATE  User_data
     SET user_name = #{user_name},
         user_privilege = #{user_privilege},
         password = #{password}
@@ -36,7 +36,7 @@
 
  <!-- 사용자 삭제 -->
     <delete id="deleteUserById" parameterType="java.lang.String">
-        DELETE FROM User_data WHERE user_id = #{user_id}
+        DELETE FROM  User_data WHERE user_id = #{user_id}
     </delete>
 
 
