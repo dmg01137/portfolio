@@ -23,7 +23,7 @@ public class SocketServerUdp {
                 DatagramPacket receivePacket = new DatagramPacket(Buffer, Buffer.length);
                 serverSocket.receive(receivePacket);  // 클라이언트로부터 데이터를 수신
                 
-                // 수신된 데이터 처리
+                // 수신된 메세지 처리
                 byte[] receivedData = receivePacket.getData();
                 int length = receivePacket.getLength();
                 String test1 = new String(receivedData, 0, length);
