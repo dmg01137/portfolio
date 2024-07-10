@@ -242,8 +242,8 @@
             </div>
         </div>
         <div class="searchButtons" style="text-align: center; margin-top: 10px;">
-            <button class="btn btn-primary searchButton">Search</button>
-            <button class="btn btn-secondary clearButton">Clear</button>
+            <button id="searchButton" class="btn btn-primary searchButton">Search</button>
+            <button id="clearButton" class="btn btn-secondary clearButton">Clear</button>
         </div>
     </div>
     <!-- 로그를 표시할 테이블 -->
@@ -306,28 +306,48 @@ $(document).ready(function () {
     // 페이지 로드 시 초기 데이터 가져오기
     fetchAndDisplayLogs();
 
-    // 검색 처리 함수
-    function handleSearch() {
-        // 검색 로직 구현
-        // 여기에 검색 기능 구현
-    }
-
-    // 초기화 함수
-    function clearSearch() {
-        // 초기화 로직 구현
-        // 여기에 초기화 기능 구현
-    }
-
+    
     // 검색 버튼 클릭 이벤트 리스너
-    $(".searchButton").click(function () {
+    $("#searchButton").click(function () {
         handleSearch();
     });
 
     // 초기화 버튼 클릭 이벤트 리스너
-    $(".clearButton").click(function () {
-        clearSearch();
+    $("#clearButton").click(function () {
+        $(".searchInput").val(""); // 입력 필드 초기화
+        fetchAndDisplayLogs(); // 모든 데이터 다시 불러오기
     });
+    
+    // 검색 처리 함수
+    function handleSearch() {
+        let rows = document.querySelectorAll("#logTable tbody tr");
+
+        rows.forEach(row => {
+            let shouldDisplay = true;
+
+            for (let i = 0; i < 10; i++) { // 검색 입력창 개수에 맞게 수정
+                let value = document.getElementById(`searchValue${i + 1}`).value.trim().toLowerCase();
+                let cellValue = row.cells[i].textContent.trim().toLowerCase();
+
+                if (cellValue.includes(value) || value === "") {
+                    continue;
+                } else {
+                    shouldDisplay = false;
+                    break;
+                }
+            }
+
+            if (shouldDisplay) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
+    }
+
+
 });
+
 </script>
 </body>
 </html>

@@ -4,28 +4,31 @@ import java.time.LocalDateTime;
 
 public class PatternDetection {
 
-    private Long detectionNumber;
-    private String sIp;
-    private String dIp;
-    private Integer sPort;
-    private Integer dPort;
-    private LocalDateTime createDt;
-    private LocalDateTime modifyDt;
-    private Integer actionType;
-    private String policyName;
-    private String policyInfo;
-    private String pattern1;
-    private String pattern2;
-    private String pattern3;
-    private Integer dangers;
-
+    private Long detectionNumber;    // 탐지 번호
+    private String sIp;             // 소스 IP
+    private String dIp;             // 목적지 IP
+    private Integer sPort;          // 소스 포트
+    private Integer dPort;          // 목적지 포트
+    private LocalDateTime createDt; // 생성 일시
+    private LocalDateTime modifyDt; // 수정 일시
+    private Integer actionType;     // 동작 유형
+    private String policyName;      // 정책 이름
+    private String policyInfo;      // 정책 정보
+    private String pattern1;        // 패턴 1
+    private String pattern2;        // 패턴 2
+    private String pattern3;        // 패턴 3
+    private Integer dangerous;      // 위험도
+    private String regexp1;         // 정규 표현식 1
+    private String regexp2;         // 정규 표현식 2
+    private String regexp3;         // 정규 표현식 3
     // 생성자
     public PatternDetection() {
     }
 
     public PatternDetection(Long detectionNumber, String sIp, String dIp, Integer sPort, Integer dPort,
                             LocalDateTime createDt, LocalDateTime modifyDt, Integer actionType, String policyName,
-                            String policyInfo, String pattern1, String pattern2, String pattern3, Integer dangers) {
+                            String policyInfo, String pattern1, String pattern2, String pattern3, Integer dangerous,
+                            String regexp1, String regexp2, String regexp3) {
         this.detectionNumber = detectionNumber;
         this.sIp = sIp;
         this.dIp = dIp;
@@ -39,7 +42,10 @@ public class PatternDetection {
         this.pattern1 = pattern1;
         this.pattern2 = pattern2;
         this.pattern3 = pattern3;
-        this.dangers = dangers;
+        this.dangerous = dangerous;
+        this.regexp1 = regexp1;
+        this.regexp2 = regexp2;
+        this.regexp3 = regexp3;
     }
 
     // Getter 및 Setter 메소드
@@ -147,12 +153,36 @@ public class PatternDetection {
         this.pattern3 = pattern3;
     }
 
-    public Integer getDangers() {
-        return dangers;
+    public Integer getDangerous() {
+        return dangerous;
     }
 
-    public void setDangers(Integer dangers) {
-        this.dangers = dangers;
+    public void setDangerous(Integer dangerous) {
+        this.dangerous = dangerous;
+    }
+
+    public String getRegexp1() {
+        return regexp1;
+    }
+
+    public void setRegexp1(String regexp1) {
+        this.regexp1 = regexp1;
+    }
+
+    public String getRegexp2() {
+        return regexp2;
+    }
+
+    public void setRegexp2(String regexp2) {
+        this.regexp2 = regexp2;
+    }
+
+    public String getRegexp3() {
+        return regexp3;
+    }
+
+    public void setRegexp3(String regexp3) {
+        this.regexp3 = regexp3;
     }
 
     @Override
@@ -171,7 +201,10 @@ public class PatternDetection {
                 ", pattern1='" + pattern1 + '\'' +
                 ", pattern2='" + pattern2 + '\'' +
                 ", pattern3='" + pattern3 + '\'' +
-                ", dangers=" + dangers +
+                ", dangerous=" + dangerous +
+                ", regexp1='" + regexp1 + '\'' +
+                ", regexp2='" + regexp2 + '\'' +
+                ", regexp3='" + regexp3 + '\'' +
                 '}';
     }
 }

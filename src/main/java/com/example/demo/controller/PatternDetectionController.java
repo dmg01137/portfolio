@@ -39,7 +39,7 @@ public class PatternDetectionController {
     @GetMapping("/api/pattern-detections-by-name/{name}")
     @ResponseBody
     public List<PatternDetection> getPatternDetectionByName(@PathVariable String name) {
-        return patternDetectionService.getPatternDetectionById(name);
+        return patternDetectionService.getPatternDetectionsByName(name);
     }
 
     @GetMapping("/api/pattern-detections-paged")

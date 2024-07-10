@@ -31,7 +31,7 @@ public class PatternDetectionService {
         return patternDetectionDAO.getAllPatternDetections();
     }
 
-    public List<PatternDetection> getPatternDetectionById(String name) {
+    public List<PatternDetection> getPatternDetectionsByName(String name) {
         return patternDetectionDAO.getPatternDetectionByName(name);
     }
 
@@ -53,10 +53,5 @@ public class PatternDetectionService {
 
     public List<PatternDetection> getPatternDetectionsByTimeRange(LocalDateTime start, LocalDateTime end) {
         return patternDetectionDAO.getPatternDetectionsByTimeRange(start, end);
-    }
-
-    // 추가한 메서드
-    public List<PatternDetection> getPatternDetectionsByName(String name) {
-        return patternDetectionDAO.getPatternDetectionByName(name);
     }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Policy List</title>
+    <title>정책 목록</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -73,9 +73,10 @@
             font-family: Arial, sans-serif;
             padding-top: 80px; /* 네비게이션 바가 fixed로 설정되어 있으므로 body의 padding-top 값을 설정하여 겹치지 않게 함 */
         }
-        .container {
-            margin-top: 20px; /* 기본적인 여백 설정 */
-        }
+      .container {
+    margin-top: 80px; /* 기본적인 여백을 유지 */
+}
+
         .card {
             margin-top: 20px; /* 카드의 위쪽 여백 설정 */
             margin-left: 240px; /* 카드를 오른쪽으로 이동 */
@@ -230,134 +231,106 @@
                                     <th>패턴 2</th>
                                     <th>패턴 3</th>
                                     <th>위험성</th>
+                                    <th>정규표현식1</th>
+                                    <th>정규표현식2</th>
+                                    <th>정규표현식3</th>
                                 </tr>
                             </thead>
-                            <tbody id="patternList">
-                                <!-- 데이터는 JavaScript로 동적으로 채움 -->
-                            </tbody>
-                        </table>
-
-                        <!-- 수정 버튼 -->
-                        <div class="btn-section">
-                            <button id="btnModify" class="btn btn-primary btn-modify">Modify</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                           <tbody id="logTableBody">
+            <!-- 여기에 JavaScript로 동적으로 추가될 테이블 로우들이 들어갈 자리 -->
+        </tbody>
+    </table>
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+<!-- jQuery, Popper.js, 부트스트랩 JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    // 페이지가 로드될 때 패턴 정책 리스트를 가져옴
-    fetchPolicyList();
-    
-    // 검색 버튼 클릭 이벤트 처리
-    document.getElementById('btnSearch').addEventListener('click', function () {
-        searchPolicies();
+$(document).ready(function () {
+    // 서버에서 데이터를 받아와서 테이블에 표시하는 함수
+    function fetchAndDisplayLogs() {
+        $.get("/api/patternlogs", function (data) {
+            console.log(data); // 받은 데이터를 콘솔에 출력
+
+            $("#logTableBody").empty(); // 기존 테이블 내용 지우기
+
+            // 받아온 데이터를 테이블에 추가하기
+            data.forEach(function (log) {
+                // 패킷 데이터를 HTML 엔티티로 인코딩하여 추가
+                let encodedPacket = encodeURIComponent(log.encodedPacket);
+                $("#logTableBody").append(
+                    `<tr>
+                        <td>${log.detectionNumber}</td>
+                        <td>${log.sIp}</td>
+                        <td>${log.dIp}</td>
+                        <td>${log.sPort}</td>
+                        <td>${log.dPort}</td>
+                        <td>${log.createDt}</td>
+                        <td>${log.modifyDt}</td>
+                        <td>${log.actionType}</td>
+                        <td>${log.policyName}</td>
+                        <td>${log.policyInfo}</td>
+                        <td>${log.pattern1}</td>
+                        <td>${log.pattern2}</td>
+                        <td>${log.pattern3}</td>
+                        <td>${log.dangerous}</td>
+                        <td>${log.regexp1}</td>
+                        <td>${log.regexp2}</td>
+                        <td>${log.regexp3}</td>
+                    </tr>`
+                );
+            });
+        }).fail(function() {
+            console.error("데이터를 불러오는데 실패했습니다.");
+        });
+    }
+
+    // 페이지 로드 시 초기 데이터 가져오기
+    fetchAndDisplayLogs();
+
+    // 검색 버튼 클릭 이벤트 리스너
+    $("#btnSearch").click(function () {
+        handleSearch();
     });
-    
-    // 초기화 버튼 클릭 이벤트 처리
-    document.getElementById('btnClear').addEventListener('click', function () {
-        clearSearchInputs();
-        fetchPolicyList(); // 모든 정책을 다시 가져옴
+
+    // 초기화 버튼 클릭 이벤트 리스너
+    $("#btnClear").click(function () {
+        $(".form-control").val(""); // 입력 필드 초기화
+        fetchAndDisplayLogs(); // 모든 데이터 다시 불러오기
     });
+
+    // 검색 처리 함수
+    function handleSearch() {
+        let rows = $("#logTableBody").find("tr");
+
+        rows.each(function () {
+            let shouldDisplay = true;
+
+            // 각 검색 필드의 값과 테이블 셀 값을 비교하여 행을 표시할지 결정
+            $(".form-control").each(function (index) {
+                let value = $(this).val().trim().toLowerCase();
+                let cellValue = $(this).closest("tr").find(`td:nth-child(${index + 1})`).text().trim().toLowerCase();
+
+                if (cellValue.includes(value) || value === "") {
+                    // 포함되거나 값이 없으면 계속 진행
+                    return true;
+                } else {
+                    shouldDisplay = false;
+                    return false;
+                }
+            });
+
+            // 보여줄 필요가 있으면 보이게 설정, 그렇지 않으면 숨김
+            if (shouldDisplay) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    }
 });
-
-// 패턴 정책 리스트 가져오기
-function fetchPolicyList() {
-    axios.get('/api/policies')
-        .then(function (response) {
-            displayPolicies(response.data); // 패턴 정책 리스트를 화면에 표시
-        })
-        .catch(function (error) {
-            console.error('Error fetching policy list', error);
-        });
-}
-
-// 패턴 정책 리스트 화면에 표시하기
-function displayPolicies(policies) {
-    var patternList = document.getElementById('patternList');
-    patternList.innerHTML = ''; // 기존 내용 초기화
-    
-    policies.forEach(function (policy, index) {
-        var row = patternList.insertRow();
-        
-        // 각 셀(td)을 생성하고 데이터를 추가
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-        var cell5 = row.insertCell(4);
-        var cell6 = row.insertCell(5);
-        var cell7 = row.insertCell(6);
-        var cell8 = row.insertCell(7);
-        var cell9 = row.insertCell(8);
-        var cell10 = row.insertCell(9);
-        var cell11 = row.insertCell(10);
-        var cell12 = row.insertCell(11);
-        var cell13 = row.insertCell(12);
-        var cell14 = row.insertCell(13);
-        var cell15 = row.insertCell(14);
-        
-        cell1.innerHTML = `<input type="checkbox" id="checkbox-${index}">`;
-        cell2.textContent = index + 1;
-        cell3.textContent = policy.sIp;
-        cell4.textContent = policy.dIp;
-        cell5.textContent = policy.sPort;
-        cell6.textContent = policy.dPort;
-        cell7.textContent = policy.createDate;
-        cell8.textContent = policy.modifyDate;
-        cell9.textContent = policy.actionType;
-        cell10.textContent = policy.policyName;
-        cell11.textContent = policy.policyInfo;
-        cell12.textContent = policy.pattern1;
-        cell13.textContent = policy.pattern2;
-        cell14.textContent = policy.pattern3;
-        cell15.textContent = policy.dangers;
-    });
-}
-
-// 정책 검색 기능
-function searchPolicies() {
-    var searchInputs = [
-        'ID', 'Name', 'Privilege', 'sIp', 'dIp', 'sPort', 'dPort', 
-        'CreateDate', 'ModifyDate', 'ActionType', 'PolicyName', 
-        'PolicyInfo', 'Pattern1', 'Pattern2', 'Pattern3', 'Dangers'
-    ];
-    var params = {};
-    searchInputs.forEach(function (input) {
-        var value = document.getElementById('searchInput' + input).value.trim();
-        if (value !== '') {
-            params[input.toLowerCase()] = value;
-        }
-    });
-    
-    // 검색 기준을 서버에 전달하여 결과 요청
-    axios.get('/api/policies/search', { params: params })
-        .then(function (response) {
-            displayPolicies(response.data); // 검색 결과를 화면에 표시
-        })
-        .catch(function (error) {
-            console.error('Error searching policies', error);
-        });
-}
-
-// 검색 입력창 초기화
-function clearSearchInputs() {
-    var searchInputs = [
-        'ID', 'Name', 'Privilege', 'sIp', 'dIp', 'sPort', 'dPort', 
-        'CreateDate', 'ModifyDate', 'ActionType', 'PolicyName', 
-        'PolicyInfo', 'Pattern1', 'Pattern2', 'Pattern3', 'Dangers'
-    ];
-    searchInputs.forEach(function (input) {
-        document.getElementById('searchInput' + input).value = '';
-    });
-}
-
 </script>
+
 
 </body>
 </html>

@@ -39,13 +39,13 @@ public class DangerousLogController {
     // 검색 기능 추가
     @GetMapping("/dangerouslog/search")
     public String searchDangerousLogs(
-            @RequestParam(name = "id", required = false) Integer id,
+            @RequestParam(name = "detection_number", required = false) Integer detection_number,
             @RequestParam(name = "ip", required = false) String ip,
             @RequestParam(name = "port", required = false) Integer port,
             @RequestParam(name = "policy_number", required = false) String policyNumber,
             Model model) {
 
-        List<DangerousLog> logs = dangerousLogService.search(id, ip, port, policyNumber);
+        List<DangerousLog> logs = dangerousLogService.search(detection_number, ip, port, policyNumber);
         model.addAttribute("logs", logs);
         return "dangerouslog"; // Thymeleaf 템플릿 이름 수정
     }

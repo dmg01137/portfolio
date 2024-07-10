@@ -19,8 +19,8 @@ public class DangerousLogService {
         this.dangerousLogDAO = dangerousLogDAO;
     }
 
-    public DangerousLog findById(int id) {
-        return dangerousLogDAO.findById(id);
+    public DangerousLog findById(int detection_number) {
+        return dangerousLogDAO.findById(detection_number);
     }
 
     public List<DangerousLog> findAll() {
@@ -35,11 +35,11 @@ public class DangerousLogService {
         dangerousLogDAO.update(log);
     }
 
-    public void delete(int id) {
-        dangerousLogDAO.delete(id);
+    public void delete(int detection_number) {
+        dangerousLogDAO.delete(detection_number);
     }
 
-    public List<DangerousLog> search(Integer id, String ip, Integer port, String policyNumber) {
-        return dangerousLogDAO.search(id, ip, port, policyNumber);
+    public List<DangerousLog> search(Integer detection_number, String ip, Integer port, String policyNumber) {
+        return dangerousLogDAO.search(detection_number, ip, port, policyNumber);
     }
 }

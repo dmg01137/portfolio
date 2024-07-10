@@ -5,38 +5,38 @@
 
     <!-- Select by ID -->
     <select id="findById" resultType="com.example.demo.dto.DangerousLog" parameterType="int">
-        SELECT * FROM Dangerous_Log WHERE id = #{id}
+        SELECT * FROM dangerous_log WHERE detection_number = #{detection_number}
     </select>
 
     <!-- Select all -->
     <select id="findAll" resultType="com.example.demo.dto.DangerousLog">
-        SELECT * FROM Dangerous_Log
+        SELECT * FROM dangerous_log
     </select>
 
     <!-- Insert -->
     <insert id="save" parameterType="com.example.demo.dto.DangerousLog">
-        INSERT INTO Dangerous_Log (ip, port, policy_number)
+        INSERT INTO dangerous_log (ip, port, policy_number)
         VALUES (#{ip}, #{port}, #{policyNumber})
     </insert>
 
     <!-- Update -->
     <update id="update" parameterType="com.example.demo.dto.DangerousLog">
-        UPDATE Dangerous_Log
+        UPDATE dangerous_log
         SET ip = #{ip}, port = #{port}, policy_number = #{policyNumber}
-        WHERE id = #{id}
+        WHERE detection_number = #{detection_number}
     </update>
 
     <!-- Delete -->
     <delete id="delete" parameterType="int">
-        DELETE FROM Dangerous_Log WHERE id = #{id}
+        DELETE FROM dangerous_log WHERE detection_number = #{detection_number}
     </delete>
 
     <!-- Search -->
     <select id="search" resultType="com.example.demo.dto.DangerousLog">
-        SELECT * FROM Dangerous_Log
+        SELECT * FROM dangerous_log
         WHERE 
-        <if test="id != null">
-            id = #{id}
+        <if test="detection_number != null">
+            detection_number = #{detection_number}
         </if>
         <if test="ip != null and ip != ''">
             AND ip = #{ip}

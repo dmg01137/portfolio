@@ -1,7 +1,7 @@
 package com.example.demo.dto;
 
 public class DangerousLog {
-    private int id; // 위험 로그 ID
+    private int detection_number; // 위험 로그 ID
     private String ip; // IP 주소
     private int port; // 포트 번호
     private String policyNumber; // 정책 번호
@@ -17,11 +17,11 @@ public class DangerousLog {
     }
 
     public int getId() {
-        return id;
+        return detection_number;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int detection_number) {
+        this.detection_number = detection_number;
     }
 
     public String getIp() {
@@ -51,7 +51,7 @@ public class DangerousLog {
     @Override
     public String toString() {
         return "DangerousLog{" +
-                "id=" + id +
+                "detection_number=" +detection_number +
                 ", ip='" + ip + '\'' +
                 ", port=" + port +
                 ", policyNumber='" + policyNumber + '\'' +
