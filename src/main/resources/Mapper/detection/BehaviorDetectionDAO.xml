@@ -3,60 +3,63 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.dao.detection.BehaviorDetectionDAO">
 
-    <!-- 모든 BehaviorDetection 조회 -->
+    <!-- 모든 행동 탐지 조회 -->
     <select id="getAllBehaviorDetections" resultType="com.example.demo.dto.detection.BehaviorDetection">
         SELECT * FROM detection_db.behavior_detection
     </select>
 
-    <!-- 이름으로 BehaviorDetection 조회 -->
-    <select id="getBehaviorDetectionsByName" resultType="com.example.demo.dto.detection.BehaviorDetection" parameterType="java.lang.String">
-        SELECT * FROM detection_db.behavior_detection WHERE policy_name = #{name}
+    <!-- 이름으로 행동 탐지 조회 -->
+    <select id="getBehaviorDetectionByName" resultType="com.example.demo.dto.detection.BehaviorDetection" parameterType="java.lang.String">
+        SELECT * FROM detection_db.behavior_detection WHERE policy_name = #{policy_name}
     </select>
 
-    <!-- BehaviorDetection 추가 -->
+    <!-- 행동 탐지 추가 -->
     <insert id="addBehaviorDetection" parameterType="com.example.demo.dto.detection.BehaviorDetection">
-        INSERT INTO detection_db.behavior_detection (
-            detection_number, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info,
-            pattern_1, pattern_2, pattern_3, dangerous, regexp_1, regexp_2, regexp_3, base_cnt, base_time
-        ) VALUES (
-            #{detection_number}, #{s_ip}, #{d_ip}, #{s_port}, #{d_port}, #{create_dt}, #{modify_dt}, #{action_type}, #{policy_name}, #{policy_info},
-            #{pattern_1}, #{pattern_2}, #{pattern_3}, #{dangerous}, #{regexp_1}, #{regexp_2}, #{regexp_3}, #{base_cnt}, #{base_time}
-        )
+        INSERT INTO detection_db.behavior_detection (detection_number, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous, regexp_1, regexp_2, regexp_3, base_cnt, base_time)
+        VALUES (#{detection_number}, #{s_ip}, #{d_ip}, #{s_port}, #{d_port}, #{create_dt}, #{modify_dt}, #{action_type}, #{policy_name}, #{policy_info}, #{pattern_1}, #{pattern_2}, #{pattern_3}, #{dangerous}, #{regexp_1}, #{regexp_2}, #{regexp_3}, #{base_cnt}, #{base_time})
     </insert>
 
-    <!-- BehaviorDetection 수정 -->
+    <!-- 행동 탐지 수정 -->
     <update id="updateBehaviorDetection" parameterType="com.example.demo.dto.detection.BehaviorDetection">
         UPDATE detection_db.behavior_detection
-        SET s_ip = #{s_ip}, d_ip = #{d_ip}, s_port = #{s_port}, d_port = #{d_port}, create_dt = #{create_dt}, modify_dt = #{modify_dt},
-            action_type = #{action_type}, policy_name = #{policy_name}, policy_info = #{policy_info}, pattern_1 = #{pattern_1},
-            pattern_2 = #{pattern_2}, pattern_3 = #{pattern_3}, dangerous = #{dangerous}, regexp_1 = #{regexp_1},
-            regexp_2 = #{regexp_2}, regexp_3 = #{regexp_3}, base_cnt = #{base_cnt}, base_time = #{base_time}
+        SET s_ip = #{s_ip}, d_ip = #{d_ip}, s_port = #{s_port}, d_port = #{d_port}, create_dt = #{create_dt}, modify_dt = #{modify_dt}, action_type = #{action_type},
+            policy_name = #{policy_name}, policy_info = #{policy_info}, pattern_1 = #{pattern_1}, pattern_2 = #{pattern_2}, pattern_3 = #{pattern_3}, dangerous = #{dangerous},
+            regexp_1 = #{regexp_1}, regexp_2 = #{regexp_2}, regexp_3 = #{regexp_3}, base_cnt = #{base_cnt}, base_time = #{base_time}
         WHERE detection_number = #{detection_number}
     </update>
 
-    <!-- BehaviorDetection 삭제 -->
-    <delete id="deleteBehaviorDetection" parameterType="java.lang.Long">
+    <!-- 행동 탐지 삭제 -->
+    <delete id="deleteBehaviorDetection" parameterType="java.lang.Integer">
         DELETE FROM detection_db.behavior_detection WHERE detection_number = #{detection_number}
     </delete>
 
-    <!-- 검색 조건으로 BehaviorDetection 조회 -->
+    <!-- 검색 조건으로 행동 탐지 조회 -->
     <select id="searchBehaviorDetections" resultType="com.example.demo.dto.detection.BehaviorDetection" parameterType="com.example.demo.dto.detection.BehaviorDetection">
-        SELECT * FROM detection_db.behavior_detection
-        WHERE (pattern_1 LIKE CONCAT('%', #{pattern_1}, '%') OR pattern_1 IS NULL)
-           OR (pattern_2 LIKE CONCAT('%', #{pattern_2}, '%') OR pattern_2 IS NULL)
-           OR (pattern_3 LIKE CONCAT('%', #{pattern_3}, '%') OR pattern_3 IS NULL)
+        SELECT * FROM detection_db.behavior_detection 
+        WHERE (s_ip LIKE '%' || #{s_ip} || '%' OR #{s_ip} IS NULL)
+          AND (d_ip LIKE '%' || #{d_ip} || '%' OR #{d_ip} IS NULL)
+          AND (s_port LIKE '%' || #{s_port} || '%' OR #{s_port} IS NULL)
+          AND (d_port LIKE '%' || #{d_port} || '%' OR #{d_port} IS NULL)
+          AND (create_dt LIKE '%' || #{create_dt} || '%' OR #{create_dt} IS NULL)
+          AND (modify_dt LIKE '%' || #{modify_dt} || '%' OR #{modify_dt} IS NULL)
+          AND (action_type LIKE '%' || #{action_type} || '%' OR #{action_type} IS NULL)
+          AND (policy_name LIKE '%' || #{policy_name} || '%' OR #{policy_name} IS NULL)
+          AND (policy_info LIKE '%' || #{policy_info} || '%' OR #{policy_info} IS NULL)
+          AND (pattern_1 LIKE '%' || #{pattern_1} || '%' OR #{pattern_1} IS NULL)
+          AND (pattern_2 LIKE '%' || #{pattern_2} || '%' OR #{pattern_2} IS NULL)
+          AND (pattern_3 LIKE '%' || #{pattern_3} || '%' OR #{pattern_3} IS NULL)
+          AND (dangerous LIKE '%' || #{dangerous} || '%' OR #{dangerous} IS NULL)
     </select>
 
-    <!-- 페이징된 모든 BehaviorDetection 조회 -->
+    <!-- 페이징된 모든 행동 탐지 조회 -->
     <select id="getAllBehaviorDetectionsPaged" resultType="com.example.demo.dto.detection.BehaviorDetection" parameterType="java.util.Map">
         SELECT * FROM (
             SELECT ROW_NUMBER() OVER (ORDER BY detection_number) AS ROWNUM, behavior_detection.*
             FROM detection_db.behavior_detection
-        ) AS paged
-        WHERE ROWNUM BETWEEN #{start} AND #{end}
+        ) WHERE ROWNUM BETWEEN #{startRow} AND #{endRow}
     </select>
 
-    <!-- 시간 범위로 BehaviorDetection 조회 -->
+    <!-- 시간 범위로 행동 탐지 조회 -->
     <select id="getBehaviorDetectionsByTimeRange" resultType="com.example.demo.dto.detection.BehaviorDetection" parameterType="java.util.Map">
         SELECT * FROM detection_db.behavior_detection
         WHERE create_dt BETWEEN #{start} AND #{end}
