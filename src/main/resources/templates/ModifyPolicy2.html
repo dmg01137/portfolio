@@ -340,70 +340,102 @@
     </div>
 </div>
 <!-- 스크립트 추가 부분 -->
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const selectedUserId = localStorage.getItem('selectedUserId');
-
-    // Ajax 요청을 사용하여 서버에서 사용자 정보 가져오기
-    fetch(`/api/users/${selectedUserId}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('네트워크 응답이 올바르지 않습니다.');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // 서버에서 가져온 데이터로 사용자 정보 채우기
-            document.getElementById('user_id').value = data.id;
-            document.getElementById('user_name').value = data.name;
-            document.getElementById('Privilege').value = data.privilege;
-        })
-        .catch(error => {
-            console.error('사용자 데이터를 불러오는 중 오류 발생:', error);
-            // 에러 처리: 사용자에게 메시지 표시나 다른 처리 방법 선택
-        });
-
-    // Datepicker 초기화
-    $('.datepicker').datepicker({
-        format: 'yyyy-mm-dd', // 원하는 날짜 형식으로 변경할 수 있음
-        autoclose: true,
-        todayHighlight: true
-    });
-});
-
-function resetForm() {
-    document.getElementById('detection_number').value = '';
-    document.getElementById('sIp').value = '';
-    document.getElementById('dIp').value = '';
-    document.getElementById('sPort').value = '';
-    document.getElementById('dPort').value = '';
-    document.getElementById('created_at').value = '';
-    document.getElementById('updated_at').value = '';
-    document.getElementById('action_type').value = '';
-    document.getElementById('policy_name').value = '';
-    document.getElementById('policy_info').value = '';
-    document.getElementById('pattern1').value = '';
-    document.getElementById('pattern2').value = '';
-    document.getElementById('pattern3').value = '';
-    document.getElementById('risk_level').value = '';
-    document.getElementById('regex1').value = '';
-    document.getElementById('regex2').value = '';
-    document.getElementById('regex3').value = '';
-}
-
-function modifyUser() {
-    // 사용자 수정 함수 (기존 코드)
-}
-
-function resetForm() {
-    // 폼 초기화 함수 (기존 코드)
-}
-</script>
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function () {
+    // 서버에서 데이터를 가져와서 테이블에 표시하는 함수
+    function fetchAndDisplayBehaviors(searchCriteria = {}) {
+        $.ajax({
+            type: "POST", // POST 방식으로 서버에 데이터 요청
+            url: "/api/search-behavior-detections", // 데이터를 받아올 엔드포인트 URL
+            contentType: "application/json", // 데이터 타입 설정
+            data: JSON.stringify(searchCriteria), // 검색 조건을 JSON 형식으로 변환하여 전송
+            success: function (data) { // 요청이 성공했을 때 실행될 콜백 함수
+                console.log(data); // 받은 데이터를 콘솔에 출력
+
+                $("#behaviorTable tbody").empty(); // 기존 테이블 내용 지우기
+
+                // 받아온 데이터를 테이블에 추가하기
+                data.forEach(function (behavior, index) {
+                    $("#behaviorTable tbody").append(
+                        `<tr>
+                            <td>${index + 1}</td>
+                            <td>${behavior.detection_number}</td>
+                            <td>${behavior.s_ip}</td>
+                            <td>${behavior.d_ip}</td>
+                            <td>${behavior.s_port}</td>
+                            <td>${behavior.d_port}</td>
+                            <td>${behavior.create_dt}</td>
+                            <td>${behavior.modify_dt}</td>
+                            <td>${behavior.action_type}</td>
+                            <td>${behavior.policy_name}</td>
+                            <td>${behavior.policy_info}</td>
+                            <td>${behavior.pattern_1}</td>
+                            <td>${behavior.pattern_2}</td>
+                            <td>${behavior.pattern_3}</td>
+                            <td>${behavior.dangerous}</td>
+                            <td>${behavior.regexp_1}</td>
+                            <td>${behavior.regexp_2}</td>
+                            <td>${behavior.regexp_3}</td>
+                            <td>${behavior.base_cnt}</td>
+                            <td>${behavior.base_time}</td>
+                        </tr>`
+                    );
+                });
+            },
+            error: function (xhr, status, error) { // 요청이 실패했을 때 실행될 콜백 함수
+                console.error("데이터를 불러오는데 실패했습니다.", status, error);
+            }
+        });
+    }
+
+    // 페이지 로드 시 초기 데이터 가져오기
+    fetchAndDisplayBehaviors();
+
+    // 검색 버튼 클릭 이벤트 리스너
+    $("#btnSearch").click(function () {
+        handleSearch();
+    });
+
+    // 초기화 버튼 클릭 이벤트 리스너
+    $("#btnClear").click(function () {
+        $(".form-control").val(""); // 입력 필드 초기화
+        fetchAndDisplayBehaviors(); // 모든 데이터 다시 불러오기
+    });
+
+    // 검색 처리 함수
+    function handleSearch() {
+        // 검색 조건을 입력 받아 객체로 만들기
+        const searchCriteria = {
+            id: $("#searchInputID").val(),
+            name: $("#searchInputName").val(),
+            privilege: $("#searchInputPrivilege").val(),
+            sIp: $("#searchInputSIP").val(),
+            dIp: $("#searchInputDIP").val(),
+            sPort: $("#searchInputSPort").val(),
+            dPort: $("#searchInputDPort").val(),
+            createDate: $("#searchInputCreateDate").val(),
+            modifyDate: $("#searchInputModifyDate").val(),
+            actionType: $("#searchInputActionType").val(),
+            policyName: $("#searchInputPolicyName").val(),
+            policyInfo: $("#searchInputPolicyInfo").val(),
+            pattern1: $("#searchInputPattern1").val(),
+            pattern2: $("#searchInputPattern2").val(),
+            pattern3: $("#searchInputPattern3").val(),
+            dangers: $("#searchInputDangers").val()
+        };
+
+        // 검색 조건을 이용해 데이터를 다시 가져오기
+        fetchAndDisplayBehaviors(searchCriteria);
+    }
+});
+
+</script>
+
 
 </body>
 </html>

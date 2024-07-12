@@ -2,6 +2,7 @@ package com.example.demo.controller.detection;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -14,50 +15,48 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.demo.controller.log.SearchCriteria;
-import com.example.demo.dto.detection.BehaviorDetection; // 변경된 클래스 이름
-import com.example.demo.service.detection.BehaviorDetectionService; // 변경된 클래스 이름
+import com.example.demo.dto.detection.BehaviorDetection;
+import com.example.demo.service.detection.BehaviorDetectionService;
 
 @Controller
-public class BehaviorDetectionController { // 클래스 이름 변경
+public class BehaviorDetectionController {
 
-    private final BehaviorDetectionService behaviorDetectionService; // 변경된 클래스 이름
+    private final BehaviorDetectionService behaviorDetectionService;
 
     @Autowired
-    public BehaviorDetectionController(BehaviorDetectionService behaviorDetectionService) { // 변경된 클래스 이름
+    public BehaviorDetectionController(BehaviorDetectionService behaviorDetectionService) {
         this.behaviorDetectionService = behaviorDetectionService;
     }
 
-    @GetMapping("/policylist2") // 경로 변경
-    public String showBehaviorList(Model model) { // 메소드 이름 변경 및 모델에 사용할 클래스 타입 변경
-        List<BehaviorDetection> behaviorDetections = behaviorDetectionService.getAllBehaviorDetections(); // 변경된 클래스 이름
-        model.addAttribute("behaviorDetections", behaviorDetections); // 변경된 클래스 이름
-        return "policylist2"; // policylist2.html 템플릿을 반환
+    @GetMapping("/policylist2")
+    public String showPolicyList(Model model) {
+        List<BehaviorDetection> behaviorDetections = behaviorDetectionService.getAllBehaviorDetections();
+        model.addAttribute("behaviorDetections", behaviorDetections);
+        return "policylist2";
     }
 
-    @PostMapping("/api/search-behavior-detections") // 경로 변경
+    @PostMapping("/api/search-behavior-detections")
     @ResponseBody
-    public List<BehaviorDetection> searchBehaviorDetections(@RequestBody BehaviorDetection searchCriteria) { // 변경된 클래스 이름
-        List<BehaviorDetection> behaviorDetections = behaviorDetectionService.searchBehaviorDetections(searchCriteria); // 변경된 클래스 이름
+    public List<BehaviorDetection> searchBehaviorDetections(@RequestBody BehaviorDetection behaviorDetection) {
+        List<BehaviorDetection> behaviorDetections = behaviorDetectionService.searchBehaviorDetections(behaviorDetection);
         return behaviorDetections;
     }
 
-    @GetMapping("/api/behavior-detections-by-name/{name}") // 경로 변경
+    @GetMapping("/api/behavior-detections-by-name/{name}")
     @ResponseBody
-    public List<BehaviorDetection> getBehaviorDetectionByName(@PathVariable String name) { // 변경된 클래스 이름
-        return behaviorDetectionService.getBehaviorDetectionsByName(name); // 변경된 클래스 이름
+    public List<BehaviorDetection> getBehaviorDetectionByName(@PathVariable String name) {
+        return behaviorDetectionService.getBehaviorDetectionsByName(name);
     }
 
-    @GetMapping("/api/behavior-detections-paged") // 경로 변경
+    @GetMapping("/api/behavior-detections-paged")
     @ResponseBody
-    public List<BehaviorDetection> getAllBehaviorDetectionsPaged(@RequestParam("page") int page, @RequestParam("size") int size) { // 변경된 클래스 이름
-        return behaviorDetectionService.getAllBehaviorDetectionsPaged(page, size); // 변경된 클래스 이름
+    public List<BehaviorDetection> getAllBehaviorDetectionsPaged(@RequestParam Map<String, Integer> params) {
+        return behaviorDetectionService.getAllBehaviorDetectionsPaged(params);
     }
 
-    @GetMapping("/api/behavior-detections-by-time-range") // 경로 변경
+    @GetMapping("/api/behavior-detections-by-time-range")
     @ResponseBody
-    public List<BehaviorDetection> getBehaviorDetectionsByTimeRange(@RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime start,
-                                                                    @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime end) { // 변경된 클래스 이름
-        return behaviorDetectionService.getBehaviorDetectionsByTimeRange(start, end); // 변경된 클래스 이름
+    public List<BehaviorDetection> getBehaviorDetectionsByTimeRange(@RequestParam Map<String, LocalDateTime> params) {
+        return behaviorDetectionService.getBehaviorDetectionsByTimeRange(params);
     }
 }

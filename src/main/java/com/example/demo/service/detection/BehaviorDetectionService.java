@@ -2,6 +2,7 @@ package com.example.demo.service.detection;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,9 +24,8 @@ public class BehaviorDetectionService {
         return behaviorDetectionDAO.getAllBehaviorDetections();
     }
 
-    public List<BehaviorDetection> searchBehaviorDetections(BehaviorDetection searchCriteria) {
-        // 검색 기준을 통해 데이터 조회
-        return behaviorDetectionDAO.searchBehaviorDetections(searchCriteria);
+    public List<BehaviorDetection> searchBehaviorDetections(BehaviorDetection behaviorDetection) {
+        return behaviorDetectionDAO.searchBehaviorDetections(behaviorDetection);
     }
 
     public List<BehaviorDetection> getBehaviorDetectionsByName(String name) {
@@ -40,15 +40,15 @@ public class BehaviorDetectionService {
         behaviorDetectionDAO.updateBehaviorDetection(behaviorDetection);
     }
 
-    public void deleteBehaviorDetection(Long detection_Number) {
-        behaviorDetectionDAO.deleteBehaviorDetection(detection_Number);
+    public void deleteBehaviorDetection(Long detectionNumber) {
+        behaviorDetectionDAO.deleteBehaviorDetection(detectionNumber);
     }
 
-    public List<BehaviorDetection> getAllBehaviorDetectionsPaged(int page, int size) {
-        return behaviorDetectionDAO.getAllBehaviorDetectionsPaged(page, size);
+    public List<BehaviorDetection> getAllBehaviorDetectionsPaged(Map<String, Integer> params) {
+        return behaviorDetectionDAO.getAllBehaviorDetectionsPaged(params);
     }
 
-    public List<BehaviorDetection> getBehaviorDetectionsByTimeRange(LocalDateTime start, LocalDateTime end) {
-        return behaviorDetectionDAO.getBehaviorDetectionsByTimeRange(start, end);
+    public List<BehaviorDetection> getBehaviorDetectionsByTimeRange(Map<String, LocalDateTime> params) {
+        return behaviorDetectionDAO.getBehaviorDetectionsByTimeRange(params);
     }
 }
