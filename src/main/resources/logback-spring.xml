@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configure>
+
+<configuration>
+
+	<!-- property : 설정 파일 내에서 사용 될 속성 정의 -->
+	<property name="LOG_DIR" value="logs"/>
+	<property name="LOG_FILE" value="${LOG_DIR}/test.log"/>
+	
+<!-- 	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<file>${LOG_FILE}</file>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender> -->
+	
+	<appender name="FILE_ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_DIR}/log-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<maxFileSize>100kb</maxFileSize>
+          	<maxHistory>1</maxHistory>
+        	<!-- <maxFileSize>200KB</maxFileSize> -->
+			<!-- <cleanHistoryOnStart>true</cleanHistoryOnStart> -->
+			
+		</rollingPolicy> 
+	</appender>
+
+	<root level="debug">
+		<appender-ref ref="FILE_ROLLING"/>
+	</root>
+
+
+
+</configuration>

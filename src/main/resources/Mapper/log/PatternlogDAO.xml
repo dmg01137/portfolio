@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.log.PatternLogDAO">
+
+    <!-- 패턴 로그에 대한 결과 매핑 -->
+    <resultMap id="patternLogResultMap" type="com.example.demo.dto.log.PatternLog">
+        <id property="detection_number" column="id"/>
+        <result property="time" column="time"/>
+        <result property="sIp" column="s_ip"/>
+        <result property="dIp" column="d_ip"/>
+        <result property="sPort" column="s_port"/>
+        <result property="dPort" column="d_port"/>
+        <result property="len" column="len"/>
+        <result property="pattern" column="pattern"/>
+        <result property="packet" column="packet"/>
+        <result property="policyName" column="policy_name"/>
+    </resultMap>
+
+    <!-- ID를 기반으로 패턴 로그를 조회합니다 -->
+    <select id="findById" resultMap="patternLogResultMap" parameterType="int">
+        SELECT * FROM log_db.pattern_log WHERE id = #{id}
+    </select>
+
+    <!-- 모든 패턴 로그를 조회합니다 -->
+    <select id="findAll" resultMap="patternLogResultMap">
+        SELECT * FROM log_db.pattern_log
+    </select>
+
+    <!-- 새로운 패턴 로그를 저장합니다 -->
+    <insert id="save" parameterType="com.example.demo.dto.log.PatternLog">
+        INSERT INTO log_db.pattern_log (time, s_ip, d_ip, s_port, d_port, len, pattern, packet, policy_name)
+        VALUES (#{time}, #{sIp}, #{dIp}, #{sPort}, #{dPort}, #{len}, #{pattern}, #{packet}, #{policyName})
+    </insert>
+
+    <!-- 기존 패턴 로그를 업데이트합니다 -->
+    <update id="update" parameterType="com.example.demo.dto.log.PatternLog">
+        UPDATE log_db.pattern_log
+        SET time = #{time}, s_ip = #{sIp}, d_ip = #{dIp}, s_port = #{sPort}, d_port = #{dPort}, len = #{len}, pattern = #{pattern}, packet = #{packet}, policy_name = #{policyName}
+        WHERE id = #{id}
+    </update>
+
+    <!-- ID를 기반으로 특정 패턴 로그를 삭제합니다 -->
+    <delete id="delete" parameterType="int">
+        DELETE FROM log_db.pattern_log WHERE id = #{id}
+    </delete>
+
+</mapper>

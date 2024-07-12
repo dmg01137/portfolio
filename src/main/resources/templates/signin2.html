@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: rgb(0, 0, 0); /* 어두운 배경색 */
+            font-family: 'Open Sans', sans-serif;
+            color: #eee; /* 밝은 회색 텍스트 */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        .container-fluid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .login-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .login-form {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bg-secondary {
+            background-color: #6c757d; /* 다크 그레이 배경 */
+            color: #fff; /* 흰색 텍스트 */
+        }
+
+        .rounded {
+            border-radius: 15px; /* 테두리 반지름 증가 */
+        }
+
+        .p-4 {
+            padding: 2rem;
+        }
+
+        .p-sm-5 {
+            padding: 3rem;
+        }
+
+        .my-4 {
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mx-3 {
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+
+        .text-primary {
+            color: #d1001c; /* 빨간색 텍스트 */
+        }
+
+        .btn-primary {
+            background-color: #d1001c; /* 빨간색 버튼 */
+            border-color: #d1001c;
+            color: #fff; /* 흰색 텍스트 */
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #b3001b; /* 마우스 호버시 더 어두운 빨간색 */
+            border-color: #b3001b;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            background-color: #34495e; /* 어두운 회색 입력 배경 */
+            border: 1px solid #ccc;
+            color: #fff; /* 흰색 텍스트 */
+        }
+
+        .form-control:focus {
+            border-color: #d1001c; /* 포커스시 빨간색 테두리 */
+            box-shadow: none;
+        }
+
+        .input-group-text {
+            background-color: transparent;
+            border: none;
+            color: #ccc; /* 연한 회색 아이콘 색상 */
+            font-size: 18px;
+        }
+
+        .brand-name {
+            font-size: 36px;
+            color: #d1001c; /* 빨간색 텍스트 */
+            text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.3); /* 3D 효과를 위해 그림자 증가 */
+            margin-bottom: 20px;
+            font-weight: bold; /* 글자 굵게 */
+            letter-spacing: 2px; /* 글자 간격 증가 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- 로그인 이미지 -->
+        <div class="login-image">
+            <img src="signin.png" alt="login image" style="max-width: 100%; height: auto;">
+        </div>
+        <!-- 로그인 폼 -->
+        <div class="login-form">
+            <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <a href="index.html" class="brand-name">
+                        <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>WON</h3>
+                    </a>
+                    <h3>Sign In</h3>
+                </div>
+                <form action="/login" method="post">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" name="user_id" placeholder="ID">
+                        <label for="floatingInput">ID</label>
+                    </div>
+                    <div class="form-floating mb-4">
+                        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+                        <label for="floatingPassword">Password</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary py-3 w-100 mb-4" id="signInButton">Sign In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript for Sign In -->
+    <script>
+        // 로그인 버튼 클릭 이벤트 리스너
+        document.getElementById('signInButton').addEventListener('click', function(event) {
+            event.preventDefault(); // 기본 동작 방지
+
+            // FormData 객체 생성
+            var formData = new FormData(this.form);
+
+            // 로그인 API 요청 (예시: fetch를 사용한 비동기 요청)
+            fetch('/login', {
+                method: 'POST',
+                body: formData
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    // 로그인 성공 시 dashboard.html로 리디렉션
+                    window.location.replace('/dashboard');
+                } else {
+                    // 로그인 실패 시 메시지 출력
+                    alert('Invalid ID or Password');
+                }
+            })
+            .catch(function(error) {
+                console.error('Error:', error);
+                alert('An error occurred while processing your request');
+            });
+        });
+    </script>
+</body>
+</html>
