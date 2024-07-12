@@ -30,6 +30,7 @@ public class PatternDetectionController {
         return "policylist"; // policylist.html 템플릿을 반환
     }
 
+    
     @PostMapping("/api/search-pattern-detections")
     @ResponseBody
     public List<PatternDetection> searchPatternDetections(@RequestBody SearchCriteria searchCriteria) {
@@ -54,5 +55,19 @@ public class PatternDetectionController {
     public List<PatternDetection> getPatternDetectionsByTimeRange(@RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime start,
                                                                    @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime end) {
         return patternDetectionService.getPatternDetectionsByTimeRange(start, end);
+    }
+    
+    //추가
+    
+    @GetMapping("/addpolicy")
+    public String showAddPatternForm(Model model) {
+        model.addAttribute("patternDetection", new PatternDetection());
+        return "addpolicy"; // addpolicy.html 템플릿을 반환
+    }
+
+    @PostMapping("/addpolicy")
+    public String addPattern(@ModelAttribute("patternDetection") PatternDetection patternDetection) {
+        patternDetectionService.addPatternDetection(patternDetection);
+        return "redirect:/policylist";
     }
 }

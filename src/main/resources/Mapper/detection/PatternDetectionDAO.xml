@@ -15,8 +15,8 @@
 
     <!-- 패턴 탐지 추가 -->
     <insert id="addPatternDetection" parameterType="com.example.demo.dto.detection.PatternDetection">
-        INSERT INTO detection_db.pattern_detection (detection_number, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous, regexp_1, regexp_2, regexp_3)
-        VALUES (#{detection_number}, #{s_ip}, #{d_ip}, #{s_port}, #{d_port}, #{create_dt}, #{modify_dt}, #{action_type}, #{policy_name}, #{policy_info}, #{pattern_1}, #{pattern_2}, #{pattern_3}, #{dangerous}, #{regexp_1}, #{regexp_2}, #{regexp_3})
+        INSERT INTO detection_db.pattern_detection (detection_number, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous)
+        VALUES (#{detection_number}, #{s_ip}, #{d_ip}, #{s_port}, #{d_port}, #{create_dt}, #{modify_dt}, #{action_type}, #{policy_name}, #{policy_info}, #{pattern_1}, #{pattern_2}, #{pattern_3}, #{dangerous})
     </insert>
 
     <!-- 패턴 탐지 수정 -->

@@ -35,6 +35,7 @@ public class PatternDetectionService {
         return patternDetectionDAO.getPatternDetectionByName(name);
     }
 
+    //추가 
     public void addPatternDetection(PatternDetection patternDetection) {
         patternDetectionDAO.addPatternDetection(patternDetection);
     }
@@ -54,4 +55,6 @@ public class PatternDetectionService {
     public List<PatternDetection> getPatternDetectionsByTimeRange(LocalDateTime start, LocalDateTime end) {
         return patternDetectionDAO.getPatternDetectionsByTimeRange(start, end);
     }
+    
+  
 }

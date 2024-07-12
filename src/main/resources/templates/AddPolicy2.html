@@ -146,10 +146,10 @@
     <h5 class="sidebar-heading">메뉴</h5>
     <ul class="nav flex-column nav-sidebar">
         <li class="nav-item">
-            <a class="nav-link nav-link-custom" href="#"><i class="fas fa-plus"></i> <span style="color: #17a2b8;">패턴정책 추가</span></a>
+            <a class="nav-link nav-link-custom" href="#"><i class="fas fa-plus"></i> <span style="color: #17a2b8;">행동정책 추가</span></a>
         </li>
           <li class="nav-item">
-            <a class="nav-link " href="/addpolicy2"><i class="fas fa-plus"></i> 행동정책 추가</a>
+            <a class="nav-link " href="/addpolicy"><i class="fas fa-plus"></i> 패턴정책 추가</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/policylist"><i class="fas fa-shield-alt"></i> 정책 리스트</a>
@@ -160,58 +160,58 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6"> <!-- 카드의 너비를 줄임 -->
-      <div class="card">
+    <div class="card">
     <div class="card-body">
-        <h5 class="card-title mb-4">Patttern Policy</h5>
-          <form id="policyForm" action="/addpolicy" method="post">
+        <h5 class="card-title mb-4">Pattern Policy</h5>
+        <form id="policyForm" action="policy_modify_handler.php" method="POST">
             <div class="form-group">
                 <label for="detectionNumber">감지 번호</label>
-                <input type="text" class="form-control" id="detectionNumber" name="detectionNumber" placeholder="감지 번호 입력" required>
+                <input type="text" class="form-control" id="detectionNumber" name="detectionNumber" placeholder="감지 번호 입력" placeholder="감지번호" required>
             </div>
 
             <div class="form-group">
                 <label for="sToIp">출발지 to 목적지 IP</label>
-                <input type="text" class="form-control" id="sToIp" name="sToIp" placeholder="출발지 to 목적지 IP 입력">
+                <input type="text" class="form-control" id="sToIp" name="sToIp" placeholder="출발지 to 목적지 IP 입력" value="">
             </div>
 
             <div class="form-group">
                 <label for="sIp">출발지 IP</label>
-                <input type="text" class="form-control" id="sIp" name="sIp" placeholder="출발지 IP 입력">
+                <input type="text" class="form-control" id="sIp" name="sIp" placeholder="출발지 IP 입력" value="">
             </div>
 
             <div class="form-group">
                 <label for="dIp">목적지 IP</label>
-                <input type="text" class="form-control" id="dIp" name="dIp" placeholder="목적지 IP 입력">
+                <input type="text" class="form-control" id="dIp" name="dIp" placeholder="목적지 IP 입력" value="">
             </div>
 
             <div class="form-group">
                 <label for="sPort">출발지 포트</label>
-                <input type="text" class="form-control" id="sPort" name="sPort" placeholder="출발지 포트 입력">
+                <input type="text" class="form-control" id="sPort" name="sPort" placeholder="출발지 포트 입력" value="">
             </div>
 
             <div class="form-group">
                 <label for="dPort">목적지 포트</label>
-                <input type="text" class="form-control" id="dPort" name="dPort" placeholder="목적지 포트 입력">
+                <input type="text" class="form-control" id="dPort" name="dPort" placeholder="목적지 포트 입력" value="">
             </div>
 
             <div class="form-group">
                 <label for="createDt">생성 일자</label>
-                <input type="datetime-local" class="form-control" id="createDt" name="createDt" required>
+                <input type="datetime-local" class="form-control" id="createDt" name="createDt" value="2024-07-12T04:25" required>
             </div>
 
             <div class="form-group">
                 <label for="modifyDt">수정 일자</label>
-                <input type="datetime-local" class="form-control" id="modifyDt" name="modifyDt" required>
+                <input type="datetime-local" class="form-control" id="modifyDt" name="modifyDt" value="2024-07-12T04:25" required>
             </div>
 
             <div class="form-group">
                 <label for="actionType">액션 타입</label>
-                <input type="text" class="form-control" id="actionType" name="actionType" placeholder="액션 타입 입력">
+                <input type="text" class="form-control" id="actionType" name="actionType" placeholder="액션 타입 입력" value="">
             </div>
 
             <div class="form-group">
                 <label for="policyName">정책명</label>
-                <input type="text" class="form-control" id="policyName" name="policyName" placeholder="정책명 입력">
+                <input type="text" class="form-control" id="policyName" name="policyName" placeholder="정책명 입력" value="">
             </div>
 
             <div class="form-group">
@@ -221,37 +221,37 @@
 
             <div class="form-group">
                 <label for="baseCnt">기본 카운트</label>
-                <input type="number" class="form-control" id="baseCnt" name="baseCnt" placeholder="기본 카운트 입력" min="0">
+                <input type="number" class="form-control" id="baseCnt" name="baseCnt" placeholder="기본 카운트 입력" value="5" min="0">
             </div>
 
             <div class="form-group">
                 <label for="compCnt">비교 카운트</label>
-                <input type="number" class="form-control" id="compCnt" name="compCnt" placeholder="비교 카운트 입력" min="0">
+                <input type="number" class="form-control" id="compCnt" name="compCnt" placeholder="비교 카운트 입력" value="0" min="0">
             </div>
 
             <div class="form-group">
                 <label for="baseTime">기본 시간</label>
-                <input type="number" class="form-control" id="baseTime" name="baseTime" placeholder="기본 시간 입력" min="0">
+                <input type="number" class="form-control" id="baseTime" name="baseTime" placeholder="기본 시간 입력" value="10" min="0">
             </div>
 
             <div class="form-group">
                 <label for="pattern1">패턴 1</label>
-                <input type="text" class="form-control" id="pattern1" name="pattern1" placeholder="패턴 1 입력">
+                <input type="text" class="form-control" id="pattern1" name="pattern1" placeholder="패턴 1 입력" value="qqq">
             </div>
 
             <div class="form-group">
                 <label for="pattern2">패턴 2</label>
-                <input type="text" class="form-control" id="pattern2" name="pattern2" placeholder="패턴 2 입력">
+                <input type="text" class="form-control" id="pattern2" name="pattern2" placeholder="패턴 2 입력" value="www">
             </div>
 
             <div class="form-group">
                 <label for="pattern3">패턴 3</label>
-                <input type="text" class="form-control" id="pattern3" name="pattern3" placeholder="패턴 3 입력">
+                <input type="text" class="form-control" id="pattern3" name="pattern3" placeholder="패턴 3 입력" value="eee">
             </div>
 
             <div class="form-group">
                 <label for="dangerous">위험도</label>
-                <input type="number" class="form-control" id="dangerous" name="dangerous" placeholder="위험도 입력" min="0">
+                <input type="number" class="form-control" id="dangerous" name="dangerous" placeholder="위험도 입력" value="100" min="0">
             </div>
 
             <div class="text-center">
@@ -262,6 +262,7 @@
     </div>
 </div>
 </div>
+
     </div>
 </div>
 

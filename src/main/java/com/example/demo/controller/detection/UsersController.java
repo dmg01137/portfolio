@@ -331,15 +331,6 @@ public class UsersController {
         return "dangerouslog";
     }
 
-
-
-    // 정책 추가 페이지로 이동
-    @GetMapping("/addpolicy")
-    public String addpolicy() {
-        return "addpolicy";
-    }
-    
-    
     
     // 정책 수정 페이지로 이동
     @GetMapping("/modifypolicy")

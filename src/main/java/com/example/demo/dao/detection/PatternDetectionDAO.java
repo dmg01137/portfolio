@@ -11,6 +11,7 @@ public interface PatternDetectionDAO {
     List<PatternDetection> getPatternDetectionByName(String name);
 
     void addPatternDetection(PatternDetection patternDetection);
+    
 
     void updatePatternDetection(PatternDetection patternDetection);
 

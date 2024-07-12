@@ -29,6 +29,12 @@ public class BehaviorDetectionController {
         this.behaviorDetectionService = behaviorDetectionService;
     }
 
+    
+    @GetMapping("/addpolicy2")
+    public String addpolicy2(Model model) {
+       
+        return "addpolicy2";
+    }
     // "/behaviorpolicy" 엔드포인트로 GET 요청을 받아 정책 목록 페이지를 보여줍니다.
     @GetMapping("/behaviorpolicy")
     public String showPolicyList2(Model model) {
