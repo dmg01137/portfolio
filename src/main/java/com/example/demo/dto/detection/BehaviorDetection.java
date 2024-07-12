@@ -4,23 +4,23 @@ import java.time.LocalDateTime;
 
 public class BehaviorDetection {
 
-    private Integer detectionNumber;
-    private String sIp;
-    private String dIp;
-    private Integer sPort;
-    private Integer dPort;
-    private LocalDateTime createDt;
-    private LocalDateTime modifyDt;
-    private String actionType;
-    private String policyName;
-    private String policyInfo;
-    private String pattern1;
-    private String pattern2;
-    private String pattern3;
+    private Integer detection_number;
+    private String s_ip;
+    private String d_ip;
+    private Integer s_port;
+    private Integer d_port;
+    private LocalDateTime create_dt;
+    private LocalDateTime modify_dt;
+    private String action_type;
+    private String policy_name;
+    private String policy_info;
+    private String pattern_1;
+    private String pattern_2;
+    private String pattern_3;
     private Integer dangerous;
-    private String regexp1;
-    private String regexp2;
-    private String regexp3;
+    private String regexp_1;
+    private String regexp_2;
+    private String regexp_3;
     private Integer baseCnt;
     private Integer baseTime;
 

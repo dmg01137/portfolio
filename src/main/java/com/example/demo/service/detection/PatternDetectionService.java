@@ -43,8 +43,8 @@ public class PatternDetectionService {
         patternDetectionDAO.updatePatternDetection(patternDetection);
     }
 
-    public void deletePatternDetection(Long detectionNumber) {
-        patternDetectionDAO.deletePatternDetection(detectionNumber);
+    public void deletePatternDetection(Long detection_number) {
+        patternDetectionDAO.deletePatternDetection(detection_number);
     }
 
     public List<PatternDetection> getAllPatternDetectionsPaged(int page, int size) {

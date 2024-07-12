@@ -14,7 +14,7 @@ public interface PatternDetectionDAO {
 
     void updatePatternDetection(PatternDetection patternDetection);
 
-    void deletePatternDetection(Long detectionNumber);
+    void deletePatternDetection(Long detection_number);
 
     List<PatternDetection> searchPatternDetections(String searchInputName);
 

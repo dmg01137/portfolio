@@ -3,137 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Policy List</title>
+    <title>Pattern Policy</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        /* 네비게이션 바 스타일 */
-        .navbar {
-            background-color: #222;
-            padding: 14px 16px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000; /* 다른 요소들보다 위에 표시되도록 설정 */
-        }
-        .navbar-brand {
-            font-size: 1.5rem;
-            color: #fff;
-        }
-        .navbar-nav .nav-item {
-            margin-right: 10px;
-        }
-        .nav-link {
-            color: #fff !important;
-            transition: all 0.3s ease;
-        }
-        .nav-link:hover {
-            color: #17a2b8 !important;
-        }
-        .nav-link i {
-            margin-right: 5px;
-        }
-        .nav-sidebar .nav-link {
-            color: #d1d1d1;
-            padding: 10px 20px;
-            transition: all 0.3s ease;
-        }
-        .nav-sidebar .nav-link:hover {
-            background-color: #222;
-            color: #fff;
-        }
-        .nav-sidebar .nav-link i {
-            margin-right: 10px;
-        }
-        /* 왼쪽 세로 메뉴바 스타일 */
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 64px;
-            width: 200px; /* 사이드바 너비를 200px로 조정 */
-            background-color: #222;
-            height: 100%;
-            padding-top: 20px;
-            transition: all 0.3s ease;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-            overflow-x: hidden; /* 가로 스크롤바를 숨기는 속성 */
-        }
-        .sidebar-heading {
-            font-size: 1.2rem;
-            color: #fff;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .nav-sidebar .nav-link.active {
-            color: #17a2b8 !important; /* Active 상태에서의 텍스트 색상 변경 */
-        }
-        body {
-            background-color: #f8f9fa;
-            font-family: Arial, sans-serif;
-            padding-top: 80px; /* 네비게이션 바가 fixed로 설정되어 있으므로 body의 padding-top 값을 설정하여 겹치지 않게 함 */
-        }
-        .container {
-            margin-top: 20px; /* 기본적인 여백 설정 */
-        }
-        .card {
-            margin-top: 20px; /* 카드의 위쪽 여백 설정 */
-            margin-left: 240px; /* 카드를 오른쪽으로 이동 */
-            width: calc(100% - 260px); /* 카드의 너비를 전체에서 260px 제외한 값으로 설정 */
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease-in-out;
-        }
-        .card:hover {
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-        }
-        .card-body {
-            padding: 20px; /* 카드의 안쪽 여백 설정 */
-            font-size: 14px; /* 글자 크기 조정 */
-            word-break: break-word; /* 글자가 잘리지 않도록 설정 */
-        }
-        .form-group {
-            margin-bottom: 20px; /* 폼 그룹 사이의 여백 설정 */
-        }
-        .nav-sidebar .nav-link-custom {
-            color: #17a2b8 !important; /* 텍스트 색상 변경 */
-        }
-        .user-list {
-            margin-top: 20px;
-        }
-        .user-list-item {
-            padding: 15px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .user-list-item:hover {
-            background-color: #f0f0f0;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-        }
-        .btn-section {
-            margin-top: 20px;
-            text-align: center;
-        }
-        .btn-modify {
-            margin-top: 10px;
-        }
+<style>
+    /* 네비게이션 바 스타일 */
+
+    .navbar {
+        background-color: #222;
+        padding: 14px 16px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000; /* 다른 요소들보다 위에 표시되도록 설정 */
+    }
+
+    .navbar-brand {
+        font-size: 1.5rem;
+        color: #fff;
+    }
+
+    .navbar-nav .nav-item {
+        margin-right: 10px;
+    }
+
+    .nav-link {
+        color: #fff !important;
+        transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+        color: #17a2b8 !important;
+    }
+
+    .nav-link i {
+        margin-right: 5px;
+    }
+
+    .nav-sidebar .nav-link {
+        color: #d1d1d1;
+        padding: 10px 20px;
+        transition: all 0.3s ease;
+    }
+
+    .nav-sidebar .nav-link:hover {
+        background-color: #222;
+        color: #fff;
+    }
+
+    .nav-sidebar .nav-link i {
+        margin-right: 10px;
+    }
+
+    /* 왼쪽 세로 메뉴바 스타일 */
+
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 64px;
+        width: 220px; /* 사이드바 너비를 220px로 조정 */
+        background-color: #222;
+        height: 100%;
+        padding-top: 20px;
+        transition: all 0.3s ease;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        overflow-x: hidden; /* 가로 스크롤바를 숨기는 속성 */
+    }
+
+    .sidebar-heading {
+        font-size: 1.2rem;
+        color: #fff;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .nav-sidebar .nav-link.active {
+        color: #17a2b8 !important; /* Active 상태에서의 텍스트 색상 변경 */
+    }
+
+    body {
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+        padding-top: 80px; /* 네비게이션 바가 fixed로 설정되어 있으므로 body의 padding-top 값을 설정하여 겹치지 않게 함 */
+    }
+
+    .container {
+        margin-top: 0px; /* 기본적인 여백을 유지 */
+    }
+
+    .card {
+        margin-top: 0px; /* 카드의 위쪽 여백 설정 */
+        margin-left: 150px; /* 카드를 가운데 정렬 */
+        margin-right: auto; /* 카드를 가운데 정렬 */
+        width: 95%; /* 카드의 너비를 조정 */
+        max-width: 1100px; /* 카드의 최대 너비 설정 */
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+        border: transparent; /* 테두리를 투명하게 설정 */
+    }
+
+    .card:hover {
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-body {
+        padding: 20px; /* 카드의 안쪽 여백 설정 */
+        font-size: 13px; /* 글자 크기 조정 */
+        word-break: break-word; /* 글자가 잘리지 않도록 설정 */
+    }
+
+    .form-group {
+        margin-bottom: 20px; /* 폼 그룹 사이의 여백 설정 */
+    }
+
+    .nav-sidebar .nav-link-custom {
+        color: #17a2b8 !important; /* 텍스트 색상 변경 */
+    }
+
+    .user-list {
+        margin-top: 20px;
+    }
+
+    .user-list-item {
+        padding: 15px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .user-list-item:hover {
+        background-color: #f0f0f0;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-section {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .btn-modify {
+        margin-top: 10px;
+    }
+
+    /* 추가한 부분: 검색창 스타일 */
         .search-section {
             margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
         }
-        .pagination-section {
-            margin-top: 20px;
-            text-align: center;
+
+        .search-section input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
         }
-        .page-link {
-            cursor: pointer;
+
+        .search-section button {
+            padding: 8px 16px;
+            font-size: 14px;
         }
-    </style>
+
+        /* 추가한 부분: 테이블 스타일 수정 */
+       .table-container {
+    overflow-x: auto;
+    max-width: 100%; /* 가로 스크롤이 나타나도록 테이블 컨테이너의 최대 너비 설정 */
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse; /* 셀 사이의 간격을 없애고 한 줄로 표시 */
+}
+
+.table th, .table td {
+    border: 1px solid #ddd; /* 셀 경계선 설정 */
+    padding: 8px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap; /* 글자가 너무 길어지면 줄바꿈을 하지 않도록 설정 */
+    text-overflow: ellipsis; /* 글자가 너무 길 경우 ...으로 생략 */
+}
+
+.table th {
+    background-color: #f2f2f2; /* 헤더 배경색 설정 */
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* 짝수 행 배경색 설정 */
+}
+
+.table tbody tr:hover {
+    background-color: #e9f5f9; /* 마우스 호버 시 배경색 변경 */
+}
+  
+</style>
 </head>
 <body>
 
@@ -167,13 +237,12 @@
 <div class="sidebar">
     <h5 class="sidebar-heading">메뉴</h5>
     <ul class="nav flex-column nav-sidebar">
-          <li class="nav-item">
-            <a class="nav-link nav-link-custom" href="#"><i class=" fas fa-shield-alt mr-1"></i> 행동 정책 리스트</a>
+        <li class="nav-item">
+            <a class="nav-link nav-link-custom" href="#"><i class=" fas fa-shield-alt mr-1"></i> 패턴 정책 리스트</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link " href="/policylist"><i class=" fas fa-shield-alt mr-1"></i> 패턴 정책 리스트</a>
+            <a class="nav-link " href="/policylist2"><i class=" fas fa-shield-alt mr-1"></i> 행동 정책 리스트</a>
         </li>
-      
         <li class="nav-item">
             <a class="nav-link" href="/addpolicy"><i class="fas fa-plus"></i> 정책 추가</a>
         </li>
@@ -181,17 +250,16 @@
 </div>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12"> <!-- 카드의 크기를 더 넓게 하기 위해 col-md-10을 col-md-12로 변경 -->
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
                     <div class="body-section">
-                        <h5 class="card-title mb-3">Policy List</h5>
+                        <h5 class="card-title mb-3">Pattern Policy</h5>
                         <!-- 검색 섹션 -->
                         <div class="input-group mb-3 search-section">
                             <input type="text" id="searchInputID" class="form-control" placeholder="ID">
                             <input type="text" id="searchInputName" class="form-control" placeholder="Name">
                             <input type="text" id="searchInputPrivilege" class="form-control" placeholder="Privilege">
-                            <!-- 추가된 검색창 -->
                             <input type="text" id="searchInputSIP" class="form-control" placeholder="sIp">
                             <input type="text" id="searchInputDIP" class="form-control" placeholder="dIp">
                             <input type="text" id="searchInputSPort" class="form-control" placeholder="sPort">
@@ -205,43 +273,46 @@
                             <input type="text" id="searchInputPattern2" class="form-control" placeholder="패턴 2">
                             <input type="text" id="searchInputPattern3" class="form-control" placeholder="패턴 3">
                             <input type="text" id="searchInputDangers" class="form-control" placeholder="위험성">
-                            <!-- 검색 버튼 추가 -->
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button" id="btnSearch">Search</button>
                                 <button class="btn btn-secondary" type="button" id="btnClear">Clear</button>
                             </div>
                         </div>
 
-                          <!-- 사용자 리스트 섹션 -->
-                       <div class="table-container">
-                           <table id="patternTable" class="table table-bordered">
-                               <thead>
-                                   <tr>
-                                       <th>선택</th>
-                                       <th>NO</th>
-                                       <th>sIp</th>
-                                       <th>dIp</th>
-                                       <th>sPort</th>
-                                       <th>dPort</th>
-                                       <th>생성일자</th>
-                                       <th>수정일자</th>
-                                       <th>액션 타입</th>
-                                       <th>정책 이름</th>
-                                       <th>정책 정보</th>
-                                       <th>패턴 1</th>
-                                       <th>패턴 2</th>
-                                       <th>패턴 3</th>
-                                       <th>위험성</th>
-                                       <th>정규표현식1</th>
-                                       <th>정규표현식2</th>
-                                       <th>정규표현식3</th>
-                                   </tr>
-                               </thead>
-                               <tbody id="logTableBody">
-                                   <!-- 여기에 JavaScript로 동적으로 추가될 테이블 로우들이 들어갈 자리 -->
-                               </tbody>
-                           </table>
-                       </div>
+                        <!-- 테이블 데이터 -->
+                        <div class="table-container">
+                            <table id="patternTable" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>선택</th>
+                                        <th>NO</th>
+                                        <th>sIp</th>
+                                        <th>dIp</th>
+                                        <th>sPort</th>
+                                        <th>dPort</th>
+                                        <th>생성일자</th>
+                                        <th>수정일자</th>
+                                        <th>액션 타입</th>
+                                        <th>정책 이름</th>
+                                        <th>정책 정보</th>
+                                        <th>패턴 1</th>
+                                        <th>패턴 2</th>
+                                        <th>패턴 3</th>
+                                        <th>위험성</th>
+                                        <th>정규표현식1</th>
+                                        <th>정규표현식2</th>
+                                        <th>정규표현식3</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="logTableBody">
+                                    <!-- 여기에 JavaScript로 동적으로 추가될 테이블 로우들이 들어갈 자리 -->
+                                </tbody>
+                            </table>
+                             <!-- Modify 버튼 추가 -->
+                            <div class="btn-section">
+                                <button class="btn btn-primary btn-modify" id="btnModify" disabled>Modify</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -256,10 +327,13 @@
 <script>
 $(document).ready(function () {
     // 서버에서 데이터를 받아와서 테이블에 표시하는 함수
+    
+    
+    
     function fetchAndDisplayPatterns(searchCriteria = {}) {
         $.ajax({
             type: "POST",
-            url: "/api/search-behavior-detections",
+            url: "/api/search-pattern-detections",
             contentType: "application/json",
             data: JSON.stringify(searchCriteria),
             success: function (data) {
@@ -268,28 +342,39 @@ $(document).ready(function () {
                 $("#logTableBody").empty(); // 기존 테이블 내용 지우기
 
                 // 받아온 데이터를 테이블에 추가하기
-                data.forEach(function (pattern) {
+                data.forEach(function (pattern, index) {
                     $("#logTableBody").append(
                         `<tr>
-                            <td>${pattern.detectionNumber}</td>
-                            <td>${pattern.sIp}</td>
-                            <td>${pattern.dIp}</td>
-                            <td>${pattern.sPort}</td>
-                            <td>${pattern.dPort}</td>
-                            <td>${pattern.createDt}</td>
-                            <td>${pattern.modifyDt}</td>
-                            <td>${pattern.actionType}</td>
-                            <td>${pattern.policyName}</td>
-                            <td>${pattern.policyInfo}</td>
-                            <td>${pattern.pattern1}</td>
-                            <td>${pattern.pattern2}</td>
-                            <td>${pattern.pattern3}</td>
+                            <td><input type="checkbox" name="selectedPattern" value="${index}"></td>
+                            <td>${pattern.detection_number}</td>
+                            <td>${pattern.s_ip}</td>
+                            <td>${pattern.d_ip}</td>
+                            <td>${pattern.s_port}</td>
+                            <td>${pattern.d_port}</td>
+                            <td>${pattern.create_dt}</td>
+                            <td>${pattern.modify_dt}</td>
+                            <td>${pattern.action_type}</td>
+                            <td>${pattern.policy_name}</td>
+                            <td>${pattern.policy_info}</td>
+                            <td>${pattern.pattern_1}</td>
+                            <td>${pattern.pattern_2}</td>
+                            <td>${pattern.pattern_3}</td>
                             <td>${pattern.dangerous}</td>
-                            <td>${pattern.regexp1}</td>
-                            <td>${pattern.regexp2}</td>
-                            <td>${pattern.regexp3}</td>
+                            <td>${pattern.regexp_1}</td>
+                            <td>${pattern.regexp_2}</td>
+                            <td>${pattern.regexp_3}</td>
                         </tr>`
                     );
+                });
+
+                // 체크박스 클릭 이벤트 리스너
+                $("input[name='selectedPattern']").click(function () {
+                    // 모든 체크박스의 선택 상태를 false로 만듭니다.
+                    $("input[name='selectedPattern']").prop("checked", false);
+                    // 현재 클릭한 체크박스만 선택 상태로 변경합니다.
+                    $(this).prop("checked", true);
+                    // Modify 버튼 활성화
+                    $("#btnModify").prop("disabled", false);
                 });
             },
             error: function (xhr, status, error) {
@@ -310,6 +395,15 @@ $(document).ready(function () {
     $("#btnClear").click(function () {
         $(".form-control").val(""); // 입력 필드 초기화
         fetchAndDisplayPatterns(); // 모든 데이터 다시 불러오기
+    });
+
+    // Modify 버튼 클릭 이벤트 리스너
+    $("#btnModify").click(function () {
+        // 선택된 체크박스의 값을 가져옵니다.
+        let selectedIndex = $("input[name='selectedPattern']:checked").val();
+        console.log("Selected Index: ", selectedIndex);
+        // 여기서 선택된 데이터를 수정하는 코드를 추가할 수 있습니다.
+        // 예: 선택된 데이터의 수정 폼을 열거나, 데이터를 서버로 전송하여 수정합니다.
     });
 
     // 검색 처리 함수

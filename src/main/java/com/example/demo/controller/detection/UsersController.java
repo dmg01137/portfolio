@@ -338,7 +338,21 @@ public class UsersController {
     public String addpolicy() {
         return "addpolicy";
     }
+    
+    
+    
+    // 정책 수정 페이지로 이동
+    @GetMapping("/modifypolicy")
+    public String modifypolicy() {
+        return "modifypolicy";
+    }
 
+    
+    // 정책2 수정 페이지로 이동
+    @GetMapping("/modifypolicy2")
+    public String modifypolicy2() {
+        return "modifypolicy2";
+    }
     // 관리자가 아닐 경우 관리자 에러 페이지로 이동
     @GetMapping("/adminerror")
     public String adminerror() {
