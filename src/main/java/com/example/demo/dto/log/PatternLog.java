@@ -1,39 +1,43 @@
 package com.example.demo.dto.log;
 
 public class PatternLog {
-    private int id;
+    private int detection_number;
     private String time;
     private String sIp;
     private String dIp;
     private int sPort;
     private int dPort;
     private int len;
-    private String pattern;
+    private String pattern1;
+    private String pattern2;
+    private String pattern3;
     private String packet;
     private String policyName;
 
     public PatternLog() {
     }
 
-    public PatternLog(int id, String time, String sIp, String dIp, int sPort, int dPort, int len, String pattern, String packet, String policyName) {
-        this.id = id;
+    public PatternLog(int detection_number, String time, String sIp, String dIp, int sPort, int dPort, int len, String pattern1, String pattern2, String pattern3, String packet, String policyName) {
+        this.detection_number = detection_number;
         this.time = time;
         this.sIp = sIp;
         this.dIp = dIp;
         this.sPort = sPort;
         this.dPort = dPort;
         this.len = len;
-        this.pattern = pattern;
+        this.pattern1 = pattern1;
+        this.pattern2 = pattern2;
+        this.pattern3 = pattern3;
         this.packet = packet;
         this.policyName = policyName;
     }
 
-    public int getId() {
-        return id;
+    public int getDetection_number() {
+        return detection_number;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDetection_number(int detection_number) {
+        this.detection_number = detection_number;
     }
 
     public String getTime() {
@@ -84,12 +88,28 @@ public class PatternLog {
         this.len = len;
     }
 
-    public String getPattern() {
-        return pattern;
+    public String getPattern1() {
+        return pattern1;
     }
 
-    public void setPattern(String pattern) {
-        this.pattern = pattern;
+    public void setPattern1(String pattern1) {
+        this.pattern1 = pattern1;
+    }
+
+    public String getPattern2() {
+        return pattern2;
+    }
+
+    public void setPattern2(String pattern2) {
+        this.pattern2 = pattern2;
+    }
+
+    public String getPattern3() {
+        return pattern3;
+    }
+
+    public void setPattern3(String pattern3) {
+        this.pattern3 = pattern3;
     }
 
     public String getPacket() {
@@ -107,4 +127,23 @@ public class PatternLog {
     public void setPolicyName(String policyName) {
         this.policyName = policyName;
     }
+
+    @Override
+    public String toString() {
+        return "PatternLog{" +
+                "detection_number=" + detection_number +
+                ", time='" + time + '\'' +
+                ", sIp='" + sIp + '\'' +
+                ", dIp='" + dIp + '\'' +
+                ", sPort=" + sPort +
+                ", dPort=" + dPort +
+                ", len=" + len +
+                ", pattern1='" + pattern1 + '\'' +
+                ", pattern2='" + pattern2 + '\'' +
+                ", pattern3='" + pattern3 + '\'' +
+                ", packet='" + packet + '\'' +
+                ", policyName='" + policyName + '\'' +
+                '}';
+    }
+
 }

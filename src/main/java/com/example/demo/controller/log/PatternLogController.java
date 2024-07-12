@@ -4,7 +4,14 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.log.PatternLog;
 import com.example.demo.service.log.PatternLogService;
@@ -32,10 +39,10 @@ public class PatternLogController {
     }
 
     // 특정 ID의 패턴 로그 조회
-    @GetMapping("/{id}")
-    public ResponseEntity<PatternLog> getPatternLogById(@PathVariable int id) {
+    @GetMapping("/{detection_number}")
+    public ResponseEntity<PatternLog> getPatternLogById(@PathVariable int detection_number) {
         try {
-            PatternLog patternLog = patternLogService.getPatternLogById(id);
+            PatternLog patternLog = patternLogService.getPatternLogById(detection_number);
             if (patternLog != null) {
                 return ResponseEntity.ok(patternLog);  // 패턴 로그가 존재하면 해당 패턴 로그 반환
             } else {
@@ -58,12 +65,12 @@ public class PatternLogController {
     }
 
     // 특정 ID의 패턴 로그 업데이트
-    @PutMapping("/{id}")
-    public ResponseEntity<Void> updatePatternLog(@PathVariable int id, @RequestBody PatternLog patternLog) {
+    @PutMapping("/{detection_number}")
+    public ResponseEntity<Void> updatePatternLog(@PathVariable int detection_number, @RequestBody PatternLog patternLog) {
         try {
-            PatternLog existingPatternLog = patternLogService.getPatternLogById(id);
+            PatternLog existingPatternLog = patternLogService.getPatternLogById(detection_number);
             if (existingPatternLog != null) {
-                patternLog.setId(id);
+                patternLog.setDetection_number(detection_number);
                 patternLogService.updatePatternLog(patternLog);
                 return ResponseEntity.ok().build();  // 패턴 로그 업데이트 성공 시 200 OK 반환
             } else {
@@ -75,12 +82,12 @@ public class PatternLogController {
     }
 
     // 특정 ID의 패턴 로그 삭제
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePatternLog(@PathVariable int id) {
+    @DeleteMapping("/{detection_number}")
+    public ResponseEntity<Void> deletePatternLog(@PathVariable int detection_number) {
         try {
-            PatternLog existingPatternLog = patternLogService.getPatternLogById(id);
+            PatternLog existingPatternLog = patternLogService.getPatternLogById(detection_number);
             if (existingPatternLog != null) {
-                patternLogService.deletePatternLog(id);
+                patternLogService.deletePatternLog(detection_number);
                 return ResponseEntity.ok().build();  // 패턴 로그 삭제 성공 시 200 OK 반환
             } else {
                 return ResponseEntity.notFound().build();  // 해당 ID의 패턴 로그가 없으면 404 에러 반환

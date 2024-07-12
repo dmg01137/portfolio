@@ -271,7 +271,9 @@
                 <th>도착지IP</th>
                 <th>도착지PORT</th>
                 <th>패턴 길이</th>
-                <th>패턴</th>
+                <th>패턴1</th>
+                <th>패턴2</th>
+                <th>패턴3</th>
                 <th>패킷</th>
                 <th>탐지횟수</th>
                 <th>탐지범위시간</th>
@@ -280,21 +282,23 @@
             </thead>
          <tbody>
     <tr th:each="log : ${logs}">
-        <td th:text="${log.id}"></td>
+        <td th:text="${log.detection_number}"></td>
         <td th:text="${log.time}"></td>
-        <td th:text="${log.sIp}"></td>
-        <td th:text="${log.sPort}"></td>
-        <td th:text="${log.dIp}"></td>
-        <td th:text="${log.dPort}"></td>
+        <td th:text="${log.s_ip}"></td>
+        <td th:text="${log.s_port}"></td>
+        <td th:text="${log.d_ip}"></td>
+        <td th:text="${log.d_port}"></td>
         <td th:text="${log.len}"></td>
-        <td th:text="${log.pattern}"></td>
+        <td th:text="${log.pattern1}"></td>
+        <td th:text="${log.pattern2}"></td>
+        <td th:text="${log.pattern3}"></td>
         <td>
             <!-- 패킷 데이터는 Base64로 인코딩된 바이트 배열을 문자열로 변환하여 출력 -->
             <span th:text="${T(org.apache.tomcat.util.codec.binary.Base64).encodeBase64String(log.packet)}"></span>
         </td>
         <td th:text="${log.count}"></td>
-        <td th:text="${log.detectionTime}"></td>
-        <td th:text="${log.policyName}"></td>
+        <td th:text="${log.detection_time }"></td>
+        <td th:text="${log.policy_name}"></td>
     </tr>
 </tbody>
 
@@ -308,38 +312,45 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function () {
-    // 서버에서 로그 데이터 가져와서 표시하는 함수
+    // 행의 원래 가시성을 추적하는 전역 변수
+    let originalRowVisibility = [];
+
+    // 서버에서 로그 데이터를 가져와서 표시하는 함수
     function fetchAndDisplayLogs() {
         $.get("/api/behaviorlogs", function (data) {
             console.log(data); // 받아온 데이터 로그 출력
             $("#logTableBody").empty(); // 기존의 테이블 내용을 지웁니다.
+            originalRowVisibility = []; // 원래 가시성 초기화
 
             // 받아온 데이터를 테이블에 추가합니다.
             data.forEach(function (log) {
                 // 패킷 데이터를 HTML 엔티티로 인코딩하여 추가합니다.
                 let encodedPacket = encodeURIComponent(log.packet);
-                $("#logTableBody").append(
-                    `<tr>
-                        <td>${log.id}</td>
-                        <td>${log.time}</td>
-                        <td>${log.sIp}</td>
-                        <td>${log.sPort}</td>
-                        <td>${log.dIp}</td>
-                        <td>${log.dPort}</td>
-                        <td>${log.len}</td>
-                        <td>${log.pattern}</td>
-                        <td>${encodedPacket}</td>
-                        <td>${log.count}</td>
-                        <td>${log.detectionTime}</td>
-                        <td>${log.policyName}</td>
-                    </tr>`
-                );
+                let rowHtml = `<tr>
+                    <td>${log.detection_number}</td>
+                    <td>${log.time}</td>
+                    <td>${log.s_ip}</td>
+                    <td>${log.s_port}</td>
+                    <td>${log.d_ip}</td>
+                    <td>${log.d_port}</td>
+                    <td>${log.len}</td>
+                    <td>${log.pattern1}</td>
+                    <td>${log.pattern2}</td>
+                    <td>${log.pattern3}</td>
+                    <td>${encodedPacket}</td>
+                    <td>${log.count}</td>
+                    <td>${log.detection_time}</td>
+                    <td>${log.policy_name}</td>
+                </tr>`;
+                $("#logTableBody").append(rowHtml);
+
+                // 원본 가시성 상태를 저장합니다.
+                originalRowVisibility.push(true);
             });
         }).fail(function() {
             console.error("데이터를 불러오는데 실패했습니다.");
         });
     }
-
 
     // 페이지 로드 시 초기 데이터 가져오기
     fetchAndDisplayLogs();
@@ -350,19 +361,20 @@ $(document).ready(function () {
     });
 
     // 초기화 버튼 클릭 이벤트 리스너
-    $("#clearButton").click(function () {
-        $(".searchInput").val(""); // 입력 필드 초기화
-        fetchAndDisplayLogs(); // 모든 데이터 다시 불러오기
-    });
+$("#clearButton").click(function () {
+    $(".searchInput").val(""); // 입력 필드 초기화
+    handleSearch(); // 검색 결과 초기화
+});
+
 
     // 검색 처리 함수
     function handleSearch() {
         let rows = document.querySelectorAll("#logTable tbody tr");
 
-        rows.forEach(row => {
+        rows.forEach((row, index) => {
             let shouldDisplay = true;
 
-            for (let i = 0; i < 12; i++) { // 12개의 검색 입력 필드에 맞게 수정
+            for (let i = 0; i < 12; i++) { // 검색 입력 필드 수에 맞게 수정
                 let value = document.getElementById(`searchValue${i + 1}`).value.trim().toLowerCase();
                 let cellValue = row.cells[i].textContent.trim().toLowerCase();
 
@@ -374,10 +386,23 @@ $(document).ready(function () {
                 }
             }
 
+            // 가시성을 제어합니다.
             row.style.display = shouldDisplay ? "" : "none";
+            originalRowVisibility[index] = shouldDisplay; // 현재 가시성을 저장합니다.
+        });
+    }
+
+    // 모든 데이터를 원래 상태로 복원합니다.
+    function restoreTableRows() {
+        let rows = document.querySelectorAll("#logTable tbody tr");
+
+        rows.forEach((row, index) => {
+            // 원래 가시성 상태로 설정합니다.
+            row.style.display = originalRowVisibility[index] ? "" : "none";
         });
     }
 });
+
 </script>
 </body>
 </html>

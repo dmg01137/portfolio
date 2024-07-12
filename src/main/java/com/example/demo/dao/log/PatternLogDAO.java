@@ -7,7 +7,7 @@ import com.example.demo.dto.log.PatternLog;
 public interface PatternLogDAO {
 
     // ID를 기반으로 패턴 로그를 조회합니다.
-    PatternLog findById(int id);
+    PatternLog findById(int detection_number);
 
     // 모든 패턴 로그 리스트를 조회합니다.
     List<PatternLog> findAll();
@@ -19,5 +19,5 @@ public interface PatternLogDAO {
     void update(PatternLog patternLog);
 
     // ID를 기반으로 특정 패턴 로그를 삭제합니다.
-    void delete(int id);
+    void delete(int detection_number);
 }

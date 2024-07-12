@@ -257,7 +257,9 @@
                 <th>도착지IP</th>
                 <th>도착지PORT</th>
                 <th>패킷길이</th>
-                <th>패턴</th>
+                <th>패턴1</th>
+                <th>패턴2</th>
+                <th>패턴3</th>
                 <th>패킷</th>
                 <th>정책이름</th>
             </tr>
@@ -285,14 +287,16 @@ $(document).ready(function () {
                 let encodedPacket = encodeURIComponent(log.packet);
                 $("#logTableBody").append(
                     `<tr>
-                        <td>${log.id}</td>
+                        <td>${log.detection_number}</td>
                         <td>${log.time}</td>
                         <td>${log.sIp}</td>
                         <td>${log.sPort}</td>
                         <td>${log.dIp}</td>
                         <td>${log.dPort}</td>
                         <td>${log.len}</td>
-                        <td>${log.pattern}</td>
+                        <td>${log.pattern1}</td>
+                        <td>${log.pattern2}</td>
+                        <td>${log.pattern3}</td>
                         <td>${encodedPacket}</td>
                         <td>${log.policyName}</td>
                     </tr>`

@@ -6,7 +6,7 @@
   <!-- ID로 조회 -->
 <select id="findById" resultType="com.example.demo.dto.log.BehaviorLog" parameterType="int">
     SELECT * FROM log_db.behavior_log
-    WHERE detection_number = #{detectionNumber}
+    WHERE detection_number = #{detection_number}
 </select>
 
 <!-- 모든 데이터 조회 -->
@@ -17,22 +17,22 @@
 <!-- 데이터 삽입 -->
 <insert id="save" parameterType="com.example.demo.dto.log.BehaviorLog">
     INSERT INTO log_db.behavior_log (time, s_ip, d_ip, s_port, d_port, len, pattern1, pattern2, pattern3, packet, policy_name, count, detection_time)
-    VALUES (#{time}, #{sIp}, #{dIp}, #{sPort}, #{dPort}, #{len}, #{pattern1}, #{pattern2}, #{pattern3}, #{packet}, #{policyName}, #{count}, #{detectionTime})
+    VALUES (#{time}, #{s_ip}, #{d_ip}, #{s_port}, #{d_port}, #{len}, #{pattern1}, #{pattern2}, #{pattern3}, #{packet}, #{policy_name}, #{count}, #{detection_time})
 </insert>
 
 <!-- 데이터 업데이트 -->
 <update id="update" parameterType="com.example.demo.dto.log.BehaviorLog">
     UPDATE log_db.behavior_log
-    SET time = #{time}, s_ip = #{sIp}, d_ip = #{dIp}, s_port = #{sPort}, d_port = #{dPort},
+    SET time = #{time}, s_ip = #{s_ip}, d_ip = #{d_ip}, s_port = #{s_port}, d_port = #{d_port},
         len = #{len}, pattern1 = #{pattern1}, pattern2 = #{pattern2}, pattern3 = #{pattern3}, 
-        packet = #{packet}, policy_name = #{policyName},
-        count = #{count}, detection_time = #{detectionTime}
-    WHERE detection_number = #{detectionNumber}
+        packet = #{packet}, policy_name = #{policy_name},
+        count = #{count}, time = #{time}
+    WHERE detection_number = #{detection_number}
 </update>
 
 <!-- 데이터 삭제 -->
 <delete id="delete" parameterType="int">
-    DELETE FROM log_db.behavior_log WHERE detection_number = #{detectionNumber}
+    DELETE FROM log_db.behavior_log WHERE detection_number = #{detection_number}
 </delete>
 
 <!-- 검색 -->
@@ -40,16 +40,16 @@
     SELECT * FROM log_db.behavior_log
     WHERE 
     <if test="detectionNumber != null">
-        detection_number = #{detectionNumber}
+        detection_number = #{detection_number}
     </if>
     <if test="sIp != null and sIp != ''">
-        AND s_ip = #{sIp}
+        AND s_ip = #{s_ip}
     </if>
     <if test="sPort != null">
-        AND s_port = #{sPort}
+        AND s_port = #{s_port}
     </if>
     <if test="policyName != null and policyName != ''">
-        AND policy_name = #{policyName}
+        AND policy_name = #{policy_name}
     </if>
 </select>
 

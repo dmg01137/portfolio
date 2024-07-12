@@ -5,7 +5,7 @@
 
     <!-- 패턴 로그에 대한 결과 매핑 -->
     <resultMap id="patternLogResultMap" type="com.example.demo.dto.log.PatternLog">
-        <id property="detection_number" column="id"/>
+        <id property="detection_number" column="detection_number"/>
         <result property="time" column="time"/>
         <result property="sIp" column="s_ip"/>
         <result property="dIp" column="d_ip"/>
@@ -19,7 +19,7 @@
 
     <!-- ID를 기반으로 패턴 로그를 조회합니다 -->
     <select id="findById" resultMap="patternLogResultMap" parameterType="int">
-        SELECT * FROM log_db.pattern_log WHERE id = #{id}
+        SELECT * FROM log_db.pattern_log WHERE detection_number = #{detection_number}
     </select>
 
     <!-- 모든 패턴 로그를 조회합니다 -->
@@ -37,12 +37,12 @@
     <update id="update" parameterType="com.example.demo.dto.log.PatternLog">
         UPDATE log_db.pattern_log
         SET time = #{time}, s_ip = #{sIp}, d_ip = #{dIp}, s_port = #{sPort}, d_port = #{dPort}, len = #{len}, pattern = #{pattern}, packet = #{packet}, policy_name = #{policyName}
-        WHERE id = #{id}
+        WHERE detection_number = #{detection_number}
     </update>
 
     <!-- ID를 기반으로 특정 패턴 로그를 삭제합니다 -->
     <delete id="delete" parameterType="int">
-        DELETE FROM log_db.pattern_log WHERE id = #{id}
+        DELETE FROM log_db.pattern_log WHERE detection_number = #{detection_number}
     </delete>
 
 </mapper>

@@ -38,16 +38,16 @@ public class BehaviorLogController {
 
     // 로그 업데이트
     @PostMapping("/update/{id}")
-    public String updateLog(@PathVariable("id") int id, @ModelAttribute BehaviorLog log) {
-        log.setId(id); // 경로에서 받은 ID를 설정하여 업데이트
+    public String updateLog(@PathVariable("detection_number") int detection_number, @ModelAttribute BehaviorLog log) {
+        log.setDetection_number(detection_number); // 경로에서 받은 ID를 설정하여 업데이트
         behaviorLogService.update(log);
         return "redirect:/behaviorlog"; // 목록으로 리다이렉트
     }
 
     // 로그 삭제
-    @GetMapping("/delete/{id}")
-    public String deleteLog(@PathVariable("id") int id) {
-        behaviorLogService.delete(id);
+    @GetMapping("/delete/{detection_number}")
+    public String deleteLog(@PathVariable("detection_number") int detection_number) {
+        behaviorLogService.delete(detection_number);
         return "redirect:/behaviorlog"; // 목록으로 리다이렉트
     }
 }

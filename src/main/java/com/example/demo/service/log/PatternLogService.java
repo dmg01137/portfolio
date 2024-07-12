@@ -25,8 +25,8 @@ public class PatternLogService {
     }
 
     @Transactional
-    public PatternLog getPatternLogById(int id) {
-        return patternLogDAO.findById(id);
+    public PatternLog getPatternLogById(int detection_number) {
+        return patternLogDAO.findById(detection_number);
     }
 
     @Transactional
@@ -40,7 +40,7 @@ public class PatternLogService {
     }
 
     @Transactional
-    public void deletePatternLog(int id) {
-        patternLogDAO.delete(id);
+    public void deletePatternLog(int detection_number) {
+        patternLogDAO.delete(detection_number);
     }
 }

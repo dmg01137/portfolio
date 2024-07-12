@@ -4,7 +4,7 @@ public class DangerousLog {
     private int detection_number; // 위험 로그 ID
     private String ip; // IP 주소
     private int port; // 포트 번호
-    private String policyNumber; // 정책 번호
+    private String policy_number; // 정책 번호
 
     public DangerousLog() {
     }
@@ -13,7 +13,7 @@ public class DangerousLog {
     public DangerousLog(String ip, int port, String policyNumber) {
         this.ip = ip;
         this.port = port;
-        this.policyNumber = policyNumber;
+        this.policy_number = policyNumber; // 필드명 변경
     }
 
     public int getId() {
@@ -41,11 +41,11 @@ public class DangerousLog {
     }
 
     public String getPolicyNumber() {
-        return policyNumber;
+        return policy_number; // 메서드 이름과 필드명을 일치시킴
     }
 
     public void setPolicyNumber(String policyNumber) {
-        this.policyNumber = policyNumber;
+        this.policy_number = policyNumber; // 필드명 변경
     }
 
     @Override
@@ -54,7 +54,7 @@ public class DangerousLog {
                 "detection_number=" +detection_number +
                 ", ip='" + ip + '\'' +
                 ", port=" + port +
-                ", policyNumber='" + policyNumber + '\'' +
+                ", policy_number='" + policy_number + '\'' + // 필드명 변경
                 '}';
     }
 }
