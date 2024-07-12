@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pattern Policy</title>
+    <title>Behavior Policy</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <style>
@@ -55,6 +55,20 @@
     .nav-sidebar .nav-link i {
         margin-right: 10px;
     }
+ .nav-sidebar .nav-link-custom {
+            color: #17a2b8 !important;
+        }
+.nav-sidebar .nav-link-custom {
+    color: #d1d1d1; /* 기본 텍스트 색상 */
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.nav-sidebar .nav-link-custom:hover,
+.nav-sidebar .nav-link-custom:hover i {
+    color: #17a2b8 !important; /* 호버 시 글자 및 아이콘 색상 변경 */
+}
+
 
     /* 왼쪽 세로 메뉴바 스타일 */
 
@@ -82,6 +96,7 @@
         color: #17a2b8 !important; /* Active 상태에서의 텍스트 색상 변경 */
     }
 
+   
     body {
         background-color: #f8f9fa;
         font-family: Arial, sans-serif;
@@ -118,10 +133,9 @@
         margin-bottom: 20px; /* 폼 그룹 사이의 여백 설정 */
     }
 
-    .nav-sidebar .nav-link-custom {
-        color: #17a2b8 !important; /* 텍스트 색상 변경 */
-    }
 
+
+        
     .user-list {
         margin-top: 20px;
     }
@@ -238,10 +252,10 @@
     <h5 class="sidebar-heading">메뉴</h5>
     <ul class="nav flex-column nav-sidebar">
         <li class="nav-item">
-            <a class="nav-link nav-link-custom" href="#"><i class=" fas fa-shield-alt mr-1"></i> 패턴 정책 리스트</a>
+            <a class="nav-link nav-link-custom" href="/policylist2"><i class="fas fa-shield-alt mr-1"></i> 행동 정책 리스트</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link " href="/policylist2"><i class=" fas fa-shield-alt mr-1"></i> 행동 정책 리스트</a>
+            <a class="nav-link" href="/policylist"><i class="fas fa-shield-alt mr-1"></i> 패턴 정책 리스트</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/addpolicy"><i class="fas fa-plus"></i> 정책 추가</a>
@@ -254,7 +268,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="body-section">
-                        <h5 class="card-title mb-3">Pattern Policy</h5>
+                        <h5 class="card-title mb-3">Behavior Policy</h5>
                         <!-- 검색 섹션 -->
                         <div class="input-group mb-3 search-section">
                             <input type="text" id="searchInputID" class="form-control" placeholder="ID">
@@ -280,111 +294,101 @@
                         </div>
 
                         <!-- 테이블 데이터 -->
-                        <div class="table-container">
-                            <table id="patternTable" class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>선택</th>
-                                        <th>NO</th>
-                                        <th>sIp</th>
-                                        <th>dIp</th>
-                                        <th>sPort</th>
-                                        <th>dPort</th>
-                                        <th>생성일자</th>
-                                        <th>수정일자</th>
-                                        <th>액션 타입</th>
-                                        <th>정책 이름</th>
-                                        <th>정책 정보</th>
-                                        <th>패턴 1</th>
-                                        <th>패턴 2</th>
-                                        <th>패턴 3</th>
-                                        <th>위험성</th>
-                                        <th>정규표현식1</th>
-                                        <th>정규표현식2</th>
-                                        <th>정규표현식3</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="logTableBody">
-                                    <!-- 여기에 JavaScript로 동적으로 추가될 테이블 로우들이 들어갈 자리 -->
-                                </tbody>
-                            </table>
-                             <!-- Modify 버튼 추가 -->
+                            <div class="card-body table-responsive">
+            <!-- 정책 리스트 테이블 -->
+            <table id="policyTable" class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>NO</th>
+                    <th>출발지 IP</th>
+                    <th>목적지 IP</th>
+                    <th>출발지 포트</th>
+                    <th>목적지 포트</th>
+                    <th>생성 일시</th>
+                    <th>수정 일시</th>
+                    <th>액션 타입</th>
+                    <th>정책 이름</th>
+                    <th>정책 정보</th>
+                    <th>패턴 1</th>
+                    <th>패턴 2</th>
+                    <th>패턴 3</th>
+                    <th>위험도</th>
+                    <th>정규식 1</th>
+                    <th>정규식 2</th>
+                    <th>정규식 3</th>
+                    <th>카운트</th>
+                    <th>시간</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- 데이터 행이 동적으로 추가될 공간 -->
+                </tbody>
+            </table>
+             <!-- Modify 버튼 추가 -->
                             <div class="btn-section">
                                 <button class="btn btn-primary btn-modify" id="btnModify" disabled>Modify</button>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>
 
-<!-- jQuery, Popper.js, 부트스트랩 JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function () {
     // 서버에서 데이터를 받아와서 테이블에 표시하는 함수
-    
-    
-    
-    function fetchAndDisplayPatterns(searchCriteria = {}) {
+    function fetchAndDisplayBehaviors(searchCriteria = {}) {
         $.ajax({
-            type: "POST",
-            url: "/api/search-pattern-detections",
-            contentType: "application/json",
-            data: JSON.stringify(searchCriteria),
-            success: function (data) {
+            type: "POST", // POST 방식으로 서버에 데이터 요청
+            url: "/api/search-behavior-detections", // 데이터를 받아올 엔드포인트 URL
+            contentType: "application/json", // 데이터 타입 설정
+            data: JSON.stringify(searchCriteria), // 검색 조건을 JSON 형식으로 변환하여 전송
+            success: function (data) { // 요청이 성공했을 때 실행될 콜백 함수
                 console.log(data); // 받은 데이터를 콘솔에 출력
 
-                $("#logTableBody").empty(); // 기존 테이블 내용 지우기
+                $("#policyTable tbody").empty(); // 기존 테이블 내용 지우기
 
                 // 받아온 데이터를 테이블에 추가하기
-                data.forEach(function (pattern, index) {
-                    $("#logTableBody").append(
+                data.forEach(function (behavior, index) {
+                    $("#policyTable tbody").append(
                         `<tr>
-                            <td><input type="checkbox" name="selectedPattern" value="${index}"></td>
-                            <td>${pattern.detection_number}</td>
-                            <td>${pattern.s_ip}</td>
-                            <td>${pattern.d_ip}</td>
-                            <td>${pattern.s_port}</td>
-                            <td>${pattern.d_port}</td>
-                            <td>${pattern.create_dt}</td>
-                            <td>${pattern.modify_dt}</td>
-                            <td>${pattern.action_type}</td>
-                            <td>${pattern.policy_name}</td>
-                            <td>${pattern.policy_info}</td>
-                            <td>${pattern.pattern_1}</td>
-                            <td>${pattern.pattern_2}</td>
-                            <td>${pattern.pattern_3}</td>
-                            <td>${pattern.dangerous}</td>
-                            <td>${pattern.regexp_1}</td>
-                            <td>${pattern.regexp_2}</td>
-                            <td>${pattern.regexp_3}</td>
+                            <td>${index + 1}</td>
+                            <td>${behavior.detection_number}</td>
+                            <td>${behavior.s_ip}</td>
+                            <td>${behavior.d_ip}</td>
+                            <td>${behavior.s_port}</td>
+                            <td>${behavior.d_port}</td>
+                            <td>${behavior.create_dt}</td>
+                            <td>${behavior.modify_dt}</td>
+                            <td>${behavior.action_type}</td>
+                            <td>${behavior.policy_name}</td>
+                            <td>${behavior.policy_info}</td>
+                            <td>${behavior.pattern_1}</td>
+                            <td>${behavior.pattern_2}</td>
+                            <td>${behavior.pattern_3}</td>
+                            <td>${behavior.dangerous}</td>
+                            <td>${behavior.regexp_1}</td>
+                            <td>${behavior.regexp_2}</td>
+                            <td>${behavior.regexp_3}</td>
+                            <td>${behavior.base_cnt}</td>
+                            <td>${behavior.base_time}</td>
                         </tr>`
                     );
                 });
-
-                // 체크박스 클릭 이벤트 리스너
-                $("input[name='selectedPattern']").click(function () {
-                    // 모든 체크박스의 선택 상태를 false로 만듭니다.
-                    $("input[name='selectedPattern']").prop("checked", false);
-                    // 현재 클릭한 체크박스만 선택 상태로 변경합니다.
-                    $(this).prop("checked", true);
-                    // Modify 버튼 활성화
-                    $("#btnModify").prop("disabled", false);
-                });
             },
-            error: function (xhr, status, error) {
+            error: function (xhr, status, error) { // 요청이 실패했을 때 실행될 콜백 함수
                 console.error("데이터를 불러오는데 실패했습니다.", status, error);
             }
         });
     }
 
     // 페이지 로드 시 초기 데이터 가져오기
-    fetchAndDisplayPatterns();
+    fetchAndDisplayBehaviors();
 
     // 검색 버튼 클릭 이벤트 리스너
     $("#btnSearch").click(function () {
@@ -394,44 +398,39 @@ $(document).ready(function () {
     // 초기화 버튼 클릭 이벤트 리스너
     $("#btnClear").click(function () {
         $(".form-control").val(""); // 입력 필드 초기화
-        fetchAndDisplayPatterns(); // 모든 데이터 다시 불러오기
-    });
-
-    // Modify 버튼 클릭 이벤트 리스너
-    $("#btnModify").click(function () {
-        // 선택된 체크박스의 값을 가져옵니다.
-        let selectedIndex = $("input[name='selectedPattern']:checked").val();
-        console.log("Selected Index: ", selectedIndex);
-        // 여기서 선택된 데이터를 수정하는 코드를 추가할 수 있습니다.
-        // 예: 선택된 데이터의 수정 폼을 열거나, 데이터를 서버로 전송하여 수정합니다.
+        fetchAndDisplayBehaviors(); // 모든 데이터 다시 불러오기
     });
 
     // 검색 처리 함수
     function handleSearch() {
-        // 검색 필드의 값들을 객체로 변환
-        let searchCriteria = {
-            id: $("#searchInputID").val().trim(),
-            name: $("#searchInputName").val().trim(),
-            privilege: $("#searchInputPrivilege").val().trim(),
-            sIp: $("#searchInputSIP").val().trim(),
-            dIp: $("#searchInputDIP").val().trim(),
-            sPort: $("#searchInputSPort").val().trim(),
-            dPort: $("#searchInputDPort").val().trim(),
-            createDate: $("#searchInputCreateDate").val().trim(),
-            modifyDate: $("#searchInputModifyDate").val().trim(),
-            actionType: $("#searchInputActionType").val().trim(),
-            policyName: $("#searchInputPolicyName").val().trim(),
-            policyInfo: $("#searchInputPolicyInfo").val().trim(),
-            pattern1: $("#searchInputPattern1").val().trim(),
-            pattern2: $("#searchInputPattern2").val().trim(),
-            pattern3: $("#searchInputPattern3").val().trim(),
-            dangers: $("#searchInputDangers").val().trim()
+        // 검색 조건을 입력 받아 객체로 만들기
+        const searchCriteria = {
+            id: $("#searchInputID").val(),
+            name: $("#searchInputName").val(),
+            privilege: $("#searchInputPrivilege").val(),
+            sIp: $("#searchInputSIP").val(),
+            dIp: $("#searchInputDIP").val(),
+            sPort: $("#searchInputSPort").val(),
+            dPort: $("#searchInputDPort").val(),
+            createDate: $("#searchInputCreateDate").val(),
+            modifyDate: $("#searchInputModifyDate").val(),
+            actionType: $("#searchInputActionType").val(),
+            policyName: $("#searchInputPolicyName").val(),
+            policyInfo: $("#searchInputPolicyInfo").val(),
+            pattern1: $("#searchInputPattern1").val(),
+            pattern2: $("#searchInputPattern2").val(),
+            pattern3: $("#searchInputPattern3").val(),
+            dangers: $("#searchInputDangers").val()
         };
 
-        fetchAndDisplayPatterns(searchCriteria); // 검색 조건을 서버로 전송
+        // 검색 조건을 이용해 데이터를 다시 가져오기
+        fetchAndDisplayBehaviors(searchCriteria);
     }
 });
 </script>
+
+
+
 
 </body>
 </html>

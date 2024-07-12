@@ -20,7 +20,7 @@ public interface BehaviorDetectionDAO {
     void updateBehaviorDetection(BehaviorDetection behaviorDetection);
 
     // BehaviorDetection 삭제
-    void deleteBehaviorDetection(Long detectionNumber);
+    void deleteBehaviorDetection(Long detection_number);
 
     // 검색 조건에 맞는 BehaviorDetection을 조회
     List<BehaviorDetection> searchBehaviorDetections(BehaviorDetection searchCriteria);

@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pattern Policy</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<style>
+ <style>
     /* 네비게이션 바 스타일 */
 
     .navbar {
@@ -56,6 +56,18 @@
         margin-right: 10px;
     }
 
+.nav-sidebar .nav-link-custom {
+    color: #d1d1d1; /* 기본 텍스트 색상 */
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.nav-sidebar .nav-link-custom:hover,
+.nav-sidebar .nav-link-custom:hover i {
+    color: #17a2b8 !important; /* 호버 시 글자 및 아이콘 색상 변경 */
+}
+
+
     /* 왼쪽 세로 메뉴바 스타일 */
 
     .sidebar {
@@ -81,7 +93,6 @@
     .nav-sidebar .nav-link.active {
         color: #17a2b8 !important; /* Active 상태에서의 텍스트 색상 변경 */
     }
-
     body {
         background-color: #f8f9fa;
         font-family: Arial, sans-serif;
@@ -233,15 +244,14 @@
         </ul>
     </div>
 </nav>
-
 <div class="sidebar">
     <h5 class="sidebar-heading">메뉴</h5>
     <ul class="nav flex-column nav-sidebar">
         <li class="nav-item">
-            <a class="nav-link nav-link-custom" href="#"><i class=" fas fa-shield-alt mr-1"></i> 패턴 정책 리스트</a>
+            <a class="nav-link nav-link-custom" href="/patternlist"><i class="fas fa-shield-alt mr-1"></i> 패턴 정책 리스트</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link " href="/policylist2"><i class=" fas fa-shield-alt mr-1"></i> 행동 정책 리스트</a>
+            <a class="nav-link" href="/policylist2"><i class="fas fa-shield-alt mr-1"></i> 행동 정책 리스트</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/addpolicy"><i class="fas fa-plus"></i> 정책 추가</a>
@@ -328,8 +338,6 @@
 $(document).ready(function () {
     // 서버에서 데이터를 받아와서 테이블에 표시하는 함수
     
-    
-    
     function fetchAndDisplayPatterns(searchCriteria = {}) {
         $.ajax({
             type: "POST",
@@ -406,6 +414,7 @@ $(document).ready(function () {
         // 예: 선택된 데이터의 수정 폼을 열거나, 데이터를 서버로 전송하여 수정합니다.
     });
 
+    
     // 검색 처리 함수
     function handleSearch() {
         // 검색 필드의 값들을 객체로 변환
@@ -430,6 +439,7 @@ $(document).ready(function () {
 
         fetchAndDisplayPatterns(searchCriteria); // 검색 조건을 서버로 전송
     }
+    
 });
 </script>
 

@@ -19,32 +19,32 @@
             detection_number, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info,
             pattern_1, pattern_2, pattern_3, dangerous, regexp_1, regexp_2, regexp_3, base_cnt, base_time
         ) VALUES (
-            #{detectionNumber}, #{sIp}, #{dIp}, #{sPort}, #{dPort}, #{createDt}, #{modifyDt}, #{actionType}, #{policyName}, #{policyInfo},
-            #{pattern1}, #{pattern2}, #{pattern3}, #{dangerous}, #{regexp1}, #{regexp2}, #{regexp3}, #{baseCnt}, #{baseTime}
+            #{detection_number}, #{s_ip}, #{d_ip}, #{s_port}, #{d_port}, #{create_dt}, #{modify_dt}, #{action_type}, #{policy_name}, #{policy_info},
+            #{pattern_1}, #{pattern_2}, #{pattern_3}, #{dangerous}, #{regexp_1}, #{regexp_2}, #{regexp_3}, #{base_cnt}, #{base_time}
         )
     </insert>
 
     <!-- BehaviorDetection 수정 -->
     <update id="updateBehaviorDetection" parameterType="com.example.demo.dto.detection.BehaviorDetection">
         UPDATE detection_db.behavior_detection
-        SET s_ip = #{sIp}, d_ip = #{dIp}, s_port = #{sPort}, d_port = #{dPort}, create_dt = #{createDt}, modify_dt = #{modifyDt},
-            action_type = #{actionType}, policy_name = #{policyName}, policy_info = #{policyInfo}, pattern_1 = #{pattern1},
-            pattern_2 = #{pattern2}, pattern_3 = #{pattern3}, dangerous = #{dangerous}, regexp_1 = #{regexp1},
-            regexp_2 = #{regexp2}, regexp_3 = #{regexp3}, base_cnt = #{baseCnt}, base_time = #{baseTime}
-        WHERE detection_number = #{detectionNumber}
+        SET s_ip = #{s_ip}, d_ip = #{d_ip}, s_port = #{s_port}, d_port = #{d_port}, create_dt = #{create_dt}, modify_dt = #{modify_dt},
+            action_type = #{action_type}, policy_name = #{policy_name}, policy_info = #{policy_info}, pattern_1 = #{pattern_1},
+            pattern_2 = #{pattern_2}, pattern_3 = #{pattern_3}, dangerous = #{dangerous}, regexp_1 = #{regexp_1},
+            regexp_2 = #{regexp_2}, regexp_3 = #{regexp_3}, base_cnt = #{base_cnt}, base_time = #{base_time}
+        WHERE detection_number = #{detection_number}
     </update>
 
     <!-- BehaviorDetection 삭제 -->
     <delete id="deleteBehaviorDetection" parameterType="java.lang.Long">
-        DELETE FROM detection_db.behavior_detection WHERE detection_number = #{detectionNumber}
+        DELETE FROM detection_db.behavior_detection WHERE detection_number = #{detection_number}
     </delete>
 
     <!-- 검색 조건으로 BehaviorDetection 조회 -->
     <select id="searchBehaviorDetections" resultType="com.example.demo.dto.detection.BehaviorDetection" parameterType="com.example.demo.dto.detection.BehaviorDetection">
         SELECT * FROM detection_db.behavior_detection
-        WHERE (pattern_1 LIKE CONCAT('%', #{pattern1}, '%') OR pattern_1 IS NULL)
-           OR (pattern_2 LIKE CONCAT('%', #{pattern2}, '%') OR pattern_2 IS NULL)
-           OR (pattern_3 LIKE CONCAT('%', #{pattern3}, '%') OR pattern_3 IS NULL)
+        WHERE (pattern_1 LIKE CONCAT('%', #{pattern_1}, '%') OR pattern_1 IS NULL)
+           OR (pattern_2 LIKE CONCAT('%', #{pattern_2}, '%') OR pattern_2 IS NULL)
+           OR (pattern_3 LIKE CONCAT('%', #{pattern_3}, '%') OR pattern_3 IS NULL)
     </select>
 
     <!-- 페이징된 모든 BehaviorDetection 조회 -->

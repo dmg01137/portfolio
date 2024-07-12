@@ -21,113 +21,113 @@ public class BehaviorDetection {
     private String regexp_1;
     private String regexp_2;
     private String regexp_3;
-    private Integer baseCnt;
-    private Integer baseTime;
+    private Integer base_cnt;
+    private Integer base_time;
 
     // Getter 및 Setter 메서드
 
-    public Integer getDetectionNumber() {
-        return detectionNumber;
+    public Integer getDetection_number() {
+        return detection_number;
     }
 
-    public void setDetectionNumber(Integer detectionNumber) {
-        this.detectionNumber = detectionNumber;
+    public void setDetection_number(Integer detection_number) {
+        this.detection_number = detection_number;
     }
 
-    public String getsIp() {
-        return sIp;
+    public String getS_ip() {
+        return s_ip;
     }
 
-    public void setsIp(String sIp) {
-        this.sIp = sIp;
+    public void setS_ip(String s_ip) {
+        this.s_ip = s_ip;
     }
 
-    public String getdIp() {
-        return dIp;
+    public String getD_ip() {
+        return d_ip;
     }
 
-    public void setdIp(String dIp) {
-        this.dIp = dIp;
+    public void setD_ip(String d_ip) {
+        this.d_ip = d_ip;
     }
 
-    public Integer getsPort() {
-        return sPort;
+    public Integer getS_port() {
+        return s_port;
     }
 
-    public void setsPort(Integer sPort) {
-        this.sPort = sPort;
+    public void setS_port(Integer s_port) {
+        this.s_port = s_port;
     }
 
-    public Integer getdPort() {
-        return dPort;
+    public Integer getD_port() {
+        return d_port;
     }
 
-    public void setdPort(Integer dPort) {
-        this.dPort = dPort;
+    public void setD_port(Integer d_port) {
+        this.d_port = d_port;
     }
 
-    public LocalDateTime getCreateDt() {
-        return createDt;
+    public LocalDateTime getCreate_dt() {
+        return create_dt;
     }
 
-    public void setCreateDt(LocalDateTime createDt) {
-        this.createDt = createDt;
+    public void setCreate_dt(LocalDateTime create_dt) {
+        this.create_dt = create_dt;
     }
 
-    public LocalDateTime getModifyDt() {
-        return modifyDt;
+    public LocalDateTime getModify_dt() {
+        return modify_dt;
     }
 
-    public void setModifyDt(LocalDateTime modifyDt) {
-        this.modifyDt = modifyDt;
+    public void setModify_dt(LocalDateTime modify_dt) {
+        this.modify_dt = modify_dt;
     }
 
-    public String getActionType() {
-        return actionType;
+    public String getAction_type() {
+        return action_type;
     }
 
-    public void setActionType(String actionType) {
-        this.actionType = actionType;
+    public void setAction_type(String action_type) {
+        this.action_type = action_type;
     }
 
-    public String getPolicyName() {
-        return policyName;
+    public String getPolicy_name() {
+        return policy_name;
     }
 
-    public void setPolicyName(String policyName) {
-        this.policyName = policyName;
+    public void setPolicy_name(String policy_name) {
+        this.policy_name = policy_name;
     }
 
-    public String getPolicyInfo() {
-        return policyInfo;
+    public String getPolicy_info() {
+        return policy_info;
     }
 
-    public void setPolicyInfo(String policyInfo) {
-        this.policyInfo = policyInfo;
+    public void setPolicy_info(String policy_info) {
+        this.policy_info = policy_info;
     }
 
-    public String getPattern1() {
-        return pattern1;
+    public String getPattern_1() {
+        return pattern_1;
     }
 
-    public void setPattern1(String pattern1) {
-        this.pattern1 = pattern1;
+    public void setPattern_1(String pattern_1) {
+        this.pattern_1 = pattern_1;
     }
 
-    public String getPattern2() {
-        return pattern2;
+    public String getPattern_2() {
+        return pattern_2;
     }
 
-    public void setPattern2(String pattern2) {
-        this.pattern2 = pattern2;
+    public void setPattern_2(String pattern_2) {
+        this.pattern_2 = pattern_2;
     }
 
-    public String getPattern3() {
-        return pattern3;
+    public String getPattern_3() {
+        return pattern_3;
     }
 
-    public void setPattern3(String pattern3) {
-        this.pattern3 = pattern3;
+    public void setPattern_3(String pattern_3) {
+        this.pattern_3 = pattern_3;
     }
 
     public Integer getDangerous() {
@@ -138,68 +138,68 @@ public class BehaviorDetection {
         this.dangerous = dangerous;
     }
 
-    public String getRegexp1() {
-        return regexp1;
+    public String getRegexp_1() {
+        return regexp_1;
     }
 
-    public void setRegexp1(String regexp1) {
-        this.regexp1 = regexp1;
+    public void setRegexp_1(String regexp_1) {
+        this.regexp_1 = regexp_1;
     }
 
-    public String getRegexp2() {
-        return regexp2;
+    public String getRegexp_2() {
+        return regexp_2;
     }
 
-    public void setRegexp2(String regexp2) {
-        this.regexp2 = regexp2;
+    public void setRegexp_2(String regexp_2) {
+        this.regexp_2 = regexp_2;
     }
 
-    public String getRegexp3() {
-        return regexp3;
+    public String getRegexp_3() {
+        return regexp_3;
     }
 
-    public void setRegexp3(String regexp3) {
-        this.regexp3 = regexp3;
+    public void setRegexp_3(String regexp_3) {
+        this.regexp_3 = regexp_3;
     }
 
-    public Integer getBaseCnt() {
-        return baseCnt;
+    public Integer getBase_cnt() {
+        return base_cnt;
     }
 
-    public void setBaseCnt(Integer baseCnt) {
-        this.baseCnt = baseCnt;
+    public void setBase_cnt(Integer base_cnt) {
+        this.base_cnt = base_cnt;
     }
 
-    public Integer getBaseTime() {
-        return baseTime;
+    public Integer getBase_time() {
+        return base_time;
     }
 
-    public void setBaseTime(Integer baseTime) {
-        this.baseTime = baseTime;
+    public void setBase_time(Integer base_time) {
+        this.base_time = base_time;
     }
 
     @Override
     public String toString() {
         return "BehaviorDetection{" +
-                "detectionNumber=" + detectionNumber +
-                ", sIp='" + sIp + '\'' +
-                ", dIp='" + dIp + '\'' +
-                ", sPort=" + sPort +
-                ", dPort=" + dPort +
-                ", createDt=" + createDt +
-                ", modifyDt=" + modifyDt +
-                ", actionType='" + actionType + '\'' +
-                ", policyName='" + policyName + '\'' +
-                ", policyInfo='" + policyInfo + '\'' +
-                ", pattern1='" + pattern1 + '\'' +
-                ", pattern2='" + pattern2 + '\'' +
-                ", pattern3='" + pattern3 + '\'' +
+                "detection_number=" + detection_number +
+                ", s_ip='" + s_ip + '\'' +
+                ", d_ip='" + d_ip + '\'' +
+                ", s_port=" + s_port +
+                ", d_port=" + d_port +
+                ", create_dt=" + create_dt +
+                ", modify_dt=" + modify_dt +
+                ", action_type='" + action_type + '\'' +
+                ", policy_name='" + policy_name + '\'' +
+                ", policy_info='" + policy_info + '\'' +
+                ", pattern_1='" + pattern_1 + '\'' +
+                ", pattern_2='" + pattern_2 + '\'' +
+                ", pattern_3='" + pattern_3 + '\'' +
                 ", dangerous=" + dangerous +
-                ", regexp1='" + regexp1 + '\'' +
-                ", regexp2='" + regexp2 + '\'' +
-                ", regexp3='" + regexp3 + '\'' +
-                ", baseCnt=" + baseCnt +
-                ", baseTime=" + baseTime +
+                ", regexp_1='" + regexp_1 + '\'' +
+                ", regexp_2='" + regexp_2 + '\'' +
+                ", regexp_3='" + regexp_3 + '\'' +
+                ", base_cnt=" + base_cnt +
+                ", base_time=" + base_time +
                 '}';
     }
 }
