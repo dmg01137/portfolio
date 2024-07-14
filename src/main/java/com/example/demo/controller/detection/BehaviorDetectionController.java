@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dto.detection.BehaviorDetection;
-import com.example.demo.dto.detection.PatternDetection;
 import com.example.demo.service.detection.BehaviorDetectionService;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class BehaviorDetectionController {
@@ -87,13 +87,18 @@ public class BehaviorDetectionController {
     @GetMapping("/addbehaviorpolicy")
     public String showAddBehaviorForm(Model model) {
         model.addAttribute("behaviorDetection", new BehaviorDetection());
-        return "addbehaviorpolicy"; // addbehaviorpolicy.html 템플릿을 반환
+        return "addbehaviorpolicy";
     }
 
     @PostMapping("/addbehaviorpolicy")
-    public String addBehavior(@ModelAttribute("behaviorDetection") BehaviorDetection behaviorDetection) {
-        behaviorDetectionService.addBehaviorDetection(behaviorDetection);
-        return "redirect:/policylist"; // 정책을 추가한 후 리다이렉트할 페이지 경로
+    public String addBehavior(@ModelAttribute("behaviorDetection") @Valid BehaviorDetection behaviorDetection) {
+        try {
+            behaviorDetectionService.addBehaviorDetection(behaviorDetection);
+            return "redirect:/behaviorpolicy";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "500";
+        }
     }
 
 }

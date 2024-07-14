@@ -18,9 +18,6 @@ public class BehaviorDetection {
     private String pattern_2;
     private String pattern_3;
     private Integer dangerous;
-    private String regexp_1;
-    private String regexp_2;
-    private String regexp_3;
     private Integer base_cnt;
     private Integer base_time;
 
@@ -138,29 +135,7 @@ public class BehaviorDetection {
         this.dangerous = dangerous;
     }
 
-    public String getRegexp_1() {
-        return regexp_1;
-    }
-
-    public void setRegexp_1(String regexp_1) {
-        this.regexp_1 = regexp_1;
-    }
-
-    public String getRegexp_2() {
-        return regexp_2;
-    }
-
-    public void setRegexp_2(String regexp_2) {
-        this.regexp_2 = regexp_2;
-    }
-
-    public String getRegexp_3() {
-        return regexp_3;
-    }
-
-    public void setRegexp_3(String regexp_3) {
-        this.regexp_3 = regexp_3;
-    }
+   
 
     public Integer getBase_cnt() {
         return base_cnt;
@@ -195,9 +170,7 @@ public class BehaviorDetection {
                 ", pattern_2='" + pattern_2 + '\'' +
                 ", pattern_3='" + pattern_3 + '\'' +
                 ", dangerous=" + dangerous +
-                ", regexp_1='" + regexp_1 + '\'' +
-                ", regexp_2='" + regexp_2 + '\'' +
-                ", regexp_3='" + regexp_3 + '\'' +
+              
                 ", base_cnt=" + base_cnt +
                 ", base_time=" + base_time +
                 '}';
