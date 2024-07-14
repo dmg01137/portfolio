@@ -5,12 +5,14 @@
 
     <!-- 모든 패턴 탐지 조회 -->
     <select id="getAllPatternDetections" resultType="com.example.demo.dto.detection.PatternDetection">
-        SELECT * FROM detection_db.pattern_detection
+        SELECT detection_number, CONCAT(s_ip, ' to ', d_ip) AS s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
+        FROM detection_db.pattern_detection
     </select>
 
     <!-- 이름으로 패턴 탐지 조회 -->
     <select id="getPatternDetectionByName" resultType="com.example.demo.dto.detection.PatternDetection" parameterType="java.lang.String">
-        SELECT * FROM detection_db.pattern_detection WHERE policy_name = #{policy_name}
+        SELECT detection_number, CONCAT(s_ip, ' to ', d_ip) AS s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
+        FROM detection_db.pattern_detection WHERE policy_name = #{policy_name}
     </select>
 
     <!-- 패턴 탐지 추가 -->
@@ -23,8 +25,7 @@
     <update id="updatePatternDetection" parameterType="com.example.demo.dto.detection.PatternDetection">
         UPDATE detection_db.pattern_detection
         SET s_ip = #{s_ip}, d_ip = #{d_ip}, s_port = #{s_port}, d_port = #{d_port}, create_dt = #{create_dt}, modify_dt = #{modify_dt}, action_type = #{action_type},
-            policy_name = #{policy_name}, policy_info = #{policy_info}, pattern_1 = #{pattern_1}, pattern_2 = #{pattern_2}, pattern_3 = #{pattern_3}, dangerous = #{dangerous},
-            regexp_1 = #{regexp_1}, regexp_2 = #{regexp_2}, regexp_3 = #{regexp_3}
+            policy_name = #{policy_name}, policy_info = #{policy_info}, pattern_1 = #{pattern_1}, pattern_2 = #{pattern_2}, pattern_3 = #{pattern_3}, dangerous = #{dangerous}
         WHERE detection_number = #{detection_number}
     </update>
 
@@ -35,7 +36,8 @@
 
     <!-- 검색 조건으로 패턴 탐지 조회 -->
     <select id="searchPatternDetections" resultType="com.example.demo.dto.detection.PatternDetection" parameterType="java.lang.String">
-        SELECT * FROM detection_db.pattern_detection WHERE pattern_1 LIKE '%' || #{searchInputName} || '%'
+        SELECT detection_number, CONCAT(s_ip, ' to ', d_ip) AS s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
+        FROM detection_db.pattern_detection WHERE pattern_1 LIKE '%' || #{searchInputName} || '%'
                                               OR pattern_2 LIKE '%' || #{searchInputName} || '%'
                                               OR pattern_3 LIKE '%' || #{searchInputName} || '%'
     </select>
@@ -43,14 +45,15 @@
     <!-- 페이징된 모든 패턴 탐지 조회 -->
     <select id="getAllPatternDetectionsPaged" resultType="com.example.demo.dto.detection.PatternDetection" parameterType="java.util.Map">
         SELECT * FROM (
-            SELECT ROW_NUMBER() OVER (ORDER BY detection_number) AS ROWNUM, pattern_detection.*
+            SELECT ROW_NUMBER() OVER (ORDER BY detection_number) AS ROWNUM, detection_number, CONCAT(s_ip, ' to ', d_ip) AS s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
             FROM detection_db.pattern_detection
         ) WHERE ROWNUM BETWEEN #{startRow} AND #{endRow}
     </select>
 
     <!-- 시간 범위로 패턴 탐지 조회 -->
     <select id="getPatternDetectionsByTimeRange" resultType="com.example.demo.dto.detection.PatternDetection" parameterType="java.util.Map">
-        SELECT * FROM detection_db.pattern_detection
+        SELECT detection_number, CONCAT(s_ip, ' to ', d_ip) AS s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
+        FROM detection_db.pattern_detection
         WHERE create_dt BETWEEN #{start} AND #{end}
     </select>
 

@@ -296,6 +296,7 @@
                         <!-- 검색 섹션 -->
                         <div class="input-group mb-3 search-section">
                             <input type="text" id="searchInputID" class="form-control" placeholder="NO">
+                              <input type="text" id="searchInputStoIP" class="form-control" placeholder="s_to_ip">
                             <input type="text" id="searchInputSIP" class="form-control" placeholder="출발지IP">
                            
                             <input type="text" id="searchInputSPort" class="form-control" placeholder="출발지Port">
@@ -323,6 +324,7 @@
                                         <th>선택</th>
                                         
                                         <th>NO</th>
+                                        <th>S_to_IP</th>  
                                         <th>출발지IP</th>                                        
                                         <th>출발지Port</th>
                                         <th>도착지IP</th>
@@ -365,6 +367,7 @@ $(document).ready(function () {
     $("#btnSearch").click(function () {
         let searchCriteria = {
             detection_number: $("#searchInputID").val(),
+            s_to_ip: $("#searchInputStoIP").val(),
             s_ip: $("#searchInputSIP").val(),
             s_port: $("#searchInputSPort").val(),
             d_ip: $("#searchInputDIP").val(),
@@ -421,6 +424,7 @@ $(document).ready(function () {
                         `<tr>
                             <td><input type="checkbox" name="selectedPattern"></td>
                             <td>${pattern.detection_number}</td>
+                            <td>${pattern.s_to_ip}</td>
                             <td>${pattern.s_ip}</td>
                             <td>${pattern.s_port}</td>
                             <td>${pattern.d_ip}</td>

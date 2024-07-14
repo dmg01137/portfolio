@@ -5,32 +5,30 @@ import java.time.LocalDateTime;
 public class PatternDetection {
 
     private Long detection_number;    // 탐지 번호
-    private String s_ip;             // 소스 IP
-    private String d_ip;             // 목적지 IP
-    private Integer s_port;          // 소스 포트
-    private Integer d_port;          // 목적지 포트
-    private LocalDateTime create_dt; // 생성 일시
-    private LocalDateTime modify_dt; // 수정 일시
-    private Integer action_type;     // 동작 유형
-    private String policy_name;      // 정책 이름
-    private String policy_info;      // 정책 정보
-    private String pattern_1;        // 패턴 1
-    private String pattern_2;        // 패턴 2
-    private String pattern_3;        // 패턴 3
-    private Integer dangerous;       // 위험도
-    private String regexp_1;         // 정규 표현식 1
-    private String regexp_2;         // 정규 표현식 2
-    private String regexp_3;         // 정규 표현식 3
+    private String s_to_ip;           // 소스와 목적지 IP 정보
+    private String s_ip;              // 소스 IP
+    private String d_ip;              // 목적지 IP
+    private Integer s_port;           // 소스 포트
+    private Integer d_port;           // 목적지 포트
+    private LocalDateTime create_dt;  // 생성 일시
+    private LocalDateTime modify_dt;  // 수정 일시
+    private Integer action_type;      // 동작 유형
+    private String policy_name;       // 정책 이름
+    private String policy_info;       // 정책 정보
+    private String pattern_1;         // 패턴 1
+    private String pattern_2;         // 패턴 2
+    private String pattern_3;         // 패턴 3
+    private Integer dangerous;        // 위험도
 
     // 생성자
     public PatternDetection() {
     }
 
-    public PatternDetection(Long detection_number, String s_ip, String d_ip, Integer s_port, Integer d_port,
+    public PatternDetection(Long detection_number, String s_to_ip, String s_ip, String d_ip, Integer s_port, Integer d_port,
                             LocalDateTime create_dt, LocalDateTime modify_dt, Integer action_type, String policy_name,
-                            String policy_info, String pattern_1, String pattern_2, String pattern_3, Integer dangerous,
-                            String regexp_1, String regexp_2, String regexp_3) {
+                            String policy_info, String pattern_1, String pattern_2, String pattern_3, Integer dangerous) {
         this.detection_number = detection_number;
+        this.s_to_ip = s_to_ip;
         this.s_ip = s_ip;
         this.d_ip = d_ip;
         this.s_port = s_port;
@@ -44,9 +42,6 @@ public class PatternDetection {
         this.pattern_2 = pattern_2;
         this.pattern_3 = pattern_3;
         this.dangerous = dangerous;
-        this.regexp_1 = regexp_1;
-        this.regexp_2 = regexp_2;
-        this.regexp_3 = regexp_3;
     }
 
     // Getter 및 Setter 메소드
@@ -56,6 +51,14 @@ public class PatternDetection {
 
     public void setDetection_number(Long detection_number) {
         this.detection_number = detection_number;
+    }
+
+    public String getS_to_ip() {
+        return s_to_ip;
+    }
+
+    public void setS_to_ip(String s_to_ip) {
+        this.s_to_ip = s_to_ip;
     }
 
     public String getS_ip() {
@@ -162,34 +165,11 @@ public class PatternDetection {
         this.dangerous = dangerous;
     }
 
-    public String getRegexp_1() {
-        return regexp_1;
-    }
-
-    public void setRegexp_1(String regexp_1) {
-        this.regexp_1 = regexp_1;
-    }
-
-    public String getRegexp_2() {
-        return regexp_2;
-    }
-
-    public void setRegexp_2(String regexp_2) {
-        this.regexp_2 = regexp_2;
-    }
-
-    public String getRegexp_3() {
-        return regexp_3;
-    }
-
-    public void setRegexp_3(String regexp_3) {
-        this.regexp_3 = regexp_3;
-    }
-
     @Override
     public String toString() {
         return "PatternDetection{" +
                 "detection_number=" + detection_number +
+                ", s_to_ip='" + s_to_ip + '\'' +
                 ", s_ip='" + s_ip + '\'' +
                 ", d_ip='" + d_ip + '\'' +
                 ", s_port=" + s_port +
@@ -203,9 +183,6 @@ public class PatternDetection {
                 ", pattern_2='" + pattern_2 + '\'' +
                 ", pattern_3='" + pattern_3 + '\'' +
                 ", dangerous=" + dangerous +
-                ", regexp_1='" + regexp_1 + '\'' +
-                ", regexp_2='" + regexp_2 + '\'' +
-                ", regexp_3='" + regexp_3 + '\'' +
                 '}';
     }
 }

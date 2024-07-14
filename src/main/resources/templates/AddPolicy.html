@@ -170,20 +170,25 @@
                             <label for="detection_number">감지 번호</label>
                             <input type="text" class="form-control" id="detection_number" name="detection_number" placeholder="감지 번호 입력" required>
                         </div>
+                         <div class="form-group">
+                            <label for="s_to_ip ">s_to_ip </label>
+                            <input type="text" class="form-control" id="s_to_ip " name="s_to_ip " placeholder="s_to_ip  입력">
+                        </div>
                         <div class="form-group">
-                            <label for="s_ip">출발지 IP</label>
+                            <label for="s_ip">출발지IP</label>
                             <input type="text" class="form-control" id="s_ip" name="s_ip" placeholder="출발지 IP 입력">
                         </div>
-                        <div class="form-group">
-                            <label for="d_ip">목적지 IP</label>
-                            <input type="text" class="form-control" id="d_ip" name="d_ip" placeholder="목적지 IP 입력">
-                        </div>
-                        <div class="form-group">
-                            <label for="s_port">출발지 포트</label>
+                         <div class="form-group">
+                            <label for="s_port">출발지Port</label>
                             <input type="text" class="form-control" id="s_port" name="s_port" placeholder="출발지 포트 입력">
                         </div>
                         <div class="form-group">
-                            <label for="d_port">목적지 포트</label>
+                            <label for="d_ip">목적지IP</label>
+                            <input type="text" class="form-control" id="d_ip" name="d_ip" placeholder="목적지 IP 입력">
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="d_port">목적지Port</label>
                             <input type="text" class="form-control" id="d_port" name="d_port" placeholder="목적지 포트 입력">
                         </div>
                         <div class="form-group">
@@ -194,14 +199,36 @@
                             <label for="modify_dt">수정 일자</label>
                             <input type="datetime-local" class="form-control" id="modify_dt" name="modify_dt">
                         </div>
-                        <div class="form-group">
-                            <label for="attack_type">공격 유형</label>
-                            <input type="text" class="form-control" id="attack_type" name="attack_type" placeholder="공격 유형 입력" required>
+                         <div class="form-group">
+                            <label for="action_type">액션 타입</label>
+                            <input type="text" class="form-control" id="action_type" name="action_type" placeholder="액션 타입 입력" required>
                         </div>
-                        <div class="form-group">
-                            <label for="pattern">패턴</label>
-                            <input type="text" class="form-control" id="pattern" name="pattern" placeholder="패턴 입력" required>
+                         <div class="form-group">
+                            <label for="policy_name">정책 이름</label>
+                            <input type="text" class="form-control" id="policy_name" name="policy_name" placeholder="정책 이름 입력" required>
                         </div>
+                           <div class="form-group">
+                            <label for="policy_info">정책 정보</label>
+                            <input type="text" class="form-control" id="policy_info" name="policy_info" placeholder="정책 정보 입력" required>
+                        </div>
+                          <div class="form-group">
+                            <label for="pattern_1">패턴1</label>
+                            <input type="text" class="form-control" id="pattern_1" name="pattern_1" placeholder="패턴1 입력" required>
+                        </div>
+                          <div class="form-group">
+                            <label for="pattern_2">패턴2</label>
+                            <input type="text" class="form-control" id="pattern_2" name="pattern_2" placeholder="패턴2 입력" required>
+                        </div>
+                          <div class="form-group">
+                            <label for="pattern_3">패턴3</label>
+                            <input type="text" class="form-control" id="pattern_3" name="pattern_3" placeholder="패턴3 입력" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dangerous">위험성</label>
+                            <input type="text" class="form-control" id="dangerous" name="dangerous" placeholder="위험성 입력" required>
+                        </div>
+                      
                         <button type="submit" class="btn btn-primary btn-block btn-custom">Add</button>
                         <button type="reset" class="btn btn-secondary btn-block btn-clear">Clear</button>
                     </form>
@@ -219,7 +246,7 @@
 <script>
     document.getElementById("policyForm").addEventListener("submit", function(event) {
         var form = this;
-        var requiredFields = ["detection_number", "create_dt", "attack_type", "pattern"];
+        var requiredFields = ["detection_number","s_to_ip","s_ip","d_ip","s_port","d_port","create_dt","modify_dt", "action_type", "policy_name", "policy_info","pattern_1","pattern_2","pattern_3","dangerous"];
         var valid = true;
         requiredFields.forEach(function(field) {
             if (!form[field].value.trim()) {
