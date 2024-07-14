@@ -1,0 +1,29 @@
+20:18:23.905 [RMI TCP Connection(5)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+20:18:23.910 [RMI TCP Connection(5)-127.0.0.1] DEBUG o.s.b.a.ApplicationAvailabilityBean - Application availability state ReadinessState changed from ACCEPTING_TRAFFIC to REFUSING_TRAFFIC
+20:18:23.911 [RMI TCP Connection(5)-127.0.0.1] DEBUG o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@29478432, started on Sun Jul 14 20:16:58 KST 2024
+20:18:23.912 [RMI TCP Connection(5)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase 2147483647
+20:18:23.913 [RMI TCP Connection(5)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Bean 'applicationTaskExecutor' completed its stop procedure
+20:18:23.913 [RMI TCP Connection(5)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase 2147482623
+20:18:23.914 [RMI TCP Connection(5)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Bean 'webServerGracefulShutdown' completed its stop procedure
+20:18:23.914 [RMI TCP Connection(5)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase 2147481599
+20:18:23.914 [RMI TCP Connection(5)-127.0.0.1] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+20:18:23.919 [RMI TCP Connection(5)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Bean 'webServerStartStop' completed its stop procedure
+20:18:23.919 [RMI TCP Connection(5)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase -2147483647
+20:18:23.919 [RMI TCP Connection(5)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Bean 'springBootLoggingLifecycle' completed its stop procedure
+20:18:23.919 [RMI TCP Connection(5)-127.0.0.1] DEBUG o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+20:18:23.920 [RMI TCP Connection(5)-127.0.0.1] DEBUG o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans
+20:18:23.920 [RMI TCP Connection(5)-127.0.0.1] DEBUG o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+20:18:23.921 [RMI TCP Connection(5)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+20:18:23.921 [RMI TCP Connection(5)-127.0.0.1] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Before shutdown stats (total=10, active=0, idle=10, waiting=0)
+20:18:23.922 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@190f6ff8: (connection evicted)
+20:18:23.924 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@73d6a826: (connection evicted)
+20:18:23.925 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@263feabd: (connection evicted)
+20:18:23.925 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@564a52e: (connection evicted)
+20:18:23.926 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@4e794769: (connection evicted)
+20:18:23.926 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@8c3e317: (connection evicted)
+20:18:23.926 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@2a3a1462: (connection evicted)
+20:18:23.927 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@116d2be1: (connection evicted)
+20:18:23.928 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@313a89f0: (connection evicted)
+20:18:23.929 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@3dd02065: (connection evicted)
+20:18:23.929 [RMI TCP Connection(5)-127.0.0.1] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+20:18:23.929 [RMI TCP Connection(5)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

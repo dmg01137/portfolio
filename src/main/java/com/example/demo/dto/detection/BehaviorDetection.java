@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 public class BehaviorDetection {
 
     private Integer detection_number;
+    private String s_to_ip;           // 소스와 목적지 IP 정보
     private String s_ip;
     private String d_ip;
     private Integer s_port;
@@ -19,6 +20,7 @@ public class BehaviorDetection {
     private String pattern_3;
     private Integer dangerous;
     private Integer base_cnt;
+    private Integer comp_cnt;
     private Integer base_time;
 
     // Getter 및 Setter 메서드
@@ -29,6 +31,14 @@ public class BehaviorDetection {
 
     public void setDetection_number(Integer detection_number) {
         this.detection_number = detection_number;
+    }
+
+    public String getS_to_ip() {
+        return s_to_ip;
+    }
+
+    public void setS_to_ip(String s_to_ip) {
+        this.s_to_ip = s_to_ip;
     }
 
     public String getS_ip() {
@@ -135,14 +145,20 @@ public class BehaviorDetection {
         this.dangerous = dangerous;
     }
 
-   
-
     public Integer getBase_cnt() {
         return base_cnt;
     }
 
     public void setBase_cnt(Integer base_cnt) {
         this.base_cnt = base_cnt;
+    }
+
+    public Integer getComp_cnt() {
+        return comp_cnt;
+    }
+
+    public void setComp_cnt(Integer comp_cnt) {
+        this.comp_cnt = comp_cnt;
     }
 
     public Integer getBase_time() {
@@ -157,6 +173,7 @@ public class BehaviorDetection {
     public String toString() {
         return "BehaviorDetection{" +
                 "detection_number=" + detection_number +
+                ", s_to_ip='" + s_to_ip + '\'' +
                 ", s_ip='" + s_ip + '\'' +
                 ", d_ip='" + d_ip + '\'' +
                 ", s_port=" + s_port +
@@ -170,8 +187,8 @@ public class BehaviorDetection {
                 ", pattern_2='" + pattern_2 + '\'' +
                 ", pattern_3='" + pattern_3 + '\'' +
                 ", dangerous=" + dangerous +
-              
                 ", base_cnt=" + base_cnt +
+                ", comp_cnt=" + comp_cnt +
                 ", base_time=" + base_time +
                 '}';
     }

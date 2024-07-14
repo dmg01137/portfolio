@@ -15,16 +15,16 @@
 
     <!-- 행동 탐지 추가 -->
     <insert id="addBehaviorDetection" parameterType="com.example.demo.dto.detection.BehaviorDetection">
-        INSERT INTO detection_db.behavior_detection (detection_number, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous, base_cnt, base_time)
-        VALUES (#{detection_number}, #{s_ip}, #{d_ip}, #{s_port}, #{d_port}, #{create_dt}, #{modify_dt}, #{action_type}, #{policy_name}, #{policy_info}, #{pattern_1}, #{pattern_2}, #{pattern_3}, #{dangerous}, #{base_cnt}, #{base_time})
+        INSERT INTO detection_db.behavior_detection (detection_number, s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous, base_cnt, comp_cnt, base_time)
+        VALUES (#{detection_number}, #{s_to_ip}, #{s_ip}, #{d_ip}, #{s_port}, #{d_port}, #{create_dt}, #{modify_dt}, #{action_type}, #{policy_name}, #{policy_info}, #{pattern_1}, #{pattern_2}, #{pattern_3}, #{dangerous}, #{base_cnt}, #{comp_cnt}, #{base_time})
     </insert>
 
     <!-- 행동 탐지 수정 -->
     <update id="updateBehaviorDetection" parameterType="com.example.demo.dto.detection.BehaviorDetection">
         UPDATE detection_db.behavior_detection
-        SET s_ip = #{s_ip}, d_ip = #{d_ip}, s_port = #{s_port}, d_port = #{d_port}, create_dt = #{create_dt}, modify_dt = #{modify_dt}, action_type = #{action_type},
+        SET s_to_ip = #{s_to_ip}, s_ip = #{s_ip}, d_ip = #{d_ip}, s_port = #{s_port}, d_port = #{d_port}, create_dt = #{create_dt}, modify_dt = #{modify_dt}, action_type = #{action_type},
             policy_name = #{policy_name}, policy_info = #{policy_info}, pattern_1 = #{pattern_1}, pattern_2 = #{pattern_2}, pattern_3 = #{pattern_3}, dangerous = #{dangerous},
-            regexp_1 = #{regexp_1}, regexp_2 = #{regexp_2}, regexp_3 = #{regexp_3}, base_cnt = #{base_cnt}, base_time = #{base_time}
+            base_cnt = #{base_cnt}, comp_cnt = #{comp_cnt}, base_time = #{base_time}
         WHERE detection_number = #{detection_number}
     </update>
 
