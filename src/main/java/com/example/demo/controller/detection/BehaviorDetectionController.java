@@ -87,7 +87,7 @@ public class BehaviorDetectionController {
     @GetMapping("/addbehaviorpolicy")
     public String showAddBehaviorForm(Model model) {
         model.addAttribute("behaviorDetection", new BehaviorDetection());
-        return "addbehaviorpolicy"; // addpolicy.html 템플릿을 반환
+        return "addbehaviorpolicy"; // addbehaviorpolicy.html 템플릿을 반환
     }
 
     @PostMapping("/addbehaviorpolicy")

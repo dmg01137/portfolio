@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>정책 추가</title>
+    <title>행동 정책 추가</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <style>
         /* 네비게이션바 스타일 */
         .navbar {
@@ -147,7 +148,7 @@
             <a class="nav-link nav-link-custom" href="#"><i class="fas fa-plus"></i> <span style="color: #17a2b8;">행동정책 추가</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link " href="/addpolicy"><i class="fas fa-plus"></i> 패턴정책 추가</a>
+            <a class="nav-link" href="/addpolicy"><i class="fas fa-plus"></i> 패턴정책 추가</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/policylist"><i class="fas fa-shield-alt"></i> 정책 리스트</a>
@@ -157,11 +158,11 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-6"> <!-- 카드의 너비를 줄임 -->
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title mb-4">Behavior Policy</h5>
-                   <form id="policyForm" action="/addbehaviorpolicy" method="post">
+                    <form id="policyForm" action="/addbehaviorpolicy" method="post">
                         <div class="form-group">
                             <label for="detection_number">감지 번호</label>
                             <input type="text" class="form-control" id="detection_number" name="detection_number" placeholder="감지 번호 입력" required>
@@ -184,15 +185,15 @@
                         </div>
                         <div class="form-group">
                             <label for="create_dt">생성 일자</label>
-                            <input type="datetime-local" class="form-control" id="create_dt" name="create_dt" required>
+                            <input type="text" class="form-control" id="create_dt" name="create_dt" placeholder="생성 일자 입력" required>
                         </div>
                         <div class="form-group">
                             <label for="modify_dt">수정 일자</label>
-                            <input type="datetime-local" class="form-control" id="modify_dt" name="modify_dt">
+                            <input type="text" class="form-control" id="modify_dt" name="modify_dt" placeholder="수정 일자 입력">
                         </div>
                         <div class="form-group">
-                            <label for="action_type">행동 유형</label>
-                            <input type="text" class="form-control" id="action_type" name="action_type" placeholder="행동 유형 입력">
+                            <label for="action_type">액션 타입</label>
+                            <input type="text" class="form-control" id="action_type" name="action_type" placeholder="액션 타입 입력" required>
                         </div>
                         <div class="form-group">
                             <label for="policy_name">정책 이름</label>
@@ -204,7 +205,7 @@
                         </div>
                         <div class="form-group">
                             <label for="pattern_1">패턴 1</label>
-                            <input type="text" class="form-control" id="pattern_1" name="pattern_1" placeholder="패턴 1 입력">
+                            <input type="text" class="form-control" id="pattern_1" name="pattern_1" placeholder="패턴 1 입력" required>
                         </div>
                         <div class="form-group">
                             <label for="pattern_2">패턴 2</label>
@@ -215,31 +216,30 @@
                             <input type="text" class="form-control" id="pattern_3" name="pattern_3" placeholder="패턴 3 입력">
                         </div>
                         <div class="form-group">
-                            <label for="dangerous">위험 정도</label>
-                            <input type="number" class="form-control" id="dangerous" name="dangerous" placeholder="위험 정도 입력">
+                            <label for="dangerous">위험도</label>
+                            <input type="text" class="form-control" id="dangerous" name="dangerous" placeholder="위험도 입력" required>
                         </div>
                         <div class="form-group">
-                            <label for="regexp_1">정규 표현식 1</label>
-                            <input type="text" class="form-control" id="regexp_1" name="regexp_1" placeholder="정규 표현식 1 입력">
+                            <label for="regexp_1">정규표현식 1</label>
+                            <input type="text" class="form-control" id="regexp_1" name="regexp_1" placeholder="정규표현식 1 입력" required>
                         </div>
                         <div class="form-group">
-                            <label for="regexp_2">정규 표현식 2</label>
-                            <input type="text" class="form-control" id="regexp_2" name="regexp_2" placeholder="정규 표현식 2 입력">
+                            <label for="regexp_2">정규표현식 2</label>
+                            <input type="text" class="form-control" id="regexp_2" name="regexp_2" placeholder="정규표현식 2 입력">
                         </div>
                         <div class="form-group">
-                            <label for="regexp_3">정규 표현식 3</label>
-                            <input type="text" class="form-control" id="regexp_3" name="regexp_3" placeholder="정규 표현식 3 입력">
+                            <label for="regexp_3">정규표현식 3</label>
+                            <input type="text" class="form-control" id="regexp_3" name="regexp_3" placeholder="정규표현식 3 입력">
                         </div>
                         <div class="form-group">
-                            <label for="base_cnt">베이스 카운트</label>
-                            <input type="number" class="form-control" id="base_cnt" name="base_cnt" placeholder="베이스 카운트 입력">
+                            <label for="base_cnt">기본 카운트</label>
+                            <input type="text" class="form-control" id="base_cnt" name="base_cnt" placeholder="기본 카운트 입력" required>
                         </div>
                         <div class="form-group">
-                            <label for="base_time">베이스 시간</label>
-                            <input type="number" class="form-control" id="base_time" name="base_time" placeholder="베이스 시간 입력">
+                            <label for="base_time">기본 시간</label>
+                            <input type="text" class="form-control" id="base_time" name="base_time" placeholder="기본 시간 입력" required>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block btn-custom">추가</button>
-                        <button type="reset" class="btn btn-secondary btn-block btn-clear">초기화</button>
                     </form>
                 </div>
             </div>
@@ -247,12 +247,25 @@
     </div>
 </div>
 
-<!-- Bootstrap JS, Popper.js, and jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
+    flatpickr('#create_dt', {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        time_24hr: true,
+        locale: "ko"
+    });
+
+    flatpickr('#modify_dt', {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        time_24hr: true,
+        locale: "ko"
+    });
+
     document.getElementById("policyForm").addEventListener("submit", function(event) {
         var form = this;
         var requiredFields = ["detection_number", "create_dt", "action_type", "pattern_1", "dangerous", "regexp_1", "base_cnt", "base_time"];
@@ -270,5 +283,6 @@
         }
     });
 </script>
+
 </body>
 </html>
