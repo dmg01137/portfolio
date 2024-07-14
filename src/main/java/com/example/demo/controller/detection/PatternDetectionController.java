@@ -17,16 +17,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.controller.log.SearchCriteria;
 import com.example.demo.dto.detection.PatternDetection;
+import com.example.demo.service.UDPClient;
 import com.example.demo.service.detection.PatternDetectionService;
 
 @Controller
 public class PatternDetectionController {
 
     private final PatternDetectionService patternDetectionService;
+    private final UDPClient udpClient; // UDPClient 인스턴스 추가
+
 
     @Autowired
-    public PatternDetectionController(PatternDetectionService patternDetectionService) {
+    public PatternDetectionController(PatternDetectionService patternDetectionService, UDPClient udpClient) {
         this.patternDetectionService = patternDetectionService;
+        this.udpClient = udpClient; // UDPClient 의존성 주입
     }
 
     @GetMapping("/policylist")
@@ -75,13 +79,14 @@ public class PatternDetectionController {
     public String addPattern(@ModelAttribute("patternDetection") PatternDetection patternDetection) {
     	 try {
     		 patternDetectionService.addPatternDetection(patternDetection);
-        return "redirect:/policylist";
-    
-} catch (Exception e) {
-    e.printStackTrace(); // 예외 내용을 콘솔에 출력
-    // 예외 처리 로직 추가
-    return "500"; // 예외 발생 시 보여줄 에러 페이지로 리다이렉트 또는 뷰 반환
-}
+             // 행동 변경 메시지를 전송합니다.
+             udpClient.sendPatternChangeMessage();
+             
+             return "redirect:/policylist";
+         } catch (Exception e) {
+             e.printStackTrace();
+             return "500";
+         }
     
     }
 }

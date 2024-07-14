@@ -98,7 +98,7 @@ public class BehaviorDetectionController {
             // 행동 변경 메시지를 전송합니다.
             udpClient.sendBehaviorChangeMessage();
             
-            return "redirect:/behaviorpolicy";
+            return "redirect:/policylist";
         } catch (Exception e) {
             e.printStackTrace();
             return "500";
