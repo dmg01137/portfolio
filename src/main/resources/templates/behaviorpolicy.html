@@ -110,18 +110,17 @@
     
     }
 
-    .card {
+  .card {
         margin-top: 0px; /* 카드의 위쪽 여백 설정 */
         margin-left: 150px; /* 카드를 가운데 정렬 */
         margin-right: auto; /* 카드를 가운데 정렬 */
-        width: 95%; /* 카드의 너비를 조정 */
+        width: 90%; /* 카드의 너비를 조정 */
         max-width: 1100px; /* 카드의 최대 너비 설정 */
         border-radius: 15px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease-in-out;
         border: transparent; /* 테두리를 투명하게 설정 */
     }
-
     .card:hover {
         box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
     }
@@ -320,9 +319,7 @@
                     <th>패턴 2</th>
                     <th>패턴 3</th>
                     <th>위험도</th>
-                    <th>정규식 1</th>
-                    <th>정규식 2</th>
-                    <th>정규식 3</th>
+                    
                     <th>카운트</th>
                     <th>시간</th>
                 </tr>
@@ -377,9 +374,7 @@ $(document).ready(function () {
                             <td>${behavior.pattern_2}</td>
                             <td>${behavior.pattern_3}</td>
                             <td>${behavior.dangerous}</td>
-                            <td>${behavior.regexp_1}</td>
-                            <td>${behavior.regexp_2}</td>
-                            <td>${behavior.regexp_3}</td>
+                           
                             <td>${behavior.base_cnt}</td>
                             <td>${behavior.base_time}</td>
                         </tr>`
