@@ -16,20 +16,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dto.detection.BehaviorDetection;
+import com.example.demo.service.UDPClient;
 import com.example.demo.service.detection.BehaviorDetectionService;
 
 import jakarta.validation.Valid;
-
 @Controller
 public class BehaviorDetectionController {
 
     private final BehaviorDetectionService behaviorDetectionService;
+    private final UDPClient udpClient; // UDPClient 인스턴스 추가
 
     @Autowired
-    public BehaviorDetectionController(BehaviorDetectionService behaviorDetectionService) {
+    public BehaviorDetectionController(BehaviorDetectionService behaviorDetectionService, UDPClient udpClient) {
         this.behaviorDetectionService = behaviorDetectionService;
+        this.udpClient = udpClient; // UDPClient 의존성 주입
     }
-
     
     @GetMapping("/addpolicy2")
     public String addpolicy2(Model model) {
@@ -83,7 +84,6 @@ public class BehaviorDetectionController {
     
     
 //추가
-    
     @GetMapping("/addbehaviorpolicy")
     public String showAddBehaviorForm(Model model) {
         model.addAttribute("behaviorDetection", new BehaviorDetection());
@@ -94,6 +94,10 @@ public class BehaviorDetectionController {
     public String addBehavior(@ModelAttribute("behaviorDetection") @Valid BehaviorDetection behaviorDetection) {
         try {
             behaviorDetectionService.addBehaviorDetection(behaviorDetection);
+            
+            // 행동 변경 메시지를 전송합니다.
+            udpClient.sendBehaviorChangeMessage();
+            
             return "redirect:/behaviorpolicy";
         } catch (Exception e) {
             e.printStackTrace();
