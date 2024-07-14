@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -78,4 +79,21 @@ public class BehaviorDetectionController {
         // 주어진 시간 범위에 해당하는 행동 감지 데이터를 조회하여 반환합니다.
         return behaviorDetectionService.getBehaviorDetectionsByTimeRange(params);
     }
+    
+    
+    
+//추가
+    
+    @GetMapping("/addbehaviorpolicy")
+    public String showAddBehaviorForm(Model model) {
+        model.addAttribute("behaviorDetection", new BehaviorDetection());
+        return "addbehaviorpolicy"; // addpolicy.html 템플릿을 반환
+    }
+
+    @PostMapping("/addbehaviorpolicy")
+    public String addBehavior(@ModelAttribute("behaviorDetection") BehaviorDetection behaviorDetection) {
+        behaviorDetectionService.addBehaviorDetection(behaviorDetection);
+        return "redirect:/policylist"; // 정책을 추가한 후 리다이렉트할 페이지 경로
+    }
+
 }

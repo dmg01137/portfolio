@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Policy</title>
+    <title>정책 추가</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -144,10 +144,10 @@
     <h5 class="sidebar-heading">메뉴</h5>
     <ul class="nav flex-column nav-sidebar">
         <li class="nav-item">
-            <a class="nav-link nav-link-custom" href="#"><i class="fas fa-plus"></i> <span style="color: #17a2b8;">패턴정책 추가</span></a>
+            <a class="nav-link nav-link-custom" href="#"><i class="fas fa-plus"></i> <span style="color: #17a2b8;">행동정책 추가</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link " href="/addbehaviorpolicy"><i class="fas fa-plus"></i> 행동정책 추가</a>
+            <a class="nav-link " href="/addpolicy"><i class="fas fa-plus"></i> 패턴정책 추가</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/policylist"><i class="fas fa-shield-alt"></i> 정책 리스트</a>
@@ -160,8 +160,8 @@
         <div class="col-md-6"> <!-- 카드의 너비를 줄임 -->
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title mb-4">Patttern Policy</h5>
-                    <form id="policyForm" action="/addpolicy" method="post">
+                    <h5 class="card-title mb-4">Behavior Policy</h5>
+                   <form id="policyForm" action="/addbehaviorpolicy" method="post">
                         <div class="form-group">
                             <label for="detection_number">감지 번호</label>
                             <input type="text" class="form-control" id="detection_number" name="detection_number" placeholder="감지 번호 입력" required>
@@ -191,15 +191,55 @@
                             <input type="datetime-local" class="form-control" id="modify_dt" name="modify_dt">
                         </div>
                         <div class="form-group">
-                            <label for="attack_type">공격 유형</label>
-                            <input type="text" class="form-control" id="attack_type" name="attack_type" placeholder="공격 유형 입력" required>
+                            <label for="action_type">행동 유형</label>
+                            <input type="text" class="form-control" id="action_type" name="action_type" placeholder="행동 유형 입력">
                         </div>
                         <div class="form-group">
-                            <label for="pattern">패턴</label>
-                            <input type="text" class="form-control" id="pattern" name="pattern" placeholder="패턴 입력" required>
+                            <label for="policy_name">정책 이름</label>
+                            <input type="text" class="form-control" id="policy_name" name="policy_name" placeholder="정책 이름 입력">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block btn-custom">Add</button>
-                        <button type="reset" class="btn btn-secondary btn-block btn-clear">Clear</button>
+                        <div class="form-group">
+                            <label for="policy_info">정책 정보</label>
+                            <input type="text" class="form-control" id="policy_info" name="policy_info" placeholder="정책 정보 입력">
+                        </div>
+                        <div class="form-group">
+                            <label for="pattern_1">패턴 1</label>
+                            <input type="text" class="form-control" id="pattern_1" name="pattern_1" placeholder="패턴 1 입력">
+                        </div>
+                        <div class="form-group">
+                            <label for="pattern_2">패턴 2</label>
+                            <input type="text" class="form-control" id="pattern_2" name="pattern_2" placeholder="패턴 2 입력">
+                        </div>
+                        <div class="form-group">
+                            <label for="pattern_3">패턴 3</label>
+                            <input type="text" class="form-control" id="pattern_3" name="pattern_3" placeholder="패턴 3 입력">
+                        </div>
+                        <div class="form-group">
+                            <label for="dangerous">위험 정도</label>
+                            <input type="number" class="form-control" id="dangerous" name="dangerous" placeholder="위험 정도 입력">
+                        </div>
+                        <div class="form-group">
+                            <label for="regexp_1">정규 표현식 1</label>
+                            <input type="text" class="form-control" id="regexp_1" name="regexp_1" placeholder="정규 표현식 1 입력">
+                        </div>
+                        <div class="form-group">
+                            <label for="regexp_2">정규 표현식 2</label>
+                            <input type="text" class="form-control" id="regexp_2" name="regexp_2" placeholder="정규 표현식 2 입력">
+                        </div>
+                        <div class="form-group">
+                            <label for="regexp_3">정규 표현식 3</label>
+                            <input type="text" class="form-control" id="regexp_3" name="regexp_3" placeholder="정규 표현식 3 입력">
+                        </div>
+                        <div class="form-group">
+                            <label for="base_cnt">베이스 카운트</label>
+                            <input type="number" class="form-control" id="base_cnt" name="base_cnt" placeholder="베이스 카운트 입력">
+                        </div>
+                        <div class="form-group">
+                            <label for="base_time">베이스 시간</label>
+                            <input type="number" class="form-control" id="base_time" name="base_time" placeholder="베이스 시간 입력">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block btn-custom">추가</button>
+                        <button type="reset" class="btn btn-secondary btn-block btn-clear">초기화</button>
                     </form>
                 </div>
             </div>
@@ -215,7 +255,7 @@
 <script>
     document.getElementById("policyForm").addEventListener("submit", function(event) {
         var form = this;
-        var requiredFields = ["detection_number", "create_dt", "attack_type", "pattern"];
+        var requiredFields = ["detection_number", "create_dt", "action_type", "pattern_1", "dangerous", "regexp_1", "base_cnt", "base_time"];
         var valid = true;
         requiredFields.forEach(function(field) {
             if (!form[field].value.trim()) {

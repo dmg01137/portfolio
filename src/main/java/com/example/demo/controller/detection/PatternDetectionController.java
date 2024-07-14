@@ -70,4 +70,5 @@ public class PatternDetectionController {
         patternDetectionService.addPatternDetection(patternDetection);
         return "redirect:/policylist";
     }
+
 }
