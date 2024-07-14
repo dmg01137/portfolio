@@ -258,7 +258,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title mb-4">Modify Policy</h5>
-                   <form id="policyForm" action="/modifypolicy" method="post">
+              <form th:action="@{/modifypolicy}" th:object="${patternDetection}" method="post">
 
                         <div class="form-group">
                             <label for="detection_number">감지 번호</label>
@@ -305,6 +305,7 @@
     </div>
 </div>
 <!-- 스크립트 추가 부분 -->
+
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const selectedUserId = localStorage.getItem('selectedUserId');
@@ -327,44 +328,8 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('사용자 데이터를 불러오는 중 오류 발생:', error);
             // 에러 처리: 사용자에게 메시지 표시나 다른 처리 방법 선택
         });
-
-    // Datepicker 초기화
-    $('.datepicker').datepicker({
-        format: 'yyyy-mm-dd', // 원하는 날짜 형식으로 변경할 수 있음
-        autoclose: true,
-        todayHighlight: true
-    });
 });
-
-function resetForm() {
-    document.getElementById('detection_number').value = '';
-    document.getElementById('sIp').value = '';
-    document.getElementById('dIp').value = '';
-    document.getElementById('sPort').value = '';
-    document.getElementById('dPort').value = '';
-    document.getElementById('created_at').value = '';
-    document.getElementById('updated_at').value = '';
-    document.getElementById('action_type').value = '';
-    document.getElementById('policy_name').value = '';
-    document.getElementById('policy_info').value = '';
-    document.getElementById('pattern1').value = '';
-    document.getElementById('pattern2').value = '';
-    document.getElementById('pattern3').value = '';
-    document.getElementById('risk_level').value = '';
-    document.getElementById('regex1').value = '';
-    document.getElementById('regex2').value = '';
-    document.getElementById('regex3').value = '';
-}
-
-function modifyUser() {
-    // 사용자 수정 함수 (기존 코드)
-}
-
-function resetForm() {
-    // 폼 초기화 함수 (기존 코드)
-}
 </script>
-
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

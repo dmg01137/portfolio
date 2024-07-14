@@ -107,7 +107,7 @@ public class PatternDetectionController {
             // 행동 변경 메시지를 전송합니다.
             udpClient.sendPatternChangeMessage();
             
-            return "redirect:/policylist";
+            return "redirect:/modifypolicy";
         } catch (Exception e) {
             e.printStackTrace();
             return "500";
