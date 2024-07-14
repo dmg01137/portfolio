@@ -40,8 +40,8 @@ public class BehaviorDetectionService {
         behaviorDetectionDAO.updateBehaviorDetection(behaviorDetection);
     }
 
-    public void deleteBehaviorDetection(Long detectionNumber) {
-        behaviorDetectionDAO.deleteBehaviorDetection(detectionNumber);
+    public void deleteBehaviorDetection(BehaviorDetection behaviorDetection) {
+        behaviorDetectionDAO.deleteBehaviorDetection(behaviorDetection);
     }
 
     public List<BehaviorDetection> getAllBehaviorDetectionsPaged(Map<String, Integer> params) {

@@ -258,81 +258,46 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title mb-4">Modify Policy</h5>
-                    <form id="userForm">
-                        <div class="form-group">
-                            <label for="user_id">detection_number</label>
-                            <input type="text" class="form-control" id="detection_number" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="sIp">sIp</label>
-                            <input type="text" class="form-control" id="sIp" placeholder="Source IP">
-                        </div>
-                        <div class="form-group">
-                            <label for="dIp">dIp</label>
-                            <input type="text" class="form-control" id="dIp" placeholder="Destination IP">
-                        </div>
-                        <div class="form-group">
-                            <label for="sPort">sPort</label>
-                            <input type="text" class="form-control" id="sPort" placeholder="Source Port">
-                        </div>
-                        <div class="form-group">
-                            <label for="dPort">dPort</label>
-                            <input type="text" class="form-control" id="dPort" placeholder="Destination Port">
-                        </div>
-                       <!-- 생성일자 입력란을 datepicker로 변경 -->
-                        <div class="form-group">
-                            <label for="created_at">생성일자</label>
-                            <input type="text" class="form-control datepicker" id="created_at">
-                        </div>
+                   <form id="policyForm" action="/modifypolicy" method="post">
 
-                        <!-- 수정일자 입력란을 datepicker로 변경 -->
                         <div class="form-group">
-                            <label for="updated_at">수정일자</label>
-                            <input type="text" class="form-control datepicker" id="updated_at">
+                            <label for="detection_number">감지 번호</label>
+                            <input type="text" class="form-control" id="detection_number" name="detection_number" placeholder="감지 번호 입력" required>
                         </div>
                         <div class="form-group">
-                            <label for="action_type">액션 타입</label>
-                            <input type="text" class="form-control" id="action_type" placeholder="Action Type">
+                            <label for="s_ip">출발지 IP</label>
+                            <input type="text" class="form-control" id="s_ip" name="s_ip" placeholder="출발지 IP 입력">
                         </div>
                         <div class="form-group">
-                            <label for="policy_name">정책 이름</label>
-                            <input type="text" class="form-control" id="policy_name" placeholder="Policy Name">
+                            <label for="d_ip">목적지 IP</label>
+                            <input type="text" class="form-control" id="d_ip" name="d_ip" placeholder="목적지 IP 입력">
                         </div>
                         <div class="form-group">
-                            <label for="policy_info">정책 정보</label>
-                            <input type="text" class="form-control" id="policy_info" placeholder="Policy Information">
+                            <label for="s_port">출발지 포트</label>
+                            <input type="text" class="form-control" id="s_port" name="s_port" placeholder="출발지 포트 입력">
                         </div>
                         <div class="form-group">
-                            <label for="pattern1">패턴 1</label>
-                            <input type="text" class="form-control" id="pattern1" placeholder="Pattern 1">
+                            <label for="d_port">목적지 포트</label>
+                            <input type="text" class="form-control" id="d_port" name="d_port" placeholder="목적지 포트 입력">
                         </div>
                         <div class="form-group">
-                            <label for="pattern2">패턴 2</label>
-                            <input type="text" class="form-control" id="pattern2" placeholder="Pattern 2">
+                            <label for="create_dt">생성 일자</label>
+                            <input type="datetime-local" class="form-control" id="create_dt" name="create_dt" required>
                         </div>
                         <div class="form-group">
-                            <label for="pattern3">패턴 3</label>
-                            <input type="text" class="form-control" id="pattern3" placeholder="Pattern 3">
+                            <label for="modify_dt">수정 일자</label>
+                            <input type="datetime-local" class="form-control" id="modify_dt" name="modify_dt">
                         </div>
                         <div class="form-group">
-                            <label for="risk_level">위험성</label>
-                            <input type="text" class="form-control" id="risk_level" placeholder="Risk Level">
+                            <label for="attack_type">공격 유형</label>
+                            <input type="text" class="form-control" id="attack_type" name="attack_type" placeholder="공격 유형 입력" required>
                         </div>
                         <div class="form-group">
-                            <label for="regex1">정규표현식1</label>
-                            <input type="text" class="form-control" id="regex1" placeholder="Regular Expression 1">
+                            <label for="pattern">패턴</label>
+                            <input type="text" class="form-control" id="pattern" name="pattern" placeholder="패턴 입력" required>
                         </div>
-                        <div class="form-group">
-                            <label for="regex2">정규표현식2</label>
-                            <input type="text" class="form-control" id="regex2" placeholder="Regular Expression 2">
-                        </div>
-                        <div class="form-group">
-                            <label for="regex3">정규표현식3</label>
-                            <input type="text" class="form-control" id="regex3" placeholder="Regular Expression 3">
-                        </div>
-
-                        <button type="button" class="btn btn-primary btn-custom mt-3 btn-modify" onclick="modifyPolicy()">Modify</button>
-                        <button type="button" class="btn btn-secondary btn-custom mt-2 btn-clear" onclick="resetForm()">Clear</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-custom">Add</button>
+                        <button type="reset" class="btn btn-secondary btn-block btn-clear">Clear</button>
                     </form>
                 </div>
             </div>

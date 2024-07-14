@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dto.detection.BehaviorDetection;
+import com.example.demo.dto.detection.PatternDetection;
 import com.example.demo.service.UDPClient;
 import com.example.demo.service.detection.BehaviorDetectionService;
 
@@ -104,5 +105,54 @@ public class BehaviorDetectionController {
             return "500";
         }
     }
+    
+    
+    
+    //수정
+       
+    @GetMapping("/modifybehaviorpolicy")
+    public String showModifyBehaviorForm(Model model) {
+        // 필요한 경우 모델에 추가적인 데이터를 넣어줄 수 있습니다.
+        return "modifybehaviorpolicy"; // modifybehaviorpolicy.html 템플릿을 반환
+    }
+
+    @PostMapping("/modifybehaviorpolicy")
+    public String modifyBehavior(@ModelAttribute("behaviorDetection") BehaviorDetection behaviorDetection) {
+        try {
+            // 행동 정책 수정 로직을 여기에 추가
+            behaviorDetectionService.updateBehaviorDetection(behaviorDetection);
+            // 행동 변경 메시지를 전송합니다.
+            udpClient.sendBehaviorChangeMessage();
+            
+            return "redirect:/policylist";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "500";
+        }
+    }
+
+       
+   //삭제
+    @GetMapping("/deletebehaviorpolicy")
+    public String showDeleteBehaviorForm(Model model) {
+        // 필요한 경우 모델에 추가적인 데이터를 넣어줄 수 있습니다.
+        return "deletebehaviorpolicy"; // deletebehaviorpolicy.html 템플릿을 반환
+    }
+
+    @PostMapping("/deletebehaviorpolicy")
+    public String deleteBehavior(@ModelAttribute("behaviorDetection") BehaviorDetection behaviorDetection) {
+        try {
+            // 행동 정책 삭제 로직을 여기에 추가
+            behaviorDetectionService.deleteBehaviorDetection(behaviorDetection);
+            // 행동 변경 메시지를 전송합니다.
+            udpClient.sendBehaviorChangeMessage();
+            
+            return "redirect:/deletepolicy";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "500";
+        }
+    }
+
 
 }

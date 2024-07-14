@@ -16,7 +16,7 @@ public interface BehaviorDetectionDAO {
 
     void updateBehaviorDetection(BehaviorDetection behaviorDetection);
 
-    void deleteBehaviorDetection(Long detectionNumber);
+    void deleteBehaviorDetection(BehaviorDetection behaviorDetection);
 
     // 검색 조건에 따른 BehaviorDetection을 조회하는 메소드
     List<BehaviorDetection> searchBehaviorDetections(BehaviorDetection behaviorDetection);

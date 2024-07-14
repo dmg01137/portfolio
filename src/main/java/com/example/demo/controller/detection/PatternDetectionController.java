@@ -89,4 +89,54 @@ public class PatternDetectionController {
          }
     
     }
+    
+    
+ //수정
+    
+    @GetMapping("/modifypolicy")
+    public String showModifyPatternForm(Model model) {
+        // 필요한 경우 모델에 추가적인 데이터를 넣어줄 수 있습니다.
+        return "modifypolicy"; // modifypolicy.html 템플릿을 반환
+    }
+
+    @PostMapping("/modifypolicy")
+    public String modifyPattern(@ModelAttribute("patternDetection") PatternDetection patternDetection) {
+        try {
+            // 패턴 수정 로직을 여기에 추가
+            patternDetectionService.updatePatternDetection(patternDetection);
+            // 행동 변경 메시지를 전송합니다.
+            udpClient.sendPatternChangeMessage();
+            
+            return "redirect:/policylist";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "500";
+        }
+    }
+
+    
+    
+//삭제
+    
+    @GetMapping("/deletepolicy")
+    public String showDeletePatternForm(Model model) {
+        // 필요한 경우 모델에 추가적인 데이터를 넣어줄 수 있습니다.
+        return "deletepolicy"; // deletepolicy.html 템플릿을 반환
+    }
+
+    @PostMapping("/deletepolicy")
+    public String deletePattern(@ModelAttribute("patternDetection") PatternDetection patternDetection) {
+        try {
+            // 패턴 삭제 로직을 여기에 추가
+            patternDetectionService.deletePatternDetection(patternDetection);
+            // 행동 변경 메시지를 전송합니다.
+            udpClient.sendPatternChangeMessage();
+            
+            return "redirect:/deletepolicy";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "500";
+        }
+    }
+
 }

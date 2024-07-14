@@ -37,15 +37,18 @@ public class PatternDetectionService {
 
     //추가 
     public void addPatternDetection(PatternDetection patternDetection) {
-        patternDetectionDAO.addPatternDetection(patternDetection);
+        patternDetection.setCreate_dt(LocalDateTime.now()); // 현재 시간으로 생성일시 설정
+        patternDetection.setModify_dt(LocalDateTime.now()); // 현재 시간으로 수정일시 설정
+        patternDetectionDAO.addPatternDetection(patternDetection); // 패턴 추가 DAO 호출
     }
 
     public void updatePatternDetection(PatternDetection patternDetection) {
-        patternDetectionDAO.updatePatternDetection(patternDetection);
+        patternDetection.setModify_dt(LocalDateTime.now()); // 패턴 수정 시 수정일시 갱신
+        patternDetectionDAO.updatePatternDetection(patternDetection); // 패턴 업데이트 DAO 호출
     }
 
-    public void deletePatternDetection(Long detection_number) {
-        patternDetectionDAO.deletePatternDetection(detection_number);
+    public void deletePatternDetection(PatternDetection patternDetection) {
+        patternDetectionDAO.deletePatternDetection(patternDetection);
     }
 
     public List<PatternDetection> getAllPatternDetectionsPaged(int page, int size) {
