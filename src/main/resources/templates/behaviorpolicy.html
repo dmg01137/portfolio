@@ -277,18 +277,19 @@
                         
                         <!-- 검색 섹션 -->
                         <div class="input-group mb-3 search-section">
-                            <input type="text" id="searchInputID" class="form-control" placeholder="ID">
-                            <input type="text" id="searchInputName" class="form-control" placeholder="Name">
-                            <input type="text" id="searchInputPrivilege" class="form-control" placeholder="Privilege">
-                            <input type="text" id="searchInputSIP" class="form-control" placeholder="sIp">
-                            <input type="text" id="searchInputDIP" class="form-control" placeholder="dIp">
-                            <input type="text" id="searchInputSPort" class="form-control" placeholder="sPort">
-                            <input type="text" id="searchInputDPort" class="form-control" placeholder="dPort">
+                            <input type="text" id="searchInputID" class="form-control" placeholder="NO">
+                            <input type="text" id="searchInputSIP" class="form-control" placeholder="출발지IP">
+                               <input type="text" id="searchInputSPort" class="form-control" placeholder="출발지Port">
+                                      <input type="text" id="searchInputDIP" class="form-control" placeholder="도착지IP">
+                                 <input type="text" id="searchInputDPort" class="form-control" placeholder="도착지Port">
+                                 
+                  
+                       
                             <input type="text" id="searchInputCreateDate" class="form-control" placeholder="생성일자">
                             <input type="text" id="searchInputModifyDate" class="form-control" placeholder="수정일자">
-                            <input type="text" id="searchInputActionType" class="form-control" placeholder="액션 타입">
-                            <input type="text" id="searchInputPolicyName" class="form-control" placeholder="정책 이름">
-                            <input type="text" id="searchInputPolicyInfo" class="form-control" placeholder="정책 정보">
+                            <input type="text" id="searchInputActionType" class="form-control" placeholder="액션타입">
+                            <input type="text" id="searchInputPolicyName" class="form-control" placeholder="정책이름">
+                            <input type="text" id="searchInputPolicyInfo" class="form-control" placeholder="정책정보">
                             <input type="text" id="searchInputPattern1" class="form-control" placeholder="패턴 1">
                             <input type="text" id="searchInputPattern2" class="form-control" placeholder="패턴 2">
                             <input type="text" id="searchInputPattern3" class="form-control" placeholder="패턴 3">
@@ -306,18 +307,19 @@
                 <tr>
                     <th>선택</th>
                     <th>NO</th>
-                    <th>출발지 IP</th>
-                    <th>목적지 IP</th>
-                    <th>출발지 포트</th>
-                    <th>목적지 포트</th>
-                    <th>생성 일시</th>
-                    <th>수정 일시</th>
-                    <th>액션 타입</th>
-                    <th>정책 이름</th>
-                    <th>정책 정보</th>
-                    <th>패턴 1</th>
-                    <th>패턴 2</th>
-                    <th>패턴 3</th>
+                    <th>출발지IP</th>
+                      <th>출발지Port</th>
+                    <th>목적지IP</th>
+                  
+                    <th>목적지Port</th>
+                    <th>생성일시</th>
+                    <th>수정일시</th>
+                    <th>액션타입</th>
+                    <th>정책이름</th>
+                    <th>정책정보</th>
+                    <th>패턴1</th>
+                    <th>패턴2</th>
+                    <th>패턴3</th>
                     <th>위험도</th>
                     
                     <th>카운트</th>
@@ -362,8 +364,9 @@ $(document).ready(function () {
                             <td><input type="radio" name="selectedBehavior" value="${index}"></td>
                             <td>${behavior.detection_number}</td>
                             <td>${behavior.s_ip}</td>
-                            <td>${behavior.d_ip}</td>
+                           
                             <td>${behavior.s_port}</td>
+                            <td>${behavior.d_ip}</td>
                             <td>${behavior.d_port}</td>
                             <td>${behavior.create_dt}</td>
                             <td>${behavior.modify_dt}</td>
