@@ -80,7 +80,7 @@ public class UsersController {
     // 사용자 정보 수정 처리
     @PostMapping("/modifyuser")
     @Transactional
-    public String modifyUserSubmit(Users modifiedUser, HttpSession session, RedirectAttributes redirectAttributes) {
+    public String modifyUserSubmit(@RequestBody Users modifiedUser, HttpSession session, RedirectAttributes redirectAttributes) {
         // 세션에서 현재 로그인한 사용자 정보 가져오기
         Users currentUser = (Users) session.getAttribute("user");
 
@@ -122,6 +122,7 @@ public class UsersController {
 
         return "redirect:/admin"; // 관리자 페이지로 리다이렉트
     }
+
 
     // 로그인 페이지로 이동
     @GetMapping("/signin")

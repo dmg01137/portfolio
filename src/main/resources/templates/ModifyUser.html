@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>사용자 수정</title>
+    <title>Modify User</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -159,37 +159,36 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title mb-4">사용자 수정</h5>
+                    <h5 class="card-title mb-4">Modify User</h5>
                     <form id="userForm">
                         <div class="form-group">
                             <label for="user_id">ID</label>
-                            <input type="text" class="form-control" id="user_id">
+                            <input type="text" class="form-control" id="user_id" placeholder="사용자 ID 입력">
                         </div>
                         <div class="form-group">
-                            <label for="user_name">이름</label>
+                            <label for="user_name">Name</label>
                             <input type="text" class="form-control" id="user_name" placeholder="사용자 이름 입력">
                         </div>
                         <div class="form-group">
-                            <label for="user_privilege">권한</label>
+                            <label for="user_privilege">Privilege</label>
                             <select class="form-control" id="user_privilege">
                                 <option value="admin">admin</option>
                                 <option value="user">user</option>
-                                <!-- 다른 권한을 필요에 따라 추가 -->
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="password">비밀번호</label>
+                            <label for="password">Password</label>
                             <input type="password" class="form-control" id="password" placeholder="비밀번호 입력">
                         </div>
-                        <div class="form-group email-error">
-                            <label for="confirm_password">비밀번호 확인</label>
+                        <div class="form-group">
+                            <label for="confirm_password">Confirm Password</label>
                             <input type="password" class="form-control" id="confirm_password" placeholder="비밀번호 확인" required>
                             <div class="invalid-feedback">비밀번호가 일치하지 않습니다.</div>
                         </div>
-
-                        <button type="button" class="btn btn-primary btn-custom mt-3" onclick="modifyUser()">수정</button>
-                        <button type="button" class="btn btn-secondary btn-custom mt-2" onclick="resetForm()">취소</button>
+                        <button type="button" class="btn btn-primary btn-custom mt-3" onclick="modifyUser()">Modify</button>
+                        <button type="button" class="btn btn-secondary btn-custom mt-2" onclick="resetForm()">Clear</button>
                     </form>
+                    <div id="resultMessage" class="mt-3"></div>
                 </div>
             </div>
         </div>
@@ -197,61 +196,75 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const user = JSON.parse(`{"user_id": "123", "user_name": "John Doe", "user_privilege": "admin"}`); // 예시 데이터
-
-    document.getElementById('user_id').value = user.user_id;
-    document.getElementById('user_name').value = user.user_name;
-    document.getElementById('user_privilege').value = user.user_privilege;
-});
-
 function modifyUser() {
-    const user_id = document.getElementById('user_id').value;
-    const user_name = document.getElementById('user_name').value;
-    const user_privilege = document.getElementById('user_privilege').value;
-    const password = document.getElementById('password').value;
-    const confirm_password = document.getElementById('confirm_password').value;
+    var user_id = document.getElementById('user_id').value.trim();
+    var password = document.getElementById('password').value;
+    var user_privilege = document.getElementById('user_privilege').value;
+    var user_name = document.getElementById('user_name').value.trim();
+    var confirm_password = document.getElementById('confirm_password').value;
 
-    if (password !== confirm_password) {
-        document.getElementById('confirm_password').classList.add('is-invalid');
+    // 필수 입력 필드 체크
+    if (user_id === '' || password === '' || user_privilege === '' || user_name === '') {
+        alert('모든 필드를 입력해주세요.');
         return;
-    } else {
-        document.getElementById('confirm_password').classList.remove('is-invalid');
     }
 
-    const data = {
+    // 비밀번호 일치 확인
+    if (password !== confirm_password) {
+        var confirmPwdField = document.getElementById('confirm_password');
+        confirmPwdField.classList.add('is-invalid'); // Bootstrap의 invalid 클래스 추가
+        return;
+    } else {
+        var confirmPwdField = document.getElementById('confirm_password');
+        confirmPwdField.classList.remove('is-invalid'); // 일치할 경우 invalid 클래스 제거
+    }
+
+    // 사용자 데이터 생성
+    var userData = {
         user_id: user_id,
         user_name: user_name,
         user_privilege: user_privilege,
         password: password
     };
 
+    // 서버로 사용자 데이터 전송
     fetch('/modifyuser', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(userData)
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.text();
+    })
     .then(data => {
-        console.log('수정이 완료되었습니다.', data);
-        // 여기에 사용자에게 수정 완료 메시지 보여주는 로직 추가
+        if (data === 'success') {
+            alert('사용자 수정 성공!');
+            resetForm(); // 폼 초기화
+        } else {
+            alert(data); // 서버에서 받은 오류 메시지를 알림창으로 표시
+        }
     })
-    .catch((error) => {
-        console.error('수정 중 오류가 발생하였습니다.', error);
-        // 여기에 사용자에게 오류 메시지 보여주는 로직 추가
+    .catch(error => {
+        console.error('Error:', error);
+        alert('서버 오류 발생!'); // 서버 오류 메시지를 알림창으로 표시
     });
 }
 
 function resetForm() {
-    document.getElementById('userForm').reset();
+    document.getElementById("userForm").reset();
+    var confirmPwdField = document.getElementById('confirm_password');
+    confirmPwdField.classList.remove('is-invalid'); // 초기화 시 invalid 클래스 제거
 }
+
 </script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
