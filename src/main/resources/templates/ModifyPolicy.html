@@ -258,8 +258,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title mb-4">Modify Policy</h5>
-              <form th:action="@{/modifypolicy}" th:object="${patternDetection}" method="post">
-
+          <form action="/modifypolicy" method="post">
                         <div class="form-group">
                             <label for="detection_number">감지 번호</label>
                             <input type="text" class="form-control" id="detection_number" name="detection_number" placeholder="감지 번호 입력" required>
@@ -296,7 +295,7 @@
                             <label for="pattern">패턴</label>
                             <input type="text" class="form-control" id="pattern" name="pattern" placeholder="패턴 입력" required>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block btn-custom">Add</button>
+                        <button type="submit" class="btn btn-primary">Modify</button>
                         <button type="reset" class="btn btn-secondary btn-block btn-clear">Clear</button>
                     </form>
                 </div>
@@ -305,35 +304,38 @@
     </div>
 </div>
 <!-- 스크립트 추가 부분 -->
-
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const selectedUserId = localStorage.getItem('selectedUserId');
-
-    // Ajax 요청을 사용하여 서버에서 사용자 정보 가져오기
-    fetch(`/api/users/${selectedUserId}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('네트워크 응답이 올바르지 않습니다.');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // 서버에서 가져온 데이터로 사용자 정보 채우기
-            document.getElementById('user_id').value = data.id;
-            document.getElementById('user_name').value = data.name;
-            document.getElementById('Privilege').value = data.privilege;
-        })
-        .catch(error => {
-            console.error('사용자 데이터를 불러오는 중 오류 발생:', error);
-            // 에러 처리: 사용자에게 메시지 표시나 다른 처리 방법 선택
-        });
+    if (selectedUserId) {
+        // Ajax 요청을 사용하여 서버에서 사용자 정보 가져오기
+        fetch(`/api/users/${selectedUserId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('네트워크 응답이 올바르지 않습니다.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // 서버에서 가져온 데이터로 사용자 정보 채우기
+                document.getElementById('user_id').value = data.id;
+                document.getElementById('user_name').value = data.name;
+                document.getElementById('Privilege').value = data.privilege;
+            })
+            .catch(error => {
+                console.error('사용자 데이터를 불러오는 중 오류 발생:', error);
+                // 에러 처리: 사용자에게 메시지 표시나 다른 처리 방법 선택
+            });
+    } else {
+        console.error('localStorage에 선택된 사용자 ID가 없습니다.');
+        // 에러 처리: 사용자에게 메시지 표시나 다른 처리 방법 선택
+    }
 });
 </script>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<!-- 필요한 JavaScript 파일들 로드 -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </body>
 </html>
