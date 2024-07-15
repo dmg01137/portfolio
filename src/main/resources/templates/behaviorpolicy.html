@@ -254,19 +254,19 @@
     <h5 class="sidebar-heading">메뉴</h5>
     <ul class="nav flex-column nav-sidebar">
         <li class="nav-item">
-            <a class="nav-link nav-link-custom" href="/policylist2"><i class="fas fa-shield-alt mr-1"></i> 행동 정책 리스트</a>
+            <a class="nav-link nav-link-custom" href="#"><i class="fas fa-shield-alt mr-1"></i> 행동 정책 리스트</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/policylist"><i class="fas fa-shield-alt mr-1"></i> 패턴 정책 리스트</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/addpolicy"><i class="fas fa-plus"></i> 정책 추가</a>
+            <a class="nav-link" href="/addbehaviorpolicy"><i class="fas fa-plus"></i> 행동 정책 추가</a>
         </li>
           <li class="nav-item">
-            <a class="nav-link " href="/modifypolicy"><i class=" fas fa-edit mr-1"></i> 정책 수정</a>
+            <a class="nav-link " href="/modifybehaviorpolicy"><i class=" fas fa-edit mr-1"></i> 행동 정책 수정</a>
         </li>
           <li class="nav-item">
-            <a class="nav-link" href="/deletepolicy"><i class="fas fa-trash-alt"></i> 정책 삭제</a>
+            <a class="nav-link" href="/deletebehaviorpolicy"><i class="fas fa-trash-alt"></i> 행동 정책 삭제</a>
         </li>
     </ul>
 </div>
@@ -325,7 +325,7 @@
 								<table id="behaviorTable" class="table table-bordered">
 									<thead>
 										<tr>
-											<th>선택</th>
+											
 											<th>NO</th>
 											<th>S_to_IP</th>
 											<th>출발지IP</th>
@@ -354,10 +354,7 @@
 										<!-- 데이터 행이 동적으로 추가될 공간 -->
 									</tbody>
 								</table>
-								<div class="btn-section">
-									<button class="btn btn-primary btn-modify" id="btnModify"
-										disabled>Modify</button>
-								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -387,7 +384,7 @@ $(document).ready(function () {
                 data.forEach(function (behavior, index) {
                     $("#behaviorTable tbody").append(
                         `<tr>
-                            <td><input type="radio" name="selectedBehavior" value="${index}"></td>
+                           
                             <td>${behavior.detection_number}</td>
                             <td>${behavior.s_to_ip}</td>
                             <td>${behavior.s_ip}</td>
@@ -440,14 +437,7 @@ $(document).ready(function () {
         fetchAndDisplayBehaviorDetections(); // 모든 데이터 다시 불러오기
     });
 
-    // Modify 버튼 클릭 이벤트 리스너
-    $("#btnModify").click(function () {
-        // 선택된 체크박스의 값을 가져옵니다.
-        let selectedIndex = $("input[name='selectedBehavior']:checked").val();
-        console.log("Selected Index: ", selectedIndex);
-        // 여기서 선택된 데이터를 수정하는 코드를 추가할 수 있습니다.
-        // 예: 선택된 데이터의 수정 폼을 열거나, 데이터를 서버로 전송하여 수정합니다.
-    });
+   
 
     // 검색 처리 함수
     function handleSearch() {

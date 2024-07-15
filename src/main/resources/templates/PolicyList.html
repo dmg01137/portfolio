@@ -279,13 +279,13 @@
             <a class="nav-link" href="/behaviorpolicy"><i class="fas fa-shield-alt mr-1"></i> 행동 정책 리스트</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/addpolicy"><i class="fas fa-plus"></i> 정책 추가</a>
+            <a class="nav-link" href="/addpolicy"><i class="fas fa-plus"></i> 패턴 정책 추가</a>
         </li>
           <li class="nav-item">
-            <a class="nav-link " href="/modifypolicy"><i class=" fas fa-edit mr-1"></i> 정책 수정</a>
+            <a class="nav-link " href="/modifypolicy"><i class=" fas fa-edit mr-1"></i> 패턴 정책 수정</a>
         </li>
           <li class="nav-item">
-            <a class="nav-link " href="/deletepolicy"><i class="fas fa-trash-alt"></i> 정책 삭제</a>
+            <a class="nav-link " href="/deletepolicy"><i class="fas fa-trash-alt"></i> 패턴 정책 삭제</a>
         </li>
     </ul>
 </div>
@@ -350,11 +350,7 @@
 										<!-- 검색 결과가 동적으로 추가될 자리 -->
 									</tbody>
 								</table>
-								<!-- Modify 버튼 추가 -->
-								<div class="btn-section">
-									<button class="btn btn-primary btn-modify" id="btnModify"
-										disabled>Modify</button>
-								</div>
+							
 								<!-- 페이지네이션 -->
 								<nav>
 									<ul class="pagination justify-content-center" id="pagination"></ul>
@@ -410,7 +406,7 @@ $(document).ready(function () {
                 data.forEach(function (pattern, index) {
                     $("#logTableBody").append(
                         `<tr>
-                            <td><input type="checkbox" name="selectedPattern"></td>
+                          
                             <td>${pattern.detection_number}</td>
                             <td>${pattern.s_to_ip}</td>
                             <td>${pattern.s_ip}</td>
@@ -460,7 +456,7 @@ $(document).ready(function () {
                 data.forEach(function (pattern, index) {
                     $("#logTableBody").append(
                         `<tr>
-                            <td><input type="checkbox" name="selectedPattern"></td>
+                          
                             <td>${pattern.detection_number}</td>
                             <td>${pattern.s_to_ip}</td>
                             <td>${pattern.s_ip}</td>
