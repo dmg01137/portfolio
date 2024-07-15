@@ -144,7 +144,7 @@
     <h5 class="sidebar-heading">메뉴</h5>
     <ul class="nav flex-column nav-sidebar">
         <li class="nav-item">
-            <a class="nav-link nav-link-custom" href="#"><i class="fas fa-plus"></i> <span style="color: #17a2b8;">패턴정책 추가</span></a>
+            <a class="nav-link nav-link-custom active" href="#"><i class="fas fa-plus"></i> <span style="color: #17a2b8;">패턴정책 추가</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link " href="/addbehaviorpolicy"><i class="fas fa-plus"></i> 행동정책 추가</a>
@@ -152,9 +152,8 @@
         <li class="nav-item">
             <a class="nav-link" href="/policylist"><i class="fas fa-shield-alt"></i> 정책 리스트</a>
         </li>
-             
-            <li class="nav-item">
-            <a class="nav-link " href="/deletepolicy"><i class="fas fa-trash-alt"></i>정책 삭제</a>
+        <li class="nav-item">
+            <a class="nav-link " href="/deletepolicy"><i class="fas fa-trash-alt"></i> 정책 삭제</a>
         </li>
     </ul>
 </div>
@@ -164,27 +163,21 @@
         <div class="col-md-6"> <!-- 카드의 너비를 줄임 -->
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title mb-4">Patttern Policy</h5>
+                    <h5 class="card-title mb-4">Pattern Policy</h5>
                     <form id="policyForm" action="/addpolicy" method="post">
                         <div class="form-group">
                             <label for="detection_number">감지 번호</label>
                             <input type="text" class="form-control" id="detection_number" name="detection_number" placeholder="감지 번호 입력" required>
                         </div>
-                   <div class="form-group">
-                            <label for="s_to_ip">s_to_ip</label>
-                            <div class="input-daterange input-group" id="datepicker">
-                                <input type="text" class="form-control" name="start" id="startDate" placeholder="출발지IP" required>
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">to</span>
-                                </div>
-                                <input type="text" class="form-control" name="end" id="endDate" placeholder="목적지IP" required>
-                            </div>
+                        <div class="form-group">
+                            <label for="s_to_ip">소스와 목적지 IP 정보</label>
+                            <input type="text" class="form-control" id="s_to_ip" name="s_to_ip" placeholder="소스와 목적지 IP 정보 입력" required>
                         </div>
                         <div class="form-group">
                             <label for="s_ip">출발지IP</label>
                             <input type="text" class="form-control" id="s_ip" name="s_ip" placeholder="출발지 IP 입력">
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
                             <label for="s_port">출발지Port</label>
                             <input type="text" class="form-control" id="s_port" name="s_port" placeholder="출발지 포트 입력">
                         </div>
@@ -192,7 +185,6 @@
                             <label for="d_ip">목적지IP</label>
                             <input type="text" class="form-control" id="d_ip" name="d_ip" placeholder="목적지 IP 입력">
                         </div>
-                       
                         <div class="form-group">
                             <label for="d_port">목적지Port</label>
                             <input type="text" class="form-control" id="d_port" name="d_port" placeholder="목적지 포트 입력">
@@ -205,36 +197,34 @@
                             <label for="modify_dt">수정 일자</label>
                             <input type="datetime-local" class="form-control" id="modify_dt" name="modify_dt">
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
                             <label for="action_type">액션 타입</label>
                             <input type="text" class="form-control" id="action_type" name="action_type" placeholder="액션 타입 입력" required>
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
                             <label for="policy_name">정책 이름</label>
                             <input type="text" class="form-control" id="policy_name" name="policy_name" placeholder="정책 이름 입력" required>
                         </div>
-                           <div class="form-group">
+                        <div class="form-group">
                             <label for="policy_info">정책 정보</label>
                             <input type="text" class="form-control" id="policy_info" name="policy_info" placeholder="정책 정보 입력" required>
                         </div>
-                          <div class="form-group">
+                        <div class="form-group">
                             <label for="pattern_1">패턴1</label>
                             <input type="text" class="form-control" id="pattern_1" name="pattern_1" placeholder="패턴1 입력" required>
                         </div>
-                          <div class="form-group">
+                        <div class="form-group">
                             <label for="pattern_2">패턴2</label>
                             <input type="text" class="form-control" id="pattern_2" name="pattern_2" placeholder="패턴2 입력" required>
                         </div>
-                          <div class="form-group">
+                        <div class="form-group">
                             <label for="pattern_3">패턴3</label>
                             <input type="text" class="form-control" id="pattern_3" name="pattern_3" placeholder="패턴3 입력" required>
                         </div>
-                        
                         <div class="form-group">
                             <label for="dangerous">위험성</label>
                             <input type="text" class="form-control" id="dangerous" name="dangerous" placeholder="위험성 입력" required>
                         </div>
-                      
                         <button type="submit" class="btn btn-primary btn-block btn-custom">Add</button>
                         <button type="reset" class="btn btn-secondary btn-block btn-clear">Clear</button>
                     </form>
@@ -252,7 +242,7 @@
 <script>
     document.getElementById("policyForm").addEventListener("submit", function(event) {
         var form = this;
-        var requiredFields = ["detection_number","s_to_ip","s_ip","d_ip","s_port","d_port","create_dt","modify_dt", "action_type", "policy_name", "policy_info","pattern_1","pattern_2","pattern_3","dangerous"];
+        var requiredFields = ["detection_number", "s_to_ip", "s_ip", "d_ip", "s_port", "d_port", "create_dt", "modify_dt", "action_type", "policy_name", "policy_info", "pattern_1", "pattern_2", "pattern_3", "dangerous"];
         var valid = true;
         requiredFields.forEach(function(field) {
             if (!form[field].value.trim()) {

@@ -15,7 +15,7 @@
 
     <!-- 행동 탐지 추가 -->
     <insert id="addBehaviorDetection" parameterType="com.example.demo.dto.detection.BehaviorDetection">
-        INSERT INTO detection_db.behavior_detection (detection_number, s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous, base_cnt, comp_cnt, base_time)
+        INSERT INTO detection_db.behavior_detection (detection_number,s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous, base_cnt, comp_cnt, base_time)
         VALUES (#{detection_number}, #{s_to_ip}, #{s_ip}, #{d_ip}, #{s_port}, #{d_port}, #{create_dt}, #{modify_dt}, #{action_type}, #{policy_name}, #{policy_info}, #{pattern_1}, #{pattern_2}, #{pattern_3}, #{dangerous}, #{base_cnt}, #{comp_cnt}, #{base_time})
     </insert>
 
@@ -33,25 +33,29 @@
         DELETE FROM detection_db.behavior_detection WHERE detection_number = #{detection_number}
     </delete>
 
-    <!-- 검색 조건으로 행동 탐지 조회 -->
-    <select id="searchBehaviorDetections" resultType="com.example.demo.dto.detection.BehaviorDetection" parameterType="com.example.demo.dto.detection.BehaviorDetection">
-        SELECT * FROM detection_db.behavior_detection 
-        WHERE (s_ip LIKE '%' || #{s_ip} || '%' OR #{s_ip} IS NULL)
-          AND (d_ip LIKE '%' || #{d_ip} || '%' OR #{d_ip} IS NULL)
-          AND (s_port LIKE '%' || #{s_port} || '%' OR #{s_port} IS NULL)
-          AND (d_port LIKE '%' || #{d_port} || '%' OR #{d_port} IS NULL)
-          AND (create_dt LIKE '%' || #{create_dt} || '%' OR #{create_dt} IS NULL)
-          AND (modify_dt LIKE '%' || #{modify_dt} || '%' OR #{modify_dt} IS NULL)
-          AND (action_type LIKE '%' || #{action_type} || '%' OR #{action_type} IS NULL)
-          AND (policy_name LIKE '%' || #{policy_name} || '%' OR #{policy_name} IS NULL)
-          AND (policy_info LIKE '%' || #{policy_info} || '%' OR #{policy_info} IS NULL)
-          AND (pattern_1 LIKE '%' || #{pattern_1} || '%' OR #{pattern_1} IS NULL)
-          AND (pattern_2 LIKE '%' || #{pattern_2} || '%' OR #{pattern_2} IS NULL)
-          AND (pattern_3 LIKE '%' || #{pattern_3} || '%' OR #{pattern_3} IS NULL)
-          AND (dangerous LIKE '%' || #{dangerous} || '%' OR #{dangerous} IS NULL)
-    </select>
+	<!-- 검색 조건으로 행동 탐지 조회 -->
+	<select id="searchBehaviorDetections"
+		resultType="com.example.demo.dto.detection.BehaviorDetection"
+		parameterType="com.example.demo.dto.detection.BehaviorDetection">
+		 SELECT * FROM detection_db.behavior_detection
+    WHERE (detection_number LIKE '%' || COALESCE(#{detection_number}, '') || '%' OR #{detection_number} IS NULL)
+    AND (s_to_ip LIKE '%' || COALESCE(#{s_to_ip}, '') || '%' OR #{s_to_ip} IS NULL)
+    AND (s_ip LIKE '%' || COALESCE(#{s_ip}, '') || '%' OR #{s_ip} IS NULL)
+    AND (d_ip LIKE '%' || COALESCE(#{d_ip}, '') || '%' OR #{d_ip} IS NULL)
+    AND (s_port = #{s_port} OR #{s_port} IS NULL)
+    AND (d_port = #{d_port} OR #{d_port} IS NULL)
+    AND (create_dt >= #{create_dt} OR #{create_dt} IS NULL)
+    AND (modify_dt LIKE '%' || COALESCE(#{modify_dt}, '') || '%' OR #{modify_dt} IS NULL)
+    AND (action_type LIKE '%' || COALESCE(#{action_type}, '') || '%' OR #{action_type} IS NULL)
+    AND (policy_name LIKE '%' || COALESCE(#{policy_name}, '') || '%' OR #{policy_name} IS NULL)
+    AND (policy_info LIKE '%' || COALESCE(#{policy_info}, '') || '%' OR #{policy_info} IS NULL)
+    AND (pattern_1 LIKE '%' || COALESCE(#{pattern_1}, '') || '%' OR #{pattern_1} IS NULL)
+    AND (pattern_2 LIKE '%' || COALESCE(#{pattern_2}, '') || '%' OR #{pattern_2} IS NULL)
+    AND (pattern_3 LIKE '%' || COALESCE(#{pattern_3}, '') || '%' OR #{pattern_3} IS NULL)
+    AND (dangerous = #{dangerous} OR #{dangerous} IS NULL)
+</select>
 
-    <!-- 페이징된 모든 행동 탐지 조회 -->
+	<!-- 페이징된 모든 행동 탐지 조회 -->
     <select id="getAllBehaviorDetectionsPaged" resultType="com.example.demo.dto.detection.BehaviorDetection" parameterType="java.util.Map">
         SELECT * FROM (
             SELECT ROW_NUMBER() OVER (ORDER BY detection_number) AS ROWNUM, behavior_detection.*

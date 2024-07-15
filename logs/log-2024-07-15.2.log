@@ -1,0 +1,671 @@
+10:39:11.537 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/policylist", parameters={}
+10:39:11.538 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.PatternDetectionController#showPolicyList(Model)
+10:39:11.538 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:39:11.538 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6b377fcd] was not registered for synchronization because synchronization is not active
+10:39:11.539 [http-nio-8080-exec-1] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+10:39:11.540 [http-nio-8080-exec-1] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1801676400 wrapping org.mariadb.jdbc.Connection@607fbce9] will not be managed by Spring
+10:39:11.540 [http-nio-8080-exec-1] DEBUG c.e.d.d.d.P.getAllPatternDetections - ==>  Preparing: SELECT detection_number, CONCAT(s_ip, ' to ', d_ip) AS s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous FROM detection_db.pattern_detection
+10:39:11.540 [http-nio-8080-exec-1] DEBUG c.e.d.d.d.P.getAllPatternDetections - ==> Parameters: 
+10:39:11.540 [http-nio-8080-exec-1] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT detection_number, CONCAT(s_ip, ' to ', d_ip) AS s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
+        FROM detection_db.pattern_detection
+10:39:11.544 [http-nio-8080-exec-1] DEBUG c.e.d.d.d.P.getAllPatternDetections - <==      Total: 16
+10:39:11.544 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6b377fcd]
+10:39:11.545 [http-nio-8080-exec-1] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+10:39:11.548 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:39:11.609 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/search-pattern-detections", parameters={}
+10:39:11.609 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.PatternDetectionController#searchPatternDetections(SearchCriteria)
+10:39:11.610 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.demo.controller.log.SearchCriteria@3a31e8d8]
+10:39:11.610 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:39:11.610 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5331d318] was not registered for synchronization because synchronization is not active
+10:39:11.611 [http-nio-8080-exec-4] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+10:39:11.611 [http-nio-8080-exec-4] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@300279101 wrapping org.mariadb.jdbc.Connection@607fbce9] will not be managed by Spring
+10:39:11.611 [http-nio-8080-exec-4] DEBUG c.e.d.d.d.P.getAllPatternDetections - ==>  Preparing: SELECT detection_number, CONCAT(s_ip, ' to ', d_ip) AS s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous FROM detection_db.pattern_detection
+10:39:11.611 [http-nio-8080-exec-4] DEBUG c.e.d.d.d.P.getAllPatternDetections - ==> Parameters: 
+10:39:11.611 [http-nio-8080-exec-4] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT detection_number, CONCAT(s_ip, ' to ', d_ip) AS s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
+        FROM detection_db.pattern_detection
+10:39:11.615 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+10:39:11.615 [http-nio-8080-exec-4] DEBUG c.e.d.d.d.P.getAllPatternDetections - <==      Total: 16
+10:39:11.615 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+10:39:11.615 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5331d318]
+10:39:11.616 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+10:39:11.616 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+10:39:11.616 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[PatternDetection{detection_number=1, s_to_ip='192.168.1.73 to 192.168.1.26', s_ip='192.168.1.73', d (truncated)...]
+10:39:11.616 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+10:39:11.616 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:39:11.617 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:39:15.353 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/behaviorpolicy", parameters={}
+10:39:15.353 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.BehaviorDetectionController#showPolicyList2(Model)
+10:39:15.354 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:39:15.354 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5eb62202] was not registered for synchronization because synchronization is not active
+10:39:15.354 [http-nio-8080-exec-10] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+10:39:15.356 [http-nio-8080-exec-10] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1086672164 wrapping org.mariadb.jdbc.Connection@607fbce9] will not be managed by Spring
+10:39:15.356 [http-nio-8080-exec-10] DEBUG c.e.d.d.d.B.getAllBehaviorDetections - ==>  Preparing: SELECT * FROM detection_db.behavior_detection
+10:39:15.356 [http-nio-8080-exec-10] DEBUG c.e.d.d.d.B.getAllBehaviorDetections - ==> Parameters: 
+10:39:15.356 [http-nio-8080-exec-10] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.behavior_detection
+10:39:15.358 [http-nio-8080-exec-10] DEBUG c.e.d.d.d.B.getAllBehaviorDetections - <==      Total: 6
+10:39:15.359 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5eb62202]
+10:39:15.359 [http-nio-8080-exec-10] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+10:39:15.364 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:39:15.406 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/search-behavior-detections", parameters={}
+10:39:15.407 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.BehaviorDetectionController#searchBehaviorDetections(BehaviorDetection)
+10:39:15.424 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+10:39:15.424 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+10:39:15.424 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+10:39:15.424 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+10:39:15.424 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:39:15.435 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [BehaviorDetection{detection_number=null, s_to_ip='null', s_ip='null', d_ip='null', s_port=null, d_po (truncated)...]
+10:39:15.436 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:39:15.436 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@62575c85] was not registered for synchronization because synchronization is not active
+10:39:15.436 [http-nio-8080-exec-7] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+10:39:15.436 [http-nio-8080-exec-7] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1035196783 wrapping org.mariadb.jdbc.Connection@607fbce9] will not be managed by Spring
+10:39:15.437 [http-nio-8080-exec-7] DEBUG c.e.d.d.d.B.searchBehaviorDetections - ==>  Preparing: SELECT * FROM detection_db.behavior_detection WHERE (detection_number LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (s_to_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (s_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (d_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (s_port = ? OR ? IS NULL) AND (d_port = ? OR ? IS NULL) AND (create_dt >= ? OR ? IS NULL) AND (modify_dt LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (action_type LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (policy_name LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (policy_info LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (pattern_1 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (pattern_2 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (pattern_3 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (dangerous = ? OR ? IS NULL)
+10:39:15.438 [http-nio-8080-exec-7] DEBUG c.e.d.d.d.B.searchBehaviorDetections - ==> Parameters: null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null
+10:39:15.438 [http-nio-8080-exec-7] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.behavior_detection
+    WHERE (detection_number LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (s_to_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (s_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (d_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (s_port = ? OR ? IS NULL)
+    AND (d_port = ? OR ? IS NULL)
+    AND (create_dt >= ? OR ? IS NULL)
+    AND (modify_dt LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (action_type LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (policy_name LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (policy_info LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (pattern_1 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (pattern_2 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (pattern_3 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (dangerous = ? OR ? IS NULL)
+10:39:15.441 [http-nio-8080-exec-7] DEBUG c.e.d.d.d.B.searchBehaviorDetections - <==      Total: 6
+10:39:15.441 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@62575c85]
+10:39:15.442 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+10:39:15.442 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[BehaviorDetection{detection_number=1, s_to_ip='null', s_ip='null', d_ip='192.168.1.33', s_port=3306 (truncated)...]
+10:39:15.445 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:39:16.576 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:39:16.576 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:39:18.197 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:39:18.197 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:39:46.586 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:39:46.586 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:39:48.199 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:39:48.199 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:40:16.601 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:40:16.601 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:40:18.204 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:40:18.204 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:40:46.604 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:40:46.604 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:40:48.210 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:40:48.210 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:41:16.610 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:41:16.610 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:41:18.224 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:41:18.224 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:41:46.612 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:41:46.612 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:41:48.227 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:41:48.227 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:42:16.618 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:42:16.618 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:42:18.234 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:42:18.234 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:42:46.620 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:42:46.620 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:42:48.240 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:42:48.240 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:43:16.628 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:43:16.628 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:43:18.249 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:43:18.249 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:43:46.635 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:43:46.635 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:43:48.253 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:43:48.253 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:44:16.642 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:44:16.643 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:44:18.259 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:44:18.259 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:44:46.655 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:44:46.655 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:44:48.269 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:44:48.269 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:45:16.662 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:45:16.662 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:45:18.277 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:45:18.277 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:45:46.668 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:45:46.668 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:45:48.286 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:45:48.286 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:46:16.679 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:46:16.679 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:46:18.294 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:46:18.294 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:46:46.685 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:46:46.685 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:46:48.300 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:46:48.300 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:47:16.694 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:47:16.694 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:47:18.303 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:47:18.303 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:47:46.703 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:47:46.703 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:47:48.310 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:47:48.310 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:48:16.708 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:48:16.708 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:48:18.324 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:48:18.324 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:48:46.719 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:48:46.719 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:48:48.326 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:48:48.326 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:49:16.729 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:49:16.729 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:49:18.335 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:49:18.335 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:49:46.739 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:49:46.739 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:49:48.340 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:49:48.340 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:50:16.743 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:50:16.743 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:50:18.347 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:50:18.347 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:50:46.749 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:50:46.749 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:50:48.349 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:50:48.349 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:51:16.761 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:51:16.761 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:51:18.355 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:51:18.355 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:51:46.765 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:51:46.765 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:51:48.365 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:51:48.365 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:52:16.772 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:52:16.772 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:52:18.377 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:52:18.377 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:52:46.785 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:52:46.785 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:52:48.385 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:52:48.385 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:53:16.788 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:53:16.788 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:53:18.388 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:53:18.388 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:53:46.789 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:53:46.789 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:53:48.390 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:53:48.390 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:53:55.140 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/policylist", parameters={}
+10:53:55.140 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.PatternDetectionController#showPolicyList(Model)
+10:53:55.141 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:53:55.141 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@31d7b569] was not registered for synchronization because synchronization is not active
+10:53:55.141 [http-nio-8080-exec-9] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+10:53:55.142 [http-nio-8080-exec-9] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1596361118 wrapping org.mariadb.jdbc.Connection@607fbce9] will not be managed by Spring
+10:53:55.142 [http-nio-8080-exec-9] DEBUG c.e.d.d.d.P.getAllPatternDetections - ==>  Preparing: SELECT detection_number, CONCAT(s_ip, ' to ', d_ip) AS s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous FROM detection_db.pattern_detection
+10:53:55.142 [http-nio-8080-exec-9] DEBUG c.e.d.d.d.P.getAllPatternDetections - ==> Parameters: 
+10:53:55.142 [http-nio-8080-exec-9] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT detection_number, CONCAT(s_ip, ' to ', d_ip) AS s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
+        FROM detection_db.pattern_detection
+10:53:55.146 [http-nio-8080-exec-9] DEBUG c.e.d.d.d.P.getAllPatternDetections - <==      Total: 16
+10:53:55.146 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@31d7b569]
+10:53:55.147 [http-nio-8080-exec-9] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+10:53:55.150 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:53:55.227 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/search-pattern-detections", parameters={}
+10:53:55.228 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.PatternDetectionController#searchPatternDetections(SearchCriteria)
+10:53:55.228 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.demo.controller.log.SearchCriteria@421d460a]
+10:53:55.228 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:53:55.229 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5be6cfaf] was not registered for synchronization because synchronization is not active
+10:53:55.229 [http-nio-8080-exec-5] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+10:53:55.229 [http-nio-8080-exec-5] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1902026258 wrapping org.mariadb.jdbc.Connection@607fbce9] will not be managed by Spring
+10:53:55.229 [http-nio-8080-exec-5] DEBUG c.e.d.d.d.P.getAllPatternDetections - ==>  Preparing: SELECT detection_number, CONCAT(s_ip, ' to ', d_ip) AS s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous FROM detection_db.pattern_detection
+10:53:55.229 [http-nio-8080-exec-5] DEBUG c.e.d.d.d.P.getAllPatternDetections - ==> Parameters: 
+10:53:55.229 [http-nio-8080-exec-5] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT detection_number, CONCAT(s_ip, ' to ', d_ip) AS s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
+        FROM detection_db.pattern_detection
+10:53:55.231 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+10:53:55.231 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+10:53:55.232 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+10:53:55.232 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+10:53:55.232 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:53:55.233 [http-nio-8080-exec-5] DEBUG c.e.d.d.d.P.getAllPatternDetections - <==      Total: 16
+10:53:55.234 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5be6cfaf]
+10:53:55.234 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+10:53:55.234 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[PatternDetection{detection_number=1, s_to_ip='192.168.1.73 to 192.168.1.26', s_ip='192.168.1.73', d (truncated)...]
+10:53:55.235 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:53:55.960 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/dashboard", parameters={}
+10:53:55.960 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#dashboard(HttpSession, RedirectAttributes)
+10:53:55.961 [http-nio-8080-exec-4] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+10:53:55.965 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:53:56.059 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+10:53:56.059 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+10:53:56.059 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+10:53:56.059 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+10:53:56.059 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:53:57.720 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/userlist", parameters={}
+10:53:57.720 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#userlistForm(Model, HttpSession, RedirectAttributes)
+10:53:57.720 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:53:57.721 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5c78e83d] was not registered for synchronization because synchronization is not active
+10:53:57.721 [http-nio-8080-exec-10] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+10:53:57.722 [http-nio-8080-exec-10] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@858879874 wrapping org.mariadb.jdbc.Connection@607fbce9] will not be managed by Spring
+10:53:57.722 [http-nio-8080-exec-10] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==>  Preparing: SELECT * FROM detection_db.user_data
+10:53:57.722 [http-nio-8080-exec-10] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==> Parameters: 
+10:53:57.723 [http-nio-8080-exec-10] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data
+10:53:57.724 [http-nio-8080-exec-10] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - <==      Total: 8
+10:53:57.724 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5c78e83d]
+10:53:57.725 [http-nio-8080-exec-10] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+10:53:57.728 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:53:57.756 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/users", parameters={}
+10:53:57.756 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#getUsers()
+10:53:57.756 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:53:57.756 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@403b58a3] was not registered for synchronization because synchronization is not active
+10:53:57.756 [http-nio-8080-exec-2] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+10:53:57.757 [http-nio-8080-exec-2] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@596725119 wrapping org.mariadb.jdbc.Connection@607fbce9] will not be managed by Spring
+10:53:57.757 [http-nio-8080-exec-2] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==>  Preparing: SELECT * FROM detection_db.user_data
+10:53:57.757 [http-nio-8080-exec-2] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==> Parameters: 
+10:53:57.757 [http-nio-8080-exec-2] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data
+10:53:57.759 [http-nio-8080-exec-2] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - <==      Total: 8
+10:53:57.759 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@403b58a3]
+10:53:57.760 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+10:53:57.760 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[com.example.demo.dto.detection.Users@437225b, com.example.demo.dto.detection.Users@e012432, com.exa (truncated)...]
+10:53:57.761 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:53:57.782 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+10:53:57.782 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+10:53:57.783 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+10:53:57.783 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+10:53:57.783 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:53:59.031 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/join", parameters={}
+10:53:59.031 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#joinForm()
+10:53:59.032 [http-nio-8080-exec-8] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+10:53:59.036 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:53:59.559 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/deleteuser", parameters={}
+10:53:59.559 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#deleteuser(HttpSession, RedirectAttributes)
+10:53:59.559 [http-nio-8080-exec-6] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+10:53:59.562 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:53:59.599 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+10:53:59.599 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+10:53:59.599 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+10:53:59.599 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+10:53:59.599 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:54:01.487 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/admin", parameters={}
+10:54:01.487 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#admin(HttpSession, RedirectAttributes)
+10:54:01.489 [http-nio-8080-exec-1] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+10:54:01.491 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:54:01.526 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+10:54:01.527 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+10:54:01.527 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+10:54:01.527 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+10:54:01.527 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:54:02.463 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/dashboard", parameters={}
+10:54:02.463 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#dashboard(HttpSession, RedirectAttributes)
+10:54:02.464 [http-nio-8080-exec-4] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+10:54:02.471 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:54:02.548 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+10:54:02.549 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+10:54:02.549 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+10:54:02.549 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+10:54:02.549 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:54:03.056 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/userlist", parameters={}
+10:54:03.056 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#userlistForm(Model, HttpSession, RedirectAttributes)
+10:54:03.057 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:54:03.057 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@53462bb9] was not registered for synchronization because synchronization is not active
+10:54:03.057 [http-nio-8080-exec-10] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+10:54:03.058 [http-nio-8080-exec-10] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1222908140 wrapping org.mariadb.jdbc.Connection@607fbce9] will not be managed by Spring
+10:54:03.058 [http-nio-8080-exec-10] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==>  Preparing: SELECT * FROM detection_db.user_data
+10:54:03.058 [http-nio-8080-exec-10] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==> Parameters: 
+10:54:03.058 [http-nio-8080-exec-10] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data
+10:54:03.060 [http-nio-8080-exec-10] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - <==      Total: 8
+10:54:03.060 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@53462bb9]
+10:54:03.060 [http-nio-8080-exec-10] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+10:54:03.063 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:54:03.098 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/users", parameters={}
+10:54:03.099 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#getUsers()
+10:54:03.099 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:54:03.099 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@44af1d36] was not registered for synchronization because synchronization is not active
+10:54:03.099 [http-nio-8080-exec-2] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+10:54:03.099 [http-nio-8080-exec-2] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@255576162 wrapping org.mariadb.jdbc.Connection@607fbce9] will not be managed by Spring
+10:54:03.101 [http-nio-8080-exec-2] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==>  Preparing: SELECT * FROM detection_db.user_data
+10:54:03.101 [http-nio-8080-exec-2] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==> Parameters: 
+10:54:03.101 [http-nio-8080-exec-2] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data
+10:54:03.104 [http-nio-8080-exec-2] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - <==      Total: 8
+10:54:03.104 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@44af1d36]
+10:54:03.104 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+10:54:03.105 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[com.example.demo.dto.detection.Users@51c84001, com.example.demo.dto.detection.Users@7baa8bd9, com.e (truncated)...]
+10:54:03.105 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:54:03.108 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+10:54:03.108 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+10:54:03.108 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+10:54:03.108 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+10:54:03.108 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:54:04.121 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/join", parameters={}
+10:54:04.122 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#joinForm()
+10:54:04.123 [http-nio-8080-exec-8] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+10:54:04.126 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:54:04.179 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+10:54:04.180 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+10:54:04.180 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+10:54:04.180 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+10:54:04.181 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:54:04.872 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/behaviorlog", parameters={}
+10:54:04.872 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.BehaviorLogController#getAllLogs(Model)
+10:54:04.872 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:54:04.872 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@31c91ee6] was not registered for synchronization because synchronization is not active
+10:54:04.872 [http-nio-8080-exec-9] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+10:54:04.873 [http-nio-8080-exec-9] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@455248430 wrapping org.mariadb.jdbc.Connection@307bfeb1] will not be managed by Spring
+10:54:04.873 [http-nio-8080-exec-9] DEBUG c.e.d.dao.log.BehaviorLogDAO.findAll - ==>  Preparing: SELECT * FROM log_db.behavior_log
+10:54:04.873 [http-nio-8080-exec-9] DEBUG c.e.d.dao.log.BehaviorLogDAO.findAll - ==> Parameters: 
+10:54:04.873 [http-nio-8080-exec-9] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM log_db.behavior_log
+10:54:04.875 [http-nio-8080-exec-9] DEBUG c.e.d.dao.log.BehaviorLogDAO.findAll - <==      Total: 3
+10:54:04.875 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@31c91ee6]
+10:54:04.876 [http-nio-8080-exec-9] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+10:54:04.888 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:54:04.930 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/behaviorlogs", parameters={}
+10:54:04.930 [http-nio-8080-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+10:54:04.938 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+10:54:04.938 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+10:54:04.939 [http-nio-8080-exec-1] DEBUG o.s.w.s.r.ResourceHttpRequestHandler - Resource not found
+10:54:04.939 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+10:54:04.939 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+10:54:04.939 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.example.demo.controller.detection.GlobalExceptionHandler#handleServletExcption(ServletException)
+10:54:04.939 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:54:04.939 [http-nio-8080-exec-1] ERROR c.e.d.c.d.GlobalExceptionHandler - 서블릿 예외가 발생했습니다.
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/behaviorlogs.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:585)
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:52)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+10:54:04.939 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/behaviorlogs.]
+10:54:04.940 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Using resolved error view: ModelAndView [view="404"; model={}]
+10:54:04.940 [http-nio-8080-exec-1] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected '*/*' given [*/*]
+10:54:04.942 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:54:05.896 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/patternlog", parameters={}
+10:54:05.896 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#patternlog()
+10:54:05.897 [http-nio-8080-exec-4] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+10:54:05.900 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:54:05.947 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/patternlogs", parameters={}
+10:54:05.947 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.PatternLogController#getAllPatternLogs()
+10:54:05.947 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:54:05.947 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@52a04755] was not registered for synchronization because synchronization is not active
+10:54:05.952 [http-nio-8080-exec-3] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+10:54:05.954 [http-nio-8080-exec-3] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1190805528 wrapping org.mariadb.jdbc.Connection@307bfeb1] will not be managed by Spring
+10:54:05.954 [http-nio-8080-exec-3] DEBUG c.e.d.dao.log.PatternLogDAO.findAll - ==>  Preparing: SELECT * FROM log_db.pattern_log
+10:54:05.954 [http-nio-8080-exec-3] DEBUG c.e.d.dao.log.PatternLogDAO.findAll - ==> Parameters: 
+10:54:05.954 [http-nio-8080-exec-3] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM log_db.pattern_log
+10:54:05.955 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+10:54:05.955 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+10:54:05.955 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+10:54:05.955 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+10:54:05.956 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:54:05.956 [http-nio-8080-exec-3] DEBUG c.e.d.dao.log.PatternLogDAO.findAll - <==      Total: 3
+10:54:05.956 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@52a04755]
+10:54:05.956 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+10:54:05.957 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[PatternLog{detection_number=1, time='2024-07-10 09:00:00', sIp='192.168.1.1', dIp='10.0.0.1', sPort (truncated)...]
+10:54:05.957 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:54:06.224 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/dangerouslog", parameters={}
+10:54:06.224 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#dangerouslog()
+10:54:06.225 [http-nio-8080-exec-2] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+10:54:06.229 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:54:06.270 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/dangerouslogs", parameters={}
+10:54:06.270 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.DangerousLogController#getAllDangerousLogs()
+10:54:06.270 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:54:06.270 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6166c5e7] was not registered for synchronization because synchronization is not active
+10:54:06.270 [http-nio-8080-exec-7] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+10:54:06.270 [http-nio-8080-exec-7] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@49662440 wrapping org.mariadb.jdbc.Connection@307bfeb1] will not be managed by Spring
+10:54:06.270 [http-nio-8080-exec-7] DEBUG c.e.d.d.log.DangerousLogDAO.findAll - ==>  Preparing: SELECT * FROM log_db.dangerous_log
+10:54:06.270 [http-nio-8080-exec-7] DEBUG c.e.d.d.log.DangerousLogDAO.findAll - ==> Parameters: 
+10:54:06.271 [http-nio-8080-exec-7] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM log_db.dangerous_log
+10:54:06.272 [http-nio-8080-exec-7] DEBUG c.e.d.d.log.DangerousLogDAO.findAll - <==      Total: 3
+10:54:06.272 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6166c5e7]
+10:54:06.272 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+10:54:06.272 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[DangerousLog{detection_number=1, ip='192.168.1.1', port=8080, policy_number='101'}, DangerousLog{de (truncated)...]
+10:54:06.273 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:54:06.279 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+10:54:06.279 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+10:54:06.280 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+10:54:06.280 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+10:54:06.280 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:54:06.825 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/policylist", parameters={}
+10:54:06.826 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.PatternDetectionController#showPolicyList(Model)
+10:54:06.826 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:54:06.826 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@70cb66ea] was not registered for synchronization because synchronization is not active
+10:54:06.826 [http-nio-8080-exec-6] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+10:54:06.827 [http-nio-8080-exec-6] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1013641409 wrapping org.mariadb.jdbc.Connection@607fbce9] will not be managed by Spring
+10:54:06.827 [http-nio-8080-exec-6] DEBUG c.e.d.d.d.P.getAllPatternDetections - ==>  Preparing: SELECT detection_number, CONCAT(s_ip, ' to ', d_ip) AS s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous FROM detection_db.pattern_detection
+10:54:06.828 [http-nio-8080-exec-6] DEBUG c.e.d.d.d.P.getAllPatternDetections - ==> Parameters: 
+10:54:06.828 [http-nio-8080-exec-6] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT detection_number, CONCAT(s_ip, ' to ', d_ip) AS s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
+        FROM detection_db.pattern_detection
+10:54:06.830 [http-nio-8080-exec-6] DEBUG c.e.d.d.d.P.getAllPatternDetections - <==      Total: 16
+10:54:06.830 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@70cb66ea]
+10:54:06.831 [http-nio-8080-exec-6] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+10:54:06.835 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:54:06.889 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/search-pattern-detections", parameters={}
+10:54:06.889 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.PatternDetectionController#searchPatternDetections(SearchCriteria)
+10:54:06.890 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.demo.controller.log.SearchCriteria@55a6b860]
+10:54:06.890 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+10:54:06.890 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6b5f4d57] was not registered for synchronization because synchronization is not active
+10:54:06.890 [http-nio-8080-exec-9] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+10:54:06.890 [http-nio-8080-exec-9] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@709665237 wrapping org.mariadb.jdbc.Connection@607fbce9] will not be managed by Spring
+10:54:06.890 [http-nio-8080-exec-9] DEBUG c.e.d.d.d.P.getAllPatternDetections - ==>  Preparing: SELECT detection_number, CONCAT(s_ip, ' to ', d_ip) AS s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous FROM detection_db.pattern_detection
+10:54:06.891 [http-nio-8080-exec-9] DEBUG c.e.d.d.d.P.getAllPatternDetections - ==> Parameters: 
+10:54:06.891 [http-nio-8080-exec-9] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT detection_number, CONCAT(s_ip, ' to ', d_ip) AS s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
+        FROM detection_db.pattern_detection
+10:54:06.891 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+10:54:06.891 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+10:54:06.892 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+10:54:06.892 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+10:54:06.892 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:54:06.893 [http-nio-8080-exec-9] DEBUG c.e.d.d.d.P.getAllPatternDetections - <==      Total: 16
+10:54:06.894 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6b5f4d57]
+10:54:06.894 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+10:54:06.894 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[PatternDetection{detection_number=1, s_to_ip='192.168.1.73 to 192.168.1.26', s_ip='192.168.1.73', d (truncated)...]
+10:54:06.895 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+10:54:16.791 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:54:16.791 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:54:18.392 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:54:18.392 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:54:46.792 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:54:46.792 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:54:48.393 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:54:48.393 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:55:16.794 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:55:16.794 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:55:18.394 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:55:18.394 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:55:46.796 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:55:46.796 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:55:48.395 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:55:48.395 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:56:16.797 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:56:16.797 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:56:18.397 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:56:18.397 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:56:46.798 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:56:46.798 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:56:48.398 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:56:48.398 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:57:16.799 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:57:16.799 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:57:18.399 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:57:18.399 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:57:46.801 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:57:46.801 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:57:48.400 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:57:48.400 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:58:16.802 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:58:16.802 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:58:18.402 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:58:18.402 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:58:46.804 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:58:46.804 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:58:48.403 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:58:48.403 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:59:16.806 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:59:16.806 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:59:18.405 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:59:18.405 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:59:46.807 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:59:46.807 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+10:59:48.406 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+10:59:48.406 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:00:16.809 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:00:16.809 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:00:18.407 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:00:18.407 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:00:46.810 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:00:46.810 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:00:48.409 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:00:48.409 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:01:16.812 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:01:16.813 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:01:18.411 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:01:18.411 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:01:46.815 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:01:46.815 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:01:48.413 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:01:48.413 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:02:16.816 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:02:16.816 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:02:18.414 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:02:18.414 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:02:46.818 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:02:46.818 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:02:48.415 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:02:48.415 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:03:16.820 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:03:16.820 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:03:18.417 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:03:18.417 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:03:46.821 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:03:46.821 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:03:48.418 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:03:48.418 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:04:16.823 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:04:16.823 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:04:18.420 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:04:18.420 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:04:46.824 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:04:46.824 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:04:48.421 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:04:48.421 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:05:16.826 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:05:16.826 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:05:18.422 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:05:18.422 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:05:46.827 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:05:46.827 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:05:48.424 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:05:48.424 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:06:16.828 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:06:16.828 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:06:18.425 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:06:18.425 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:06:46.830 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:06:46.830 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:06:48.427 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:06:48.427 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:07:16.831 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:07:16.831 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:07:18.428 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:07:18.428 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:07:33.589 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@249faf51: (connection has passed maxLifetime)
+11:07:33.598 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@ced7ab5
+11:07:33.630 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+11:07:46.366 [HikariPool-2 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.mariadb.jdbc.Connection@46a1e949: (connection has passed maxLifetime)
+11:07:46.374 [HikariPool-2 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.mariadb.jdbc.Connection@6bbd94c
+11:07:46.406 [HikariPool-2 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+11:07:46.833 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:07:46.833 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:07:48.118 [HikariPool-2 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.mariadb.jdbc.Connection@307bfeb1: (connection has passed maxLifetime)
+11:07:48.125 [HikariPool-2 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.mariadb.jdbc.Connection@53a70bdd
+11:07:48.157 [HikariPool-2 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+11:07:48.430 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+11:07:48.430 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+11:07:49.048 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@a34a4c1: (connection has passed maxLifetime)
+11:07:49.056 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@2298050d
+11:07:49.087 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+11:07:50.964 [HikariPool-2 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.mariadb.jdbc.Connection@4f4122f2: (connection has passed maxLifetime)
+11:07:50.969 [HikariPool-2 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.mariadb.jdbc.Connection@46539c6b
+11:07:51.001 [HikariPool-2 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+11:07:51.426 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@7ebb043: (connection has passed maxLifetime)
+11:07:51.433 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@77a0d067
+11:07:51.465 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+11:07:55.144 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@54b8c2e3: (connection has passed maxLifetime)
+11:07:55.150 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@7a128eed
+11:07:55.181 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+11:07:55.922 [HikariPool-2 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.mariadb.jdbc.Connection@72f19775: (connection has passed maxLifetime)
+11:07:55.927 [HikariPool-2 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.mariadb.jdbc.Connection@3e1c1f0e
+11:07:55.959 [HikariPool-2 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+11:07:56.544 [HikariPool-2 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.mariadb.jdbc.Connection@4c93426b: (connection has passed maxLifetime)
+11:07:56.551 [HikariPool-2 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.mariadb.jdbc.Connection@68d1c635
+11:07:56.581 [HikariPool-2 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+11:07:57.209 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@38167492: (connection has passed maxLifetime)
+11:07:57.217 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@650ba8c9
+11:07:57.249 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+11:08:02.748 [HikariPool-2 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.mariadb.jdbc.Connection@137df9f2: (connection has passed maxLifetime)
+11:08:02.756 [HikariPool-2 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.mariadb.jdbc.Connection@23536e4d
+11:08:02.787 [HikariPool-2 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+11:08:03.276 [HikariPool-2 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.mariadb.jdbc.Connection@56970aea: (connection has passed maxLifetime)
+11:08:03.283 [HikariPool-2 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.mariadb.jdbc.Connection@76eaf99f
+11:08:03.313 [HikariPool-2 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+11:08:03.787 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@522336a7: (connection has passed maxLifetime)
+11:08:03.793 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@288a941f
+11:08:03.825 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+11:08:06.512 [HikariPool-2 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.mariadb.jdbc.Connection@1a34fd28: (connection has passed maxLifetime)
+11:08:06.517 [HikariPool-2 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.mariadb.jdbc.Connection@31300849
+11:08:06.549 [HikariPool-2 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+11:08:06.640 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@71fdf1e1: (connection has passed maxLifetime)
+11:08:06.645 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@7d38c9f7
+11:08:06.675 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+11:08:06.941 [HikariPool-2 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.mariadb.jdbc.Connection@b2b19c2: (connection has passed maxLifetime)
+11:08:06.951 [HikariPool-2 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Added connection org.mariadb.jdbc.Connection@4e056b33
+11:08:06.981 [HikariPool-2 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+11:08:09.718 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@6a434d6c: (connection has passed maxLifetime)
+11:08:09.724 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@75e8ec6f
+11:08:09.756 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+11:08:14.237 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@10a877d: (connection has passed maxLifetime)
+11:08:14.242 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@4b737145
+11:08:14.274 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)
+11:08:15.569 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@607fbce9: (connection has passed maxLifetime)
+11:08:15.576 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.mariadb.jdbc.Connection@de4a8ca
+11:08:15.608 [HikariPool-1 connection adder] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Connection not added, stats (total=10, active=0, idle=10, waiting=0)

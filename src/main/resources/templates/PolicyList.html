@@ -363,6 +363,10 @@
 									<button class="btn btn-primary btn-modify" id="btnModify"
 										disabled>Modify</button>
 								</div>
+								<!-- 페이지네이션 -->
+								<nav>
+									<ul class="pagination justify-content-center" id="pagination"></ul>
+								</nav>
 							</div>
 						</div>
 					</div>
@@ -371,12 +375,21 @@
 		</div>
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- JavaScript 라이브러리 및 사용자 정의 스크립트 -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
 $(document).ready(function () {
+    let currentPage = 1;
+    const rowsPerPage = 10;
+
+    // 페이지 클릭 이벤트 처리
+    $("#pagination").on("click", ".page-link", function () {
+        currentPage = parseInt($(this).text());
+        fetchAndDisplayPatterns();
+    });
+
     // 검색 버튼 클릭 이벤트 처리
     $("#btnSearch").click(function () {
         let searchCriteria = {
@@ -396,28 +409,25 @@ $(document).ready(function () {
             pattern_3: $("#searchInputPattern3").val(),
             dangerous: $("#searchInputDangers").val()
         };
-        fetchAndDisplayPatterns(searchCriteria); // 검색 기준에 따라 데이터를 가져와 표시하는 함수 호출
+        fetchAndDisplayPatterns(searchCriteria);
     });
 
     // 초기화 버튼 클릭 이벤트 처리
     $("#btnClear").click(function () {
-        $(".search-section input[type='text']").val(""); // 모든 입력 필드 초기화
-        fetchAndDisplayPatterns(); // 검색 기준 초기화 후 모든 패턴 데이터를 가져와 표시
+        $(".search-section input[type='text']").val("");
+        fetchAndDisplayPatterns();
     });
 
-    // 서버에서 데이터를 가져와 테이블에 표시하는 함수
+    // 데이터 가져와서 테이블에 표시하는 함수
     function fetchAndDisplayPatterns(searchCriteria = {}) {
         $.ajax({
             type: "POST",
-            url: "/api/search-pattern-detections", // 데이터를 가져올 서버 엔드포인트
+            url: "/api/search-pattern-detections",
             contentType: "application/json",
             data: JSON.stringify(searchCriteria),
             success: function (data) {
-                console.log(data); // 서버에서 받은 데이터를 콘솔에 출력
+                $("#logTableBody").empty();
 
-                $("#logTableBody").empty(); // 기존 테이블 내용 지우기
-
-                // 받아온 데이터를 테이블에 추가하기
                 data.forEach(function (pattern, index) {
                     $("#logTableBody").append(
                         `<tr>
@@ -449,19 +459,32 @@ $(document).ready(function () {
                         $("#btnModify").prop("disabled", true);
                     }
                 });
+
+                // 페이지네이션 설정
+                setupPagination(data.totalPages);
             },
             error: function (err) {
-                console.log(err); // AJAX 요청 중 발생한 오류 콘솔에 출력
+                console.log(err);
                 alert("서버에서 데이터를 가져오는 중 오류가 발생했습니다.");
             }
         });
     }
 
-    // 페이지 로드 시 모든 패턴 데이터를 가져와 테이블에 표시
+    // 페이지네이션 설정 함수
+    function setupPagination(totalPages) {
+        let paginationHTML = "";
+
+        for (let i = 1; i <= totalPages; i++) {
+            paginationHTML += `<li class="page-item ${i === currentPage ? 'active' : ''}"><a class="page-link" href="#">${i}</a></li>`;
+        }
+
+        $("#pagination").html(paginationHTML);
+    }
+
+    // 페이지 로드 시 초기 데이터 가져오기
     fetchAndDisplayPatterns();
 });
 </script>
-
 
 </body>
 </html>
