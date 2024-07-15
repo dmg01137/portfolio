@@ -325,7 +325,7 @@
 								<table id="patternTable" class="table table-bordered">
 									<thead>
 										<tr>
-											<th>선택</th>
+											
 
 											<th>NO</th>
 											<th>S_to_IP</th>
@@ -406,7 +406,6 @@ $(document).ready(function () {
                 data.forEach(function (pattern, index) {
                     $("#logTableBody").append(
                         `<tr>
-                          
                             <td>${pattern.detection_number}</td>
                             <td>${pattern.s_to_ip}</td>
                             <td>${pattern.s_ip}</td>
@@ -456,7 +455,6 @@ $(document).ready(function () {
                 data.forEach(function (pattern, index) {
                     $("#logTableBody").append(
                         `<tr>
-                          
                             <td>${pattern.detection_number}</td>
                             <td>${pattern.s_to_ip}</td>
                             <td>${pattern.s_ip}</td>
@@ -500,7 +498,6 @@ $(document).ready(function () {
     // 페이지 로드 시 초기 데이터 가져오기
     fetchAndDisplayPatterns();
 });
-
 
 </script>
 

@@ -198,7 +198,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const user = JSON.parse('${user}');
+    const user = JSON.parse(`{"user_id": "123", "user_name": "John Doe", "user_privilege": "admin"}`); // 예시 데이터
 
     document.getElementById('user_id').value = user.user_id;
     document.getElementById('user_name').value = user.user_name;
@@ -240,7 +240,7 @@ function modifyUser() {
     })
     .catch((error) => {
         console.error('수정 중 오류가 발생하였습니다.', error);
-        // 예: 사용자에게 오류 메시지 보여주기
+        // 여기에 사용자에게 오류 메시지 보여주는 로직 추가
     });
 }
 
