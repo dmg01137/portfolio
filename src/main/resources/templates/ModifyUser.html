@@ -235,9 +235,8 @@ function modifyUser() {
     })
     .then(response => response.json())
     .then(data => {
-        // 처리 완료 후 필요한 작업 추가
         console.log('수정이 완료되었습니다.', data);
-        // 예: 사용자에게 수정 완료 메시지 보여주기
+        // 여기에 사용자에게 수정 완료 메시지 보여주는 로직 추가
     })
     .catch((error) => {
         console.error('수정 중 오류가 발생하였습니다.', error);

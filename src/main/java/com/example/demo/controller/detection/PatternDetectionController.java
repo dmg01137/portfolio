@@ -79,7 +79,7 @@ public class PatternDetectionController {
     public String addPattern(@ModelAttribute("patternDetection") PatternDetection patternDetection) {
     	 try {
     		 patternDetectionService.addPatternDetection(patternDetection);
-             // 행동 변경 메시지를 전송합니다.
+    		 // 패턴 변경 메시지를 전송합니다.
              udpClient.sendPatternChangeMessage();
              
              return "redirect:/policylist";
@@ -104,7 +104,7 @@ public class PatternDetectionController {
         try {
             // 패턴 수정 로직을 여기에 추가
             patternDetectionService.updatePatternDetection(patternDetection);
-            // 행동 변경 메시지를 전송합니다.
+            // 패턴 변경 메시지를 전송합니다.
             udpClient.sendPatternChangeMessage();
             
             return "redirect:/modifypolicy";
@@ -129,7 +129,7 @@ public class PatternDetectionController {
         try {
             // 패턴 삭제 로직을 여기에 추가
             patternDetectionService.deletePatternDetection(patternDetection);
-            // 행동 변경 메시지를 전송합니다.
+            // 패턴 변경 메시지를 전송합니다.
             udpClient.sendPatternChangeMessage();
             
             return "redirect:/deletepolicy";
