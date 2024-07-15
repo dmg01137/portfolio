@@ -241,43 +241,55 @@
     <h5 class="sidebar-heading">메뉴</h5>
     <ul class="nav flex-column nav-sidebar">
         <li class="nav-item">
-            <a class="nav-link nav-link-custom" href="#"><i class=" fas fa-shield-alt mr-1"></i> 패턴 정책 리스트</a>
+            <a class="nav-link nav-link-custom" href="#"><i class=" fas fa-edit mr-1"></i> 패턴 정책 수정</a>
+        </li>
+             <li class="nav-item">
+            <a class="nav-link" href="/modifybehaviorpolicy"><i class=" fas fa-edit mr-1"></i> 행동 정책 수정</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link " href="/policylist2"><i class=" fas fa-shield-alt mr-1"></i> 행동 정책 리스트</a>
+            <a class="nav-link " href="/policylist"><i class=" fas fa-shield-alt mr-1"></i> 정책 리스트</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/addpolicy"><i class="fas fa-plus"></i> 정책 추가</a>
         </li>
+        
+        <li class="nav-item">
+            <a class="nav-link " href="/deletepolicy"><i class="fas fa-trash-alt"></i> 정책 삭제</a>
+        </li>
+        
     </ul>
 </div>
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-6"> <!-- 카드의 너비를 줄임 -->
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title mb-4">Modify Policy</h5>
-          <form action="/modifypolicy" method="post">
+                    <h5 class="card-title mb-4">Pattern Policy</h5>
+                    <form id="policyForm" action="/modifypolicy" method="post">
                         <div class="form-group">
                             <label for="detection_number">감지 번호</label>
-                            <input type="text" class="form-control" id="detection_number" name="detection_number" placeholder="감지 번호 입력" required>
+                            <input type="text" class="form-control" id="detection_number" name="detection_number" placeholder="감지 번호 입력" required >
                         </div>
                         <div class="form-group">
-                            <label for="s_ip">출발지 IP</label>
-                            <input type="text" class="form-control" id="s_ip" name="s_ip" placeholder="출발지 IP 입력">
+                            <label for="s_to_ip">소스와 목적지 IP 정보</label>
+                            <input type="text" class="form-control" id="s_to_ip" name="s_to_ip" placeholder="소스와 목적지 IP 정보 입력" required>
                         </div>
                         <div class="form-group">
-                            <label for="d_ip">목적지 IP</label>
-                            <input type="text" class="form-control" id="d_ip" name="d_ip" placeholder="목적지 IP 입력">
+                            <label for="s_ip">출발지IP</label>
+                            <input type="text" class="form-control" id="s_ip" name="s_ip" placeholder="출발지 IP 입력"required>
                         </div>
                         <div class="form-group">
-                            <label for="s_port">출발지 포트</label>
-                            <input type="text" class="form-control" id="s_port" name="s_port" placeholder="출발지 포트 입력">
+                            <label for="s_port">출발지Port</label>
+                            <input type="text" class="form-control" id="s_port" name="s_port" placeholder="출발지 포트 입력"required>
                         </div>
                         <div class="form-group">
-                            <label for="d_port">목적지 포트</label>
-                            <input type="text" class="form-control" id="d_port" name="d_port" placeholder="목적지 포트 입력">
+                            <label for="d_ip">목적지IP</label>
+                            <input type="text" class="form-control" id="d_ip" name="d_ip" placeholder="목적지 IP 입력"required>
+                        </div>
+                        <div class="form-group">
+                            <label for="d_port">목적지Port</label>
+                            <input type="text" class="form-control" id="d_port" name="d_port" placeholder="목적지 포트 입력"required>
                         </div>
                         <div class="form-group">
                             <label for="create_dt">생성 일자</label>
@@ -285,17 +297,37 @@
                         </div>
                         <div class="form-group">
                             <label for="modify_dt">수정 일자</label>
-                            <input type="datetime-local" class="form-control" id="modify_dt" name="modify_dt">
+                            <input type="datetime-local" class="form-control" id="modify_dt" name="modify_dt"required>
                         </div>
                         <div class="form-group">
-                            <label for="attack_type">공격 유형</label>
-                            <input type="text" class="form-control" id="attack_type" name="attack_type" placeholder="공격 유형 입력" required>
+                            <label for="action_type">액션 타입</label>
+                            <input type="text" class="form-control" id="action_type" name="action_type" placeholder="액션 타입 입력" required>
                         </div>
                         <div class="form-group">
-                            <label for="pattern">패턴</label>
-                            <input type="text" class="form-control" id="pattern" name="pattern" placeholder="패턴 입력" required>
+                            <label for="policy_name">정책 이름</label>
+                            <input type="text" class="form-control" id="policy_name" name="policy_name" placeholder="정책 이름 입력" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Modify</button>
+                        <div class="form-group">
+                            <label for="policy_info">정책 정보</label>
+                            <input type="text" class="form-control" id="policy_info" name="policy_info" placeholder="정책 정보 입력" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pattern_1">패턴1</label>
+                            <input type="text" class="form-control" id="pattern_1" name="pattern_1" placeholder="패턴1 입력" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pattern_2">패턴2</label>
+                            <input type="text" class="form-control" id="pattern_2" name="pattern_2" placeholder="패턴2 입력" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pattern_3">패턴3</label>
+                            <input type="text" class="form-control" id="pattern_3" name="pattern_3" placeholder="패턴3 입력" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dangerous">위험성</label>
+                            <input type="text" class="form-control" id="dangerous" name="dangerous" placeholder="위험성 입력" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block btn-custom">Modify</button>
                         <button type="reset" class="btn btn-secondary btn-block btn-clear">Clear</button>
                     </form>
                 </div>
@@ -303,39 +335,31 @@
         </div>
     </div>
 </div>
-<!-- 스크립트 추가 부분 -->
+
+<!-- Bootstrap JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Form Validation Script -->
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const selectedUserId = localStorage.getItem('selectedUserId');
-    if (selectedUserId) {
-        // Ajax 요청을 사용하여 서버에서 사용자 정보 가져오기
-        fetch(`/api/users/${selectedUserId}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('네트워크 응답이 올바르지 않습니다.');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // 서버에서 가져온 데이터로 사용자 정보 채우기
-                document.getElementById('user_id').value = data.id;
-                document.getElementById('user_name').value = data.name;
-                document.getElementById('Privilege').value = data.privilege;
-            })
-            .catch(error => {
-                console.error('사용자 데이터를 불러오는 중 오류 발생:', error);
-                // 에러 처리: 사용자에게 메시지 표시나 다른 처리 방법 선택
-            });
-    } else {
-        console.error('localStorage에 선택된 사용자 ID가 없습니다.');
-        // 에러 처리: 사용자에게 메시지 표시나 다른 처리 방법 선택
-    }
-});
+    document.getElementById("policyForm").addEventListener("submit", function(event) {
+        var form = this;
+        var requiredFields = ["detection_number", "s_to_ip", "s_ip", "d_ip", "s_port", "d_port", "create_dt", "modify_dt", "action_type", "policy_name", "policy_info", "pattern_1", "pattern_2", "pattern_3", "dangerous"];
+        var valid = true;
+        requiredFields.forEach(function(field) {
+            if (!form[field].value.trim()) {
+                valid = false;
+                form[field].classList.add("is-invalid");
+            } else {
+                form[field].classList.remove("is-invalid");
+            }
+        });
+        if (!valid) {
+            event.preventDefault();
+        }
+    });
 </script>
 
-<!-- 필요한 JavaScript 파일들 로드 -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

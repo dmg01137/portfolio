@@ -74,31 +74,9 @@ public class UsersController {
 
     // 사용자 정보 수정 폼으로 이동
     @GetMapping("/modifyuser")
-    public String modifyUserForm(@RequestParam("user_id") String userId, Model model, HttpSession session,
-            RedirectAttributes redirectAttributes) {
-        // 세션에서 현재 로그인한 사용자 정보 가져오기
-        Users currentUser = (Users) session.getAttribute("user");
-
-        // 세션이 없거나 사용자 정보가 없으면 로그인 폼으로 리다이렉트
-        if (currentUser == null) {
-            redirectAttributes.addFlashAttribute("error", "로그인이 필요합니다.");
-            return "redirect:/signin";
-        }
-
-        // 선택된 사용자의 정보 조회
-        Users userToModify = usersService.getUserById(userId);
-
-        // 사용자 정보가 존재하지 않으면 관리자 페이지로 리다이렉트
-        if (userToModify == null) {
-            redirectAttributes.addFlashAttribute("error", "수정할 사용자가 존재하지 않습니다.");
-            return "redirect:/admin"; // 관리자 페이지로 리다이렉트
-        }
-
-        // 사용자 정보를 모델에 추가하여 modifyuser 페이지로 전달
-        model.addAttribute("user", userToModify);
+    public String modify() {
         return "modifyuser";
     }
-
     // 사용자 정보 수정 처리
     @PostMapping("/modifyuser")
     @Transactional

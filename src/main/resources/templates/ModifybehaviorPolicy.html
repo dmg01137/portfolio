@@ -241,215 +241,125 @@
     <h5 class="sidebar-heading">메뉴</h5>
     <ul class="nav flex-column nav-sidebar">
         <li class="nav-item">
-            <a class="nav-link nav-link-custom" href="#"><i class=" fas fa-shield-alt mr-1"></i> 패턴 정책 리스트</a>
+            <a class="nav-link nav-link-custom" href="#"><i class=" fas fa-edit mr-1"></i> 행동 정책 수정</a>
+        </li>
+             <li class="nav-item">
+            <a class="nav-link" href="/modifypolicy"><i class=" fas fa-edit mr-1"></i> 패턴 정책 수정</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link " href="/policylist2"><i class=" fas fa-shield-alt mr-1"></i> 행동 정책 리스트</a>
+            <a class="nav-link " href="/policylist"><i class=" fas fa-shield-alt mr-1"></i> 정책 리스트</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/addpolicy"><i class="fas fa-plus"></i> 정책 추가</a>
         </li>
+        
+        <li class="nav-item">
+            <a class="nav-link " href="/deletepolicy"><i class="fas fa-trash-alt"></i> 정책 삭제</a>
+        </li>
+        
     </ul>
 </div>
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-6"> <!-- 카드의 너비를 줄임 -->
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title mb-4">Modify Policy</h5>
-                        <form th:action="@{/modifybehaviorpolicy}" th:object="${behaviorDetection}" method="post">
+                    <h5 class="card-title mb-4">Pattern Policy</h5>
+                    <form id="policyForm" action="/modifybehaviorpolicy" method="post">
                         <div class="form-group">
-                            <label for="user_id">detection_number</label>
-                            <input type="text" class="form-control" id="detection_number" readonly>
+                            <label for="detection_number">감지 번호</label>
+                            <input type="text" class="form-control" id="detection_number" name="detection_number" placeholder="감지 번호 입력" required >
                         </div>
                         <div class="form-group">
-                            <label for="sIp">sIp</label>
-                            <input type="text" class="form-control" id="sIp" placeholder="Source IP">
+                            <label for="s_to_ip">소스와 목적지 IP 정보</label>
+                            <input type="text" class="form-control" id="s_to_ip" name="s_to_ip" placeholder="소스와 목적지 IP 정보 입력" required>
                         </div>
                         <div class="form-group">
-                            <label for="dIp">dIp</label>
-                            <input type="text" class="form-control" id="dIp" placeholder="Destination IP">
+                            <label for="s_ip">출발지IP</label>
+                            <input type="text" class="form-control" id="s_ip" name="s_ip" placeholder="출발지 IP 입력"required>
                         </div>
                         <div class="form-group">
-                            <label for="sPort">sPort</label>
-                            <input type="text" class="form-control" id="sPort" placeholder="Source Port">
+                            <label for="s_port">출발지Port</label>
+                            <input type="text" class="form-control" id="s_port" name="s_port" placeholder="출발지 포트 입력"required>
                         </div>
                         <div class="form-group">
-                            <label for="dPort">dPort</label>
-                            <input type="text" class="form-control" id="dPort" placeholder="Destination Port">
+                            <label for="d_ip">목적지IP</label>
+                            <input type="text" class="form-control" id="d_ip" name="d_ip" placeholder="목적지 IP 입력"required>
                         </div>
-                       <!-- 생성일자 입력란을 datepicker로 변경 -->
                         <div class="form-group">
-                            <label for="created_at">생성일자</label>
-                            <input type="text" class="form-control datepicker" id="created_at">
+                            <label for="d_port">목적지Port</label>
+                            <input type="text" class="form-control" id="d_port" name="d_port" placeholder="목적지 포트 입력"required>
                         </div>
-
-                        <!-- 수정일자 입력란을 datepicker로 변경 -->
                         <div class="form-group">
-                            <label for="updated_at">수정일자</label>
-                            <input type="text" class="form-control datepicker" id="updated_at">
+                            <label for="create_dt">생성 일자</label>
+                            <input type="datetime-local" class="form-control" id="create_dt" name="create_dt" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="modify_dt">수정 일자</label>
+                            <input type="datetime-local" class="form-control" id="modify_dt" name="modify_dt"required>
                         </div>
                         <div class="form-group">
                             <label for="action_type">액션 타입</label>
-                            <input type="text" class="form-control" id="action_type" placeholder="Action Type">
+                            <input type="text" class="form-control" id="action_type" name="action_type" placeholder="액션 타입 입력" required>
                         </div>
                         <div class="form-group">
                             <label for="policy_name">정책 이름</label>
-                            <input type="text" class="form-control" id="policy_name" placeholder="Policy Name">
+                            <input type="text" class="form-control" id="policy_name" name="policy_name" placeholder="정책 이름 입력" required>
                         </div>
                         <div class="form-group">
                             <label for="policy_info">정책 정보</label>
-                            <input type="text" class="form-control" id="policy_info" placeholder="Policy Information">
+                            <input type="text" class="form-control" id="policy_info" name="policy_info" placeholder="정책 정보 입력" required>
                         </div>
                         <div class="form-group">
-                            <label for="pattern1">패턴 1</label>
-                            <input type="text" class="form-control" id="pattern1" placeholder="Pattern 1">
+                            <label for="pattern_1">패턴1</label>
+                            <input type="text" class="form-control" id="pattern_1" name="pattern_1" placeholder="패턴1 입력" required>
                         </div>
                         <div class="form-group">
-                            <label for="pattern2">패턴 2</label>
-                            <input type="text" class="form-control" id="pattern2" placeholder="Pattern 2">
+                            <label for="pattern_2">패턴2</label>
+                            <input type="text" class="form-control" id="pattern_2" name="pattern_2" placeholder="패턴2 입력" required>
                         </div>
                         <div class="form-group">
-                            <label for="pattern3">패턴 3</label>
-                            <input type="text" class="form-control" id="pattern3" placeholder="Pattern 3">
+                            <label for="pattern_3">패턴3</label>
+                            <input type="text" class="form-control" id="pattern_3" name="pattern_3" placeholder="패턴3 입력" required>
                         </div>
                         <div class="form-group">
-                            <label for="risk_level">위험성</label>
-                            <input type="text" class="form-control" id="risk_level" placeholder="Risk Level">
+                            <label for="dangerous">위험성</label>
+                            <input type="text" class="form-control" id="dangerous" name="dangerous" placeholder="위험성 입력" required>
                         </div>
-                        <div class="form-group">
-                            <label for="regex1">정규표현식1</label>
-                            <input type="text" class="form-control" id="regex1" placeholder="Regular Expression 1">
-                        </div>
-                        <div class="form-group">
-                            <label for="regex2">정규표현식2</label>
-                            <input type="text" class="form-control" id="regex2" placeholder="Regular Expression 2">
-                        </div>
-                        <div class="form-group">
-                            <label for="regex3">정규표현식3</label>
-                            <input type="text" class="form-control" id="regex3" placeholder="Regular Expression 3">
-                        </div>
-
-                        <button type="button" class="btn btn-primary btn-custom mt-3 btn-modify" onclick="modifyPolicy()">Modify</button>
-                        <button type="button" class="btn btn-secondary btn-custom mt-2 btn-clear" onclick="resetForm()">Clear</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-custom">Modify</button>
+                        <button type="reset" class="btn btn-secondary btn-block btn-clear">Clear</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- 스크립트 추가 부분 -->
 
-
+<!-- Bootstrap JS, Popper.js, and jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Form Validation Script -->
 <script>
-$(document).ready(function () {
-    // 서버에서 데이터를 받아와서 테이블에 표시하는 함수
-    function fetchAndDisplayBehaviorDetections(searchCriteria = {}) {
-        $.ajax({
-            type: "POST",
-            url: "/api/search-behavior-detections",
-            contentType: "application/json",
-            data: JSON.stringify(searchCriteria),
-            success: function (data) {
-                console.log(data); // 받은 데이터를 콘솔에 출력
-
-                $("#behaviorTable tbody").empty(); // 기존 테이블 행 비우기
-
-                // 받은 데이터를 테이블에 추가
-                data.forEach(function (behavior, index) {
-                    $("#behaviorTable tbody").append(
-                        `<tr>
-                            <td>${index + 1}</td>
-                            <td>${behavior.s_ip}</td>
-                            <td>${behavior.d_ip}</td>
-                            <td>${behavior.s_port}</td>
-                            <td>${behavior.d_port}</td>
-                            <td>${behavior.create_dt}</td>
-                            <td>${behavior.modify_dt}</td>
-                            <td>${behavior.action_type}</td>
-                            <td>${behavior.policy_name}</td>
-                            <td>${behavior.policy_info}</td>
-                            <td>${behavior.pattern_1}</td>
-                            <td>${behavior.pattern_2}</td>
-                            <td>${behavior.pattern_3}</td>
-                            <td>${behavior.dangerous}</td>
-                            <td>${behavior.regexp_1}</td>
-                            <td>${behavior.regexp_2}</td>
-                            <td>${behavior.regexp_3}</td>
-                            <td>${behavior.base_cnt}</td>
-                            <td>${behavior.base_time}</td>
-                        </tr>`
-                    );
-                });
-
-                // 테이블의 체크박스 클릭 이벤트 리스너
-                $("input[name='selectedBehavior']").click(function () {
-                    // 모든 체크박스 선택 상태를 해제
-                    $("input[name='selectedBehavior']").prop("checked", false);
-                    // 현재 클릭한 체크박스만 선택 상태로 변경
-                    $(this).prop("checked", true);
-                    // Modify 버튼 활성화
-                    $("#btnModify").prop("disabled", false);
-                });
-            },
-            error: function (xhr, status, error) {
-                console.error("데이터를 불러오는데 실패했습니다.", status, error);
+    document.getElementById("policyForm").addEventListener("submit", function(event) {
+        var form = this;
+        var requiredFields = ["detection_number", "s_to_ip", "s_ip", "d_ip", "s_port", "d_port", "create_dt", "modify_dt", "action_type", "policy_name", "policy_info", "pattern_1", "pattern_2", "pattern_3", "dangerous"];
+        var valid = true;
+        requiredFields.forEach(function(field) {
+            if (!form[field].value.trim()) {
+                valid = false;
+                form[field].classList.add("is-invalid");
+            } else {
+                form[field].classList.remove("is-invalid");
             }
         });
-    }
-
-    // 페이지 로드 시 초기 데이터 가져오기
-    fetchAndDisplayBehaviorDetections();
-
-    // 검색 버튼 클릭 이벤트 리스너
-    $("#btnSearch").click(function () {
-        handleSearch();
+        if (!valid) {
+            event.preventDefault();
+        }
     });
-
-    // 초기화 버튼 클릭 이벤트 리스너
-    $("#btnClear").click(function () {
-        $(".form-control").val(""); // 입력 필드 초기화
-        fetchAndDisplayBehaviorDetections(); // 모든 데이터 다시 불러오기
-    });
-
-    // Modify 버튼 클릭 이벤트 리스너
-    $("#btnModify").click(function () {
-        // 선택된 체크박스의 값을 가져옵니다.
-        let selectedIndex = $("input[name='selectedBehavior']:checked").val();
-        console.log("Selected Index: ", selectedIndex);
-        // 여기서 선택된 데이터를 수정하는 코드를 추가할 수 있습니다.
-        // 예: 선택된 데이터의 수정 폼을 열거나, 데이터를 서버로 전송하여 수정합니다.
-    });
-
-    // 검색 처리 함수
-    function handleSearch() {
-        // 검색 필드의 값들을 객체로 변환
-        let searchCriteria = {
-            sIp: $("#searchInputSIP").val().trim(),
-            dIp: $("#searchInputDIP").val().trim(),
-            sPort: $("#searchInputSPort").val().trim(),
-            dPort: $("#searchInputDPort").val().trim(),
-            createDate: $("#searchInputCreateDate").val().trim(),
-            modifyDate: $("#searchInputModifyDate").val().trim(),
-            actionType: $("#searchInputActionType").val().trim(),
-            policyName: $("#searchInputPolicyName").val().trim(),
-            policyInfo: $("#searchInputPolicyInfo").val().trim(),
-            pattern1: $("#searchInputPattern1").val().trim(),
-            pattern2: $("#searchInputPattern2").val().trim(),
-            pattern3: $("#searchInputPattern3").val().trim(),
-            dangers: $("#searchInputDangers").val().trim()
-        };
-
-        fetchAndDisplayBehaviorDetections(searchCriteria); // 검색 조건을 서버로 전송
-    }
-
-});
 </script>
-
 
 </body>
 </html>

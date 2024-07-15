@@ -282,6 +282,9 @@
             <a class="nav-link" href="/addpolicy"><i class="fas fa-plus"></i> 정책 추가</a>
         </li>
           <li class="nav-item">
+            <a class="nav-link " href="/modifypolicy"><i class=" fas fa-edit mr-1"></i> 정책 수정</a>
+        </li>
+          <li class="nav-item">
             <a class="nav-link " href="/deletepolicy"><i class="fas fa-trash-alt"></i> 정책 삭제</a>
         </li>
     </ul>
@@ -312,7 +315,7 @@
     <input type="text" id="searchInputDangers" class="form-control" placeholder="위험성">
 
     <div class="input-group-append">
-        <button class="btn btn-primary" type="button" id="btnSearch">Search</button>
+          <button class="btn btn-primary" type="button" id="btnSearch">Search</button>
         <button class="btn btn-secondary" type="button" id="btnClear">Clear</button>
     </div>
 </div>
@@ -378,7 +381,7 @@ $(document).ready(function () {
     $("#btnSearch").click(function () {
         let searchCriteria = {
             detection_number: $("#searchInputID").val(),
-            s_to_ip: $("#searchInputStoIP").val(),  // 여기서 s_to_ip 필드 값을 사용
+            s_to_ip: $("#searchInputStoIP").val(),
             s_ip: $("#searchInputSIP").val(),
             s_port: $("#searchInputSPort").val(),
             d_ip: $("#searchInputDIP").val(),
@@ -440,7 +443,7 @@ $(document).ready(function () {
     // 초기화 버튼 클릭 이벤트 처리
     $("#btnClear").click(function () {
         $(".search-section input[type='text']").val("");
-        fetchAndDisplayPatterns();
+        fetchAndDisplayPatterns(); // 검색 기준을 초기화하고 모든 패턴을 가져옵니다.
     });
 
     // 데이터 가져와서 테이블에 표시하는 함수
@@ -459,7 +462,7 @@ $(document).ready(function () {
                         `<tr>
                             <td><input type="checkbox" name="selectedPattern"></td>
                             <td>${pattern.detection_number}</td>
-                            <td>${pattern.s_to_ip}</td>  // 여기서 s_to_ip 필드 값을 사용
+                            <td>${pattern.s_to_ip}</td>
                             <td>${pattern.s_ip}</td>
                             <td>${pattern.s_port}</td>
                             <td>${pattern.d_ip}</td>
@@ -501,6 +504,7 @@ $(document).ready(function () {
     // 페이지 로드 시 초기 데이터 가져오기
     fetchAndDisplayPatterns();
 });
+
 
 </script>
 

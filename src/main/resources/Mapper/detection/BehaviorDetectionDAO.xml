@@ -33,27 +33,33 @@
         DELETE FROM detection_db.behavior_detection WHERE detection_number = #{detection_number}
     </delete>
 
-	<!-- 검색 조건으로 행동 탐지 조회 -->
-	<select id="searchBehaviorDetections"
-		resultType="com.example.demo.dto.detection.BehaviorDetection"
-		parameterType="com.example.demo.dto.detection.BehaviorDetection">
-		 SELECT * FROM detection_db.behavior_detection
+<!-- 검색 조건으로 행동 탐지 조회 -->
+<select id="searchBehaviorDetections"
+    resultType="com.example.demo.dto.detection.BehaviorDetection"
+    parameterType="com.example.demo.dto.detection.BehaviorDetection">
+    SELECT * FROM detection_db.behavior_detection
     WHERE (detection_number LIKE '%' || COALESCE(#{detection_number}, '') || '%' OR #{detection_number} IS NULL)
     AND (s_to_ip LIKE '%' || COALESCE(#{s_to_ip}, '') || '%' OR #{s_to_ip} IS NULL)
+    
     AND (s_ip LIKE '%' || COALESCE(#{s_ip}, '') || '%' OR #{s_ip} IS NULL)
-    AND (d_ip LIKE '%' || COALESCE(#{d_ip}, '') || '%' OR #{d_ip} IS NULL)
     AND (s_port = #{s_port} OR #{s_port} IS NULL)
+    AND (d_ip LIKE '%' || COALESCE(#{d_ip}, '') || '%' OR #{d_ip} IS NULL)
+   
     AND (d_port = #{d_port} OR #{d_port} IS NULL)
     AND (create_dt >= #{create_dt} OR #{create_dt} IS NULL)
     AND (modify_dt LIKE '%' || COALESCE(#{modify_dt}, '') || '%' OR #{modify_dt} IS NULL)
     AND (action_type LIKE '%' || COALESCE(#{action_type}, '') || '%' OR #{action_type} IS NULL)
     AND (policy_name LIKE '%' || COALESCE(#{policy_name}, '') || '%' OR #{policy_name} IS NULL)
     AND (policy_info LIKE '%' || COALESCE(#{policy_info}, '') || '%' OR #{policy_info} IS NULL)
+    AND (base_cnt = #{base_cnt} OR #{base_cnt} IS NULL)
+    AND (comp_cnt = #{comp_cnt} OR #{comp_cnt} IS NULL)
+    AND (base_time = #{base_time} OR #{base_time} IS NULL)
     AND (pattern_1 LIKE '%' || COALESCE(#{pattern_1}, '') || '%' OR #{pattern_1} IS NULL)
     AND (pattern_2 LIKE '%' || COALESCE(#{pattern_2}, '') || '%' OR #{pattern_2} IS NULL)
     AND (pattern_3 LIKE '%' || COALESCE(#{pattern_3}, '') || '%' OR #{pattern_3} IS NULL)
     AND (dangerous = #{dangerous} OR #{dangerous} IS NULL)
 </select>
+
 
 	<!-- 페이징된 모든 행동 탐지 조회 -->
     <select id="getAllBehaviorDetectionsPaged" resultType="com.example.demo.dto.detection.BehaviorDetection" parameterType="java.util.Map">

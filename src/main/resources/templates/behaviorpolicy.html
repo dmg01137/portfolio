@@ -263,6 +263,9 @@
             <a class="nav-link" href="/addpolicy"><i class="fas fa-plus"></i> 정책 추가</a>
         </li>
           <li class="nav-item">
+            <a class="nav-link " href="/modifypolicy"><i class=" fas fa-edit mr-1"></i> 정책 수정</a>
+        </li>
+          <li class="nav-item">
             <a class="nav-link" href="/deletepolicy"><i class="fas fa-trash-alt"></i> 정책 삭제</a>
         </li>
     </ul>
@@ -367,13 +370,14 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function () {
+
     // Behavior detections 검색을 위한 AJAX 호출
     function fetchAndDisplayBehaviorDetections(searchCriteria = {}) {
         $.ajax({
             type: "POST",
             url: "/api/search-behavior-detections", // 서버 측 엔드포인트
             contentType: "application/json",
-            data: JSON.stringify(searchCriteria),
+            data: JSON.stringify(searchCriteria), // JSON 형식으로 검색 조건 전송
             success: function (data) {
                 console.log(data); // 받은 데이터를 콘솔에 출력
 
@@ -382,7 +386,7 @@ $(document).ready(function () {
                 // 받은 데이터를 테이블에 추가
                 data.forEach(function (behavior, index) {
                     $("#behaviorTable tbody").append(
-                    		 `<tr>
+                        `<tr>
                             <td><input type="radio" name="selectedBehavior" value="${index}"></td>
                             <td>${behavior.detection_number}</td>
                             <td>${behavior.s_to_ip}</td>
@@ -398,7 +402,6 @@ $(document).ready(function () {
                             <td>${behavior.base_cnt}</td>
                             <td>${behavior.comp_cnt}</td>
                             <td>${behavior.base_time}</td>
-                           
                             <td>${behavior.pattern_1}</td>
                             <td>${behavior.pattern_2}</td>
                             <td>${behavior.pattern_3}</td>
@@ -406,10 +409,6 @@ $(document).ready(function () {
                         </tr>`
                     );
                 });
-                
-                
-                
-                
 
                 // 테이블의 체크박스 클릭 이벤트 리스너
                 $("input[name='selectedBehavior']").click(function () {
@@ -454,29 +453,26 @@ $(document).ready(function () {
     function handleSearch() {
         // 검색 필드의 값들을 객체로 변환
         let searchCriteria = {
-        		  detection_number: $("#searchInputID").val().trim(), // NO 필드
-        	        s_to_ip: $("#searchInputStoIP").val().trim(), // s_to_ip 필드
-        	        s_ip: $("#searchInputSIP").val().trim(), // 출발지IP 필드
-        	        s_port: $("#searchInputSPort").val().trim(), // 출발지Port 필드
-        	        d_ip: $("#searchInputDIP").val().trim(), // 도착지IP 필드
-        	        d_port: $("#searchInputDPort").val().trim(), // 도착지Port 필드
-        	        create_dt: $("#searchInputCreateDate").val().trim(), // 생성일자 필드
-        	        modify_dt: $("#searchInputModifyDate").val().trim(), // 수정일자 필드
-        	        action_type: $("#searchInputActionType").val().trim(), // 액션 타입 필드
-        	        policy_name: $("#searchInputPolicyName").val().trim(), // 정책 이름 필드
-        	        policy_info: $("#searchInputPolicyInfo").val().trim(), // 정책 정보 필드
-        	        base_cnt: $("#searchInputBaseCnt").val().trim(), // base_cnt 필드
-        	        comp_cnt: $("#searchInputCompCnt").val().trim(), // comp_cnt 필드
-        	        base_time: $("#searchInputBaseTime").val().trim(), // base_time 필드
-        	        pattern_1: $("#searchInputPattern1").val().trim(), // 패턴 1 필드
-        	        pattern_2: $("#searchInputPattern2").val().trim(), // 패턴 2 필드
-        	        pattern_3: $("#searchInputPattern3").val().trim(), // 패턴 3 필드
-        	        dangerous: $("#searchInputDangers").val().trim() // 위험성 필드
-        	    };
+            detection_number: $("#searchInputID").val().trim(), // NO 필드
+            s_to_ip: $("#searchInputStoIP").val().trim(), // s_to_ip 필드
+            s_ip: $("#searchInputSIP").val().trim(), // 출발지IP 필드
+            s_port: $("#searchInputSPort").val().trim(), // 출발지Port 필드
+            d_ip: $("#searchInputDIP").val().trim(), // 도착지IP 필드
+            d_port: $("#searchInputDPort").val().trim(), // 도착지Port 필드
+            create_dt: $("#searchInputCreateDate").val().trim(), // 생성일자 필드
+            modify_dt: $("#searchInputModifyDate").val().trim(), // 수정일자 필드
+            action_type: $("#searchInputActionType").val().trim(), // 액션 타입 필드
+            policy_name: $("#searchInputPolicyName").val().trim(), // 정책 이름 필드
+            policy_info: $("#searchInputPolicyInfo").val().trim(), // 정책 정보 필드
+            base_cnt: $("#searchInputBaseCnt").val().trim(), // base_cnt 필드
+            comp_cnt: $("#searchInputCompCnt").val().trim(), // comp_cnt 필드
+            base_time: $("#searchInputBaseTime").val().trim(), // base_time 필드
+            pattern_1: $("#searchInputPattern1").val().trim(), // 패턴 1 필드
+            pattern_2: $("#searchInputPattern2").val().trim(), // 패턴 2 필드
+            pattern_3: $("#searchInputPattern3").val().trim(), // 패턴 3 필드
+            dangerous: $("#searchInputDangers").val().trim() // 위험성 필드
+        };
 
-        
-      
-        
         fetchAndDisplayBehaviorDetections(searchCriteria); // 검색 조건을 서버로 전송
     }
 });
