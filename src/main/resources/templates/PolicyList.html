@@ -293,41 +293,30 @@
 					<div class="card-body">
 						<div class="body-section">
 							<h5 class="card-title mb-3">Pattern Policy</h5>
-							<!-- 검색 섹션 -->
-							<div class="input-group mb-3 search-section">
-								<input type="text" id="searchInputID" class="form-control"
-									placeholder="NO"> <input type="text"
-									id="searchInputStoIP" class="form-control"
-									placeholder="s_to_ip"> <input type="text"
-									id="searchInputSIP" class="form-control" placeholder="출발지IP">
-								<input type="text" id="searchInputSPort" class="form-control"
-									placeholder="출발지Port"> <input type="text"
-									id="searchInputDIP" class="form-control" placeholder="도착지IP">
-								<input type="text" id="searchInputDPort" class="form-control"
-									placeholder="도착지Port"> <input type="text"
-									id="searchInputCreateDate" class="form-control"
-									placeholder="생성일자"> <input type="text"
-									id="searchInputModifyDate" class="form-control"
-									placeholder="수정일자"> <input type="text"
-									id="searchInputActionType" class="form-control"
-									placeholder="액션 타입"> <input type="text"
-									id="searchInputPolicyName" class="form-control"
-									placeholder="정책 이름"> <input type="text"
-									id="searchInputPolicyInfo" class="form-control"
-									placeholder="정책 정보"> <input type="text"
-									id="searchInputPattern1" class="form-control"
-									placeholder="패턴 1"> <input type="text"
-									id="searchInputPattern2" class="form-control"
-									placeholder="패턴 2"> <input type="text"
-									id="searchInputPattern3" class="form-control"
-									placeholder="패턴 3"> <input type="text"
-									id="searchInputDangers" class="form-control" placeholder="위험성">
+						<!-- 검색 섹션 -->
+<div class="input-group mb-3 search-section">
+    <input type="text" id="searchInputID" class="form-control" placeholder="NO">
+    <input type="text" id="searchInputStoIP" class="form-control" placeholder="s_to_ip">
+    <input type="text" id="searchInputSIP" class="form-control" placeholder="출발지IP">
+    <input type="text" id="searchInputSPort" class="form-control" placeholder="출발지Port">
+    <input type="text" id="searchInputDIP" class="form-control" placeholder="도착지IP">
+    <input type="text" id="searchInputDPort" class="form-control" placeholder="도착지Port">
+    <input type="text" id="searchInputCreateDate" class="form-control" placeholder="생성일자">
+    <input type="text" id="searchInputModifyDate" class="form-control" placeholder="수정일자">
+    <input type="text" id="searchInputActionType" class="form-control" placeholder="액션 타입">
+    <input type="text" id="searchInputPolicyName" class="form-control" placeholder="정책 이름">
+    <input type="text" id="searchInputPolicyInfo" class="form-control" placeholder="정책 정보">
+    <input type="text" id="searchInputPattern1" class="form-control" placeholder="패턴 1">
+    <input type="text" id="searchInputPattern2" class="form-control" placeholder="패턴 2">
+    <input type="text" id="searchInputPattern3" class="form-control" placeholder="패턴 3">
+    <input type="text" id="searchInputDangers" class="form-control" placeholder="위험성">
 
-								<div class="input-group-append">
-									<button class="btn btn-primary" type="button" id="btnSearch">Search</button>
-									<button class="btn btn-secondary" type="button" id="btnClear">Clear</button>
-								</div>
-							</div>
+    <div class="input-group-append">
+        <button class="btn btn-primary" type="button" id="btnSearch">검색</button>
+        <button class="btn btn-secondary" type="button" id="btnClear">지우기</button>
+    </div>
+</div>
+
 							<!-- 테이블 데이터 -->
 							<div class="table-container">
 								<table id="patternTable" class="table table-bordered">
@@ -390,7 +379,7 @@ $(document).ready(function () {
         fetchAndDisplayPatterns();
     });
 
-    // 검색 버튼 클릭 이벤트 처리
+ // 검색 버튼 클릭 이벤트 처리
     $("#btnSearch").click(function () {
         let searchCriteria = {
             detection_number: $("#searchInputID").val(),
@@ -412,17 +401,18 @@ $(document).ready(function () {
         fetchAndDisplayPatterns(searchCriteria);
     });
 
+
     // 초기화 버튼 클릭 이벤트 처리
     $("#btnClear").click(function () {
         $(".search-section input[type='text']").val("");
         fetchAndDisplayPatterns();
     });
 
-    // 데이터 가져와서 테이블에 표시하는 함수
+ // 데이터 가져와서 테이블에 표시하는 함수
     function fetchAndDisplayPatterns(searchCriteria = {}) {
         $.ajax({
             type: "POST",
-            url: "/api/search-pattern-detections",
+            url: "/api/search-pattern-detections",  // 실제 서버 URL로 수정 필요
             contentType: "application/json",
             data: JSON.stringify(searchCriteria),
             success: function (data) {
@@ -470,7 +460,8 @@ $(document).ready(function () {
         });
     }
 
-    // 페이지네이션 설정 함수
+
+ // 페이지네이션 설정 함수
     function setupPagination(totalPages) {
         let paginationHTML = "";
 
@@ -480,6 +471,7 @@ $(document).ready(function () {
 
         $("#pagination").html(paginationHTML);
     }
+
 
     // 페이지 로드 시 초기 데이터 가져오기
     fetchAndDisplayPatterns();
