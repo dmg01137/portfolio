@@ -112,15 +112,15 @@ public class UsersController {
             modifiedUser.setPassword(encodedPassword);
         }
 
-        // 사용자 정보 수정 처리
+     // 사용자 정보 수정 처리
         int updated = usersService.updateUser(modifiedUser);
         if (updated > 0) {
-            redirectAttributes.addFlashAttribute("success", "사용자 정보가 성공적으로 수정되었습니다.");
+            return "success"; // 클라이언트에 성공 메시지 반환
         } else {
-            redirectAttributes.addFlashAttribute("error", "사용자 정보 수정에 실패하였습니다.");
+            return "사용자 정보 수정에 실패하였습니다."; // 실패 시 메시지 반환
         }
 
-        return "redirect:/admin"; // 관리자 페이지로 리다이렉트
+        
     }
 
 

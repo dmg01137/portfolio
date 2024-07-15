@@ -237,7 +237,7 @@ function modifyUser() {
     })
     .then(response => {
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error('네트워크 응답이 정상이 아닙니다.');
         }
         return response.text();
     })
@@ -250,7 +250,7 @@ function modifyUser() {
         }
     })
     .catch(error => {
-        console.error('Error:', error);
+        console.error('에러 발생:', error);
         alert('서버 오류 발생!'); // 서버 오류 메시지를 알림창으로 표시
     });
 }
@@ -260,8 +260,8 @@ function resetForm() {
     var confirmPwdField = document.getElementById('confirm_password');
     confirmPwdField.classList.remove('is-invalid'); // 초기화 시 invalid 클래스 제거
 }
-
 </script>
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.0/dist/umd/popper.min.js"></script>
