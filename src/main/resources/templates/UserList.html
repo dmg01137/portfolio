@@ -202,7 +202,7 @@
                             <table id="userTable" class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>선택</th>
+                                       
                                         <th>NO</th>
                                         <th>ID</th>
                                         <th>Name</th>
@@ -246,7 +246,7 @@ function fetchUsers() {
             data.forEach((user, index) => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td><input type="radio" name="selectedUser" class="user-radio" data-userid="${user.userId}"></td>
+                   
                     <td>${index + 1}</td>
                     <td>${user.user_id}</td>
                     <td>${user.user_name}</td>
