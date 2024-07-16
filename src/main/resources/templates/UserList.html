@@ -185,8 +185,7 @@
                 <div class="card-body">
                     <div class="body-section">
                         <h5 class="card-title mb-4">User List</h5>
-
-                        <!-- 검색 섹션 -->
+ <!-- 검색 섹션 -->
                         <div class="input-group mb-3 search-section">
                             <input type="text" id="searchInputID" class="form-control" placeholder="ID">
                             <input type="text" id="searchInputName" class="form-control" placeholder="Name">
@@ -202,7 +201,6 @@
                             <table id="userTable" class="table table-bordered">
                                 <thead>
                                     <tr>
-                                       
                                         <th>NO</th>
                                         <th>ID</th>
                                         <th>Name</th>
@@ -224,8 +222,6 @@
                             </nav>
                         </div>
 
-                        
-
                     </div>
                 </div>
             </div>
@@ -235,7 +231,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 <script>
-//사용자 데이터를 동적으로 가져와서 테이블에 추가하는 함수
+// 사용자 데이터를 동적으로 가져와서 테이블에 추가하는 함수
 function fetchUsers() {
     fetch('/api/users') // 백엔드 API 엔드포인트
         .then(response => response.json())
@@ -246,7 +242,6 @@ function fetchUsers() {
             data.forEach((user, index) => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                   
                     <td>${index + 1}</td>
                     <td>${user.user_id}</td>
                     <td>${user.user_name}</td>
@@ -309,7 +304,7 @@ function navigateToPage(pageNumber) {
     });
 }
 
-//페이지 로드 시 사용자 데이터 가져오기
+// 페이지 로드 시 사용자 데이터 가져오기
 document.addEventListener('DOMContentLoaded', function () {
     fetchUsers();
 });
@@ -319,16 +314,16 @@ function searchUsers() {
     const searchValueID = document.getElementById('searchInputID').value.toLowerCase();
     const searchValueName = document.getElementById('searchInputName').value.toLowerCase();
     const searchValuePrivilege = document.getElementById('searchInputPrivilege').value.toLowerCase();
-    const users = document.getElementsByClassName('user-list-item');
+    const users = document.querySelectorAll('.user-list-item');
 
-    Array.from(users).forEach(user => {
-        const userID = user.getElementsByTagName('td')[2].innerText.toLowerCase();
-        const userName = user.getElementsByTagName('td')[3].innerText.toLowerCase();
-        const userPrivilege = user.getElementsByTagName('td')[4].innerText.toLowerCase();
+    users.forEach(user => {
+        const userID = user.getElementsByTagName('td')[1].innerText.toLowerCase();
+        const userName = user.getElementsByTagName('td')[2].innerText.toLowerCase();
+        const userPrivilege = user.getElementsByTagName('td')[3].innerText.toLowerCase();
 
-        const idMatch = userID.includes(searchValueID);
-        const nameMatch = userName.includes(searchValueName);
-        const privilegeMatch = userPrivilege.includes(searchValuePrivilege);
+        const idMatch = searchValueID === '' || userID.includes(searchValueID);
+        const nameMatch = searchValueName === '' || userName.includes(searchValueName);
+        const privilegeMatch = searchValuePrivilege === '' || userPrivilege.includes(searchValuePrivilege);
 
         if (idMatch && nameMatch && privilegeMatch) {
             user.style.display = '';
@@ -354,9 +349,9 @@ function clearSearch() {
     document.getElementById('searchInputName').value = '';
     document.getElementById('searchInputPrivilege').value = '';
 
-    const users = document.getElementsByClassName('user-list-item');
+    const users = document.querySelectorAll('.user-list-item');
 
-    Array.from(users).forEach(user => {
+    users.forEach(user => {
         user.style.display = '';
     });
 
@@ -364,7 +359,7 @@ function clearSearch() {
     navigateToPage(1);
 }
 
-//사용자 선택 버튼 클릭 시 이벤트 핸들러
+// 사용자 선택 버튼 클릭 시 이벤트 핸들러
 // 수정 버튼 클릭 시 이벤트 핸들러
 document.getElementById('btnModify').addEventListener('click', function () {
     const checkedUser = document.querySelector('.user-radio:checked');
@@ -382,7 +377,6 @@ document.getElementById('btnModify').addEventListener('click', function () {
     const modifyUrl = `/modifyuser?user_id=${userId}`; // Pass userId as URL parameter
     window.location.href = modifyUrl; // Directly navigate to Modify User page
 });
- 
 
 document.addEventListener('DOMContentLoaded', function () {
     const selectedUserId = localStorage.getItem('selectedUserId');
@@ -409,13 +403,10 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // 나머지 수정 및 저장 관련 함수들
-
-
 var errorMessage = /*[[@{${error}}]]*/ null;
 if (errorMessage) {
     alert(errorMessage);
 }
-
 </script>
 
 </body>

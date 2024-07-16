@@ -1,0 +1,1116 @@
+09:33:48.740 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+09:33:48.747 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+09:33:59.412 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+09:33:59.412 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+09:34:18.750 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+09:34:18.750 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+09:34:21.116 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/userlist", parameters={}
+09:34:21.116 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#userlistForm(Model, HttpSession, RedirectAttributes)
+09:34:21.117 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:34:21.117 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5945eb1e] was not registered for synchronization because synchronization is not active
+09:34:21.117 [http-nio-8080-exec-7] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:34:21.118 [http-nio-8080-exec-7] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@832706557 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:34:21.118 [http-nio-8080-exec-7] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==>  Preparing: SELECT * FROM detection_db.user_data
+09:34:21.118 [http-nio-8080-exec-7] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==> Parameters: 
+09:34:21.118 [http-nio-8080-exec-7] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data
+09:34:21.121 [http-nio-8080-exec-7] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - <==      Total: 7
+09:34:21.121 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5945eb1e]
+09:34:21.122 [http-nio-8080-exec-7] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+09:34:21.129 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:21.150 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/users", parameters={}
+09:34:21.150 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#getUsers()
+09:34:21.150 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:34:21.150 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7cb94fba] was not registered for synchronization because synchronization is not active
+09:34:21.150 [http-nio-8080-exec-8] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:34:21.150 [http-nio-8080-exec-8] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1594378101 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:34:21.151 [http-nio-8080-exec-8] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==>  Preparing: SELECT * FROM detection_db.user_data
+09:34:21.151 [http-nio-8080-exec-8] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==> Parameters: 
+09:34:21.151 [http-nio-8080-exec-8] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data
+09:34:21.154 [http-nio-8080-exec-8] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - <==      Total: 7
+09:34:21.154 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7cb94fba]
+09:34:21.154 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+09:34:21.155 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[com.example.demo.dto.detection.Users@1d6b46a3, com.example.demo.dto.detection.Users@2b190e2b, com.e (truncated)...]
+09:34:21.156 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:21.193 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:34:21.193 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:34:21.193 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:34:21.193 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:34:21.193 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:22.387 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/join", parameters={}
+09:34:22.388 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#joinForm()
+09:34:22.388 [http-nio-8080-exec-10] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+09:34:22.391 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:22.706 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:34:22.706 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:34:22.707 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:34:22.707 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:34:22.707 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:22.877 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/modifyuser", parameters={}
+09:34:22.877 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#modify()
+09:34:22.878 [http-nio-8080-exec-2] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+09:34:22.882 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:22.934 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:34:22.935 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:34:22.936 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:34:22.937 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:34:22.937 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:23.317 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/deleteuser", parameters={}
+09:34:23.318 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#deleteuser(HttpSession, RedirectAttributes)
+09:34:23.318 [http-nio-8080-exec-6] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+09:34:23.320 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:23.368 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:34:23.368 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:34:23.368 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:34:23.369 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:34:23.369 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:24.507 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/dashboard", parameters={}
+09:34:24.507 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#dashboard(HttpSession, RedirectAttributes)
+09:34:24.508 [http-nio-8080-exec-5] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+09:34:24.511 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:24.575 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:34:24.576 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:34:24.577 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:34:24.578 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:34:24.578 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:27.967 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/policylist", parameters={}
+09:34:27.967 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.PatternDetectionController#showPolicyList(Model)
+09:34:27.970 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:34:27.970 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@19766715] was not registered for synchronization because synchronization is not active
+09:34:27.970 [http-nio-8080-exec-8] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:34:27.971 [http-nio-8080-exec-8] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1804385942 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:34:27.972 [http-nio-8080-exec-8] DEBUG c.e.d.d.d.P.getAllPatternDetections - ==>  Preparing: SELECT detection_number, s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous FROM detection_db.pattern_detection
+09:34:27.972 [http-nio-8080-exec-8] DEBUG c.e.d.d.d.P.getAllPatternDetections - ==> Parameters: 
+09:34:27.972 [http-nio-8080-exec-8] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT detection_number, s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
+        FROM detection_db.pattern_detection
+09:34:27.976 [http-nio-8080-exec-8] DEBUG c.e.d.d.d.P.getAllPatternDetections - <==      Total: 8
+09:34:27.977 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@19766715]
+09:34:27.977 [http-nio-8080-exec-8] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+09:34:27.982 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:28.067 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/search-pattern-detections", parameters={}
+09:34:28.068 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.PatternDetectionController#searchPatternDetections(SearchCriteria)
+09:34:28.077 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:34:28.077 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:34:28.077 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:34:28.077 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:34:28.077 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:28.110 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.demo.controller.log.SearchCriteria@346fa49b]
+09:34:28.111 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:34:28.111 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1f0837f5] was not registered for synchronization because synchronization is not active
+09:34:28.111 [http-nio-8080-exec-9] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:34:28.111 [http-nio-8080-exec-9] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1833956755 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:34:28.111 [http-nio-8080-exec-9] DEBUG c.e.d.d.d.P.getAllPatternDetections - ==>  Preparing: SELECT detection_number, s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous FROM detection_db.pattern_detection
+09:34:28.111 [http-nio-8080-exec-9] DEBUG c.e.d.d.d.P.getAllPatternDetections - ==> Parameters: 
+09:34:28.111 [http-nio-8080-exec-9] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT detection_number, s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
+        FROM detection_db.pattern_detection
+09:34:28.115 [http-nio-8080-exec-9] DEBUG c.e.d.d.d.P.getAllPatternDetections - <==      Total: 8
+09:34:28.116 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1f0837f5]
+09:34:28.116 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+09:34:28.121 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[PatternDetection{detection_number=1, s_to_ip='null', s_ip='192.168.1.73', d_ip='192.168.1.26', s_po (truncated)...]
+09:34:28.129 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:29.419 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+09:34:29.419 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+09:34:30.324 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/behaviorpolicy", parameters={}
+09:34:30.324 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.BehaviorDetectionController#showPolicyList2(Model)
+09:34:30.325 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:34:30.325 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@38f38a8e] was not registered for synchronization because synchronization is not active
+09:34:30.325 [http-nio-8080-exec-1] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:34:30.326 [http-nio-8080-exec-1] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@487193394 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:34:30.326 [http-nio-8080-exec-1] DEBUG c.e.d.d.d.B.getAllBehaviorDetections - ==>  Preparing: SELECT * FROM detection_db.behavior_detection
+09:34:30.326 [http-nio-8080-exec-1] DEBUG c.e.d.d.d.B.getAllBehaviorDetections - ==> Parameters: 
+09:34:30.326 [http-nio-8080-exec-1] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.behavior_detection
+09:34:30.331 [http-nio-8080-exec-1] DEBUG c.e.d.d.d.B.getAllBehaviorDetections - <==      Total: 4
+09:34:30.331 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@38f38a8e]
+09:34:30.332 [http-nio-8080-exec-1] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+09:34:30.336 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:30.365 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/search-behavior-detections", parameters={}
+09:34:30.365 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.BehaviorDetectionController#searchBehaviorDetections(BehaviorDetection)
+09:34:30.398 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [BehaviorDetection{detection_number=null, s_to_ip='null', s_ip='null', d_ip='null', s_port=null, d_po (truncated)...]
+09:34:30.399 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:34:30.399 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@468c6c4b] was not registered for synchronization because synchronization is not active
+09:34:30.399 [http-nio-8080-exec-2] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:34:30.400 [http-nio-8080-exec-2] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@788545 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:34:30.400 [http-nio-8080-exec-2] DEBUG c.e.d.d.d.B.searchBehaviorDetections - ==>  Preparing: SELECT * FROM detection_db.behavior_detection WHERE (detection_number LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (s_to_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (s_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (s_port = ? OR ? IS NULL) AND (d_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (d_port = ? OR ? IS NULL) AND (create_dt >= ? OR ? IS NULL) AND (modify_dt LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (action_type LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (policy_name LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (policy_info LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (base_cnt = ? OR ? IS NULL) AND (comp_cnt = ? OR ? IS NULL) AND (base_time = ? OR ? IS NULL) AND (pattern_1 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (pattern_2 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (pattern_3 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (dangerous = ? OR ? IS NULL)
+09:34:30.401 [http-nio-8080-exec-2] DEBUG c.e.d.d.d.B.searchBehaviorDetections - ==> Parameters: null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null
+09:34:30.401 [http-nio-8080-exec-2] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.behavior_detection
+    WHERE (detection_number LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (s_to_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    
+    AND (s_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (s_port = ? OR ? IS NULL)
+    AND (d_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+   
+    AND (d_port = ? OR ? IS NULL)
+    AND (create_dt >= ? OR ? IS NULL)
+    AND (modify_dt LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (action_type LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (policy_name LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (policy_info LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (base_cnt = ? OR ? IS NULL)
+    AND (comp_cnt = ? OR ? IS NULL)
+    AND (base_time = ? OR ? IS NULL)
+    AND (pattern_1 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (pattern_2 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (pattern_3 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (dangerous = ? OR ? IS NULL)
+09:34:30.406 [http-nio-8080-exec-2] DEBUG c.e.d.d.d.B.searchBehaviorDetections - <==      Total: 4
+09:34:30.406 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@468c6c4b]
+09:34:30.406 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+09:34:30.407 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[BehaviorDetection{detection_number=1, s_to_ip='null', s_ip='null', d_ip='192.168.1.33', s_port=3306 (truncated)...]
+09:34:30.408 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:34:30.408 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:34:30.408 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:34:30.408 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:34:30.408 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:30.410 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:30.876 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/policylist", parameters={}
+09:34:30.876 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.PatternDetectionController#showPolicyList(Model)
+09:34:30.876 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:34:30.876 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5c556a6d] was not registered for synchronization because synchronization is not active
+09:34:30.876 [http-nio-8080-exec-6] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:34:30.877 [http-nio-8080-exec-6] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1483404607 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:34:30.877 [http-nio-8080-exec-6] DEBUG c.e.d.d.d.P.getAllPatternDetections - ==>  Preparing: SELECT detection_number, s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous FROM detection_db.pattern_detection
+09:34:30.877 [http-nio-8080-exec-6] DEBUG c.e.d.d.d.P.getAllPatternDetections - ==> Parameters: 
+09:34:30.877 [http-nio-8080-exec-6] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT detection_number, s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
+        FROM detection_db.pattern_detection
+09:34:30.880 [http-nio-8080-exec-6] DEBUG c.e.d.d.d.P.getAllPatternDetections - <==      Total: 8
+09:34:30.881 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5c556a6d]
+09:34:30.882 [http-nio-8080-exec-6] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+09:34:30.886 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:30.914 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/search-pattern-detections", parameters={}
+09:34:30.914 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.PatternDetectionController#searchPatternDetections(SearchCriteria)
+09:34:30.915 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.demo.controller.log.SearchCriteria@ef60c30]
+09:34:30.915 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:34:30.915 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@67ac78e] was not registered for synchronization because synchronization is not active
+09:34:30.915 [http-nio-8080-exec-4] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:34:30.915 [http-nio-8080-exec-4] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@993952446 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:34:30.915 [http-nio-8080-exec-4] DEBUG c.e.d.d.d.P.getAllPatternDetections - ==>  Preparing: SELECT detection_number, s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous FROM detection_db.pattern_detection
+09:34:30.915 [http-nio-8080-exec-4] DEBUG c.e.d.d.d.P.getAllPatternDetections - ==> Parameters: 
+09:34:30.915 [http-nio-8080-exec-4] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT detection_number, s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
+        FROM detection_db.pattern_detection
+09:34:30.918 [http-nio-8080-exec-4] DEBUG c.e.d.d.d.P.getAllPatternDetections - <==      Total: 8
+09:34:30.918 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@67ac78e]
+09:34:30.919 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+09:34:30.919 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[PatternDetection{detection_number=1, s_to_ip='null', s_ip='192.168.1.73', d_ip='192.168.1.26', s_po (truncated)...]
+09:34:30.921 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:30.951 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:34:30.951 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:34:30.951 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:34:30.951 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:34:30.951 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:48.752 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+09:34:48.752 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+09:34:53.100 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/behaviorpolicy", parameters={}
+09:34:53.101 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.BehaviorDetectionController#showPolicyList2(Model)
+09:34:53.101 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:34:53.101 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3165463c] was not registered for synchronization because synchronization is not active
+09:34:53.101 [http-nio-8080-exec-7] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:34:53.102 [http-nio-8080-exec-7] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1192117781 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:34:53.102 [http-nio-8080-exec-7] DEBUG c.e.d.d.d.B.getAllBehaviorDetections - ==>  Preparing: SELECT * FROM detection_db.behavior_detection
+09:34:53.102 [http-nio-8080-exec-7] DEBUG c.e.d.d.d.B.getAllBehaviorDetections - ==> Parameters: 
+09:34:53.102 [http-nio-8080-exec-7] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.behavior_detection
+09:34:53.105 [http-nio-8080-exec-7] DEBUG c.e.d.d.d.B.getAllBehaviorDetections - <==      Total: 4
+09:34:53.105 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3165463c]
+09:34:53.106 [http-nio-8080-exec-7] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+09:34:53.112 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:53.143 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/search-behavior-detections", parameters={}
+09:34:53.143 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.BehaviorDetectionController#searchBehaviorDetections(BehaviorDetection)
+09:34:53.144 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [BehaviorDetection{detection_number=null, s_to_ip='null', s_ip='null', d_ip='null', s_port=null, d_po (truncated)...]
+09:34:53.144 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:34:53.144 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@63205f18] was not registered for synchronization because synchronization is not active
+09:34:53.145 [http-nio-8080-exec-8] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:34:53.145 [http-nio-8080-exec-8] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1010992985 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:34:53.145 [http-nio-8080-exec-8] DEBUG c.e.d.d.d.B.searchBehaviorDetections - ==>  Preparing: SELECT * FROM detection_db.behavior_detection WHERE (detection_number LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (s_to_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (s_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (s_port = ? OR ? IS NULL) AND (d_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (d_port = ? OR ? IS NULL) AND (create_dt >= ? OR ? IS NULL) AND (modify_dt LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (action_type LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (policy_name LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (policy_info LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (base_cnt = ? OR ? IS NULL) AND (comp_cnt = ? OR ? IS NULL) AND (base_time = ? OR ? IS NULL) AND (pattern_1 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (pattern_2 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (pattern_3 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (dangerous = ? OR ? IS NULL)
+09:34:53.145 [http-nio-8080-exec-8] DEBUG c.e.d.d.d.B.searchBehaviorDetections - ==> Parameters: null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null
+09:34:53.145 [http-nio-8080-exec-8] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.behavior_detection
+    WHERE (detection_number LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (s_to_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    
+    AND (s_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (s_port = ? OR ? IS NULL)
+    AND (d_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+   
+    AND (d_port = ? OR ? IS NULL)
+    AND (create_dt >= ? OR ? IS NULL)
+    AND (modify_dt LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (action_type LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (policy_name LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (policy_info LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (base_cnt = ? OR ? IS NULL)
+    AND (comp_cnt = ? OR ? IS NULL)
+    AND (base_time = ? OR ? IS NULL)
+    AND (pattern_1 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (pattern_2 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (pattern_3 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (dangerous = ? OR ? IS NULL)
+09:34:53.150 [http-nio-8080-exec-8] DEBUG c.e.d.d.d.B.searchBehaviorDetections - <==      Total: 4
+09:34:53.151 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@63205f18]
+09:34:53.151 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+09:34:53.152 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[BehaviorDetection{detection_number=1, s_to_ip='null', s_ip='null', d_ip='192.168.1.33', s_port=3306 (truncated)...]
+09:34:53.154 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:53.182 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:34:53.182 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:34:53.182 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:34:53.182 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:34:53.182 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:34:59.434 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+09:34:59.434 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+09:35:06.342 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/patternlog", parameters={}
+09:35:06.342 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#patternlog()
+09:35:06.343 [http-nio-8080-exec-9] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+09:35:06.347 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:35:06.378 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/patternlogs", parameters={}
+09:35:06.378 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.PatternLogController#getAllPatternLogs()
+09:35:06.379 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:35:06.379 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@290ed1ff] was not registered for synchronization because synchronization is not active
+09:35:06.379 [http-nio-8080-exec-1] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:35:06.380 [http-nio-8080-exec-1] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1898706484 wrapping org.mariadb.jdbc.Connection@1c96e642] will not be managed by Spring
+09:35:06.380 [http-nio-8080-exec-1] DEBUG c.e.d.dao.log.PatternLogDAO.findAll - ==>  Preparing: SELECT * FROM log_db.pattern_log
+09:35:06.380 [http-nio-8080-exec-1] DEBUG c.e.d.dao.log.PatternLogDAO.findAll - ==> Parameters: 
+09:35:06.380 [http-nio-8080-exec-1] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM log_db.pattern_log
+09:35:06.390 [http-nio-8080-exec-1] DEBUG c.e.d.dao.log.PatternLogDAO.findAll - <==      Total: 3
+09:35:06.390 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@290ed1ff]
+09:35:06.393 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+09:35:06.399 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[PatternLog{detection_number=1, time='2024-07-10 09:00:00', sIp='192.168.1.1', dIp='10.0.0.1', sPort (truncated)...]
+09:35:06.403 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:35:06.405 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:35:06.405 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:35:06.406 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:35:06.406 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:35:06.406 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:35:07.276 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/userlist", parameters={}
+09:35:07.276 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#userlistForm(Model, HttpSession, RedirectAttributes)
+09:35:07.276 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:35:07.276 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5203ce66] was not registered for synchronization because synchronization is not active
+09:35:07.276 [http-nio-8080-exec-2] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:35:07.278 [http-nio-8080-exec-2] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1267272207 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:35:07.278 [http-nio-8080-exec-2] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==>  Preparing: SELECT * FROM detection_db.user_data
+09:35:07.278 [http-nio-8080-exec-2] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==> Parameters: 
+09:35:07.278 [http-nio-8080-exec-2] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data
+09:35:07.279 [http-nio-8080-exec-2] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - <==      Total: 7
+09:35:07.280 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5203ce66]
+09:35:07.280 [http-nio-8080-exec-2] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+09:35:07.286 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:35:07.308 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/users", parameters={}
+09:35:07.309 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#getUsers()
+09:35:07.309 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:35:07.309 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5bcef552] was not registered for synchronization because synchronization is not active
+09:35:07.309 [http-nio-8080-exec-6] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:35:07.309 [http-nio-8080-exec-6] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@750778948 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:35:07.309 [http-nio-8080-exec-6] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==>  Preparing: SELECT * FROM detection_db.user_data
+09:35:07.309 [http-nio-8080-exec-6] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==> Parameters: 
+09:35:07.310 [http-nio-8080-exec-6] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data
+09:35:07.312 [http-nio-8080-exec-6] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - <==      Total: 7
+09:35:07.312 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5bcef552]
+09:35:07.312 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+09:35:07.313 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[com.example.demo.dto.detection.Users@23f331e1, com.example.demo.dto.detection.Users@7d479f19, com.e (truncated)...]
+09:35:07.313 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:35:07.341 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:35:07.341 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:35:07.342 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:35:07.342 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:35:07.342 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:35:08.642 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:35:08.643 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:35:08.643 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:35:08.643 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:35:08.643 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:35:11.395 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/modifyuser", parameters={}
+09:35:11.395 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#modify()
+09:35:11.396 [http-nio-8080-exec-7] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+09:35:11.399 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:35:11.709 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:35:11.709 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:35:11.709 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:35:11.709 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:35:11.710 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:35:17.194 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - POST "/modifyuser", parameters={}
+09:35:17.194 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#modifyUserSubmit(Users, HttpSession, RedirectAttributes)
+09:35:17.197 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.demo.dto.detection.Users@14be5c89]
+09:35:17.197 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:35:17.197 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6efc4b5f] was not registered for synchronization because synchronization is not active
+09:35:17.197 [http-nio-8080-exec-10] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:35:17.198 [http-nio-8080-exec-10] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1165893709 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:35:17.198 [http-nio-8080-exec-10] DEBUG c.e.d.d.d.UsersDAO.getUserById - ==>  Preparing: SELECT * FROM detection_db.user_data WHERE user_id = ?
+09:35:17.198 [http-nio-8080-exec-10] DEBUG c.e.d.d.d.UsersDAO.getUserById - ==> Parameters: 1(String)
+09:35:17.198 [http-nio-8080-exec-10] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data  WHERE user_id = ?
+09:35:17.200 [http-nio-8080-exec-10] DEBUG c.e.d.d.d.UsersDAO.getUserById - <==      Total: 0
+09:35:17.200 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6efc4b5f]
+09:35:17.200 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.view.RedirectView - View name 'redirect:', model {}
+09:35:17.200 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 302 FOUND
+09:35:17.203 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/admin", parameters={}
+09:35:17.203 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#admin(HttpSession, RedirectAttributes)
+09:35:17.203 [http-nio-8080-exec-9] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected '*/*' given [*/*]
+09:35:17.206 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:35:18.764 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+09:35:18.764 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+09:35:19.571 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/join", parameters={}
+09:35:19.572 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#joinForm()
+09:35:19.572 [http-nio-8080-exec-1] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+09:35:19.578 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:35:19.631 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:35:19.631 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:35:19.632 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:35:19.632 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:35:19.632 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:35:22.144 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - POST "/join", parameters={}
+09:35:22.145 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#joinSubmit(Users)
+09:35:22.146 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.demo.dto.detection.Users@312e3c59]
+09:35:22.251 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:35:22.251 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7d92b4e4] was not registered for synchronization because synchronization is not active
+09:35:22.251 [http-nio-8080-exec-2] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:35:22.253 [http-nio-8080-exec-2] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@705988554 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:35:22.253 [http-nio-8080-exec-2] DEBUG c.e.d.dao.detection.UsersDAO.addUser - ==>  Preparing: INSERT INTO detection_db.user_data (user_id, password, user_privilege, user_name) VALUES (?, ?, ?, ?)
+09:35:22.253 [http-nio-8080-exec-2] DEBUG c.e.d.dao.detection.UsersDAO.addUser - ==> Parameters: 1(String), $2a$10$8xK3L0Yvd/IVP6R1dxTmj.eC9VWij6ZYuY2jrglDFS9Oa5jmQb30u(String), admin(String), 1(String)
+09:35:22.253 [http-nio-8080-exec-2] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: INSERT INTO detection_db.user_data (user_id, password, user_privilege, user_name)
+        VALUES (?, ?, ?, ?)
+09:35:22.256 [http-nio-8080-exec-2] DEBUG c.e.d.dao.detection.UsersDAO.addUser - <==    Updates: 1
+09:35:22.256 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7d92b4e4]
+09:35:22.257 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'text/plain', given [*/*] and supported [text/plain, */*, application/json, application/*+json]
+09:35:22.257 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing ["success"]
+09:35:22.258 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:35:26.897 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - POST "/join", parameters={}
+09:35:26.897 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#joinSubmit(Users)
+09:35:26.898 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.demo.dto.detection.Users@5f7c95a8]
+09:35:27.006 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:35:27.006 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5c457531] was not registered for synchronization because synchronization is not active
+09:35:27.006 [http-nio-8080-exec-6] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:35:27.007 [http-nio-8080-exec-6] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1775169248 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:35:27.007 [http-nio-8080-exec-6] DEBUG c.e.d.dao.detection.UsersDAO.addUser - ==>  Preparing: INSERT INTO detection_db.user_data (user_id, password, user_privilege, user_name) VALUES (?, ?, ?, ?)
+09:35:27.008 [http-nio-8080-exec-6] DEBUG c.e.d.dao.detection.UsersDAO.addUser - ==> Parameters: 2(String), $2a$10$vHEuPtImZQVsxPEj0ueHGuqOzAmaye6bCyi8wR7Rq1dw2XvBdSe5S(String), admin(String), 2(String)
+09:35:27.008 [http-nio-8080-exec-6] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: INSERT INTO detection_db.user_data (user_id, password, user_privilege, user_name)
+        VALUES (?, ?, ?, ?)
+09:35:27.023 [http-nio-8080-exec-6] DEBUG c.e.d.dao.detection.UsersDAO.addUser - <==    Updates: 1
+09:35:27.023 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5c457531]
+09:35:27.024 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'text/plain', given [*/*] and supported [text/plain, */*, application/json, application/*+json]
+09:35:27.024 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing ["success"]
+09:35:27.024 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:35:29.441 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+09:35:29.441 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+09:35:31.104 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - POST "/join", parameters={}
+09:35:31.105 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#joinSubmit(Users)
+09:35:31.105 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.demo.dto.detection.Users@64926efd]
+09:35:31.212 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:35:31.213 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5a3b69d3] was not registered for synchronization because synchronization is not active
+09:35:31.213 [http-nio-8080-exec-4] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:35:31.214 [http-nio-8080-exec-4] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@170754989 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:35:31.214 [http-nio-8080-exec-4] DEBUG c.e.d.dao.detection.UsersDAO.addUser - ==>  Preparing: INSERT INTO detection_db.user_data (user_id, password, user_privilege, user_name) VALUES (?, ?, ?, ?)
+09:35:31.214 [http-nio-8080-exec-4] DEBUG c.e.d.dao.detection.UsersDAO.addUser - ==> Parameters: 3(String), $2a$10$dfuObFyKN.lr7ht1kNnCIulULVEPPDVzGC8Oz.BWYW/Kb7mtwodKG(String), admin(String), 3(String)
+09:35:31.214 [http-nio-8080-exec-4] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: INSERT INTO detection_db.user_data (user_id, password, user_privilege, user_name)
+        VALUES (?, ?, ?, ?)
+09:35:31.217 [http-nio-8080-exec-4] DEBUG c.e.d.dao.detection.UsersDAO.addUser - <==    Updates: 1
+09:35:31.217 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5a3b69d3]
+09:35:31.217 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'text/plain', given [*/*] and supported [text/plain, */*, application/json, application/*+json]
+09:35:31.217 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing ["success"]
+09:35:31.217 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:35:35.904 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - POST "/join", parameters={}
+09:35:35.905 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#joinSubmit(Users)
+09:35:35.905 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.demo.dto.detection.Users@c4f8c43]
+09:35:36.016 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:35:36.016 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@70b05d84] was not registered for synchronization because synchronization is not active
+09:35:36.016 [http-nio-8080-exec-5] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:35:36.018 [http-nio-8080-exec-5] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1617437342 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:35:36.018 [http-nio-8080-exec-5] DEBUG c.e.d.dao.detection.UsersDAO.addUser - ==>  Preparing: INSERT INTO detection_db.user_data (user_id, password, user_privilege, user_name) VALUES (?, ?, ?, ?)
+09:35:36.018 [http-nio-8080-exec-5] DEBUG c.e.d.dao.detection.UsersDAO.addUser - ==> Parameters: 4(String), $2a$10$yGwWgyRFs2XDSTxhNarqCutQ0jg7pVesO8vNlwVtvT43pY19U4Q4q(String), admin(String), 4(String)
+09:35:36.018 [http-nio-8080-exec-5] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: INSERT INTO detection_db.user_data (user_id, password, user_privilege, user_name)
+        VALUES (?, ?, ?, ?)
+09:35:36.034 [http-nio-8080-exec-5] DEBUG c.e.d.dao.detection.UsersDAO.addUser - <==    Updates: 1
+09:35:36.034 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@70b05d84]
+09:35:36.034 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'text/plain', given [*/*] and supported [text/plain, */*, application/json, application/*+json]
+09:35:36.034 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing ["success"]
+09:35:36.034 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:35:40.584 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - POST "/join", parameters={}
+09:35:40.584 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#joinSubmit(Users)
+09:35:40.585 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.demo.dto.detection.Users@30394838]
+09:35:40.692 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:35:40.693 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5329ec4] was not registered for synchronization because synchronization is not active
+09:35:40.693 [http-nio-8080-exec-7] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:35:40.694 [http-nio-8080-exec-7] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1989433224 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:35:40.694 [http-nio-8080-exec-7] DEBUG c.e.d.dao.detection.UsersDAO.addUser - ==>  Preparing: INSERT INTO detection_db.user_data (user_id, password, user_privilege, user_name) VALUES (?, ?, ?, ?)
+09:35:40.694 [http-nio-8080-exec-7] DEBUG c.e.d.dao.detection.UsersDAO.addUser - ==> Parameters: 5(String), $2a$10$bCCMAP9H9iSL4uC03z4IOOMK1cla9luSAV4or10yaYNb7nPQJHdbe(String), admin(String), 5(String)
+09:35:40.694 [http-nio-8080-exec-7] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: INSERT INTO detection_db.user_data (user_id, password, user_privilege, user_name)
+        VALUES (?, ?, ?, ?)
+09:35:40.710 [http-nio-8080-exec-7] DEBUG c.e.d.dao.detection.UsersDAO.addUser - <==    Updates: 1
+09:35:40.710 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5329ec4]
+09:35:40.710 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'text/plain', given [*/*] and supported [text/plain, */*, application/json, application/*+json]
+09:35:40.710 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing ["success"]
+09:35:40.711 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:35:41.891 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/userlist", parameters={}
+09:35:41.891 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#userlistForm(Model, HttpSession, RedirectAttributes)
+09:35:41.892 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:35:41.892 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5e9c8bdc] was not registered for synchronization because synchronization is not active
+09:35:41.892 [http-nio-8080-exec-8] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:35:41.893 [http-nio-8080-exec-8] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@311238413 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:35:41.893 [http-nio-8080-exec-8] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==>  Preparing: SELECT * FROM detection_db.user_data
+09:35:41.893 [http-nio-8080-exec-8] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==> Parameters: 
+09:35:41.893 [http-nio-8080-exec-8] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data
+09:35:41.896 [http-nio-8080-exec-8] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - <==      Total: 12
+09:35:41.896 [http-nio-8080-exec-8] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5e9c8bdc]
+09:35:41.897 [http-nio-8080-exec-8] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+09:35:41.904 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:35:41.928 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/users", parameters={}
+09:35:41.928 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#getUsers()
+09:35:41.928 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:35:41.928 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1f6e6496] was not registered for synchronization because synchronization is not active
+09:35:41.928 [http-nio-8080-exec-10] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:35:41.928 [http-nio-8080-exec-10] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@2043816422 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:35:41.928 [http-nio-8080-exec-10] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==>  Preparing: SELECT * FROM detection_db.user_data
+09:35:41.929 [http-nio-8080-exec-10] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==> Parameters: 
+09:35:41.929 [http-nio-8080-exec-10] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data
+09:35:41.932 [http-nio-8080-exec-10] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - <==      Total: 12
+09:35:41.932 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1f6e6496]
+09:35:41.932 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+09:35:41.932 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[com.example.demo.dto.detection.Users@75f82330, com.example.demo.dto.detection.Users@4130198a, com.e (truncated)...]
+09:35:41.933 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:35:41.964 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:35:41.964 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:35:41.965 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:35:41.965 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:35:41.965 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:35:43.204 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:35:43.204 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:35:43.205 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:35:43.205 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:35:43.205 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:35:48.776 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+09:35:48.776 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+09:35:59.450 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+09:35:59.450 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+09:36:18.788 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+09:36:18.788 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+09:36:21.674 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/deleteuser", parameters={}
+09:36:21.675 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#deleteuser(HttpSession, RedirectAttributes)
+09:36:21.676 [http-nio-8080-exec-2] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+09:36:21.678 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:36:21.736 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:36:21.736 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:36:21.736 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:36:21.739 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:36:21.739 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:36:26.108 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - POST "/deleteuser", parameters={masked}
+09:36:26.108 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#deleteUser(String, String, HttpSession, RedirectAttributes)
+09:36:26.212 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:36:26.212 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@55f9ffac] was not registered for synchronization because synchronization is not active
+09:36:26.213 [http-nio-8080-exec-4] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:36:26.215 [http-nio-8080-exec-4] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1583521500 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:36:26.215 [http-nio-8080-exec-4] DEBUG c.e.d.d.d.UsersDAO.getUserById - ==>  Preparing: SELECT * FROM detection_db.user_data WHERE user_id = ?
+09:36:26.215 [http-nio-8080-exec-4] DEBUG c.e.d.d.d.UsersDAO.getUserById - ==> Parameters: 4(String)
+09:36:26.215 [http-nio-8080-exec-4] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data  WHERE user_id = ?
+09:36:26.216 [http-nio-8080-exec-4] DEBUG c.e.d.d.d.UsersDAO.getUserById - <==      Total: 1
+09:36:26.216 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@55f9ffac]
+09:36:26.216 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:36:26.216 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@31d14966] was not registered for synchronization because synchronization is not active
+09:36:26.216 [http-nio-8080-exec-4] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:36:26.216 [http-nio-8080-exec-4] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@2074095241 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:36:26.216 [http-nio-8080-exec-4] DEBUG c.e.d.d.d.UsersDAO.deleteUserById - ==>  Preparing: DELETE FROM detection_db.user_data WHERE user_id = ?
+09:36:26.216 [http-nio-8080-exec-4] DEBUG c.e.d.d.d.UsersDAO.deleteUserById - ==> Parameters: 4(String)
+09:36:26.216 [http-nio-8080-exec-4] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: DELETE FROM detection_db.user_data WHERE user_id = ?
+09:36:26.232 [http-nio-8080-exec-4] DEBUG c.e.d.d.d.UsersDAO.deleteUserById - <==    Updates: 1
+09:36:26.232 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@31d14966]
+09:36:26.232 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.view.RedirectView - View name 'redirect:', model {}
+09:36:26.232 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 302 FOUND
+09:36:26.234 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/admin", parameters={}
+09:36:26.235 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#admin(HttpSession, RedirectAttributes)
+09:36:26.235 [http-nio-8080-exec-5] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected '*/*' given [*/*]
+09:36:26.240 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:36:28.600 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - POST "/deleteuser", parameters={masked}
+09:36:28.601 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#deleteUser(String, String, HttpSession, RedirectAttributes)
+09:36:28.705 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:36:28.705 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@68820e49] was not registered for synchronization because synchronization is not active
+09:36:28.705 [http-nio-8080-exec-7] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:36:28.707 [http-nio-8080-exec-7] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@302048233 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:36:28.707 [http-nio-8080-exec-7] DEBUG c.e.d.d.d.UsersDAO.getUserById - ==>  Preparing: SELECT * FROM detection_db.user_data WHERE user_id = ?
+09:36:28.707 [http-nio-8080-exec-7] DEBUG c.e.d.d.d.UsersDAO.getUserById - ==> Parameters: 5(String)
+09:36:28.707 [http-nio-8080-exec-7] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data  WHERE user_id = ?
+09:36:28.708 [http-nio-8080-exec-7] DEBUG c.e.d.d.d.UsersDAO.getUserById - <==      Total: 1
+09:36:28.708 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@68820e49]
+09:36:28.708 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:36:28.708 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3559bd3] was not registered for synchronization because synchronization is not active
+09:36:28.708 [http-nio-8080-exec-7] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:36:28.708 [http-nio-8080-exec-7] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1470739494 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:36:28.708 [http-nio-8080-exec-7] DEBUG c.e.d.d.d.UsersDAO.deleteUserById - ==>  Preparing: DELETE FROM detection_db.user_data WHERE user_id = ?
+09:36:28.708 [http-nio-8080-exec-7] DEBUG c.e.d.d.d.UsersDAO.deleteUserById - ==> Parameters: 5(String)
+09:36:28.708 [http-nio-8080-exec-7] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: DELETE FROM detection_db.user_data WHERE user_id = ?
+09:36:28.710 [http-nio-8080-exec-7] DEBUG c.e.d.d.d.UsersDAO.deleteUserById - <==    Updates: 1
+09:36:28.710 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3559bd3]
+09:36:28.710 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.view.RedirectView - View name 'redirect:', model {}
+09:36:28.711 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 302 FOUND
+09:36:28.713 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/admin", parameters={}
+09:36:28.713 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#admin(HttpSession, RedirectAttributes)
+09:36:28.713 [http-nio-8080-exec-8] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected '*/*' given [*/*]
+09:36:28.715 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:36:29.459 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+09:36:29.459 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+09:36:30.082 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/userlist", parameters={}
+09:36:30.083 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#userlistForm(Model, HttpSession, RedirectAttributes)
+09:36:30.083 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:36:30.083 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6052fdaa] was not registered for synchronization because synchronization is not active
+09:36:30.083 [http-nio-8080-exec-10] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:36:30.085 [http-nio-8080-exec-10] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1285520308 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:36:30.085 [http-nio-8080-exec-10] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==>  Preparing: SELECT * FROM detection_db.user_data
+09:36:30.085 [http-nio-8080-exec-10] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==> Parameters: 
+09:36:30.085 [http-nio-8080-exec-10] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data
+09:36:30.087 [http-nio-8080-exec-10] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - <==      Total: 10
+09:36:30.088 [http-nio-8080-exec-10] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6052fdaa]
+09:36:30.089 [http-nio-8080-exec-10] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+09:36:30.095 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:36:30.118 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/users", parameters={}
+09:36:30.119 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#getUsers()
+09:36:30.119 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:36:30.119 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6182b794] was not registered for synchronization because synchronization is not active
+09:36:30.119 [http-nio-8080-exec-9] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:36:30.119 [http-nio-8080-exec-9] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@234585082 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:36:30.119 [http-nio-8080-exec-9] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==>  Preparing: SELECT * FROM detection_db.user_data
+09:36:30.119 [http-nio-8080-exec-9] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==> Parameters: 
+09:36:30.119 [http-nio-8080-exec-9] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data
+09:36:30.121 [http-nio-8080-exec-9] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - <==      Total: 10
+09:36:30.121 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6182b794]
+09:36:30.122 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+09:36:30.122 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[com.example.demo.dto.detection.Users@4dbab99b, com.example.demo.dto.detection.Users@1bc82f7d, com.e (truncated)...]
+09:36:30.123 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:36:30.166 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:36:30.167 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:36:30.168 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:36:30.168 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:36:30.168 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:36:41.554 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/join", parameters={}
+09:36:41.555 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#joinForm()
+09:36:41.556 [http-nio-8080-exec-3] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+09:36:41.558 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:36:41.871 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:36:41.871 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:36:41.871 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:36:41.871 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:36:41.871 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:36:48.789 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+09:36:48.789 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+09:36:48.873 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - POST "/join", parameters={}
+09:36:48.873 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#joinSubmit(Users)
+09:36:48.874 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.demo.dto.detection.Users@392b8622]
+09:36:48.981 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:36:48.981 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46aff42] was not registered for synchronization because synchronization is not active
+09:36:48.981 [http-nio-8080-exec-6] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:36:48.982 [http-nio-8080-exec-6] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@492590231 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:36:48.982 [http-nio-8080-exec-6] DEBUG c.e.d.dao.detection.UsersDAO.addUser - ==>  Preparing: INSERT INTO detection_db.user_data (user_id, password, user_privilege, user_name) VALUES (?, ?, ?, ?)
+09:36:48.982 [http-nio-8080-exec-6] DEBUG c.e.d.dao.detection.UsersDAO.addUser - ==> Parameters: 4(String), $2a$10$w./.CZa84DzjWMvxyHJXNeh8BoXnh4E0RoWxQOLDmQd1gt/00AspC(String), admin(String), 0716(String)
+09:36:48.982 [http-nio-8080-exec-6] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: INSERT INTO detection_db.user_data (user_id, password, user_privilege, user_name)
+        VALUES (?, ?, ?, ?)
+09:36:48.999 [http-nio-8080-exec-6] DEBUG c.e.d.dao.detection.UsersDAO.addUser - <==    Updates: 1
+09:36:48.999 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46aff42]
+09:36:48.999 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'text/plain', given [*/*] and supported [text/plain, */*, application/json, application/*+json]
+09:36:48.999 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing ["success"]
+09:36:48.999 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:36:56.145 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - POST "/join", parameters={}
+09:36:56.145 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#joinSubmit(Users)
+09:36:56.146 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.demo.dto.detection.Users@4ab5dc3e]
+09:36:56.252 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:36:56.252 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@581e0ec5] was not registered for synchronization because synchronization is not active
+09:36:56.252 [http-nio-8080-exec-4] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:36:56.253 [http-nio-8080-exec-4] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@994230213 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:36:56.253 [http-nio-8080-exec-4] DEBUG c.e.d.dao.detection.UsersDAO.addUser - ==>  Preparing: INSERT INTO detection_db.user_data (user_id, password, user_privilege, user_name) VALUES (?, ?, ?, ?)
+09:36:56.254 [http-nio-8080-exec-4] DEBUG c.e.d.dao.detection.UsersDAO.addUser - ==> Parameters: 5(String), $2a$10$CpziyTsI.3mICyr7D4xjyeKnsexuei9lQWyhUU10xYuwatoJZYDFW(String), admin(String), 5(String)
+09:36:56.254 [http-nio-8080-exec-4] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: INSERT INTO detection_db.user_data (user_id, password, user_privilege, user_name)
+        VALUES (?, ?, ?, ?)
+09:36:56.256 [http-nio-8080-exec-4] DEBUG c.e.d.dao.detection.UsersDAO.addUser - <==    Updates: 1
+09:36:56.256 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@581e0ec5]
+09:36:56.256 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'text/plain', given [*/*] and supported [text/plain, */*, application/json, application/*+json]
+09:36:56.256 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing ["success"]
+09:36:56.257 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:36:57.876 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/userlist", parameters={}
+09:36:57.876 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#userlistForm(Model, HttpSession, RedirectAttributes)
+09:36:57.877 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:36:57.877 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1704b48c] was not registered for synchronization because synchronization is not active
+09:36:57.877 [http-nio-8080-exec-5] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:36:57.878 [http-nio-8080-exec-5] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1697286037 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:36:57.878 [http-nio-8080-exec-5] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==>  Preparing: SELECT * FROM detection_db.user_data
+09:36:57.878 [http-nio-8080-exec-5] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==> Parameters: 
+09:36:57.878 [http-nio-8080-exec-5] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data
+09:36:57.880 [http-nio-8080-exec-5] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - <==      Total: 12
+09:36:57.880 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1704b48c]
+09:36:57.881 [http-nio-8080-exec-5] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+09:36:57.888 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:36:57.911 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/users", parameters={}
+09:36:57.911 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#getUsers()
+09:36:57.911 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:36:57.911 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4f5aaaa3] was not registered for synchronization because synchronization is not active
+09:36:57.911 [http-nio-8080-exec-7] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:36:57.911 [http-nio-8080-exec-7] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@588137961 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:36:57.912 [http-nio-8080-exec-7] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==>  Preparing: SELECT * FROM detection_db.user_data
+09:36:57.912 [http-nio-8080-exec-7] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==> Parameters: 
+09:36:57.912 [http-nio-8080-exec-7] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data
+09:36:57.914 [http-nio-8080-exec-7] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - <==      Total: 12
+09:36:57.915 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4f5aaaa3]
+09:36:57.915 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+09:36:57.915 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[com.example.demo.dto.detection.Users@3826ca98, com.example.demo.dto.detection.Users@4689bde2, com.e (truncated)...]
+09:36:57.915 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:36:57.952 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:36:57.953 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:36:57.954 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:36:57.954 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:36:57.954 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:36:59.363 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:36:59.363 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:36:59.364 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:36:59.364 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:36:59.364 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:36:59.473 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+09:36:59.473 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+09:37:00.787 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/modifyuser", parameters={}
+09:37:00.787 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#modify()
+09:37:00.788 [http-nio-8080-exec-9] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+09:37:00.791 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:37:01.100 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:37:01.100 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:37:01.101 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:37:01.101 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:37:01.101 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:37:04.960 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - POST "/modifyuser", parameters={}
+09:37:04.960 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#modifyUserSubmit(Users, HttpSession, RedirectAttributes)
+09:37:04.961 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.demo.dto.detection.Users@6a55f3d]
+09:37:04.961 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:37:04.961 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@214d4260] was not registered for synchronization because synchronization is not active
+09:37:04.961 [http-nio-8080-exec-3] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:37:04.962 [http-nio-8080-exec-3] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@964910383 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:37:04.962 [http-nio-8080-exec-3] DEBUG c.e.d.d.d.UsersDAO.getUserById - ==>  Preparing: SELECT * FROM detection_db.user_data WHERE user_id = ?
+09:37:04.962 [http-nio-8080-exec-3] DEBUG c.e.d.d.d.UsersDAO.getUserById - ==> Parameters: 4(String)
+09:37:04.962 [http-nio-8080-exec-3] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data  WHERE user_id = ?
+09:37:04.964 [http-nio-8080-exec-3] DEBUG c.e.d.d.d.UsersDAO.getUserById - <==      Total: 1
+09:37:04.964 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@214d4260]
+09:37:05.066 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:37:05.066 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7aa9352c] was not registered for synchronization because synchronization is not active
+09:37:05.066 [http-nio-8080-exec-3] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:37:05.066 [http-nio-8080-exec-3] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1457115635 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:37:05.067 [http-nio-8080-exec-3] DEBUG c.e.d.d.d.UsersDAO.updateUser - ==>  Preparing: UPDATE detection_db.user_data SET user_name = ?, user_privilege = ?, password = ? WHERE user_id = ?
+09:37:05.067 [http-nio-8080-exec-3] DEBUG c.e.d.d.d.UsersDAO.updateUser - ==> Parameters: 4(String), admin(String), $2a$10$fY4IaGSVBxDQ4DfVsGiN.e2NGGJg/KMCKv0rFtc6UiL7KA/gMjLKe(String), 4(String)
+09:37:05.067 [http-nio-8080-exec-3] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: UPDATE detection_db.user_data
+        SET user_name = ?,
+            user_privilege = ?,
+            password = ?
+        WHERE user_id = ?
+09:37:05.083 [http-nio-8080-exec-3] DEBUG c.e.d.d.d.UsersDAO.updateUser - <==    Updates: 1
+09:37:05.083 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7aa9352c]
+09:37:05.083 [http-nio-8080-exec-3] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected '*/*' given [*/*]
+09:37:05.084 [http-nio-8080-exec-3] ERROR org.thymeleaf.TemplateEngine - [THYMELEAF][http-nio-8080-exec-3] Exception processing template "success": Error resolving template [success], template might not exist or might not be accessible by any of the configured Template Resolvers
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template [success], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1103)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1077)
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:372)
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1431)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1167)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1106)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+09:37:05.085 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Error rendering view [org.thymeleaf.spring6.view.ThymeleafView@146b7710]
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template [success], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1103)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1077)
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:372)
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1431)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1167)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1106)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+09:37:05.085 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Failed to complete request: org.thymeleaf.exceptions.TemplateInputException: Error resolving template [success], template might not exist or might not be accessible by any of the configured Template Resolvers
+09:37:05.085 [http-nio-8080-exec-3] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.thymeleaf.exceptions.TemplateInputException: Error resolving template [success], template might not exist or might not be accessible by any of the configured Template Resolvers] with root cause
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template [success], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1103)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1077)
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:372)
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1431)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1167)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1106)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+09:37:05.091 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - "ERROR" dispatch for POST "/error", parameters={}
+09:37:05.092 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+09:37:05.096 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+09:37:05.096 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{timestamp=Tue Jul 16 09:37:05 KST 2024, status=500, error=Internal Server Error, trace=org.thymelea (truncated)...]
+09:37:05.102 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Exiting from "ERROR" dispatch, status 500
+09:37:07.408 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - POST "/modifyuser", parameters={}
+09:37:07.408 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#modifyUserSubmit(Users, HttpSession, RedirectAttributes)
+09:37:07.408 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [com.example.demo.dto.detection.Users@62fb4405]
+09:37:07.408 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:37:07.409 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10add35d] was not registered for synchronization because synchronization is not active
+09:37:07.409 [http-nio-8080-exec-2] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:37:07.410 [http-nio-8080-exec-2] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1656604267 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:37:07.410 [http-nio-8080-exec-2] DEBUG c.e.d.d.d.UsersDAO.getUserById - ==>  Preparing: SELECT * FROM detection_db.user_data WHERE user_id = ?
+09:37:07.410 [http-nio-8080-exec-2] DEBUG c.e.d.d.d.UsersDAO.getUserById - ==> Parameters: 4(String)
+09:37:07.410 [http-nio-8080-exec-2] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data  WHERE user_id = ?
+09:37:07.411 [http-nio-8080-exec-2] DEBUG c.e.d.d.d.UsersDAO.getUserById - <==      Total: 1
+09:37:07.411 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@10add35d]
+09:37:07.516 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:37:07.516 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@d39c867] was not registered for synchronization because synchronization is not active
+09:37:07.516 [http-nio-8080-exec-2] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:37:07.517 [http-nio-8080-exec-2] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@903507625 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:37:07.517 [http-nio-8080-exec-2] DEBUG c.e.d.d.d.UsersDAO.updateUser - ==>  Preparing: UPDATE detection_db.user_data SET user_name = ?, user_privilege = ?, password = ? WHERE user_id = ?
+09:37:07.517 [http-nio-8080-exec-2] DEBUG c.e.d.d.d.UsersDAO.updateUser - ==> Parameters: 4(String), user(String), $2a$10$4rZs4.JZXCYr1hDD4lrG2utvz5N0l8TgTq6OjxRDTb54KTvWHE9Xm(String), 4(String)
+09:37:07.517 [http-nio-8080-exec-2] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: UPDATE detection_db.user_data
+        SET user_name = ?,
+            user_privilege = ?,
+            password = ?
+        WHERE user_id = ?
+09:37:07.533 [http-nio-8080-exec-2] DEBUG c.e.d.d.d.UsersDAO.updateUser - <==    Updates: 1
+09:37:07.533 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@d39c867]
+09:37:07.534 [http-nio-8080-exec-2] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected '*/*' given [*/*]
+09:37:07.534 [http-nio-8080-exec-2] ERROR org.thymeleaf.TemplateEngine - [THYMELEAF][http-nio-8080-exec-2] Exception processing template "success": Error resolving template [success], template might not exist or might not be accessible by any of the configured Template Resolvers
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template [success], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1103)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1077)
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:372)
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1431)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1167)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1106)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+09:37:07.534 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Error rendering view [org.thymeleaf.spring6.view.ThymeleafView@47916de3]
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template [success], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1103)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1077)
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:372)
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1431)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1167)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1106)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+09:37:07.535 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Failed to complete request: org.thymeleaf.exceptions.TemplateInputException: Error resolving template [success], template might not exist or might not be accessible by any of the configured Template Resolvers
+09:37:07.535 [http-nio-8080-exec-2] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.thymeleaf.exceptions.TemplateInputException: Error resolving template [success], template might not exist or might not be accessible by any of the configured Template Resolvers] with root cause
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template [success], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1103)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1077)
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:372)
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1431)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1167)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1106)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+09:37:07.535 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - "ERROR" dispatch for POST "/error", parameters={}
+09:37:07.535 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+09:37:07.537 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+09:37:07.537 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [{timestamp=Tue Jul 16 09:37:07 KST 2024, status=500, error=Internal Server Error, trace=org.thymelea (truncated)...]
+09:37:07.538 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Exiting from "ERROR" dispatch, status 500
+09:37:08.368 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/userlist", parameters={}
+09:37:08.368 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#userlistForm(Model, HttpSession, RedirectAttributes)
+09:37:08.369 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:37:08.369 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@58d3ddd9] was not registered for synchronization because synchronization is not active
+09:37:08.370 [http-nio-8080-exec-6] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:37:08.371 [http-nio-8080-exec-6] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@668254904 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:37:08.371 [http-nio-8080-exec-6] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==>  Preparing: SELECT * FROM detection_db.user_data
+09:37:08.371 [http-nio-8080-exec-6] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==> Parameters: 
+09:37:08.371 [http-nio-8080-exec-6] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data
+09:37:08.377 [http-nio-8080-exec-6] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - <==      Total: 12
+09:37:08.377 [http-nio-8080-exec-6] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@58d3ddd9]
+09:37:08.378 [http-nio-8080-exec-6] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+09:37:08.381 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:37:08.404 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/users", parameters={}
+09:37:08.404 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#getUsers()
+09:37:08.404 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:37:08.404 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2d889052] was not registered for synchronization because synchronization is not active
+09:37:08.405 [http-nio-8080-exec-4] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:37:08.405 [http-nio-8080-exec-4] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1228471793 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:37:08.405 [http-nio-8080-exec-4] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==>  Preparing: SELECT * FROM detection_db.user_data
+09:37:08.405 [http-nio-8080-exec-4] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==> Parameters: 
+09:37:08.405 [http-nio-8080-exec-4] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data
+09:37:08.408 [http-nio-8080-exec-4] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - <==      Total: 12
+09:37:08.408 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2d889052]
+09:37:08.409 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+09:37:08.409 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[com.example.demo.dto.detection.Users@61f8ba35, com.example.demo.dto.detection.Users@4f6a8d58, com.e (truncated)...]
+09:37:08.409 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:37:08.438 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:37:08.439 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:37:08.439 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:37:08.440 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:37:08.440 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:37:09.866 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:37:09.866 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:37:09.867 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:37:09.867 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:37:09.867 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:37:18.799 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+09:37:18.799 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+09:37:23.730 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/modifyuser", parameters={}
+09:37:23.730 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#modify()
+09:37:23.732 [http-nio-8080-exec-8] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+09:37:23.734 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:37:24.058 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:37:24.059 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:37:24.060 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:37:24.061 [http-nio-8080-exec-10] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:37:24.061 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:37:29.476 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+09:37:29.476 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+09:37:33.802 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/userlist", parameters={}
+09:37:33.803 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#userlistForm(Model, HttpSession, RedirectAttributes)
+09:37:33.803 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:37:33.803 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6779b9d1] was not registered for synchronization because synchronization is not active
+09:37:33.803 [http-nio-8080-exec-9] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:37:33.804 [http-nio-8080-exec-9] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1664816663 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:37:33.804 [http-nio-8080-exec-9] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==>  Preparing: SELECT * FROM detection_db.user_data
+09:37:33.804 [http-nio-8080-exec-9] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==> Parameters: 
+09:37:33.804 [http-nio-8080-exec-9] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data
+09:37:33.807 [http-nio-8080-exec-9] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - <==      Total: 12
+09:37:33.807 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6779b9d1]
+09:37:33.808 [http-nio-8080-exec-9] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+09:37:33.814 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:37:33.835 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/users", parameters={}
+09:37:33.835 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#getUsers()
+09:37:33.835 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+09:37:33.835 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@35df6d67] was not registered for synchronization because synchronization is not active
+09:37:33.835 [http-nio-8080-exec-1] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+09:37:33.836 [http-nio-8080-exec-1] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@351880492 wrapping org.mariadb.jdbc.Connection@5e409014] will not be managed by Spring
+09:37:33.836 [http-nio-8080-exec-1] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==>  Preparing: SELECT * FROM detection_db.user_data
+09:37:33.836 [http-nio-8080-exec-1] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - ==> Parameters: 
+09:37:33.836 [http-nio-8080-exec-1] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.user_data
+09:37:33.838 [http-nio-8080-exec-1] DEBUG c.e.d.d.d.UsersDAO.getAllUsers - <==      Total: 12
+09:37:33.838 [http-nio-8080-exec-1] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@35df6d67]
+09:37:33.838 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+09:37:33.838 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Writing [[com.example.demo.dto.detection.Users@5f1c76eb, com.example.demo.dto.detection.Users@3bdcde17, com.e (truncated)...]
+09:37:33.839 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:37:33.872 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:37:33.872 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:37:33.873 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:37:33.874 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:37:33.874 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+09:37:34.811 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+09:37:34.812 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+09:37:34.812 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+09:37:34.812 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+09:37:34.812 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK

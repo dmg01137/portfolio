@@ -242,10 +242,12 @@ function modifyUser() {
         return response.text();
     })
     .then(data => {
-        
+        if (data.trim() === 'success') { // 데이터 비교 전에 trim()을 사용하여 앞뒤 공백 제거
             alert('사용자 수정 성공!');
             resetForm(); // 폼 초기화
-        
+        } else {
+            document.getElementById('resultMessage').innerText = data; // 서버에서 받은 오류 메시지를 페이지에 표시
+        }
     })
     .catch(error => {
         console.error('에러 발생:', error);
