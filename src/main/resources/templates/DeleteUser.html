@@ -148,6 +148,9 @@
         <li class="nav-item">
             <a class="nav-link" href="/join"><i class="fas fa-plus"></i> 사용자 추가</a>
         </li>
+          <li class="nav-item">
+            <a class="nav-link " href="/modifyuser"><i class=" fas fa-edit mr-1"></i> 사용자 수정</a>
+        </li>
  
     </ul>
 </div>
@@ -161,15 +164,15 @@
                     <form id="deleteForm">
                         <div class="form-group">
                             <label for="user_id">ID</label>
-                            <input type="text" class="form-control" id="user_id" name="user_id" placeholder="Enter ID">
+                            <input type="text" class="form-control" id="user_id" name="user_id" placeholder="사용자 ID 입력">
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Admin password">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="관리자 비밀번호 입력">
                         </div>
                         <div class="form-group">
                             <label for="confirm_password">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Admin password">
+                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="비밀번호 확인">
                         </div>
                         <button type="submit" class="btn btn-custom btn-primary">Delete</button>
                     </form>
