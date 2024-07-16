@@ -296,36 +296,48 @@
 					<div class="card-body">
 						<div class="body-section">
 							<h5 class="card-title mb-3">Pattern Policy</h5>
-						<!-- 검색 섹션 -->
-<div class="input-group mb-3 search-section">
-    <input type="text" id="searchInputID" class="form-control" placeholder="NO">
-    <input type="text" id="searchInputStoIP" class="form-control" placeholder="s_to_ip">
-    <input type="text" id="searchInputSIP" class="form-control" placeholder="출발지IP">
-    <input type="text" id="searchInputSPort" class="form-control" placeholder="출발지Port">
-    <input type="text" id="searchInputDIP" class="form-control" placeholder="도착지IP">
-    <input type="text" id="searchInputDPort" class="form-control" placeholder="도착지Port">
-    <input type="text" id="searchInputCreateDate" class="form-control" placeholder="생성일자">
-    <input type="text" id="searchInputModifyDate" class="form-control" placeholder="수정일자">
-    <input type="text" id="searchInputActionType" class="form-control" placeholder="액션 타입">
-    <input type="text" id="searchInputPolicyName" class="form-control" placeholder="정책 이름">
-    <input type="text" id="searchInputPolicyInfo" class="form-control" placeholder="정책 정보">
-    <input type="text" id="searchInputPattern1" class="form-control" placeholder="패턴 1">
-    <input type="text" id="searchInputPattern2" class="form-control" placeholder="패턴 2">
-    <input type="text" id="searchInputPattern3" class="form-control" placeholder="패턴 3">
-    <input type="text" id="searchInputDangers" class="form-control" placeholder="위험성">
+							<!-- 검색 섹션 -->
+							<div class="input-group mb-3 search-section">
+								<input type="text" id="detection_number" class="form-control"
+									placeholder="NO"> <input type="text"
+									id="s_to_ip" class="form-control"
+									placeholder="s_to_ip"> <input type="text"
+									id="s_ip" class="form-control" placeholder="출발지IP">
+								<input type="text" id="s_port" class="form-control"
+									placeholder="출발지Port"> <input type="text"
+									id="d_ip" class="form-control" placeholder="도착지IP">
+								<input type="text" id="d_port" class="form-control"
+									placeholder="도착지Port"> <input type="text"
+									id="create_dt" class="form-control"
+									placeholder="생성일자"> <input type="text"
+									id="modify_dt" class="form-control"
+									placeholder="수정일자"> <input type="text"
+									id="action_type" class="form-control"
+									placeholder="액션 타입"> <input type="text"
+									id="policy_name" class="form-control"
+									placeholder="정책 이름"> <input type="text"
+									id="policy_info" class="form-control"
+									placeholder="정책 정보"> <input type="text"
+									id="pattern_1" class="form-control"
+									placeholder="패턴 1"> <input type="text"
+									id="pattern_2" class="form-control"
+									placeholder="패턴 2"> <input type="text"
+									id="pattern_3" class="form-control"
+									placeholder="패턴 3"> <input type="text"
+									id="dangerous" class="form-control" placeholder="위험성">
 
-    <div class="input-group-append">
-          <button class="btn btn-primary" type="button" id="btnSearch">Search</button>
-        <button class="btn btn-secondary" type="button" id="btnClear">Clear</button>
-    </div>
-</div>
+								<div class="input-group-append">
+									<button class="btn btn-primary" type="button" id="btnSearch">Search</button>
+									<button class="btn btn-secondary" type="button" id="btnClear">Clear</button>
+								</div>
+							</div>
 
 							<!-- 테이블 데이터 -->
 							<div class="table-container">
 								<table id="patternTable" class="table table-bordered">
 									<thead>
 										<tr>
-											
+
 
 											<th>NO</th>
 											<th>S_to_IP</th>
@@ -350,11 +362,12 @@
 										<!-- 검색 결과가 동적으로 추가될 자리 -->
 									</tbody>
 								</table>
-							
+
 								<!-- 페이지네이션 -->
 								<nav>
 									<ul class="pagination justify-content-center" id="pagination"></ul>
 								</nav>
+
 							</div>
 						</div>
 					</div>
@@ -368,35 +381,33 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
-//JavaScript 코드
 $(document).ready(function () {
     let currentPage = 1;
-    const rowsPerPage = 10;
+    const rowsPerPage = 10; // 페이지당 표시할 데이터 수
 
-    // 검색 버튼 클릭 이벤트 처리
-    $("#btnSearch").click(function () {
-        let searchCriteria = {
-            detection_number: $("#searchInputID").val(),
-            s_to_ip: $("#searchInputStoIP").val(),
-            s_ip: $("#searchInputSIP").val(),
-            s_port: $("#searchInputSPort").val(),
-            d_ip: $("#searchInputDIP").val(),
-            d_port: $("#searchInputDPort").val(),
-            create_dt: $("#searchInputCreateDate").val(),
-            modify_dt: $("#searchInputModifyDate").val(),
-            action_type: $("#searchInputActionType").val(),
-            policy_name: $("#searchInputPolicyName").val(),
-            policy_info: $("#searchInputPolicyInfo").val(),
-            pattern_1: $("#searchInputPattern1").val(),
-            pattern_2: $("#searchInputPattern2").val(),
-            pattern_3: $("#searchInputPattern3").val(),
-            dangerous: $("#searchInputDangers").val()
-        };
+    // 페이지네이션 설정 함수
+    function setupPagination(totalPages) {
+        let paginationHTML = "";
 
-        // Ajax 요청을 통해 서버로 검색 기준을 전송
+        for (let i = 1; i <= totalPages; i++) {
+            paginationHTML += `<li class="page-item ${i === currentPage ? 'active' : ''}"><a class="page-link" href="#" data-page="${i}">${i}</a></li>`;
+        }
+
+        $("#pagination").html(paginationHTML);
+
+        // 페이지 링크 클릭 이벤트 처리
+        $("#pagination a.page-link").click(function (e) {
+            e.preventDefault();
+            currentPage = parseInt($(this).attr("data-page"));
+            fetchAndDisplayPatterns(); // 페이지 번호에 따라 데이터 다시 가져오기
+        });
+    }
+
+    // 데이터 가져와서 테이블에 표시하는 함수
+    function fetchAndDisplayPatterns(searchCriteria = {}) {
         $.ajax({
             type: "POST",
-            url: "/api/search-pattern-detections",  // 실제 서버 URL로 수정 필요
+            url: "/api/search-pattern-detections", // 실제 서버 URL로 수정 필요
             contentType: "application/json",
             data: JSON.stringify(searchCriteria),
             success: function (data) {
@@ -433,6 +444,17 @@ $(document).ready(function () {
                 alert("서버에서 데이터를 가져오는 중 오류가 발생했습니다.");
             }
         });
+    }
+
+
+    
+
+    // 페이지 로드 시 초기 데이터 가져오기
+    fetchAndDisplayPatterns();
+
+    // 검색 버튼 클릭 이벤트 리스너
+    $("#btnSearch").click(function () {
+        handleSearch();
     });
 
     // 초기화 버튼 클릭 이벤트 처리
@@ -440,65 +462,37 @@ $(document).ready(function () {
         $(".search-section input[type='text']").val("");
         fetchAndDisplayPatterns(); // 검색 기준을 초기화하고 모든 패턴을 가져옵니다.
     });
+    
+   
 
-    // 데이터 가져와서 테이블에 표시하는 함수
-    function fetchAndDisplayPatterns(searchCriteria = {}) {
-        $.ajax({
-            type: "POST",
-            url: "/api/search-pattern-detections",  // 실제 서버 URL로 수정 필요
-            contentType: "application/json",
-            data: JSON.stringify(searchCriteria),
-            success: function (data) {
-                // 검색 결과 처리
-                $("#logTableBody").empty();
 
-                data.forEach(function (pattern, index) {
-                    $("#logTableBody").append(
-                        `<tr>
-                            <td>${pattern.detection_number}</td>
-                            <td>${pattern.s_to_ip}</td>
-                            <td>${pattern.s_ip}</td>
-                            <td>${pattern.s_port}</td>
-                            <td>${pattern.d_ip}</td>
-                            <td>${pattern.d_port}</td>
-                            <td>${pattern.create_dt}</td>
-                            <td>${pattern.modify_dt}</td>
-                            <td>${pattern.action_type}</td>
-                            <td>${pattern.policy_name}</td>
-                            <td>${pattern.policy_info}</td>
-                            <td>${pattern.pattern_1}</td>
-                            <td>${pattern.pattern_2}</td>
-                            <td>${pattern.pattern_3}</td>
-                            <td>${pattern.dangerous}</td>
-                        </tr>`
-                    );
-                });
+    // 검색 처리 함수
+    function handleSearch() {
+        // 검색 필드의 값들을 객체로 변환
+        let searchCriteria = {
+            detection_number: $("#detection_number").val().trim(), // NO 필드
+            s_to_ip: $("#s_to_ip").val().trim(), // s_to_ip 필드
+            s_ip: $("#s_ip").val().trim(), // 출발지IP 필드
+            s_port: $("#s_port").val().trim(), // 출발지Port 필드
+            d_ip: $("#d_ip").val().trim(), // 도착지IP 필드
+            d_port: $("#d_port").val().trim(), // 도착지Port 필드
+            create_dt: $("#create_dt").val().trim(), // 생성일자 필드
+            modify_dt: $("#modify_dt").val().trim(), // 수정일자 필드
+            action_type: $("#action_type").val().trim(), // 액션 타입 필드
+            policy_name: $("#policy_name").val().trim(), // 정책 이름 필드
+            policy_info: $("#policy_info").val().trim(), // 정책 정보 필드
+           
+            pattern_1: $("#pattern_1").val().trim(), // 패턴 1 필드
+            pattern_2: $("#pattern_2").val().trim(), // 패턴 2 필드
+            pattern_3: $("#pattern_3").val().trim(), // 패턴 3 필드
+            dangerous: $("#dangerous").val().trim() // 위험성 필드
+        };
 
-                // 페이지네이션 설정
-                setupPagination(data.totalPages);
-            },
-            error: function (err) {
-                console.log(err);
-                alert("서버에서 데이터를 가져오는 중 오류가 발생했습니다.");
-            }
-        });
+        fetchAndDisplayPatternDetections(searchCriteria); // 검색 조건을 서버로 전송
     }
 
-    // 페이지네이션 설정 함수
-    function setupPagination(totalPages) {
-        let paginationHTML = "";
 
-        for (let i = 1; i <= totalPages; i++) {
-            paginationHTML += `<li class="page-item ${i === currentPage ? 'active' : ''}"><a class="page-link" href="#">${i}</a></li>`;
-        }
-
-        $("#pagination").html(paginationHTML);
-    }
-
-    // 페이지 로드 시 초기 데이터 가져오기
-    fetchAndDisplayPatterns();
 });
-
 </script>
 
 </body>
