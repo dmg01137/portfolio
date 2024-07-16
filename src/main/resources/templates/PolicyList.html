@@ -1,301 +1,296 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pattern Policy</title>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
- <style>
-    /* 네비게이션 바 스타일 */
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pattern Policy</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+/* 네비게이션 바 스타일 */
+.navbar {
+	background-color: #222;
+	padding: 14px 16px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 1000; /* 다른 요소들보다 위에 표시되도록 설정 */
+}
 
-    .navbar {
-        background-color: #222;
-        padding: 14px 16px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 1000; /* 다른 요소들보다 위에 표시되도록 설정 */
-    }
+.navbar-brand {
+	font-size: 1.5rem;
+	color: #fff;
+}
 
-    .navbar-brand {
-        font-size: 1.5rem;
-        color: #fff;
-    }
+.navbar-nav .nav-item {
+	margin-right: 10px;
+}
 
-    .navbar-nav .nav-item {
-        margin-right: 10px;
-    }
+.nav-link {
+	color: #fff !important;
+	transition: all 0.3s ease;
+}
 
-    .nav-link {
-        color: #fff !important;
-        transition: all 0.3s ease;
-    }
+.nav-link:hover {
+	color: #17a2b8 !important;
+}
 
-    .nav-link:hover {
-        color: #17a2b8 !important;
-    }
+.nav-link i {
+	margin-right: 5px;
+}
 
-    .nav-link i {
-        margin-right: 5px;
-    }
+.nav-sidebar .nav-link {
+	color: #d1d1d1;
+	padding: 10px 20px;
+	transition: all 0.3s ease;
+}
 
-    .nav-sidebar .nav-link {
-        color: #d1d1d1;
-        padding: 10px 20px;
-        transition: all 0.3s ease;
-    }
+.nav-sidebar .nav-link:hover {
+	background-color: #222;
+	color: #fff;
+}
 
-    .nav-sidebar .nav-link:hover {
-        background-color: #222;
-        color: #fff;
-    }
-
-    .nav-sidebar .nav-link i {
-        margin-right: 10px;
-    }
+.nav-sidebar .nav-link i {
+	margin-right: 10px;
+}
 
 .nav-sidebar .nav-link-custom {
-    color: #d1d1d1; /* 기본 텍스트 색상 */
-    padding: 10px 20px;
-    transition: all 0.3s ease;
+	color: #d1d1d1; /* 기본 텍스트 색상 */
+	padding: 10px 20px;
+	transition: all 0.3s ease;
 }
 
-.nav-sidebar .nav-link-custom:hover,
-.nav-sidebar .nav-link-custom:hover i {
-    color: #17a2b8 !important; /* 호버 시 글자 및 아이콘 색상 변경 */
+.nav-sidebar .nav-link-custom:hover, .nav-sidebar .nav-link-custom:hover i
+	{
+	color: #17a2b8 !important; /* 호버 시 글자 및 아이콘 색상 변경 */
 }
 
+/* 왼쪽 세로 메뉴바 스타일 */
+.sidebar {
+	position: fixed;
+	left: 0;
+	top: 64px;
+	width: 220px; /* 사이드바 너비를 220px로 조정 */
+	background-color: #222;
+	height: 100%;
+	padding-top: 20px;
+	transition: all 0.3s ease;
+	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+	overflow-x: hidden; /* 가로 스크롤바를 숨기는 속성 */
+}
 
-    /* 왼쪽 세로 메뉴바 스타일 */
+.sidebar-heading {
+	font-size: 1.2rem;
+	color: #fff;
+	text-align: center;
+	margin-bottom: 20px;
+}
 
-    .sidebar {
-        position: fixed;
-        left: 0;
-        top: 64px;
-        width: 220px; /* 사이드바 너비를 220px로 조정 */
-        background-color: #222;
-        height: 100%;
-        padding-top: 20px;
-        transition: all 0.3s ease;
-        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-        overflow-x: hidden; /* 가로 스크롤바를 숨기는 속성 */
-    }
+.nav-sidebar .nav-link.active {
+	color: #17a2b8 !important; /* Active 상태에서의 텍스트 색상 변경 */
+}
 
-    .sidebar-heading {
-        font-size: 1.2rem;
-        color: #fff;
-        text-align: center;
-        margin-bottom: 20px;
-    }
+body {
+	background-color: #f8f9fa;
+	font-family: Arial, sans-serif;
+	padding-top: 80px;
+	/* 네비게이션 바가 fixed로 설정되어 있으므로 body의 padding-top 값을 설정하여 겹치지 않게 함 */
+}
 
-    .nav-sidebar .nav-link.active {
-        color: #17a2b8 !important; /* Active 상태에서의 텍스트 색상 변경 */
-    }
-    body {
-        background-color: #f8f9fa;
-        font-family: Arial, sans-serif;
-        padding-top: 80px; /* 네비게이션 바가 fixed로 설정되어 있으므로 body의 padding-top 값을 설정하여 겹치지 않게 함 */
-    }
+.container {
+	margin-top: 0px; /* 기본적인 여백을 유지 */
+	margin-left: 70px;
+}
 
-    .container {
-        margin-top: 0px; /* 기본적인 여백을 유지 */
-        margin-left: 70px;
-    }
+.card {
+	margin-top: 0px; /* 카드의 위쪽 여백 설정 */
+	margin-left: 150px; /* 카드를 가운데 정렬 */
+	margin-right: auto; /* 카드를 가운데 정렬 */
+	width: 90%; /* 카드의 너비를 조정 */
+	max-width: 1100px; /* 카드의 최대 너비 설정 */
+	border-radius: 15px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease-in-out;
+	border: transparent; /* 테두리를 투명하게 설정 */
+}
 
-    .card {
-        margin-top: 0px; /* 카드의 위쪽 여백 설정 */
-        margin-left: 150px; /* 카드를 가운데 정렬 */
-        margin-right: auto; /* 카드를 가운데 정렬 */
-        width: 90%; /* 카드의 너비를 조정 */
-        max-width: 1100px; /* 카드의 최대 너비 설정 */
-        border-radius: 15px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease-in-out;
-        border: transparent; /* 테두리를 투명하게 설정 */
-    }
+.card:hover {
+	box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
 
-    .card:hover {
-        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-    }
+.card-body {
+	padding: 20px; /* 카드의 안쪽 여백 설정 */
+	font-size: 13px; /* 글자 크기 조정 */
+	word-break: break-word; /* 글자가 잘리지 않도록 설정 */
+}
 
-    .card-body {
-        padding: 20px; /* 카드의 안쪽 여백 설정 */
-        font-size: 13px; /* 글자 크기 조정 */
-        word-break: break-word; /* 글자가 잘리지 않도록 설정 */
-    }
+.form-group {
+	margin-bottom: 20px; /* 폼 그룹 사이의 여백 설정 */
+}
 
-    .form-group {
-        margin-bottom: 20px; /* 폼 그룹 사이의 여백 설정 */
-    }
+.nav-sidebar .nav-link-custom {
+	color: #17a2b8 !important; /* 텍스트 색상 변경 */
+}
 
-    .nav-sidebar .nav-link-custom {
-        color: #17a2b8 !important; /* 텍스트 색상 변경 */
-    }
+.user-list {
+	margin-top: 20px;
+}
 
-    .user-list {
-        margin-top: 20px;
-    }
+.user-list-item {
+	padding: 15px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	margin-bottom: 10px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
 
-    .user-list-item {
-        padding: 15px;
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        margin-bottom: 10px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
+.user-list-item:hover {
+	background-color: #f0f0f0;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
 
-    .user-list-item:hover {
-        background-color: #f0f0f0;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-    }
+.btn-section {
+	margin-top: 20px;
+	text-align: center;
+}
 
-    .btn-section {
-        margin-top: 20px;
-        text-align: center;
-    }
+.btn-modify {
+	margin-top: 10px;
+}
 
-    .btn-modify {
-        margin-top: 10px;
-    }
+/* 추가한 부분: 검색창 스타일 */
+.search-section {
+	margin-bottom: 20px;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	gap: 10px;
+}
 
-    /* 추가한 부분: 검색창 스타일 */
-        .search-section {
-            margin-bottom: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-        }
+.search-section input[type="text"] {
+	width: 100%;
+	padding: 8px;
+	font-size: 14px;
+}
 
-        .search-section input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            font-size: 14px;
-        }
+.search-section button {
+	padding: 8px 16px;
+	font-size: 14px;
+}
 
-        .search-section button {
-            padding: 8px 16px;
-            font-size: 14px;
-        }
-
-        /* 추가한 부분: 테이블 스타일 수정 */
-       .table-container {
-    overflow-x: auto;
-    max-width: 100%; /* 가로 스크롤이 나타나도록 테이블 컨테이너의 최대 너비 설정 */
+/* 추가한 부분: 테이블 스타일 수정 */
+.table-container {
+	overflow-x: auto;
+	max-width: 100%; /* 가로 스크롤이 나타나도록 테이블 컨테이너의 최대 너비 설정 */
 }
 
 .table {
-    width: 100%;
-    border-collapse: collapse; /* 셀 사이의 간격을 없애고 한 줄로 표시 */
+	width: 100%;
+	border-collapse: collapse; /* 셀 사이의 간격을 없애고 한 줄로 표시 */
 }
 
 .table th, .table td {
-    border: 1px solid #ddd; /* 셀 경계선 설정 */
-    padding: 8px;
-    text-align: center;
-    vertical-align: middle;
-    white-space: nowrap; /* 글자가 너무 길어지면 줄바꿈을 하지 않도록 설정 */
-    text-overflow: ellipsis; /* 글자가 너무 길 경우 ...으로 생략 */
+	border: 1px solid #ddd; /* 셀 경계선 설정 */
+	padding: 8px;
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap; /* 글자가 너무 길어지면 줄바꿈을 하지 않도록 설정 */
+	text-overflow: ellipsis; /* 글자가 너무 길 경우 ...으로 생략 */
 }
 
 .table th {
-    background-color: #f2f2f2; /* 헤더 배경색 설정 */
+	background-color: #f2f2f2; /* 헤더 배경색 설정 */
 }
 
 .table tbody tr:nth-child(even) {
-    background-color: #f9f9f9; /* 짝수 행 배경색 설정 */
+	background-color: #f9f9f9; /* 짝수 행 배경색 설정 */
 }
 
 .table tbody tr:hover {
-    background-color: #e9f5f9; /* 마우스 호버 시 배경색 변경 */
+	background-color: #e9f5f9; /* 마우스 호버 시 배경색 변경 */
 }
-  
-    /* 페이지네이션 스타일 */
-        .pagination {
-            justify-content: center;
-            margin-top: 20px;
-        }
 
-        .pagination .page-link {
-            color: #007bff;
-            background-color: #fff;
-            border: 1px solid #dee2e6;
-        }
+/* 페이지네이션 스타일 */
+.pagination {
+	justify-content: center;
+	margin-top: 20px;
+}
 
-        .pagination .page-link:hover {
-            color: #0056b3;
-            background-color: #e9ecef;
-            border-color: #dee2e6;
-        }
+.pagination .page-link {
+	color: #007bff;
+	background-color: #fff;
+	border: 1px solid #dee2e6;
+}
 
-        .pagination .page-item.active .page-link {
-            z-index: 1;
-            color: #fff;
-            background-color: #007bff;
-            border-color: #007bff;
-        }
+.pagination .page-link:hover {
+	color: #0056b3;
+	background-color: #e9ecef;
+	border-color: #dee2e6;
+}
+
+.pagination .page-item.active .page-link {
+	z-index: 1;
+	color: #fff;
+	background-color: #007bff;
+	border-color: #007bff;
+}
 </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <a class="navbar-brand" href="#">정책 관리</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+	<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+		<a class="navbar-brand" href="#">정책 관리</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/patternlog"><i class="fas fa-file-alt mr-1"></i>로그 관리</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/userlist"><i class="fas fa-users-cog"></i> 사용자 관리</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/admin"><i class="fas fa-user-cog"></i> 관리자</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/dashboard"><i class="fas fa-home"></i> 홈</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/signin"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-<div class="sidebar">
-    <h5 class="sidebar-heading">메뉴</h5>
-    <ul class="nav flex-column nav-sidebar">
-        <li class="nav-item">
-            <a class="nav-link nav-link-custom" href="/patternlist"><i class="fas fa-shield-alt mr-1"></i> 패턴 정책 리스트</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/behaviorpolicy"><i class="fas fa-shield-alt mr-1"></i> 행동 정책 리스트</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/addpolicy"><i class="fas fa-plus"></i> 패턴 정책 추가</a>
-        </li>
-          <li class="nav-item">
-            <a class="nav-link " href="/modifypolicy"><i class=" fas fa-edit mr-1"></i> 패턴 정책 수정</a>
-        </li>
-          <li class="nav-item">
-            <a class="nav-link " href="/deletepolicy"><i class="fas fa-trash-alt"></i> 패턴 정책 삭제</a>
-        </li>
-    </ul>
-</div>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link" href="/patternlog"><i
+						class="fas fa-file-alt mr-1"></i>로그 관리</a></li>
+				<li class="nav-item"><a class="nav-link" href="/userlist"><i
+						class="fas fa-users-cog"></i> 사용자 관리</a></li>
+				<li class="nav-item"><a class="nav-link" href="/admin"><i
+						class="fas fa-user-cog"></i> 관리자</a></li>
+				<li class="nav-item"><a class="nav-link" href="/dashboard"><i
+						class="fas fa-home"></i> 홈</a></li>
+				<li class="nav-item"><a class="nav-link" href="/signin"><i
+						class="fas fa-sign-out-alt"></i> 로그아웃</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="sidebar">
+		<h5 class="sidebar-heading">메뉴</h5>
+		<ul class="nav flex-column nav-sidebar">
+			<li class="nav-item"><a class="nav-link nav-link-custom"
+				href="/patternlist"><i class="fas fa-shield-alt mr-1"></i> 패턴 정책
+					리스트</a></li>
+			<li class="nav-item"><a class="nav-link" href="/behaviorpolicy"><i
+					class="fas fa-shield-alt mr-1"></i> 행동 정책 리스트</a></li>
+			<li class="nav-item"><a class="nav-link" href="/addpolicy"><i
+					class="fas fa-plus"></i> 패턴 정책 추가</a></li>
+			<li class="nav-item"><a class="nav-link " href="/modifypolicy"><i
+					class=" fas fa-edit mr-1"></i> 패턴 정책 수정</a></li>
+			<li class="nav-item"><a class="nav-link " href="/deletepolicy"><i
+					class="fas fa-trash-alt"></i> 패턴 정책 삭제</a></li>
+		</ul>
+	</div>
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-body">
 						<div class="body-section">
-							<h5 class="card-title mb-3">Pattern Policy</h5>
+							<h5 class="card-title mb-3">패턴 정책</h5>
 							<!-- 검색 섹션 -->
 							<div class="input-group mb-3 search-section">
 								<input type="text" id="detection_number" class="form-control"
