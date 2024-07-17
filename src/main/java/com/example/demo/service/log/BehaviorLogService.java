@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -40,7 +41,14 @@ public class BehaviorLogService {
         behaviorLogDAO.delete(detection_number);
     }
 
-    // Top 5 SIP 조회
+    // Top 5 s_ip 값 조회
+    @Transactional(readOnly = true)
+    public List<Map<String, Object>> findTopSIPs() {
+        return behaviorLogDAO.findTopSIPs();
+    }
+
+    // Top 5 SIP 조회 (s_ip 값만)
+    @Transactional(readOnly = true)
     public List<String> findTop5SIPs() {
         return behaviorLogDAO.findTop5SIPs();
     }

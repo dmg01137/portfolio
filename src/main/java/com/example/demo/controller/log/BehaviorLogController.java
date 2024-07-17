@@ -1,15 +1,22 @@
 package com.example.demo.controller.log;
 
-import com.example.demo.dto.log.BehaviorLog;
-import com.example.demo.service.log.BehaviorLogService;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
+import com.example.demo.dto.log.BehaviorLog;
+import com.example.demo.service.log.BehaviorLogService;
 
 @Controller
 @RequestMapping("/behaviorlog")
@@ -48,14 +55,16 @@ public class BehaviorLogController {
         return "redirect:/behaviorlog"; // 삭제 후 목록 페이지로 리다이렉트합니다.
     }
 
-    // Top 5 SIP 조회 API
+ // Top 5 s_ip 값 조회 API
     @GetMapping("/top-sips")
-    public ResponseEntity<List<String>> getTopSIPs() {
+    @ResponseBody
+    public ResponseEntity<List<Map<String, Object>>> getTopSIPs() {
         try {
-            List<String> topSIPs = behaviorLogService.findTop5SIPs(); // Top 5 SIP 조회 서비스 메서드를 호출합니다.
-            return ResponseEntity.ok(topSIPs); // 조회된 결과를 성공 응답으로 반환합니다.
+            List<Map<String, Object>> topSIPs = behaviorLogService.findTopSIPs();
+            return ResponseEntity.ok(topSIPs);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); // 오류 발생 시 500 에러를 반환합니다.
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
 }

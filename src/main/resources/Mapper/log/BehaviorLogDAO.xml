@@ -54,6 +54,14 @@
 </select>
 
 
+<!-- Top 5 s_ip 값 조회 -->
+<select id="findTopSIPs" resultType="java.util.Map">
+    SELECT s_ip, COUNT(*) AS ip_count
+    FROM log_db.behavior_log_20240717
+    GROUP BY s_ip
+    ORDER BY ip_count DESC
+    LIMIT 5;
+</select>
     <!-- SIP top5 조회 -->
     <select id="findTop5SIPs" resultType="string">
         SELECT s_ip AS top_s_ip

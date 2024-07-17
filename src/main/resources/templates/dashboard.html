@@ -209,80 +209,82 @@
     </div>
 </nav>
 
-<div class="sidebar">
-    <h5 class="sidebar-heading">메뉴</h5>
-    <ul class="nav flex-column nav-sidebar">
-        <li class="nav-item">
-            <a class="nav-link" href="/patternlog"><i class="fas fa-file-alt mr-1"></i>로그 관리</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/policylist"><i class="fas fa-shield-alt mr-1"></i>정책 관리</a>
-        </li>
-    </ul>
-</div>
+	<div class="sidebar">
+		<h5 class="sidebar-heading">메뉴</h5>
+		<ul class="nav flex-column nav-sidebar">
+			<li class="nav-item"><a class="nav-link" href="/patternlog"><i
+					class="fas fa-file-alt mr-1"></i>로그 관리</a></li>
+			<li class="nav-item"><a class="nav-link" href="/policylist"><i
+					class="fas fa-shield-alt mr-1"></i>정책 관리</a></li>
+		</ul>
+	</div>
 
-<div class="content-area">
-    <div class="container">
-        <div class="chart-container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h5 class="text-center mb-4">패턴 IP 탐지 이벤트 Top 5</h5>
-                    <canvas id="sourceIPChart"></canvas>
-                </div>
-                <div class="col-md-6">
-                    <h5 class="text-center mb-4">행동 IP 탐지 이벤트 Top 5</h5>
-                    <canvas id="destinationIPChart"></canvas>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-md-5">
-                    <h5 class="text-center mb-4">패턴 탐지 이벤트 Top 3</h5>
-                    <canvas id="patternDetectionChart"></canvas>
-                </div>
-                <div class="col-md-7">
-                    <h5 class="text-center mb-4">일일 경보 발생 현황</h5>
-                    <div class="search-form">
-                        <select id="searchType" class="form-control mb-2 mr-sm-2">
-                            <option value="time">시간</option>
-                            <option value="sIP">출발 IP</option>
-                            <option value="sPort">출발 Port</option>
-                            <option value="dIP">목적 IP</option>
-                            <option value="dPort">목적 Port</option>
-                            <option value="pattern1">패턴1</option>
-                            <option value="pattern2">패턴2</option>
-                            <option value="pattern3">패턴3</option>
-                        </select>
-                        <input type="text" id="searchInput" class="form-control mb-2 mr-sm-2" placeholder="검색어 입력">
-                        <button type="button" class="btn btn-primary mb-2" onclick="handleSearch()">Search</button>
-                        <button type="button" class="btn btn-secondary mb-2 ml-2" onclick="clearSearch()">Clear</button>
-                    </div>
-                    <div class="event-table">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>시간</th>
-                                    <th>출발 IP</th>
-                                    <th>출발 Port</th>
-                                    <th>목적 IP</th>
-                                    <th>목적 Port</th>
-                                    <th>패턴1</th>
-                                    <th>패턴2</th>
-                                    <th>패턴3</th>
-                                </tr>
-                            </thead>
-                            <tbody id="eventTableBody">
-                                <!-- 여기에 서버에서 동적으로 데이터가 추가됩니다 -->
-                            </tbody>
-                        </table>
-                        <button class="btn btn-primary" id="loadMoreBtn" onclick="loadMoreData()">next</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+	<div class="content-area">
+		<div class="container">
+			<div class="chart-container">
+				<div class="row">
+					<div class="col-md-6">
+						<h5 class="text-center mb-4">패턴 IP 탐지 이벤트 Top 5</h5>
+						<canvas id="sourceIPChart"></canvas>
+					</div>
+					<div class="col-md-6">
+						<h5 class="text-center mb-4">행동 IP 탐지 이벤트 Top 5</h5>
+						<canvas id="destinationIPChart"></canvas>
+					</div>
 
-<!-- 필수 라이브러리 -->
+				</div>
+				<div class="row mt-4">
+					<div class="col-md-5">
+						<h5 class="text-center mb-4">패턴 탐지 이벤트 Top 3</h5>
+						<canvas id="patternDetectionChart"></canvas>
+					</div>
+					<div class="col-md-7">
+						<h5 class="text-center mb-4">일일 경보 발생 현황</h5>
+						<div class="search-form">
+							<select id="searchType" class="form-control mb-2 mr-sm-2">
+								<option value="time">시간</option>
+								<option value="sIP">출발 IP</option>
+								<option value="sPort">출발 Port</option>
+								<option value="dIP">목적 IP</option>
+								<option value="dPort">목적 Port</option>
+								<option value="pattern1">패턴1</option>
+								<option value="pattern2">패턴2</option>
+								<option value="pattern3">패턴3</option>
+							</select> <input type="text" id="searchInput"
+								class="form-control mb-2 mr-sm-2" placeholder="검색어 입력">
+							<button type="button" class="btn btn-primary mb-2"
+								onclick="handleSearch()">Search</button>
+							<button type="button" class="btn btn-secondary mb-2 ml-2"
+								onclick="clearSearch()">Clear</button>
+						</div>
+						<div class="event-table">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>시간</th>
+										<th>출발 IP</th>
+										<th>출발 Port</th>
+										<th>목적 IP</th>
+										<th>목적 Port</th>
+										<th>패턴1</th>
+										<th>패턴2</th>
+										<th>패턴3</th>
+									</tr>
+								</thead>
+								<tbody id="eventTableBody">
+									<!-- 여기에 서버에서 동적으로 데이터가 추가됩니다 -->
+								</tbody>
+							</table>
+							<button class="btn btn-primary" id="loadMoreBtn"
+								onclick="loadMoreData()">next</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 필수 라이브러리 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 <script>
     var currentPage = 1;
@@ -303,7 +305,7 @@
             })
             .catch(error => console.error('데이터 가져오기 오류:', error));
 
-        fetch('behaviorlog/top-sips') // Top 5 DIP 조회 API 엔드포인트
+        fetch('/behaviorlog/top-sips') // Top 5 DIP 조회 API 엔드포인트
             .then(response => response.json())
             .then(data => {
                 updateDestinationIPChart(data); // 행동지 IP 차트 업데이트
@@ -345,36 +347,43 @@
             }
         });
     }
-
-
  // 행동지 IP 탐지 이벤트 Top 5 차트 업데이트 함수
- function updateDestinationIPChart(topDIPs) {
-     var labels = topDIPs.map(item => item.top_s_ip); // 필요한 필드로 수정
-     var data = topDIPs.map(item => item.ip_count); // 필요한 필드로 수정
+    function updateDestinationIPChart(topSIPs) {
+        var labels = topSIPs.map(item => item.s_ip);
+        var data = topSIPs.map(item => item.ip_count);
 
-     var ctxDestinationIP = document.getElementById('destinationIPChart').getContext('2d');
-     var destinationIPChart = new Chart(ctxDestinationIP, {
-         type: 'bar',
-         data: {
-             labels: labels,
-             datasets: [{
-                 label: '행동지 IP 이벤트',
-                 data: data,
-                 backgroundColor: '#e74c3c', // 색상 변경
-                 borderWidth: 1
-             }]
-         },
-         options: {
-             scales: {
-                 yAxes: [{
-                     ticks: {
-                         beginAtZero: true
-                     }
-                 }]
-             }
-         }
-     });
- }
+        var ctxDestinationIP = document.getElementById('destinationIPChart').getContext('2d');
+        var destinationIPChart = new Chart(ctxDestinationIP, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '행동지 IP 탐지 이벤트 Top 5',
+                    data: data,
+                    backgroundColor: '#e74c3c', // 막대 색상
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+
+    // Call the update function on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        fetchDataAndRenderCharts(); // 데이터 가져오기 및 차트 렌더링
+    });
+
+
+
+
 
     // 패턴 탐지 이벤트 Top 3 차트 업데이트 함수
     function updatePatternDetectionChart(topPatterns) {
