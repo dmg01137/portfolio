@@ -249,13 +249,16 @@
                      <h5  class="text-center mb-4">일일 경보 발생 현황</h5>
                     <div class="search-form">
                         <select id="searchType" class="form-control mb-2 mr-sm-2">
-                            <option value="time">시간</option>
-                            <option value="logSourceIP">로그소스 IP</option>
-                            <option value="sourceIP">출발 IP</option>
-                            <option value="sourcePort">출발 Port</option>
-                            <option value="destinationIP">목적 IP</option>
-                            <option value="destinationPort">목적 Port</option>
-                            <option value="severity">평가</option>
+                          <option value="time">시간</option>
+<option value="sourceIP">출발 IP</option>
+<option value="sourcePort">출발 Port</option>
+<option value="destinationIP">목적 IP</option>
+<option value="destinationPort">목적 Port</option>
+<option value="pattern1">패턴1</option>
+<option value="pattern2">패턴2</option>
+<option value="pattern3">패턴3</option>
+
+                           
                         </select>
                         <input type="text" id="searchInput" class="form-control mb-2 mr-sm-2" placeholder="검색어 입력">
                         <button type="button" class="btn btn-primary mb-2" onclick="handleSearch()">Search</button>
@@ -280,7 +283,7 @@
                                 <!-- 여기에 서버에서 동적으로 데이터가 추가됩니다 -->
                             </tbody>
                         </table>
-                        <button class="btn btn-primary" id="loadMoreBtn" onclick="loadMoreData()">더보기</button>
+                        <button class="btn btn-primary" id="loadMoreBtn" onclick="loadMoreData()">next</button>
                     </div>
                 </div>
             </div>
@@ -422,24 +425,27 @@
         var searchInput = document.getElementById('searchInput').value.trim().toLowerCase();
 
         var filteredData = eventDetailsData.filter(function(event) {
-            switch (searchType) {
-                case 'time':
-                    return event.time.toLowerCase().includes(searchInput);
-                case 'logSourceIP':
-                    return event.logSourceIP.toLowerCase().includes(searchInput);
-                case 'sourceIP':
-                    return event.sourceIP.toLowerCase().includes(searchInput);
-                case 'sourcePort':
-                    return event.sourcePort.includes(searchInput);
-                case 'destinationIP':
-                    return event.destinationIP.toLowerCase().includes(searchInput);
-                case 'destinationPort':
-                    return event.destinationPort.includes(searchInput);
-                case 'severity':
-                    return event.severity.toLowerCase().includes(searchInput);
-                default:
-                    return true;
-            }
+        	switch (searchType) {
+            case 'time':
+                return event.time.toLowerCase().includes(searchInput);
+            case 'sourceIP':
+                return event.sIp.toLowerCase().includes(searchInput);
+            case 'sourcePort':
+                return event.sPort.toString().includes(searchInput);
+            case 'destinationIP':
+                return event.dIp.toLowerCase().includes(searchInput);
+            case 'destinationPort':
+                return event.dPort.toString().includes(searchInput);
+            case 'pattern1':
+                return event.pattern1.includes(searchInput);
+            case 'pattern2':
+                return event.pattern2.includes(searchInput);
+            case 'pattern3':
+                return event.pattern3.includes(searchInput);
+            default:
+                return true;
+        }
+
         });
 
         populateEventDetailsTable(filteredData.slice(0, rowsPerPage)); // 첫 페이지 데이터로 재설정
