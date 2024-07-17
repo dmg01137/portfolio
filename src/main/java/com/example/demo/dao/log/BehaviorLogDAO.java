@@ -1,12 +1,15 @@
 package com.example.demo.dao.log;
 
 import com.example.demo.dto.log.BehaviorLog;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+@Mapper
 public interface BehaviorLogDAO {
 
-    BehaviorLog findById(int detection_number);
+    BehaviorLog findById(@Param("detection_number") int detection_number);
 
     List<BehaviorLog> findAll();
 
@@ -14,7 +17,7 @@ public interface BehaviorLogDAO {
 
     void update(BehaviorLog behaviorLog);
 
-    void delete(int detection_number);
+    void delete(@Param("detection_number") int detection_number);
 
     List<String> findTop5SIPs();
 }

@@ -1837,3 +1837,77 @@ Action:
 
 Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
 
+19:07:55.994 [HikariPool-29 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-29 - Pool stats (total=10, active=0, idle=10, waiting=0)
+19:07:55.995 [HikariPool-29 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-29 - Fill pool skipped, pool has sufficient level or currently being filled.
+19:07:56.179 [HikariPool-30 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-30 - Pool stats (total=10, active=0, idle=10, waiting=0)
+19:07:56.179 [HikariPool-30 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-30 - Fill pool skipped, pool has sufficient level or currently being filled.
+19:08:17.084 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/dashboard", parameters={}
+19:08:17.084 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#dashboard(HttpSession, RedirectAttributes)
+19:08:17.085 [http-nio-8080-exec-3] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+19:08:17.087 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+19:08:17.103 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/patternlogs/top-sips", parameters={}
+19:08:17.103 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.PatternLogController#getTopSIPs()
+19:08:17.103 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+19:08:17.103 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@11b0bbaa] was not registered for synchronization because synchronization is not active
+19:08:17.103 [http-nio-8080-exec-7] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+19:08:17.103 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/behaviorlog/top-sips", parameters={}
+19:08:17.103 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.BehaviorLogController#getTopSIPs()
+19:08:17.103 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+19:08:17.103 [http-nio-8080-exec-1] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Nothing to write: null body
+19:08:17.104 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+19:08:17.104 [http-nio-8080-exec-7] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@208614358 wrapping org.mariadb.jdbc.Connection@26350717] will not be managed by Spring
+19:08:17.104 [http-nio-8080-exec-7] DEBUG c.e.d.d.l.PatternLogDAO.findTopSIPs - ==>  Preparing: SELECT s_ip, COUNT(*) AS ip_count FROM log_db.pattern_log_20240716 GROUP BY s_ip ORDER BY ip_count DESC LIMIT 5;
+19:08:17.104 [http-nio-8080-exec-7] DEBUG c.e.d.d.l.PatternLogDAO.findTopSIPs - ==> Parameters: 
+19:08:17.104 [http-nio-8080-exec-7] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT s_ip, COUNT(*) AS ip_count
+    FROM log_db.pattern_log_20240716
+    GROUP BY s_ip
+    ORDER BY ip_count DESC
+    LIMIT 5;
+19:08:17.104 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/patternlogs/top-pattern-combinations", parameters={}
+19:08:17.104 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.PatternLogController#getTopPatternCombinations()
+19:08:17.105 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+19:08:17.105 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2896cac0] was not registered for synchronization because synchronization is not active
+19:08:17.105 [http-nio-8080-exec-9] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+19:08:17.105 [http-nio-8080-exec-9] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1799407456 wrapping org.mariadb.jdbc.Connection@7078c42c] will not be managed by Spring
+19:08:17.105 [http-nio-8080-exec-9] DEBUG c.e.d.d.l.P.findTopPatternCombinations - ==>  Preparing: SELECT CONCAT(pattern1, ',', pattern2, ',', pattern3) AS combined_pattern, COUNT(*) AS pattern_count FROM log_db.pattern_log_20240716 GROUP BY combined_pattern ORDER BY pattern_count DESC LIMIT 3;
+19:08:17.105 [http-nio-8080-exec-9] DEBUG c.e.d.d.l.P.findTopPatternCombinations - ==> Parameters: 
+19:08:17.105 [http-nio-8080-exec-9] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT CONCAT(pattern1, ',', pattern2, ',', pattern3) AS combined_pattern, COUNT(*) AS pattern_count
+    FROM log_db.pattern_log_20240716
+    GROUP BY combined_pattern
+    ORDER BY pattern_count DESC
+    LIMIT 3;
+19:08:17.106 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/patternlogs/ordered-by-time", parameters={}
+19:08:17.106 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.PatternLogController#getAllPatternLogsOrderedByTimeDesc()
+19:08:17.106 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+19:08:17.106 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3265ec9d] was not registered for synchronization because synchronization is not active
+19:08:17.106 [http-nio-8080-exec-5] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+19:08:17.106 [http-nio-8080-exec-7] DEBUG c.e.d.d.l.PatternLogDAO.findTopSIPs - <==      Total: 4
+19:08:17.106 [http-nio-8080-exec-7] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@11b0bbaa]
+19:08:17.106 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+19:08:17.107 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[{s_ip=192.168.1.79, ip_count=470}, {s_ip=192.168.1.127, ip_count=262}, {s_ip=192.168.1.152, ip_coun (truncated)...]
+19:08:17.107 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+19:08:17.107 [http-nio-8080-exec-5] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@176899236 wrapping org.mariadb.jdbc.Connection@7389f3ca] will not be managed by Spring
+19:08:17.107 [http-nio-8080-exec-5] DEBUG c.e.d.d.l.P.findAllOrderedByTimeDesc - ==>  Preparing: SELECT * FROM log_db.pattern_log_20240716 ORDER BY time DESC;
+19:08:17.107 [http-nio-8080-exec-5] DEBUG c.e.d.d.l.P.findAllOrderedByTimeDesc - ==> Parameters: 
+19:08:17.107 [http-nio-8080-exec-5] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT *
+    FROM log_db.pattern_log_20240716
+    ORDER BY time DESC;
+19:08:17.109 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+19:08:17.110 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+19:08:17.110 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+19:08:17.110 [http-nio-8080-exec-8] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+19:08:17.110 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+19:08:17.111 [http-nio-8080-exec-9] DEBUG c.e.d.d.l.P.findTopPatternCombinations - <==      Total: 3
+19:08:17.111 [http-nio-8080-exec-9] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2896cac0]
+19:08:17.111 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+19:08:17.111 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[{pattern_count=336, combined_pattern=select,from user_data where,"a" = "a"}, {pattern_count=334, co (truncated)...]
+19:08:17.111 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+19:08:17.147 [http-nio-8080-exec-5] DEBUG c.e.d.d.l.P.findAllOrderedByTimeDesc - <==      Total: 812
+19:08:17.147 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3265ec9d]
+19:08:17.147 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+19:08:17.148 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[PatternLog{detection_number=0, time='2024-07-16 23:34:23', sIp='192.168.1.127', dIp='192.168.1.33', (truncated)...]
+19:08:17.152 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+19:08:26.006 [HikariPool-29 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-29 - Pool stats (total=10, active=0, idle=10, waiting=0)
+19:08:26.006 [HikariPool-29 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-29 - Fill pool skipped, pool has sufficient level or currently being filled.
+19:08:26.182 [HikariPool-30 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-30 - Pool stats (total=10, active=0, idle=10, waiting=0)
+19:08:26.182 [HikariPool-30 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-30 - Fill pool skipped, pool has sufficient level or currently being filled.

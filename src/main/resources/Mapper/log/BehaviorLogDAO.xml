@@ -53,14 +53,15 @@
     </if>
 </select>
 
-<!-- SIP top5 조회 -->
-<select id="findTop5SIP" resultType="string">
-    SELECT s_ip AS top_s_ip
-    FROM log_db.behavior_log_20240717
-    GROUP BY s_ip
-    ORDER BY COUNT(*) DESC
-    LIMIT 5
-</select>
+
+    <!-- SIP top5 조회 -->
+    <select id="findTop5SIPs" resultType="string">
+        SELECT s_ip AS top_s_ip
+        FROM log_db.behavior_log_20240717
+        GROUP BY s_ip
+        ORDER BY COUNT(*) DESC
+        LIMIT 5
+    </select>
 
 
 </mapper>

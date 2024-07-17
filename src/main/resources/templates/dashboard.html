@@ -294,7 +294,7 @@
         fetchAndPopulateEventTable();
     });
 
-    // 서버에서 데이터를 가져와 차트를 업데이트하는 함수
+ // 서버에서 데이터를 가져와 차트를 업데이트하는 함수
     function fetchDataAndRenderCharts() {
         fetch('/api/patternlogs/top-sips') // Top 5 SIP 조회 API 엔드포인트
             .then(response => response.json())
@@ -317,7 +317,6 @@
             })
             .catch(error => console.error('데이터 가져오기 오류:', error));
     }
-
     // 출발지 IP 탐지 이벤트 Top 5 차트 업데이트 함수
     function updateSourceIPChart(topSIPs) {
         var labels = topSIPs.map(item => item.s_ip);
@@ -347,34 +346,35 @@
         });
     }
 
-    // 행동지 IP 탐지 이벤트 Top 5 차트 업데이트 함수
-    function updateDestinationIPChart(topDIPs) {
-        var labels = topDIPs.map(item => item.d_ip);
-        var data = topDIPs.map(item => item.ip_count);
 
-        var ctxDestinationIP = document.getElementById('destinationIPChart').getContext('2d');
-        var destinationIPChart = new Chart(ctxDestinationIP, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: '행동지 IP 이벤트',
-                    data: data,
-                    backgroundColor: '#e74c3c', // 색상 변경
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
-    }
+ // 행동지 IP 탐지 이벤트 Top 5 차트 업데이트 함수
+ function updateDestinationIPChart(topDIPs) {
+     var labels = topDIPs.map(item => item.top_s_ip); // 필요한 필드로 수정
+     var data = topDIPs.map(item => item.ip_count); // 필요한 필드로 수정
+
+     var ctxDestinationIP = document.getElementById('destinationIPChart').getContext('2d');
+     var destinationIPChart = new Chart(ctxDestinationIP, {
+         type: 'bar',
+         data: {
+             labels: labels,
+             datasets: [{
+                 label: '행동지 IP 이벤트',
+                 data: data,
+                 backgroundColor: '#e74c3c', // 색상 변경
+                 borderWidth: 1
+             }]
+         },
+         options: {
+             scales: {
+                 yAxes: [{
+                     ticks: {
+                         beginAtZero: true
+                     }
+                 }]
+             }
+         }
+     });
+ }
 
     // 패턴 탐지 이벤트 Top 3 차트 업데이트 함수
     function updatePatternDetectionChart(topPatterns) {
