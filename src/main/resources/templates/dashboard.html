@@ -47,17 +47,18 @@
             margin-right: 10px;
         }
 
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 64px;
-            width: 220px;
-            background-color: #222 ;/* 네비게이션바와 동일한 배경색으로 설정 */
-            height: 100%;
-            padding-top: 20px;
-            transition: all 0.3s ease;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-        }
+      .sidebar {
+    position: fixed;
+    left: 0;
+    top: 64px; /* Adjust as necessary */
+    width: 220px;
+    background-color: #222;
+    padding-top: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Ensure sidebar scrolls if content exceeds viewport */
+    height: calc(100% - 64px); /* Adjust for the top navbar height */
+}
 
         .sidebar-heading {
             font-size: 1.2rem;
@@ -78,12 +79,13 @@
         }
 
         /* 콘텐츠 영역 */
-        .content-area {
-            margin-left: 220px; /* 메뉴바 너비만큼 내용 영역을 조정 */
-            padding: 20px;
-            transition: all 0.3s ease;
-            
-        }
+      .content-area {
+    margin-left: 220px; /* Adjust margin for sidebar width */
+    padding: 20px;
+    transition: all 0.3s ease;
+    overflow-y: auto; /* Ensure content area scrolls if content exceeds viewport */
+    height: calc(100vh - 64px); /* Adjust for the top navbar height */
+}
 
         /* 차트 컨테이너 */
         .chart-container {
@@ -230,21 +232,21 @@
         <div class="chart-container">
             <div class="row">
                 <div class="col-md-6">
-                    <h4 class="text-center mb-4">IP 탐지 이벤트 Top 5</h4>
+                    <h5 class="text-center mb-4">IP 탐지 이벤트 Top 5</h5>
                     <canvas id="sourceIPChart"></canvas>
                 </div>
                 <div class="col-md-6">
-                    <h4 class="text-center mb-4">블랙리스트 Top 5</h4>
+                     <h5  class="text-center mb-4">블랙리스트 Top 5</h5>
                     <canvas id="destinationIPChart"></canvas>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col-md-5">
-                    <h4 class="text-center mb-4">패턴 탐지 이벤트 Top 3</h4>
+                   <h5 class="text-center mb-4">패턴 탐지 이벤트 Top 3</h5>
                     <canvas id="patternDetectionChart"></canvas>
                 </div>
                 <div class="col-md-7">
-                    <h4 class="text-center mb-4">일일 경보 발생 현황</h4>
+                     <h5  class="text-center mb-4">일일 경보 발생 현황</h5>
                     <div class="search-form">
                         <select id="searchType" class="form-control mb-2 mr-sm-2">
                             <option value="time">시간</option>
