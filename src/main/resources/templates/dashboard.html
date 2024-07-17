@@ -47,18 +47,18 @@
             margin-right: 10px;
         }
 
-      .sidebar {
-    position: fixed;
-    left: 0;
-    top: 64px; /* Adjust as necessary */
-    width: 220px;
-    background-color: #222;
-    padding-top: 20px;
-    transition: all 0.3s ease;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    overflow-y: auto; /* Ensure sidebar scrolls if content exceeds viewport */
-    height: calc(100% - 64px); /* Adjust for the top navbar height */
-}
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 64px; /* Adjust as necessary */
+            width: 220px;
+            background-color: #222;
+            padding-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            overflow-y: auto; /* Ensure sidebar scrolls if content exceeds viewport */
+            height: calc(100% - 64px); /* Adjust for the top navbar height */
+        }
 
         .sidebar-heading {
             font-size: 1.2rem;
@@ -75,19 +75,17 @@
 
         .nav-sidebar .nav-link:hover {
             background-color: #222;
-            color : #fff;
+            color: #fff;
         }
 
-        /* 콘텐츠 영역 */
-      .content-area {
-    margin-left: 220px; /* Adjust margin for sidebar width */
-    padding: 20px;
-    transition: all 0.3s ease;
-    overflow-y: auto; /* Ensure content area scrolls if content exceeds viewport */
-    height: calc(100vh - 64px); /* Adjust for the top navbar height */
-}
+        .content-area {
+            margin-left: 220px; /* Adjust margin for sidebar width */
+            padding: 20px;
+            transition: all 0.3s ease;
+            overflow-y: auto; /* Ensure content area scrolls if content exceeds viewport */
+            height: calc(100vh - 64px); /* Adjust for the top navbar height */
+        }
 
-        /* 차트 컨테이너 */
         .chart-container {
             background-color: rgba(248, 249, 250, 0.9); /* 반투명 유리 효과 */
             padding: 20px;
@@ -105,7 +103,6 @@
             border-radius: 5px; /* 차트 둥근 모서리 추가 */
         }
 
-        /* 검색 폼 */
         .search-form {
             margin-bottom: 10px; /* 높이 줄임 */
             background-color: rgba(255, 255, 255, 0.9);
@@ -147,7 +144,6 @@
             background-color: #0056b3;
         }
 
-        /* 이벤트 테이블 */
         .event-table {
             background-color: #fff;
             border-radius: 5px;
@@ -171,7 +167,6 @@
             background-color: #f2f2f2;
         }
 
-        /* 미디어 쿼리 */
         @media (max-width: 768px) {
             .sidebar {
                 position: static;
@@ -186,7 +181,6 @@
             }
         }
 
-        /* 추가적인 스타일링 */
         .bg-primary {
             background-color: #3498db !important; /* 색상 변경 */
         }
@@ -232,33 +226,31 @@
         <div class="chart-container">
             <div class="row">
                 <div class="col-md-6">
-                    <h5 class="text-center mb-4">IP 탐지 이벤트 Top 5</h5>
+                    <h5 class="text-center mb-4">패턴 IP 탐지 이벤트 Top 5</h5>
                     <canvas id="sourceIPChart"></canvas>
                 </div>
                 <div class="col-md-6">
-                     <h5  class="text-center mb-4">블랙리스트 Top 5</h5>
+                    <h5 class="text-center mb-4">행동 IP 탐지 이벤트 Top 5</h5>
                     <canvas id="destinationIPChart"></canvas>
                 </div>
             </div>
             <div class="row mt-4">
                 <div class="col-md-5">
-                   <h5 class="text-center mb-4">패턴 탐지 이벤트 Top 3</h5>
+                    <h5 class="text-center mb-4">패턴 탐지 이벤트 Top 3</h5>
                     <canvas id="patternDetectionChart"></canvas>
                 </div>
                 <div class="col-md-7">
-                     <h5  class="text-center mb-4">일일 경보 발생 현황</h5>
+                    <h5 class="text-center mb-4">일일 경보 발생 현황</h5>
                     <div class="search-form">
                         <select id="searchType" class="form-control mb-2 mr-sm-2">
-                          <option value="time">시간</option>
-<option value="sourceIP">출발 IP</option>
-<option value="sourcePort">출발 Port</option>
-<option value="destinationIP">목적 IP</option>
-<option value="destinationPort">목적 Port</option>
-<option value="pattern1">패턴1</option>
-<option value="pattern2">패턴2</option>
-<option value="pattern3">패턴3</option>
-
-                           
+                            <option value="time">시간</option>
+                            <option value="sourceIP">출발 IP</option>
+                            <option value="sourcePort">출발 Port</option>
+                            <option value="destinationIP">목적 IP</option>
+                            <option value="destinationPort">목적 Port</option>
+                            <option value="pattern1">패턴1</option>
+                            <option value="pattern2">패턴2</option>
+                            <option value="pattern3">패턴3</option>
                         </select>
                         <input type="text" id="searchInput" class="form-control mb-2 mr-sm-2" placeholder="검색어 입력">
                         <button type="button" class="btn btn-primary mb-2" onclick="handleSearch()">Search</button>
@@ -276,7 +268,6 @@
                                     <th>패턴1</th>
                                     <th>패턴2</th>
                                     <th>패턴3</th>
-                                    
                                 </tr>
                             </thead>
                             <tbody id="eventTableBody">
@@ -293,28 +284,33 @@
 
 <!-- 필수 라이브러리 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-
 <script>
     var currentPage = 1;
     var rowsPerPage = 3;
     var eventDetailsData = []; // 전체 이벤트 데이터를 저장하는 배열
 
-    // 페이지 로드 시 초기 데이터 로드
     document.addEventListener('DOMContentLoaded', function() {
         fetchDataAndRenderCharts();
         fetchAndPopulateEventTable();
     });
 
-    // 서버에서 데이터를 가져와 차트와 테이블을 업데이트하는 함수
+    // 서버에서 데이터를 가져와 차트를 업데이트하는 함수
     function fetchDataAndRenderCharts() {
-        fetch('/api/patternlogs/top-sips')
+        fetch('/api/patternlogs/top-sips') // Top 5 SIP 조회 API 엔드포인트
             .then(response => response.json())
             .then(data => {
                 updateSourceIPChart(data); // 출발지 IP 차트 업데이트
             })
             .catch(error => console.error('데이터 가져오기 오류:', error));
 
-        fetch('/api/patternlogs/top-pattern-combinations')
+        fetch('/behaviorlog/top-sips') // Top 5 DIP 조회 API 엔드포인트
+            .then(response => response.json())
+            .then(data => {
+                updateDestinationIPChart(data); // 행동지 IP 차트 업데이트
+            })
+            .catch(error => console.error('데이터 가져오기 오류:', error));
+
+        fetch('/api/patternlogs/top-pattern-combinations') // 패턴 탐지 이벤트 Top 3 조회 API 엔드포인트
             .then(response => response.json())
             .then(data => {
                 updatePatternDetectionChart(data); // 패턴 탐지 차트 업데이트
@@ -322,7 +318,7 @@
             .catch(error => console.error('데이터 가져오기 오류:', error));
     }
 
-    // IP 탐지 이벤트 Top 5 차트 업데이트 함수
+    // 출발지 IP 탐지 이벤트 Top 5 차트 업데이트 함수
     function updateSourceIPChart(topSIPs) {
         var labels = topSIPs.map(item => item.s_ip);
         var data = topSIPs.map(item => item.ip_count);
@@ -336,6 +332,35 @@
                     label: '출발지 IP 이벤트',
                     data: data,
                     backgroundColor: '#3498db', // 색상 변경
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+
+    // 행동지 IP 탐지 이벤트 Top 5 차트 업데이트 함수
+    function updateDestinationIPChart(topDIPs) {
+        var labels = topDIPs.map(item => item.d_ip);
+        var data = topDIPs.map(item => item.ip_count);
+
+        var ctxDestinationIP = document.getElementById('destinationIPChart').getContext('2d');
+        var destinationIPChart = new Chart(ctxDestinationIP, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '행동지 IP 이벤트',
+                    data: data,
+                    backgroundColor: '#e74c3c', // 색상 변경
                     borderWidth: 1
                 }]
             },
@@ -371,9 +396,9 @@
         });
     }
 
-    // 서버에서 데이터를 가져와 테이블을 채우는 함수
+    // 서버에서 데이터를 가져와 이벤트 테이블을 채우는 함수
     function fetchAndPopulateEventTable() {
-        fetch('/api/patternlogs/ordered-by-time')
+        fetch('/api/patternlogs/ordered-by-time') // 이벤트 테이블 데이터 조회 API 엔드포인트
             .then(response => response.json())
             .then(data => {
                 eventDetailsData = data; // 전체 데이터 저장
@@ -397,7 +422,6 @@
                 '<td>' + event.pattern1 + '</td>' +
                 '<td>' + event.pattern2 + '</td>' +
                 '<td>' + event.pattern3 + '</td>' +
-              
                 '</tr>';
             tableBody.innerHTML += row;
         });
@@ -407,49 +431,12 @@
     function loadMoreData() {
         var startIndex = currentPage * rowsPerPage;
         var endIndex = startIndex + rowsPerPage;
-        var nextPageData = eventDetailsData.slice(startIndex, endIndex);
-        populateEventDetailsTable(nextPageData);
-        currentPage++;
-    }
-
-    // 검색 필드를 지우는 함수
-    function clearSearch() {
-        document.getElementById('searchInput').value = '';
-        populateEventDetailsTable(eventDetailsData.slice(0, rowsPerPage)); // 첫 페이지 데이터로 재설정
-        currentPage = 1; // 페이지 번호 초기화
-    }
-
-    // 검색 필드에서 입력한 값을 기반으로 필터링하는 함수
-    function handleSearch() {
-        var searchType = document.getElementById('searchType').value;
-        var searchInput = document.getElementById('searchInput').value.trim().toLowerCase();
-
-        var filteredData = eventDetailsData.filter(function(event) {
-        	switch (searchType) {
-            case 'time':
-                return event.time.toLowerCase().includes(searchInput);
-            case 'sourceIP':
-                return event.sIp.toLowerCase().includes(searchInput);
-            case 'sourcePort':
-                return event.sPort.toString().includes(searchInput);
-            case 'destinationIP':
-                return event.dIp.toLowerCase().includes(searchInput);
-            case 'destinationPort':
-                return event.dPort.toString().includes(searchInput);
-            case 'pattern1':
-                return event.pattern1.includes(searchInput);
-            case 'pattern2':
-                return event.pattern2.includes(searchInput);
-            case 'pattern3':
-                return event.pattern3.includes(searchInput);
-            default:
-                return true;
+        if (startIndex < eventDetailsData.length) {
+            populateEventDetailsTable(eventDetailsData.slice(startIndex, endIndex));
+            currentPage++;
+        } else {
+            alert('더 이상 데이터가 없습니다.');
         }
-
-        });
-
-        populateEventDetailsTable(filteredData.slice(0, rowsPerPage)); // 첫 페이지 데이터로 재설정
-        currentPage = 1; // 페이지 번호 초기화
     }
 </script>
 

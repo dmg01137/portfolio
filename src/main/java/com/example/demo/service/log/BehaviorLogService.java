@@ -2,11 +2,9 @@ package com.example.demo.service.log;
 
 import com.example.demo.dao.log.BehaviorLogDAO;
 import com.example.demo.dto.log.BehaviorLog;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 import java.util.List;
 
@@ -40,5 +38,10 @@ public class BehaviorLogService {
     // ID를 기반으로 특정 행동 로그를 삭제합니다.
     public void delete(int detection_number) {
         behaviorLogDAO.delete(detection_number);
+    }
+
+    // Top 5 SIP 조회
+    public List<String> findTop5SIPs() {
+        return behaviorLogDAO.findTop5SIPs();
     }
 }

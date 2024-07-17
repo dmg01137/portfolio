@@ -11,7 +11,7 @@
 
 <!-- 모든 데이터 조회 -->
 <select id="findAll" resultType="com.example.demo.dto.log.BehaviorLog">
-     SELECT * FROM log_db.behavior_log_20240716
+     SELECT * FROM log_db.behavior_log_20240717
 </select>
 
 <!-- 데이터 삽입 -->
@@ -52,5 +52,15 @@
         AND policy_name = #{policy_name}
     </if>
 </select>
+
+<!-- SIP top5 조회 -->
+<select id="findTop5SIP" resultType="string">
+    SELECT s_ip AS top_s_ip
+    FROM log_db.behavior_log_20240717
+    GROUP BY s_ip
+    ORDER BY COUNT(*) DESC
+    LIMIT 5
+</select>
+
 
 </mapper>
