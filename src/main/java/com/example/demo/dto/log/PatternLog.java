@@ -1,7 +1,7 @@
 package com.example.demo.dto.log;
 
 public class PatternLog {
-    private int detection_number;
+    private int detectionNumber;
     private String time;
     private String sIp;
     private String dIp;
@@ -17,8 +17,8 @@ public class PatternLog {
     public PatternLog() {
     }
 
-    public PatternLog(int detection_number, String time, String sIp, String dIp, int sPort, int dPort, int len, String pattern1, String pattern2, String pattern3, String packet, String policyName) {
-        this.detection_number = detection_number;
+    public PatternLog(int detectionNumber, String time, String sIp, String dIp, int sPort, int dPort, int len, String pattern1, String pattern2, String pattern3, String packet, String policyName) {
+        this.detectionNumber = detectionNumber;
         this.time = time;
         this.sIp = sIp;
         this.dIp = dIp;
@@ -32,12 +32,12 @@ public class PatternLog {
         this.policyName = policyName;
     }
 
-    public int getDetection_number() {
-        return detection_number;
+    public int getDetectionNumber() {
+        return detectionNumber;
     }
 
-    public void setDetection_number(int detection_number) {
-        this.detection_number = detection_number;
+    public void setDetectionNumber(int detectionNumber) {
+        this.detectionNumber = detectionNumber;
     }
 
     public String getTime() {
@@ -131,7 +131,7 @@ public class PatternLog {
     @Override
     public String toString() {
         return "PatternLog{" +
-                "detection_number=" + detection_number +
+                "detectionNumber=" + detectionNumber +
                 ", time='" + time + '\'' +
                 ", sIp='" + sIp + '\'' +
                 ", dIp='" + dIp + '\'' +
@@ -145,5 +145,4 @@ public class PatternLog {
                 ", policyName='" + policyName + '\'' +
                 '}';
     }
-
 }

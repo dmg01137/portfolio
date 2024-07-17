@@ -1,6 +1,8 @@
 package com.example.demo.service.log;
 
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,27 +22,32 @@ public class PatternLogService {
     }
 
     @Transactional
-    public List<PatternLog> getAllPatternLogs() {
-        return patternLogDAO.findAll();
+    public List<PatternLog> getAllPatternLogs(String tableName) {
+        Map<String, String> params = new HashMap<>();
+        params.put("tableName", tableName);
+        return patternLogDAO.findAll(params);
     }
 
     @Transactional
-    public PatternLog getPatternLogById(int detection_number) {
-        return patternLogDAO.findById(detection_number);
+    public PatternLog getPatternLogById(int detection_number, String tableName) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("detection_number", detection_number);
+        params.put("tableName", tableName);
+        return patternLogDAO.findById(params);
     }
 
     @Transactional
-    public void createPatternLog(PatternLog patternLog) {
-        patternLogDAO.save(patternLog);
+    public void createPatternLog(PatternLog patternLog, String tableName) {
+        patternLogDAO.save(patternLog, tableName);
     }
 
     @Transactional
-    public void updatePatternLog(PatternLog patternLog) {
-        patternLogDAO.update(patternLog);
+    public void updatePatternLog(PatternLog patternLog, String tableName) {
+        patternLogDAO.update(patternLog, tableName);
     }
 
     @Transactional
-    public void deletePatternLog(int detection_number) {
-        patternLogDAO.delete(detection_number);
+    public void deletePatternLog(int detection_number, String tableName) {
+        patternLogDAO.delete(detection_number, tableName);
     }
 }
