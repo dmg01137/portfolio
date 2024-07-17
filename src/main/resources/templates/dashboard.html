@@ -47,7 +47,6 @@
             margin-right: 10px;
         }
 
-
         .sidebar {
             position: fixed;
             left: 0;
@@ -83,6 +82,7 @@
             margin-left: 220px; /* 메뉴바 너비만큼 내용 영역을 조정 */
             padding: 20px;
             transition: all 0.3s ease;
+            
         }
 
         /* 차트 컨테이너 */
@@ -105,7 +105,7 @@
 
         /* 검색 폼 */
         .search-form {
-            margin-bottom: 20px;
+            margin-bottom: 10px; /* 높이 줄임 */
             background-color: rgba(255, 255, 255, 0.9);
             padding: 10px;
             border-radius: 5px;
@@ -128,7 +128,7 @@
         .search-form input[type="text"] {
             flex: 1;
             border: none;
-            padding: 10px;
+            padding: 8px; /* 패딩 감소 */
             margin-right: 5px;
         }
 
@@ -136,9 +136,13 @@
             border: none;
             background-color: #007bff;
             color: #fff;
-            padding: 10px 20px;
+            padding: 8px 16px; /* 패딩 감소 */
             cursor: pointer;
             transition: background-color 0.3s ease;
+        }
+
+        .search-form button:hover {
+            background-color: #0056b3;
         }
 
         /* 이벤트 테이블 */
@@ -194,7 +198,6 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
- 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
@@ -219,69 +222,65 @@
         <li class="nav-item">
             <a class="nav-link" href="/policylist"><i class="fas fa-shield-alt mr-1"></i>정책 관리</a>
         </li>
-        
     </ul>
 </div>
 
-	<div class="content-area">
-		<div class="container">
-			<div class="chart-container">
-				<div class="row">
-					<div class="col-md-6">
-						<h4 class="text-center mb-4">IP 탐지 이벤트 Top 5</h4>
-						<canvas id="sourceIPChart"></canvas>
-					</div>
-					<div class="col-md-6">
-						<h4 class="text-center mb-4">블랙리스트 Top 5</h4>
-						<canvas id="destinationIPChart"></canvas>
-					</div>
-				</div>
-				<div class="row mt-4">
-					<div class="col-md-5">
-						<h4 class="text-center mb-4">패턴 탐지 이벤트 Top 3</h4>
-						<canvas id="patternDetectionChart"></canvas>
-					</div>
-					<div class="col-md-7">
-						<h4 class="text-center mb-4">일일 경보 발생 현황</h4>
-						<div class="search-form">
-							<select id="searchType" class="form-control mb-2 mr-sm-2">
-								<option value="time">시간</option>
-								<option value="logSourceIP">로그소스 IP</option>
-								<option value="sourceIP">출발 IP</option>
-								<option value="sourcePort">출발 Port</option>
-								<option value="destinationIP">목적 IP</option>
-								<option value="destinationPort">목적 Port</option>
-								<option value="severity">평가</option>
-							</select> <input type="text" id="searchInput"
-								class="form-control mb-2 mr-sm-2" placeholder="검색어 입력">
-							<button type="button" class="btn btn-primary mb-2"
-								onclick="handleSearch()">Search</button>
-							<button type="button" class="btn btn-secondary mb-2 ml-2"
-								onclick="clearSearch()">Clear</button>
-						</div>
-						 <div class="event-table">
+<div class="content-area">
+    <div class="container">
+        <div class="chart-container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="text-center mb-4">IP 탐지 이벤트 Top 5</h4>
+                    <canvas id="sourceIPChart"></canvas>
+                </div>
+                <div class="col-md-6">
+                    <h4 class="text-center mb-4">블랙리스트 Top 5</h4>
+                    <canvas id="destinationIPChart"></canvas>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-5">
+                    <h4 class="text-center mb-4">패턴 탐지 이벤트 Top 3</h4>
+                    <canvas id="patternDetectionChart"></canvas>
+                </div>
+                <div class="col-md-7">
+                    <h4 class="text-center mb-4">일일 경보 발생 현황</h4>
+                    <div class="search-form">
+                        <select id="searchType" class="form-control mb-2 mr-sm-2">
+                            <option value="time">시간</option>
+                            <option value="logSourceIP">로그소스 IP</option>
+                            <option value="sourceIP">출발 IP</option>
+                            <option value="sourcePort">출발 Port</option>
+                            <option value="destinationIP">목적 IP</option>
+                            <option value="destinationPort">목적 Port</option>
+                            <option value="severity">평가</option>
+                        </select>
+                        <input type="text" id="searchInput" class="form-control mb-2 mr-sm-2" placeholder="검색어 입력">
+                        <button type="button" class="btn btn-primary mb-2" onclick="handleSearch()">Search</button>
+                        <button type="button" class="btn btn-secondary mb-2 ml-2" onclick="clearSearch()">Clear</button>
+                    </div>
+                    <div class="event-table">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>시간</th>
-                                
                                     <th>출발 IP</th>
-                                  
+                                    <th>출발 Port</th>
                                     <th>목적 IP</th>
-                                  
+                                    <th>목적 Port</th>
                                     <th>패턴1</th>
                                     <th>패턴2</th>
                                     <th>패턴3</th>
-                                  
+                                    
                                 </tr>
                             </thead>
-                           <tbody id="eventTableBody">
-                <!-- 여기에 서버에서 동적으로 데이터가 추가됩니다 -->
-            </tbody>
-        </table>
-        <button class="btn btn-primary" id="loadMoreBtn">더보기</button>
-    </div>
-</div>
+                            <tbody id="eventTableBody">
+                                <!-- 여기에 서버에서 동적으로 데이터가 추가됩니다 -->
+                            </tbody>
+                        </table>
+                        <button class="btn btn-primary" id="loadMoreBtn" onclick="loadMoreData()">더보기</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -291,6 +290,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 
 <script>
+    var currentPage = 1;
+    var rowsPerPage = 3;
+    var eventDetailsData = []; // 전체 이벤트 데이터를 저장하는 배열
+
+    // 페이지 로드 시 초기 데이터 로드
+    document.addEventListener('DOMContentLoaded', function() {
+        fetchDataAndRenderCharts();
+        fetchAndPopulateEventTable();
+    });
+
     // 서버에서 데이터를 가져와 차트와 테이블을 업데이트하는 함수
     function fetchDataAndRenderCharts() {
         fetch('/api/patternlogs/top-sips')
@@ -357,14 +366,13 @@
         });
     }
 
-  
-
     // 서버에서 데이터를 가져와 테이블을 채우는 함수
     function fetchAndPopulateEventTable() {
         fetch('/api/patternlogs/ordered-by-time')
             .then(response => response.json())
             .then(data => {
-                populateEventDetailsTable(data); // 테이블 행을 채우는 함수 호출
+                eventDetailsData = data; // 전체 데이터 저장
+                populateEventDetailsTable(data.slice(0, rowsPerPage)); // 첫 페이지 데이터 채우기
             })
             .catch(error => console.error('데이터 가져오기 오류:', error));
     }
@@ -378,9 +386,9 @@
             var row = '<tr>' +
                 '<td>' + event.time + '</td>' +
                 '<td>' + event.sIp + '</td>' +
-               
+                '<td>' + event.sPort + '</td>' +
                 '<td>' + event.dIp + '</td>' +
-               
+                '<td>' + event.dPort + '</td>' +
                 '<td>' + event.pattern1 + '</td>' +
                 '<td>' + event.pattern2 + '</td>' +
                 '<td>' + event.pattern3 + '</td>' +
@@ -389,16 +397,21 @@
             tableBody.innerHTML += row;
         });
     }
-    // 페이지 로드 시 초기 데이터 로드
-    document.addEventListener('DOMContentLoaded', function() {
-        fetchDataAndRenderCharts();
-        fetchAndPopulateEventTable();
-    });
+
+    // 다음 페이지 데이터 로드
+    function loadMoreData() {
+        var startIndex = currentPage * rowsPerPage;
+        var endIndex = startIndex + rowsPerPage;
+        var nextPageData = eventDetailsData.slice(startIndex, endIndex);
+        populateEventDetailsTable(nextPageData);
+        currentPage++;
+    }
 
     // 검색 필드를 지우는 함수
     function clearSearch() {
         document.getElementById('searchInput').value = '';
-        populateEventDetailsTable(eventDetailsData);
+        populateEventDetailsTable(eventDetailsData.slice(0, rowsPerPage)); // 첫 페이지 데이터로 재설정
+        currentPage = 1; // 페이지 번호 초기화
     }
 
     // 검색 필드에서 입력한 값을 기반으로 필터링하는 함수
@@ -427,7 +440,8 @@
             }
         });
 
-        populateEventDetailsTable(filteredData);
+        populateEventDetailsTable(filteredData.slice(0, rowsPerPage)); // 첫 페이지 데이터로 재설정
+        currentPage = 1; // 페이지 번호 초기화
     }
 </script>
 
