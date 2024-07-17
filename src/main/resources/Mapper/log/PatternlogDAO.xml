@@ -3,50 +3,71 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.dao.log.PatternLogDAO">
 
+    <!-- 패턴 로그에 대한 결과 매핑 -->
     <resultMap id="patternLogResultMap" type="com.example.demo.dto.log.PatternLog">
-        <id property="detectionNumber" column="detection_number"/>
+        <id property="detection_number" column="detection_number"/>
         <result property="time" column="time"/>
         <result property="sIp" column="s_ip"/>
         <result property="dIp" column="d_ip"/>
         <result property="sPort" column="s_port"/>
         <result property="dPort" column="d_port"/>
         <result property="len" column="len"/>
-        <result property="pattern1" column="pattern1"/>
-        <result property="pattern2" column="pattern2"/>
-        <result property="pattern3" column="pattern3"/>
+        <result property="pattern" column="pattern"/>
         <result property="packet" column="packet"/>
         <result property="policyName" column="policy_name"/>
     </resultMap>
 
     <!-- ID를 기반으로 패턴 로그를 조회합니다 -->
-    <select id="findById" resultMap="patternLogResultMap" parameterType="map">
-        SELECT *
-        FROM log_db.pattern_log_${tableName}
-        WHERE detection_number = #{detection_number}
+    <select id="findById" resultMap="patternLogResultMap" parameterType="int">
+        SELECT * FROM log_db.pattern_log WHERE detection_number = #{detection_number}
     </select>
 
     <!-- 모든 패턴 로그를 조회합니다 -->
-    <select id="findAll" resultMap="patternLogResultMap" parameterType="map">
-        SELECT *
-        FROM log_db.pattern_log_20240716
+    <select id="findAll" resultMap="patternLogResultMap">
+        SELECT * FROM log_db.pattern_log_20240716
     </select>
 
     <!-- 새로운 패턴 로그를 저장합니다 -->
     <insert id="save" parameterType="com.example.demo.dto.log.PatternLog">
-        INSERT INTO log_db.pattern_log_${tableName} (time, s_ip, d_ip, s_port, d_port, len, pattern1, pattern2, pattern3, packet, policy_name)
-        VALUES (#{time}, #{sIp}, #{dIp}, #{sPort}, #{dPort}, #{len}, #{pattern1}, #{pattern2}, #{pattern3}, #{packet}, #{policyName})
+        INSERT INTO log_db.pattern_log (time, s_ip, d_ip, s_port, d_port, len, pattern, packet, policy_name)
+        VALUES (#{time}, #{sIp}, #{dIp}, #{sPort}, #{dPort}, #{len}, #{pattern}, #{packet}, #{policyName})
     </insert>
 
     <!-- 기존 패턴 로그를 업데이트합니다 -->
     <update id="update" parameterType="com.example.demo.dto.log.PatternLog">
-        UPDATE log_db.pattern_log_${tableName}
-        SET time = #{time}, s_ip = #{sIp}, d_ip = #{dIp}, s_port = #{sPort}, d_port = #{dPort}, len = #{len}, pattern1 = #{pattern1}, pattern2 = #{pattern2}, pattern3 = #{pattern3}, packet = #{packet}, policy_name = #{policyName}
-        WHERE detection_number = #{detectionNumber}
+        UPDATE log_db.pattern_log
+        SET time = #{time}, s_ip = #{sIp}, d_ip = #{dIp}, s_port = #{sPort}, d_port = #{dPort}, len = #{len}, pattern = #{pattern}, packet = #{packet}, policy_name = #{policyName}
+        WHERE detection_number = #{detection_number}
     </update>
 
     <!-- ID를 기반으로 특정 패턴 로그를 삭제합니다 -->
-    <delete id="delete" parameterType="map">
-        DELETE FROM log_db.pattern_log_${tableName} WHERE detection_number = #{detection_number}
+    <delete id="delete" parameterType="int">
+        DELETE FROM log_db.pattern_log WHERE detection_number = #{detection_number}
     </delete>
+
+<!-- Top 5 s_ip 값 조회 -->
+<select id="findTopSIPs" resultType="java.util.Map">
+    SELECT s_ip, COUNT(*) AS ip_count
+    FROM log_db.pattern_log_20240716
+    GROUP BY s_ip
+    ORDER BY ip_count DESC
+    LIMIT 5;
+</select>
+<!-- Top 3 패턴 조합 조회 -->
+<select id="findTopPatternCombinations" resultType="java.util.Map">
+    SELECT CONCAT(pattern1, ',', pattern2, ',', pattern3) AS combined_pattern, COUNT(*) AS pattern_count
+    FROM log_db.pattern_log_20240716
+    GROUP BY combined_pattern
+    ORDER BY pattern_count DESC
+    LIMIT 3;
+</select>
+
+<!-- 모든 패턴 로그를 최신 순으로 조회 -->
+<select id="findAllOrderedByTimeDesc" resultMap="patternLogResultMap">
+    SELECT *
+    FROM log_db.pattern_log_20240716
+    ORDER BY time DESC;
+</select>
+
 
 </mapper>
