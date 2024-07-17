@@ -244,10 +244,10 @@
                     <div class="search-form">
                         <select id="searchType" class="form-control mb-2 mr-sm-2">
                             <option value="time">시간</option>
-                            <option value="sourceIP">출발 IP</option>
-                            <option value="sourcePort">출발 Port</option>
-                            <option value="destinationIP">목적 IP</option>
-                            <option value="destinationPort">목적 Port</option>
+                            <option value="sIP">출발 IP</option>
+                            <option value="sPort">출발 Port</option>
+                            <option value="dIP">목적 IP</option>
+                            <option value="dPort">목적 Port</option>
                             <option value="pattern1">패턴1</option>
                             <option value="pattern2">패턴2</option>
                             <option value="pattern3">패턴3</option>
@@ -303,7 +303,7 @@
             })
             .catch(error => console.error('데이터 가져오기 오류:', error));
 
-        fetch('/behaviorlog/top-sips') // Top 5 DIP 조회 API 엔드포인트
+        fetch('behaviorlog/top-sips') // Top 5 DIP 조회 API 엔드포인트
             .then(response => response.json())
             .then(data => {
                 updateDestinationIPChart(data); // 행동지 IP 차트 업데이트
@@ -427,16 +427,53 @@
         });
     }
 
-    // 다음 페이지 데이터 로드
+ // 다음 페이지 데이터 로드
     function loadMoreData() {
         var startIndex = currentPage * rowsPerPage;
         var endIndex = startIndex + rowsPerPage;
-        if (startIndex < eventDetailsData.length) {
-            populateEventDetailsTable(eventDetailsData.slice(startIndex, endIndex));
-            currentPage++;
-        } else {
-            alert('더 이상 데이터가 없습니다.');
+        var nextPageData = eventDetailsData.slice(startIndex, endIndex);
+        populateEventDetailsTable(nextPageData);
+        currentPage++;
+    }
+
+    // 검색 필드를 지우는 함수
+    function clearSearch() {
+        document.getElementById('searchInput').value = '';
+        populateEventDetailsTable(eventDetailsData.slice(0, rowsPerPage)); // 첫 페이지 데이터로 재설정
+        currentPage = 1; // 페이지 번호 초기화
+    }
+
+    // 검색 필드에서 입력한 값을 기반으로 필터링하는 함수
+    function handleSearch() {
+        var searchType = document.getElementById('searchType').value;
+        var searchInput = document.getElementById('searchInput').value.trim().toLowerCase();
+
+        var filteredData = eventDetailsData.filter(function(event) {
+        	switch (searchType) {
+            case 'time':
+                return event.time.toLowerCase().includes(searchInput);
+            case 'sIP':
+                return event.sIp.toLowerCase().includes(searchInput);
+            case 'sPort':
+                return event.sPort.toString().includes(searchInput);
+            case 'dIP':
+                return event.dIp.toLowerCase().includes(searchInput);
+            case 'dPort':
+                return event.dPort.toString().includes(searchInput);
+            case 'pattern1':
+                return event.pattern1.includes(searchInput);
+            case 'pattern2':
+                return event.pattern2.includes(searchInput);
+            case 'pattern3':
+                return event.pattern3.includes(searchInput);
+            default:
+                return true;
         }
+
+        });
+
+        populateEventDetailsTable(filteredData.slice(0, rowsPerPage)); // 첫 페이지 데이터로 재설정
+        currentPage = 1; // 페이지 번호 초기화
     }
 </script>
 
