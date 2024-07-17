@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DBMS Solution Dashboard</title>
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Custom Styles -->
     <style>
-        /* 기본적인 스타일 */
+        /* Basic Styling */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #848080; /* 진회색 배경 */
+            background-color: #848080; /* Dark gray background */
             margin: 0;
             padding: 0;
         }
@@ -30,30 +33,29 @@
             background-color: #222;
             padding: 14px 16px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            position: relative; /* 네비게이션 바를 상대적으로 위치 지정 */
-            z-index: 1; /* 네비게이션 바를 가장 위에 위치시킴 */
+            position: relative;
+            z-index: 1;
         }
 
         .navbar-brand {
             font-size: 1.5rem;
-            color: #fff; /* 원하는 색상으로 설정 */
+            color: #fff;
         }
 
         .navbar-brand:hover {
-            color: #fff; /* 마우스를 올렸을 때 색상 변경 없음 */
+            color: #fff;
         }
 
         .navbar-nav .nav-item {
             margin-right: 10px;
         }
 
-
         .sidebar {
             position: fixed;
             left: 0;
             top: 64px;
             width: 220px;
-            background-color: #222 ;/* 네비게이션바와 동일한 배경색으로 설정 */
+            background-color: #222;
             height: 100%;
             padding-top: 20px;
             transition: all 0.3s ease;
@@ -75,19 +77,17 @@
 
         .nav-sidebar .nav-link:hover {
             background-color: #222;
-            color : #fff;
+            color: #fff;
         }
 
-        /* 콘텐츠 영역 */
         .content-area {
-            margin-left: 220px; /* 메뉴바 너비만큼 내용 영역을 조정 */
+            margin-left: 220px;
             padding: 20px;
             transition: all 0.3s ease;
         }
 
-        /* 차트 컨테이너 */
         .chart-container {
-            background-color: rgba(248, 249, 250, 0.9); /* 반투명 유리 효과 */
+            background-color: rgba(248, 249, 250, 0.9);
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -95,15 +95,14 @@
         }
 
         .chart-container h4 {
-            color: #333; /* 텍스트 색상 변경 */
+            color: #333;
         }
 
         .chart-container canvas {
-            background-color: #fff; /* 차트 배경색 변경 */
-            border-radius: 5px; /* 차트 둥근 모서리 추가 */
+            background-color: #fff;
+            border-radius: 5px;
         }
 
-        /* 검색 폼 */
         .search-form {
             margin-bottom: 20px;
             background-color: rgba(255, 255, 255, 0.9);
@@ -117,7 +116,7 @@
         .search-form select,
         .search-form input[type="text"],
         .search-form button {
-            border-radius: 3px; /* 선택 상자와 버튼 둥근 모서리 추가 */
+            border-radius: 3px;
         }
 
         .search-form select {
@@ -141,12 +140,11 @@
             transition: background-color 0.3s ease;
         }
 
-        /* 이벤트 테이블 */
         .event-table {
             background-color: #fff;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            width: 100%; /* 테이블 전체 너비 설정 */
+            width: 100%;
         }
 
         .event-table th,
@@ -165,14 +163,13 @@
             background-color: #f2f2f2;
         }
 
-        /* 미디어 쿼리 */
         @media (max-width: 768px) {
             .sidebar {
                 position: static;
                 width: 100%;
-                margin-top: 20px; /* 작은 화면에서 네비게이션 바 위 여백 추가 */
+                margin-top: 20px;
                 box-shadow: none;
-                z-index: 0; /* 작은 화면에서도 사이드바가 네비게이션 바 뒤에 있도록 설정 */
+                z-index: 0;
             }
 
             .content-area {
@@ -180,9 +177,8 @@
             }
         }
 
-        /* 추가적인 스타일링 */
         .bg-primary {
-            background-color: #3498db !important; /* 색상 변경 */
+            background-color: #3498db !important;
         }
     </style>
 </head>
@@ -194,12 +190,11 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
- 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="/userlist"><i class="fas fa-users-cog mr-1"></i>사용자 관리</a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/userlist"><i class="fas fa-users-cog mr-1"></i>사용자 관리</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="/admin"><i class="fas fa-user-cog mr-1"></i>관리자</a>
             </li>
@@ -219,7 +214,6 @@
         <li class="nav-item">
             <a class="nav-link" href="/policylist"><i class="fas fa-shield-alt mr-1"></i>정책 관리</a>
         </li>
-        
     </ul>
 </div>
 
@@ -272,7 +266,7 @@
                                 </tr>
                             </thead>
                             <tbody id="eventTableBody">
-                                <!-- 검색 결과 행이 여기에 추가됨 -->
+                                <!-- Search results will be dynamically added here -->
                             </tbody>
                         </table>
                     </div>
@@ -282,15 +276,16 @@
     </div>
 </div>
 
+<!-- Chart.js library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
 <script>
-    // 샘플 데이터 (실제 데이터로 교체)
+    // Sample data (replace with actual data)
     var sourceIPData = {
         labels: ['IP1', 'IP2', 'IP3', 'IP4', 'IP5'],
         datasets: [{
             label: '출발지 IP 이벤트',
             data: [20, 15, 10, 8, 5],
-            backgroundColor: '#3498db', // 색상 변경
+            backgroundColor: '#3498db', // Change color if needed
             borderWidth: 1
         }]
     };
@@ -300,7 +295,7 @@
         datasets: [{
             label: '블랙리스트 IP 이벤트',
             data: [20, 15, 10, 8, 5],
-            backgroundColor: '#2ecc71', // 색상 변경
+            backgroundColor: '#2ecc71', // Change color if needed
             borderWidth: 1
         }]
     };
@@ -310,22 +305,22 @@
         datasets: [{
             label: '패턴 이벤트',
             data: [25, 20, 15],
-            backgroundColor: ['#f39c12', '#e74c3c', '#f1c40f'], // 색상 변경
+            backgroundColor: ['#f39c12', '#e74c3c', '#f1c40f'], // Change colors if needed
             borderWidth: 1
         }]
     };
 
-    // 샘플 이벤트 상세 정보 데이터 (동적으로 채워짐)
+    // Sample event details data (will be dynamically filled)
     var eventDetailsData = [
         { time: '10:00', logSourceIP: '192.168.1.1', sourceIP: '10.0.0.1', sourcePort: '1234', destinationIP: '8.8.8.8', destinationPort: '80', severity: '높음', count: 5 },
         { time: '11:00', logSourceIP: '192.168.1.2', sourceIP: '10.0.0.2', sourcePort: '4321', destinationIP: '8.8.8.8', destinationPort: '443', severity: '중간', count: 3 },
-        // 필요에 따라 더 많은 데이터 추가
+        // Add more data as needed
     ];
 
-    // 이벤트 상세 정보 테이블을 채우는 함수
+    // Function to populate the event details table
     function populateEventDetailsTable(data) {
         var tableBody = document.getElementById('eventTableBody');
-        tableBody.innerHTML = ''; // 이전 데이터 삭제
+        tableBody.innerHTML = ''; // Clear previous data
 
         data.forEach(function(event) {
             var row = '<tr>' +
@@ -342,7 +337,7 @@
         });
     }
 
-    // 차트 초기화
+    // Initialize charts
     var ctxSourceIP = document.getElementById('sourceIPChart').getContext('2d');
     var sourceIPChart = new Chart(ctxSourceIP, {
         type: 'bar',
@@ -379,16 +374,16 @@
         data: destinationPortData
     });
 
-    // 초기 이벤트 상세 정보 테이블 채우기
+    // Initial population of event details table
     populateEventDetailsTable(eventDetailsData);
 
-    // 검색 필드를 지우는 함수
+    // Function to clear search input
     function clearSearch() {
         document.getElementById('searchInput').value = '';
         populateEventDetailsTable(eventDetailsData);
     }
 
-    // 검색 필드에서 입력한 값을 기반으로 필터링하는 함수
+    // Function to handle search based on input
     function handleSearch() {
         var searchType = document.getElementById('searchType').value;
         var searchInput = document.getElementById('searchInput').value.trim().toLowerCase();

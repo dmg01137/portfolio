@@ -114,7 +114,6 @@
             justify-content: center;
             margin-top: 20px;
             margin-bottom: 10px;
-            flex-wrap: wrap; /* 필요에 따라 검색 필드들을 여러 줄에 걸쳐 표시 */
         }
 
         .searchTitle {
@@ -373,18 +372,6 @@ $(document).ready(function () {
             }
 
             // 기타 검색 입력 필드에 대한 필터링 코드도 추가할 수 있습니다.
-            // 예시로 다른 검색 조건들에 대한 필터링을 추가합니다.
-            let searchValue1 = $("#searchValue1").val().trim().toLowerCase();
-            if (searchValue1 && row.cells[0].textContent.trim().toLowerCase().indexOf(searchValue1) === -1) {
-                shouldDisplay = false;
-            }
-
-            let searchValue2 = $("#searchValue2").val().trim().toLowerCase();
-            if (searchValue2 && row.cells[1].textContent.trim().toLowerCase().indexOf(searchValue2) === -1) {
-                shouldDisplay = false;
-            }
-
-            // 이와 같은 방식으로 각 검색 필드에 대한 조건을 추가합니다.
 
             if (shouldDisplay) {
                 row.style.display = "";
