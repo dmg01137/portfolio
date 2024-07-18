@@ -11,7 +11,7 @@ import com.example.demo.dto.log.DangerousLog;
 public interface DangerousLogDAO {
 
     // ID를 기반으로 위험 로그를 조회합니다.
-    DangerousLog findById(int id);
+    DangerousLog findBydangerous_number(int dangerous_number);
 
     // 모든 위험 로그 리스트를 조회합니다.
     List<DangerousLog> findAll();
@@ -23,11 +23,12 @@ public interface DangerousLogDAO {
     void update(DangerousLog dangerousLog);
 
     // ID를 기반으로 특정 위험 로그를 삭제합니다.
-    void delete(int id);
+    void delete(int dangerous_number);
     
     // 검색 조건에 따라 위험 로그를 조회합니다.
-    List<DangerousLog> search(@Param("id") Integer id, 
+    List<DangerousLog> search(@Param("dangerous_number") Integer dangerous_number, 
                               @Param("ip") String ip, 
                               @Param("port") Integer port, 
-                              @Param("policyNumber") String policyNumber);
+                              @Param("detection_number") Integer detection_number);
+
 }

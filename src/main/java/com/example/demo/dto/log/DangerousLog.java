@@ -1,26 +1,27 @@
 package com.example.demo.dto.log;
 
 public class DangerousLog {
-    private int detection_number; // 위험 로그 ID
+	   private int dangerous_number; // 위험 번호 (formerly policy_number)
+	
     private String ip; // IP 주소
     private int port; // 포트 번호
-    private String policy_number; // 정책 번호
+    private int detection_number; // 위험 로그 ID
 
     public DangerousLog() {
     }
 
-    // IP, 포트, 정책 번호를 입력받는 생성자
-    public DangerousLog(String ip, int port, String policyNumber) {
+    // IP, 포트, 위험 번호를 입력받는 생성자
+    public DangerousLog(String ip, int port, int detection_number) {
         this.ip = ip;
         this.port = port;
-        this.policy_number = policyNumber; // 필드명 변경
+        this.detection_number = detection_number; // 필드명 변경
     }
 
-    public int getId() {
+    public int getdetection_number() {
         return detection_number;
     }
 
-    public void setId(int detection_number) {
+    public void setdetection_number(int detection_number) {
         this.detection_number = detection_number;
     }
 
@@ -40,21 +41,21 @@ public class DangerousLog {
         this.port = port;
     }
 
-    public String getPolicyNumber() {
-        return policy_number; // 메서드 이름과 필드명을 일치시킴
+    public int getdangerous_number() {
+        return dangerous_number; // 메서드 이름과 필드명을 일치시킴
     }
 
-    public void setPolicyNumber(String policyNumber) {
-        this.policy_number = policyNumber; // 필드명 변경
+    public int setdangerous_number(int dangerous_number) {
+        return this.dangerous_number = dangerous_number;
     }
 
     @Override
     public String toString() {
         return "DangerousLog{" +
-                "detection_number=" +detection_number +
+                "detection_number=" + detection_number +
                 ", ip='" + ip + '\'' +
                 ", port=" + port +
-                ", policy_number='" + policy_number + '\'' + // 필드명 변경
+                ", dangerous_number='" + dangerous_number + '\'' + // 필드명 변경
                 '}';
     }
 }

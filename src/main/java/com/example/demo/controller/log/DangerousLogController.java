@@ -42,10 +42,10 @@ public class DangerousLogController {
             @RequestParam(name = "detection_number", required = false) Integer detection_number,
             @RequestParam(name = "ip", required = false) String ip,
             @RequestParam(name = "port", required = false) Integer port,
-            @RequestParam(name = "policy_number", required = false) String policyNumber,
+            @RequestParam(name = "dangerous_number", required = false) Integer dangerous_number,
             Model model) {
 
-        List<DangerousLog> logs = dangerousLogService.search(detection_number, ip, port, policyNumber);
+        List<DangerousLog> logs = dangerousLogService.search(dangerous_number, ip, port,detection_number );
         model.addAttribute("logs", logs);
         return "dangerouslog"; // Thymeleaf 템플릿 이름 수정
     }

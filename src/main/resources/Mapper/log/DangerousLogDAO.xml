@@ -4,8 +4,8 @@
 <mapper namespace="com.example.demo.dao.log.DangerousLogDAO">
 
     <!-- Select by ID -->
-    <select id="findById" resultType="com.example.demo.dto.log.DangerousLog" parameterType="int">
-        SELECT * FROM dangerous_log WHERE detection_number = #{detection_number}
+    <select id="findBydangerous_log" resultType="com.example.demo.dto.log.DangerousLog" parameterType="int">
+        SELECT * FROM dangerous_log WHERE dangerous_number = #{dangerous_number}
     </select>
 
     <!-- Select all -->
@@ -15,28 +15,28 @@
 
     <!-- Insert -->
     <insert id="save" parameterType="com.example.demo.dto.log.DangerousLog">
-        INSERT INTO log_db.dangerous_log (ip, port, policy_number)
-        VALUES (#{ip}, #{port}, #{policyNumber})
+        INSERT INTO log_db.dangerous_log (ip, port,detection_number)
+        VALUES (#{ip}, #{port}, #{detection_number})
     </insert>
 
     <!-- Update -->
     <update id="update" parameterType="com.example.demo.dto.log.DangerousLog">
         UPDATE log_db.dangerous_log
-        SET ip = #{ip}, port = #{port}, policy_number = #{policyNumber}
-        WHERE detection_number = #{detection_number}
+        SET ip = #{ip}, port = #{port}, detection_number = #{detection_number}
+        WHERE dangerous_number = #{dangerous_number}
     </update>
 
     <!-- Delete -->
     <delete id="delete" parameterType="int">
-        DELETE FROM dangerous_log WHERE detection_number = #{detection_number}
+        DELETE FROM dangerous_log WHERE dangerous_number = #{dangerous_number}
     </delete>
 
     <!-- Search -->
     <select id="search" resultType="com.example.demo.dto.log.DangerousLog">
         SELECT * FROM log_db.dangerous_log
         WHERE 
-        <if test="detection_number != null">
-            detection_number = #{detection_number}
+        <if test="dangerous_number != null">
+            dangerous_number = #{dangerous_number}
         </if>
         <if test="ip != null and ip != ''">
             AND ip = #{ip}
@@ -44,8 +44,8 @@
         <if test="port != null">
             AND port = #{port}
         </if>
-        <if test="policyNumber != null and policyNumber != ''">
-            AND policy_number = #{policyNumber}
+        <if test="detection_number != null and detection_number != ''">
+            AND detection_number = #{detection_number}
         </if>
     </select>
 

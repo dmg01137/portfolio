@@ -133,6 +133,7 @@
         /* 검색창 간격 조정 */
         .searchForm .searchInput {
             margin-right: 10px;
+            font-size: 0.7rem;
         }
         /* 버튼 높이 조정 */
         .searchForm button {
@@ -209,7 +210,7 @@
          <h3 style="text-align: center; margin-top: 20px; margin-left:40px ">위험 로그</h3>
         <form id="searchForm" th:action="@{/dangerouslog/search}" method="get" class="searchForm">
             <div style="flex: 1;">
-                <input type="text" th:name="detection_number" class="form-control searchInput" placeholder="번호">
+                <input type="text" th:name="dangerous_number" class="form-control searchInput" placeholder="위험 번호">
             </div>
             <div style="flex: 1;">
                 <input type="text" th:name="ip" class="form-control searchInput" placeholder="IP">
@@ -218,7 +219,7 @@
                 <input type="text" th:name="port" class="form-control searchInput" placeholder="PORT">
             </div>
             <div style="flex: 1;">
-                <input type="text" th:name="policyNumber" class="form-control searchInput" placeholder="정책이름">
+                <input type="text" th:name="detection_number" class="form-control searchInput" placeholder="탐지 번호">
             </div>
             <div style="flex: 1; display: flex; align-items: center; justify-content: flex-end;">
                 <button type="submit" class="btn btn-primary mb-2 mr-2">search</button>
@@ -230,10 +231,10 @@
     <table id="logTable" class="table">
         <thead>
             <tr>
-                <th>번호</th>
+                <th>위험 번호</th>
                 <th>IP</th>
                 <th>PORT</th>
-                <th>정책 이름</th>
+                <th>탐지 번호</th>
             </tr>
         </thead>
         <tbody id="logTableBody">
@@ -258,10 +259,10 @@
                 data.forEach(function (log) {
                     $("#logTableBody").append(
                         '<tr>' +
-                        '<td>' + log.id + '</td>' +
+                        '<td>' + log.dangerous_number + '</td>' +
                         '<td>' + log.ip + '</td>' +
                         '<td>' + log.port + '</td>' +
-                        '<td>' + log.policyNumber + '</td>' +
+                        '<td>' + log.detection_number + '</td>' +
                         '</tr>'
                     );
                 });
@@ -294,19 +295,20 @@
                 let row = $(this);
 
                 // 각 검색 입력 필드의 값을 가져와서 비교
-                let detectionNumber = $("input[name='detection_number']").val().trim().toLowerCase();
+                let dangerous_number = $("input[name='dangerous_number']").val().trim().toLowerCase();
+                
                 let ip = $("input[name='ip']").val().trim().toLowerCase();
                 let port = $("input[name='port']").val().trim().toLowerCase();
-                let policyNumber = $("input[name='policyNumber']").val().trim().toLowerCase();
-
+                let detection_number = $("input[name='detection_number']").val().trim().toLowerCase();
+               
                 // 현재 로우의 각 셀 값 가져오기
-                let logDetectionNumber = row.find("td:nth-child(1)").text().trim().toLowerCase();
+                let logdangerous_number = row.find("td:nth-child(1)").text().trim().toLowerCase();
+                let logdetection_number = row.find("td:nth-child(4)").text().trim().toLowerCase();
                 let logIp = row.find("td:nth-child(2)").text().trim().toLowerCase();
                 let logPort = row.find("td:nth-child(3)").text().trim().toLowerCase();
-                let logPolicyNumber = row.find("td:nth-child(4)").text().trim().toLowerCase();
-
+               
                 // 각 검색 조건에 따라 필터링
-                if (detectionNumber && !logDetectionNumber.includes(detectionNumber)) {
+                if (detection_number && !logdetection_number.includes(detection_number)) {
                     shouldDisplay = false;
                 }
                 if (ip && !logIp.includes(ip)) {
@@ -315,7 +317,7 @@
                 if (port && !logPort.includes(port)) {
                     shouldDisplay = false;
                 }
-                if (policyNumber && !logPolicyNumber.includes(policyNumber)) {
+                if (dangerous_number && !logdangerous_number.includes(dangerous_number)) {
                     shouldDisplay = false;
                 }
 
@@ -329,6 +331,5 @@
         }
     });
 </script>
-
-    </body>
-    </html>
+</body>
+</html>
