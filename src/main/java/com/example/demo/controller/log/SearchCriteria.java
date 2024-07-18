@@ -2,149 +2,143 @@ package com.example.demo.controller.log;
 
 public class SearchCriteria {
 
-    private String searchInputID;
-    private String searchInputName;
-    private String searchInputPrivilege;
-    private String searchInputSIP;
-    private String searchInputDIP;
-    private String searchInputSPort;
-    private String searchInputDPort;
-    private String searchInputCreateDate;
-    private String searchInputModifyDate;
-    private String searchInputActionType;
-    private String searchInputPolicyName;
-    private String searchInputPolicyInfo;
-    private String searchInputPattern1;
-    private String searchInputPattern2;
-    private String searchInputPattern3;
-    private String searchInputDangers;
+    private String detection_number;
+    private String s_to_ip;
+    private String s_ip;
+    private String d_ip;
+    private Integer s_port;
+    private Integer d_port;
+    private String create_dt;
+    private String modify_dt;
+    private String action_type;
+    private String policy_name;
+    private String policy_info;
+    private String pattern_1;
+    private String pattern_2;
+    private String pattern_3;
+    private Integer dangerous;
 
     // Getter and Setter methods for each field
-    public String getSearchInputID() {
-        return searchInputID;
+
+    public String getDetection_number() {
+        return detection_number;
     }
 
-    public void setSearchInputID(String searchInputID) {
-        this.searchInputID = searchInputID;
+    public void setDetection_number(String detection_number) {
+        this.detection_number = detection_number;
     }
 
-    public String getSearchInputName() {
-        return searchInputName;
+    public String getS_to_ip() {
+        return s_to_ip;
     }
 
-    public void setSearchInputName(String searchInputName) {
-        this.searchInputName = searchInputName;
+    public void setS_to_ip(String s_to_ip) {
+        this.s_to_ip = s_to_ip;
     }
 
-    public String getSearchInputPrivilege() {
-        return searchInputPrivilege;
+    public String getS_ip() {
+        return s_ip;
     }
 
-    public void setSearchInputPrivilege(String searchInputPrivilege) {
-        this.searchInputPrivilege = searchInputPrivilege;
+    public void setS_ip(String s_ip) {
+        this.s_ip = s_ip;
     }
 
-    public String getSearchInputSIP() {
-        return searchInputSIP;
+    public String getD_ip() {
+        return d_ip;
     }
 
-    public void setSearchInputSIP(String searchInputSIP) {
-        this.searchInputSIP = searchInputSIP;
+    public void setD_ip(String d_ip) {
+        this.d_ip = d_ip;
     }
 
-    public String getSearchInputDIP() {
-        return searchInputDIP;
+    public Integer getS_port() {
+        return s_port;
     }
 
-    public void setSearchInputDIP(String searchInputDIP) {
-        this.searchInputDIP = searchInputDIP;
+    public void setS_port(Integer s_port) {
+        this.s_port = s_port;
     }
 
-    public String getSearchInputSPort() {
-        return searchInputSPort;
+    public Integer getD_port() {
+        return d_port;
     }
 
-    public void setSearchInputSPort(String searchInputSPort) {
-        this.searchInputSPort = searchInputSPort;
+    public void setD_port(Integer d_port) {
+        this.d_port = d_port;
     }
 
-    public String getSearchInputDPort() {
-        return searchInputDPort;
+    public String getCreate_dt() {
+        return create_dt;
     }
 
-    public void setSearchInputDPort(String searchInputDPort) {
-        this.searchInputDPort = searchInputDPort;
+    public void setCreate_dt(String create_dt) {
+        this.create_dt = create_dt;
     }
 
-    public String getSearchInputCreateDate() {
-        return searchInputCreateDate;
+    public String getModify_dt() {
+        return modify_dt;
     }
 
-    public void setSearchInputCreateDate(String searchInputCreateDate) {
-        this.searchInputCreateDate = searchInputCreateDate;
+    public void setModify_dt(String modify_dt) {
+        this.modify_dt = modify_dt;
     }
 
-    public String getSearchInputModifyDate() {
-        return searchInputModifyDate;
+    public String getAction_type() {
+        return action_type;
     }
 
-    public void setSearchInputModifyDate(String searchInputModifyDate) {
-        this.searchInputModifyDate = searchInputModifyDate;
+    public void setAction_type(String action_type) {
+        this.action_type = action_type;
     }
 
-    public String getSearchInputActionType() {
-        return searchInputActionType;
+    public String getPolicy_name() {
+        return policy_name;
     }
 
-    public void setSearchInputActionType(String searchInputActionType) {
-        this.searchInputActionType = searchInputActionType;
+    public void setPolicy_name(String policy_name) {
+        this.policy_name = policy_name;
     }
 
-    public String getSearchInputPolicyName() {
-        return searchInputPolicyName;
+    public String getPolicy_info() {
+        return policy_info;
     }
 
-    public void setSearchInputPolicyName(String searchInputPolicyName) {
-        this.searchInputPolicyName = searchInputPolicyName;
+    public void setPolicy_info(String policy_info) {
+        this.policy_info = policy_info;
     }
 
-    public String getSearchInputPolicyInfo() {
-        return searchInputPolicyInfo;
+    public String getPattern_1() {
+        return pattern_1;
     }
 
-    public void setSearchInputPolicyInfo(String searchInputPolicyInfo) {
-        this.searchInputPolicyInfo = searchInputPolicyInfo;
+    public void setPattern_1(String pattern_1) {
+        this.pattern_1 = pattern_1;
     }
 
-    public String getSearchInputPattern1() {
-        return searchInputPattern1;
+    public String getPattern_2() {
+        return pattern_2;
     }
 
-    public void setSearchInputPattern1(String searchInputPattern1) {
-        this.searchInputPattern1 = searchInputPattern1;
+    public void setPattern_2(String pattern_2) {
+        this.pattern_2 = pattern_2;
     }
 
-    public String getSearchInputPattern2() {
-        return searchInputPattern2;
+    public String getPattern_3() {
+        return pattern_3;
     }
 
-    public void setSearchInputPattern2(String searchInputPattern2) {
-        this.searchInputPattern2 = searchInputPattern2;
+    public void setPattern_3(String pattern_3) {
+        this.pattern_3 = pattern_3;
     }
 
-    public String getSearchInputPattern3() {
-        return searchInputPattern3;
+    public Integer getDangerous() {
+        return dangerous;
     }
 
-    public void setSearchInputPattern3(String searchInputPattern3) {
-        this.searchInputPattern3 = searchInputPattern3;
+    public void setDangerous(Integer dangerous) {
+        this.dangerous = dangerous;
     }
 
-    public String getSearchInputDangers() {
-        return searchInputDangers;
-    }
-
-    public void setSearchInputDangers(String searchInputDangers) {
-        this.searchInputDangers = searchInputDangers;
-    }
+ 
 }

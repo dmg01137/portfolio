@@ -25,10 +25,30 @@ public class PatternDetectionService {
     }
 
     public List<PatternDetection> searchPatternDetections(SearchCriteria searchCriteria) {
-        if (searchCriteria.getSearchInputName() != null && !searchCriteria.getSearchInputName().isEmpty()) {
-            return patternDetectionDAO.getPatternDetectionByName(searchCriteria.getSearchInputName());
+        // 모든 검색 조건이 null 또는 빈 값인 경우 모든 패턴 탐지를 조회
+        if (isEmptyCriteria(searchCriteria)) {
+            return patternDetectionDAO.getAllPatternDetections();
         }
-        return patternDetectionDAO.getAllPatternDetections();
+
+        // 검색 조건에 따라 적절한 DAO 메서드 호출
+        return patternDetectionDAO.searchPatternDetections(searchCriteria);
+    }// 모든 검색 조건이 null 또는 빈 값인지 확인하는 유틸리티 메서드
+    private boolean isEmptyCriteria(SearchCriteria searchCriteria) {
+        return searchCriteria.getDetection_number() == null &&
+               searchCriteria.getS_to_ip() == null &&
+               searchCriteria.getS_ip() == null &&
+               searchCriteria.getD_ip() == null &&
+               searchCriteria.getS_port() == null &&
+               searchCriteria.getD_port() == null &&
+               searchCriteria.getCreate_dt() == null &&
+               searchCriteria.getModify_dt() == null &&
+               searchCriteria.getAction_type() == null &&
+               searchCriteria.getPolicy_name() == null &&
+               searchCriteria.getPolicy_info() == null &&
+               searchCriteria.getPattern_1() == null &&
+               searchCriteria.getPattern_2() == null &&
+               searchCriteria.getPattern_3() == null &&
+               searchCriteria.getDangerous() == null;
     }
 
     public List<PatternDetection> getPatternDetectionsByName(String name) {
