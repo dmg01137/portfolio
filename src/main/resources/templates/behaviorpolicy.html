@@ -280,40 +280,39 @@
 
 							<!-- 검색 섹션 -->
 							<div class="input-group mb-3 search-section">
-								<input type="text" id="searchInputID" class="form-control"
-									placeholder="NO"> <input type="text"
-									id="searchInputStoIP" class="form-control"
+								<input type="text" id="detection_number" class="form-control"
+									placeholder="detection_number"> <input type="text"
+									id="s_to_ip" class="form-control"
 									placeholder="s_to_ip"> <input type="text"
-									id="searchInputSIP" class="form-control" placeholder="출발지IP">
+									id="s_ip" class="form-control" placeholder="출발지IP">
 
-								<input type="text" id="searchInputSPort" class="form-control"
+								<input type="text" id="s_port" class="form-control"
 									placeholder="출발지Port"> <input type="text"
-									id="searchInputDIP" class="form-control" placeholder="도착지IP">
-								<input type="text" id="searchInputDPort" class="form-control"
+									id="d_ip" class="form-control" placeholder="도착지IP">
+								<input type="text" id="d_port" class="form-control"
 									placeholder="도착지Port"> <input type="text"
-									id="searchInputCreateDate" class="form-control"
+									id="create_dt" class="form-control"
 									placeholder="생성일자"> <input type="text"
-									id="searchInputModifyDate" class="form-control"
+									id="modify_dt" class="form-control"
 									placeholder="수정일자"> <input type="text"
-									id="searchInputActionType" class="form-control"
+									id="action_type" class="form-control"
 									placeholder="액션 타입"> <input type="text"
-									id="searchInputPolicyName" class="form-control"
+									id="policy_name" class="form-control"
 									placeholder="정책 이름"> <input type="text"
-									id="searchInputPolicyInfo" class="form-control"
+									id="policy_info" class="form-control"
 									placeholder="정책 정보"> <input type="text"
-									id="searchInputBaseCnt" class="form-control"
+									id="base_time" class="form-control"
 									placeholder="base_cnt"> <input type="text"
-									id="searchInputCompCnt" class="form-control"
-									placeholder="comp_cnt"> <input type="text"
-									id="searchInputBaseTime" class="form-control"
+								
+									id="base_time" class="form-control"
 									placeholder="base_time"> <input type="text"
-									id="searchInputPattern1" class="form-control"
+									id="pattern_1" class="form-control"
 									placeholder="패턴 1"> <input type="text"
-									id="searchInputPattern2" class="form-control"
+									id="pattern_2" class="form-control"
 									placeholder="패턴 2"> <input type="text"
-									id="searchInputPattern3" class="form-control"
+									id="pattern_3" class="form-control"
 									placeholder="패턴 3"> <input type="text"
-									id="searchInputDangers" class="form-control" placeholder="위험성">
+									id="dangerous" class="form-control" placeholder="위험성">
 								<div class="input-group-append">
 									<button class="btn btn-primary" type="button" id="btnSearch">Search</button>
 									<button class="btn btn-secondary" type="button" id="btnClear">Clear</button>
@@ -440,24 +439,24 @@ $(document).ready(function () {
     function handleSearch() {
         // 검색 필드의 값들을 객체로 변환
         let searchCriteria = {
-            detection_number: $("#searchInputID").val().trim(), // NO 필드
-            s_to_ip: $("#searchInputStoIP").val().trim(), // s_to_ip 필드
-            s_ip: $("#searchInputSIP").val().trim(), // 출발지IP 필드
-            s_port: $("#searchInputSPort").val().trim(), // 출발지Port 필드
-            d_ip: $("#searchInputDIP").val().trim(), // 도착지IP 필드
-            d_port: $("#searchInputDPort").val().trim(), // 도착지Port 필드
-            create_dt: $("#searchInputCreateDate").val().trim(), // 생성일자 필드
-            modify_dt: $("#searchInputModifyDate").val().trim(), // 수정일자 필드
-            action_type: $("#searchInputActionType").val().trim(), // 액션 타입 필드
-            policy_name: $("#searchInputPolicyName").val().trim(), // 정책 이름 필드
-            policy_info: $("#searchInputPolicyInfo").val().trim(), // 정책 정보 필드
-            base_cnt: $("#searchInputBaseCnt").val().trim(), // base_cnt 필드
-            comp_cnt: $("#searchInputCompCnt").val().trim(), // comp_cnt 필드
-            base_time: $("#searchInputBaseTime").val().trim(), // base_time 필드
-            pattern_1: $("#searchInputPattern1").val().trim(), // 패턴 1 필드
-            pattern_2: $("#searchInputPattern2").val().trim(), // 패턴 2 필드
-            pattern_3: $("#searchInputPattern3").val().trim(), // 패턴 3 필드
-            dangerous: $("#searchInputDangers").val().trim() // 위험성 필드
+            detection_number: $("#detection_number").val().trim(), // NO 필드
+            s_to_ip: $("#s_to_ip").val().trim(), // s_to_ip 필드
+            s_ip: $("#s_ip").val().trim(), // 출발지IP 필드
+            s_port: $("#s_port").val().trim(), // 출발지Port 필드
+            d_ip: $("#d_ip").val().trim(), // 도착지IP 필드
+            d_port: $("#d_port").val().trim(), // 도착지Port 필드
+            create_dt: $("#create_dt").val().trim(), // 생성일자 필드
+            modify_dt: $("#modify_dt").val().trim(), // 수정일자 필드
+            action_type: $("#action_type").val().trim(), // 액션 타입 필드
+            policy_name: $("#policy_name").val().trim(), // 정책 이름 필드
+            policy_info: $("#policy_info").val().trim(), // 정책 정보 필드
+            base_cnt: $("#base_cnt").val().trim(), // base_cnt 필드
+            comp_cnt: $("#comp_cnt").val().trim(), // comp_cnt 필드
+            base_time: $("#base_time").val().trim(), // base_time 필드
+            pattern_1: $("#pattern_1").val().trim(), // 패턴 1 필드
+            pattern_2: $("#pattern_2").val().trim(), // 패턴 2 필드
+            pattern_3: $("#pattern_3").val().trim(), // 패턴 3 필드
+            dangerous: $("#dangerous").val().trim() // 위험성 필드
         };
 
         fetchAndDisplayBehaviorDetections(searchCriteria); // 검색 조건을 서버로 전송

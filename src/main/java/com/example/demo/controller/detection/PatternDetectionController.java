@@ -48,6 +48,7 @@ public class PatternDetectionController {
         return patternDetections;
     }
 
+
     @GetMapping("/api/pattern-detections-by-name/{name}")
     @ResponseBody
     public List<PatternDetection> getPatternDetectionByName(@PathVariable String name) {

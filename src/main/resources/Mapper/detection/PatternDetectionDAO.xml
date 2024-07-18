@@ -34,13 +34,59 @@
         DELETE FROM detection_db.pattern_detection WHERE detection_number = #{detection_number}
     </delete>
 
-    <!-- 검색 조건으로 패턴 탐지 조회 -->
-    <select id="searchPatternDetections" resultType="com.example.demo.dto.detection.PatternDetection" parameterType="java.lang.String">
-        SELECT detection_number, s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
-        FROM detection_db.pattern_detection WHERE pattern_1 LIKE '%' || #{searchInputName} || '%'
-                                              OR pattern_2 LIKE '%' || #{searchInputName} || '%'
-                                              OR pattern_3 LIKE '%' || #{searchInputName} || '%'
-    </select>
+<!-- 검색 조건으로 패턴 탐지 조회 -->
+<select id="searchPatternDetections" resultType="com.example.demo.dto.detection.PatternDetection" parameterType="com.example.demo.controller.log.SearchCriteria">
+    SELECT detection_number, s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
+    FROM detection_db.pattern_detection
+    WHERE 1=1
+    <if test="searchCriteria.detection_number != null and searchCriteria.detection_number != ''">
+        AND detection_number LIKE '%' || #{searchCriteria.detection_number} || '%'
+    </if>
+    <if test="searchCriteria.s_to_ip != null and searchCriteria.s_to_ip != ''">
+        AND s_to_ip LIKE '%' || #{searchCriteria.s_to_ip} || '%'
+    </if>
+    <if test="searchCriteria.s_ip != null and searchCriteria.s_ip != ''">
+        AND s_ip LIKE '%' || #{searchCriteria.s_ip} || '%'
+    </if>
+    <if test="searchCriteria.d_ip != null and searchCriteria.d_ip != ''">
+        AND d_ip LIKE '%' || #{searchCriteria.d_ip} || '%'
+    </if>
+    <if test="searchCriteria.s_port != null">
+        AND s_port = #{searchCriteria.s_port}
+    </if>
+    <if test="searchCriteria.d_port != null">
+        AND d_port = #{searchCriteria.d_port}
+    </if>
+    <if test="searchCriteria.create_dt != null">
+        AND create_dt >= #{searchCriteria.create_dt}
+    </if>
+    <if test="searchCriteria.modify_dt != null and searchCriteria.modify_dt != ''">
+        AND modify_dt LIKE '%' || #{searchCriteria.modify_dt} || '%'
+    </if>
+    <if test="searchCriteria.action_type != null and searchCriteria.action_type != ''">
+        AND action_type LIKE '%' || #{searchCriteria.action_type} || '%'
+    </if>
+    <if test="searchCriteria.policy_name != null and searchCriteria.policy_name != ''">
+        AND policy_name LIKE '%' || #{searchCriteria.policy_name} || '%'
+    </if>
+    <if test="searchCriteria.policy_info != null and searchCriteria.policy_info != ''">
+        AND policy_info LIKE '%' || #{searchCriteria.policy_info} || '%'
+    </if>
+    <if test="searchCriteria.pattern_1 != null and searchCriteria.pattern_1 != ''">
+        AND pattern_1 LIKE '%' || #{searchCriteria.pattern_1} || '%'
+    </if>
+    <if test="searchCriteria.pattern_2 != null and searchCriteria.pattern_2 != ''">
+        AND pattern_2 LIKE '%' || #{searchCriteria.pattern_2} || '%'
+    </if>
+    <if test="searchCriteria.pattern_3 != null and searchCriteria.pattern_3 != ''">
+        AND pattern_3 LIKE '%' || #{searchCriteria.pattern_3} || '%'
+    </if>
+    <if test="searchCriteria.dangerous != null">
+        AND dangerous = #{searchCriteria.dangerous}
+    </if>
+</select>
+
+
 
     <!-- 페이징된 모든 패턴 탐지 조회 -->
     <select id="getAllPatternDetectionsPaged" resultType="com.example.demo.dto.detection.PatternDetection" parameterType="java.util.Map">
