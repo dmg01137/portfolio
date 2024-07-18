@@ -10,7 +10,7 @@ import java.util.Map;
 @Mapper
 public interface BehaviorLogDAO {
 
-    BehaviorLog findById(@Param("detection_number") int detection_number);
+    BehaviorLog findById(@Param("id") int id);
 
     List<BehaviorLog> findAll();
 
@@ -18,7 +18,7 @@ public interface BehaviorLogDAO {
 
     void update(BehaviorLog behaviorLog);
 
-    void delete(@Param("detection_number") int detection_number);
+    void delete(@Param("id") int id);
 
     // Top 5 s_ip 값 조회
     List<Map<String, Object>> findTopSIPs();

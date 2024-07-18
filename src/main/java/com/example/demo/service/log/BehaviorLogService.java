@@ -17,8 +17,8 @@ public class BehaviorLogService {
     private BehaviorLogDAO behaviorLogDAO;
 
     // ID를 기반으로 특정 행동 로그를 조회합니다.
-    public BehaviorLog findById(int detection_number) {
-        return behaviorLogDAO.findById(detection_number);
+    public BehaviorLog findById(int id) {
+        return behaviorLogDAO.findById(id);
     }
 
     // 모든 행동 로그 리스트를 조회합니다.
@@ -37,8 +37,8 @@ public class BehaviorLogService {
     }
 
     // ID를 기반으로 특정 행동 로그를 삭제합니다.
-    public void delete(int detection_number) {
-        behaviorLogDAO.delete(detection_number);
+    public void delete(int id) {
+        behaviorLogDAO.delete(id);
     }
 
     // Top 5 s_ip 값 조회

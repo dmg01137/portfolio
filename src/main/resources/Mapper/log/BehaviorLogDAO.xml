@@ -3,73 +3,63 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.dao.log.BehaviorLogDAO">
 
-  <!-- ID로 조회 -->
-<select id="findById" resultType="com.example.demo.dto.log.BehaviorLog" parameterType="int">
-    SELECT * FROM log_db.behavior_log
-    WHERE detection_number = #{detection_number}
-</select>
-
-<!-- 모든 데이터 조회 -->
-<select id="findAll" resultType="com.example.demo.dto.log.BehaviorLog">
-     SELECT * FROM log_db.behavior_log_20240718
-</select>
-
-<!-- 데이터 삽입 -->
-<insert id="save" parameterType="com.example.demo.dto.log.BehaviorLog">
-    INSERT INTO log_db.behavior_log (time, s_ip, d_ip, s_port, d_port, len, pattern1, pattern2, pattern3, packet, policy_name, count, detection_time)
-    VALUES (#{time}, #{s_ip}, #{d_ip}, #{s_port}, #{d_port}, #{len}, #{pattern1}, #{pattern2}, #{pattern3}, #{packet}, #{policy_name}, #{count}, #{detection_time})
-</insert>
-
-<!-- 데이터 업데이트 -->
-<update id="update" parameterType="com.example.demo.dto.log.BehaviorLog">
-    UPDATE log_db.behavior_log
-    SET time = #{time}, s_ip = #{s_ip}, d_ip = #{d_ip}, s_port = #{s_port}, d_port = #{d_port},
-        len = #{len}, pattern1 = #{pattern1}, pattern2 = #{pattern2}, pattern3 = #{pattern3}, 
-        packet = #{packet}, policy_name = #{policy_name},
-        count = #{count}, time = #{time}
-    WHERE detection_number = #{detection_number}
-</update>
-
-<!-- 데이터 삭제 -->
-<delete id="delete" parameterType="int">
-    DELETE FROM log_db.behavior_log WHERE detection_number = #{detection_number}
-</delete>
-
-<!-- 검색 -->
-<select id="search" resultType="com.example.demo.dto.log.BehaviorLog">
-    SELECT * FROM log_db.behavior_log
-    WHERE 
-    <if test="detectionNumber != null">
-        detection_number = #{detection_number}
-    </if>
-    <if test="sIp != null and sIp != ''">
-        AND s_ip = #{s_ip}
-    </if>
-    <if test="sPort != null">
-        AND s_port = #{s_port}
-    </if>
-    <if test="policyName != null and policyName != ''">
-        AND policy_name = #{policy_name}
-    </if>
-</select>
-
-
-<!-- Top 5 s_ip 값 조회 -->
-<select id="findTopSIPs" resultType="java.util.Map">
-    SELECT s_ip, COUNT(*) AS ip_count
-    FROM log_db.behavior_log_20240717
-    GROUP BY s_ip
-    ORDER BY ip_count DESC
-    LIMIT 5;
-</select>
-    <!-- SIP top5 조회 -->
-    <select id="findTop5SIPs" resultType="string">
-        SELECT s_ip AS top_s_ip
-        FROM log_db.behavior_log_20240717
-        GROUP BY s_ip
-        ORDER BY COUNT(*) DESC
-        LIMIT 5
+    <!-- ID로 조회 -->
+    <select id="findById" resultType="com.example.demo.dto.log.BehaviorLog" parameterType="int">
+        SELECT *
+        FROM log_db.behavior_log
+        WHERE id = #{id}
     </select>
 
+    <!-- 모든 데이터 조회 -->
+    <select id="findAll" resultType="com.example.demo.dto.log.BehaviorLog">
+        SELECT *
+        FROM log_db.behavior_log_20240718
+    </select>
+
+    <!-- 데이터 삽입 -->
+    <insert id="save" parameterType="com.example.demo.dto.log.BehaviorLog">
+        INSERT INTO log_db.behavior_log (time, s_ip, d_ip, s_port, d_port, len, pattern1, pattern2, pattern3, packet, base_cnt, base_time, action_type)
+        VALUES (#{time}, #{s_ip}, #{d_ip}, #{s_port}, #{d_port}, #{len}, #{pattern1}, #{pattern2}, #{pattern3}, #{packet}, #{base_cnt}, #{base_time}, #{action_type})
+    </insert>
+
+    <!-- 데이터 업데이트 -->
+    <update id="update" parameterType="com.example.demo.dto.log.BehaviorLog">
+        UPDATE log_db.behavior_log
+        SET time = #{time}, s_ip = #{s_ip}, d_ip = #{d_ip}, s_port = #{s_port}, d_port = #{d_port},
+            len = #{len}, pattern1 = #{pattern1}, pattern2 = #{pattern2}, pattern3 = #{pattern3}, 
+            packet = #{packet}, base_cnt = #{base_cnt}, base_time = #{base_time}, action_type = #{action_type}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 데이터 삭제 -->
+    <delete id="delete" parameterType="int">
+        DELETE FROM log_db.behavior_log WHERE id = #{id}
+    </delete>
+
+    <!-- 검색 -->
+    <select id="search" resultType="com.example.demo.dto.log.BehaviorLog">
+        SELECT *
+        FROM log_db.behavior_log
+        WHERE 
+        <if test="detectionNumber != null">
+            id = #{id}
+        </if>
+        <if test="sIp != null and sIp != ''">
+            AND s_ip = #{s_ip}
+        </if>
+        <if test="sPort != null">
+            AND s_port = #{s_port}
+        </if>
+       
+    </select>
+
+    <!-- Top 5 s_ip 값 조회 -->
+    <select id="findTopSIPs" resultType="java.util.Map">
+        SELECT s_ip, COUNT(*) AS ip_count
+        FROM log_db.behavior_log
+        GROUP BY s_ip
+        ORDER BY ip_count DESC
+        LIMIT 5;
+    </select>
 
 </mapper>

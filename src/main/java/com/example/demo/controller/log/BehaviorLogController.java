@@ -41,21 +41,21 @@ public class BehaviorLogController {
     }
 
     // 특정 행동 로그 업데이트 처리
-    @PostMapping("/update/{detection_number}")
-    public String updateLog(@PathVariable("detection_number") int detection_number, @ModelAttribute BehaviorLog log) {
-        log.setDetection_number(detection_number); // 경로에서 받은 ID를 설정하여 업데이트 대상을 설정합니다.
+    @PostMapping("/update/{id}")
+    public String updateLog(@PathVariable("id") int id, @ModelAttribute BehaviorLog log) {
+        log.setId(id); // 경로에서 받은 ID를 설정하여 업데이트 대상을 설정합니다.
         behaviorLogService.update(log);
         return "redirect:/behaviorlog"; // 업데이트 후 목록 페이지로 리다이렉트합니다.
     }
 
     // 특정 행동 로그 삭제 처리
-    @GetMapping("/delete/{detection_number}")
-    public String deleteLog(@PathVariable("detection_number") int detection_number) {
-        behaviorLogService.delete(detection_number);
+    @GetMapping("/delete/{id}")
+    public String deleteLog(@PathVariable("id") int id) {
+        behaviorLogService.delete(id);
         return "redirect:/behaviorlog"; // 삭제 후 목록 페이지로 리다이렉트합니다.
     }
 
- // Top 5 s_ip 값 조회 API
+    // Top 5 s_ip 값 조회 API
     @GetMapping("/top-sips")
     @ResponseBody
     public ResponseEntity<List<Map<String, Object>>> getTopSIPs() {

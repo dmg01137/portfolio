@@ -3,28 +3,28 @@ package com.example.demo.dto.log;
 import java.time.LocalDateTime;
 
 public class BehaviorLog {
-    private int detection_number;         // ID
-    private LocalDateTime time;          // 발생 시간
-    private String s_ip;                  // 출발지 IP
-    private String d_ip;                  // 목적지 IP
-    private int s_port;                   // 출발지 포트
-    private int d_port;                   // 목적지 포트
-    private int len;                      // 길이
-    private String pattern1;              // 패턴1
-    private String pattern2;              // 패턴2
-    private String pattern3;              // 패턴3
-    private byte[] packet;                // 패킷 데이터
-    private String policy_name;           // 정책 이름
-    private int count;                    // 횟수
-    private LocalDateTime detection_time; // 탐지 시간
+    private int id;             // ID (formerly detection_number)
+    private LocalDateTime time; // 발생 시간
+    private String s_ip;        // 출발지 IP
+    private String d_ip;        // 목적지 IP
+    private int s_port;         // 출발지 포트
+    private int d_port;         // 목적지 포트
+    private int len;            // 길이
+    private String pattern1;    // 패턴1
+    private String pattern2;    // 패턴2
+    private String pattern3;    // 패턴3
+    private byte[] packet;      // 패킷 데이터
+    private int base_cnt;       // 횟수 (formerly count)
+    private int base_time;      // 기본 시간
+    private int action_type;    // 액션 타입
 
     // Getter 및 Setter 메서드
-    public int getDetection_number() {
-        return detection_number;
+    public int getId() {
+        return id;
     }
 
-    public void setDetection_number(int detection_number) {
-        this.detection_number = detection_number;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public LocalDateTime getTime() {
@@ -107,27 +107,27 @@ public class BehaviorLog {
         this.packet = packet;
     }
 
-    public String getPolicy_name() {
-        return policy_name;
+    public int getBase_cnt() {
+        return base_cnt;
     }
 
-    public void setPolicy_name(String policy_name) {
-        this.policy_name = policy_name;
+    public void setBase_cnt(int base_cnt) {
+        this.base_cnt = base_cnt;
     }
 
-    public int getCount() {
-        return count;
+    public int getBase_time() {
+        return base_time;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setBase_time(int base_time) {
+        this.base_time = base_time;
     }
 
-    public LocalDateTime getDetection_time() {
-        return detection_time;
+    public int getAction_type() {
+        return action_type;
     }
 
-    public void setDetection_time(LocalDateTime detection_time) {
-        this.detection_time = detection_time;
+    public void setAction_type(int action_type) {
+        this.action_type = action_type;
     }
 }

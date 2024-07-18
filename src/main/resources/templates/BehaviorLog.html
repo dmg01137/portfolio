@@ -146,7 +146,7 @@ table {
 
         .searchForm .searchInput {
             margin-bottom: 0px; /* 입력 창 아래 간격을 0px로 조정 */
-            font-size: 0.78rem;
+           font-size: 0.7rem;
         }
 
         /* Clear 버튼 스타일 */
@@ -238,26 +238,35 @@ table {
             <div style="flex: 1;">
                 <input type="text" id="searchValue6" class="form-control searchInput" placeholder="도착지PORT">
             </div>
-        </div>
-        <div id="searchForm" class="searchForm">
             <div style="flex: 1;">
-                <input type="text" id="searchValue7" class="form-control searchInput" placeholder="패턴길이">
+                <input type="text" id="searchValue7" class="form-control searchInput" placeholder="액션타입">
+            </div>
+             <div id="searchForm" class="searchForm">
+           
+            <div style="flex: 1;">
+                <input type="text" id="searchValue8" class="form-control searchInput" placeholder="패턴 길이">
             </div>
             <div style="flex: 1;">
-                <input type="text" id="searchValue8" class="form-control searchInput" placeholder="패턴">
+                <input type="text" id="searchValue9" class="form-control searchInput" placeholder="base_cnt">
             </div>
             <div style="flex: 1;">
-                <input type="text" id="searchValue9" class="form-control searchInput" placeholder="패킷">
+                <input type="text" id="searchValue10" class="form-control searchInput" placeholder="base_time">
+            </div>
+      
+       
+            <div style="flex: 1;">
+                <input type="text" id="searchValue11" class="form-control searchInput" placeholder="패턴1">
             </div>
             <div style="flex: 1;">
-                <input type="text" id="searchValue10" class="form-control searchInput" placeholder="탐지횟수">
+                <input type="text" id="searchValue12" class="form-control searchInput" placeholder="패턴2">
             </div>
             <div style="flex: 1;">
-                <input type="text" id="searchValue11" class="form-control searchInput" placeholder="탐지범위시간">
+                <input type="text" id="searchValue13" class="form-control searchInput" placeholder="패턴3">
             </div>
             <div style="flex: 1;">
-                <input type="text" id="searchValue12" class="form-control searchInput" placeholder="정책이름">
-            </div>
+                <input type="text" id="searchValue14" class="form-control searchInput" placeholder="패킷">
+              </div></div>
+     
         </div>
         <div class="searchButtons">
             <button id="searchButton" class="btn btn-primary">Search</button>
@@ -274,25 +283,29 @@ table {
                 <th>출발지PORT</th>
                 <th>도착지IP</th>
                 <th>도착지PORT</th>
+                <th>액션타입</th>
                 <th>패턴 길이</th>
+                <th>base_cnt</th>
+                <th>base_time</th>
                 <th>패턴1</th>
                 <th>패턴2</th>
                 <th>패턴3</th>
                 <th>패킷</th>
-                <th>탐지횟수</th>
-                <th>탐지범위시간</th>
-                <th>정책이름</th>
+                
             </tr>
             </thead>
          <tbody>
     <tr th:each="log : ${logs}">
-        <td th:text="${log.detection_number}"></td>
+        <td th:text="${log.id}"></td>
         <td th:text="${log.time}"></td>
         <td th:text="${log.s_ip}"></td>
         <td th:text="${log.s_port}"></td>
         <td th:text="${log.d_ip}"></td>
         <td th:text="${log.d_port}"></td>
+        <td th:text="${log.action_type}"></td>
         <td th:text="${log.len}"></td>
+         <td th:text="${log.base_cnt}"></td>
+          <td th:text="${log.base_time}"></td>
         <td th:text="${log.pattern1}"></td>
         <td th:text="${log.pattern2}"></td>
         <td th:text="${log.pattern3}"></td>
@@ -300,9 +313,7 @@ table {
             <!-- 패킷 데이터는 Base64로 인코딩된 바이트 배열을 문자열로 변환하여 출력 -->
             <span th:text="${T(org.apache.tomcat.util.codec.binary.Base64).encodeBase64String(log.packet)}"></span>
         </td>
-        <td th:text="${log.count}"></td>
-        <td th:text="${log.detection_time }"></td>
-        <td th:text="${log.policy_name}"></td>
+    
     </tr>
 </tbody>
 
@@ -349,20 +360,21 @@ $(document).ready(function () {
                 // 패킷 데이터를 HTML 엔티티로 인코딩하여 추가합니다.
                 let encodedPacket = encodeURIComponent(log.packet);
                 let rowHtml = `<tr>
-                    <td>${log.detection_number}</td>
+                    <td>${log.id}</td>
                     <td>${log.time}</td>
                     <td>${log.s_ip}</td>
                     <td>${log.s_port}</td>
                     <td>${log.d_ip}</td>
                     <td>${log.d_port}</td>
+                    <td>${log.action_type}</td>
                     <td>${log.len}</td>
+                    <td>${log.base_cnt}</td>
+                    <td>${log.base_time}</td>
                     <td>${log.pattern1}</td>
                     <td>${log.pattern2}</td>
                     <td>${log.pattern3}</td>
                     <td>${encodedPacket}</td>
-                    <td>${log.count}</td>
-                    <td>${log.detection_time}</td>
-                    <td>${log.policy_name}</td>
+            
                 </tr>`;
                 $("#logTableBody").append(rowHtml);
 
@@ -396,7 +408,7 @@ $("#clearButton").click(function () {
         rows.forEach((row, index) => {
             let shouldDisplay = true;
 
-            for (let i = 0; i < 12; i++) { // 검색 입력 필드 수에 맞게 수정
+            for (let i = 0; i < 14; i++) { // 검색 입력 필드 수에 맞게 수정
                 let value = document.getElementById(`searchValue${i + 1}`).value.trim().toLowerCase();
                 let cellValue = row.cells[i].textContent.trim().toLowerCase();
 

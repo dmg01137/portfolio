@@ -210,7 +210,7 @@
 <div class="container">
     <div class="searchContainer">
          <h3 style="text-align: center; margin-top: 20px; margin-right:100px ">패턴 로그</h3>
-        <div class="searchForm">
+           <div id="searchForm" class="searchForm">
             <div style="flex: 1;">
                 <input type="text" id="searchValue1" class="form-control searchInput" placeholder="로그번호">
             </div>
@@ -229,17 +229,25 @@
             <div style="flex: 1;">
                 <input type="text" id="searchValue6" class="form-control searchInput" placeholder="도착지PORT">
             </div>
+             </div>
+               <div id="searchForm" class="searchForm">
              <div style="flex: 1;">
-                <input type="text" id="searchValue10" class="form-control searchInput" placeholder="액션타입">
+                <input type="text" id="searchValue7" class="form-control searchInput" placeholder="액션타입">
             </div>
             <div style="flex: 1;">
-                <input type="text" id="searchValue7" class="form-control searchInput" placeholder="패킷길이">
+                <input type="text" id="searchValue8" class="form-control searchInput" placeholder="패킷길이">
             </div>
             <div style="flex: 1;">
-                <input type="text" id="searchValue8" class="form-control searchInput" placeholder="패턴">
+                <input type="text" id="searchValue9" class="form-control searchInput" placeholder="패턴1">
             </div>
             <div style="flex: 1;">
-                <input type="text" id="searchValue9" class="form-control searchInput" placeholder="패킷">
+                <input type="text" id="searchValue10" class="form-control searchInput" placeholder="패턴2">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" id="searchValue11" class="form-control searchInput" placeholder="패턴3">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" id="searchValue12" class="form-control searchInput" placeholder="패킷">
             </div>
            
         </div>
@@ -333,7 +341,7 @@ $(document).ready(function () {
         rows.forEach(row => {
             let shouldDisplay = true;
 
-            for (let i = 0; i < 10; i++) { // 검색 입력창 개수에 맞게 수정
+            for (let i = 0; i < 12; i++) { // 검색 입력창 개수에 맞게 수정
                 let value = document.getElementById(`searchValue${i + 1}`).value.trim().toLowerCase();
                 let cellValue = row.cells[i].textContent.trim().toLowerCase();
 
