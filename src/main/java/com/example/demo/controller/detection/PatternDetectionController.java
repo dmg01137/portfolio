@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +40,11 @@ public class PatternDetectionController {
         model.addAttribute("patternDetections", patternDetections);
         return "policylist"; // policylist.html 템플릿을 반환
     }
-
+    @GetMapping("/search-pattern-detections")
+    public ResponseEntity<List<PatternDetection>> searchPatternDetections() {
+        List<PatternDetection> detections = patternDetectionService.getAllPatternDetections();
+        return ResponseEntity.ok(detections);
+    }
     
     @PostMapping("/api/search-pattern-detections")
     @ResponseBody
