@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DBMS Solution Dashboard</title>
+    <title>CentrinOs DBMS Solution</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -50,14 +50,14 @@
         .sidebar {
             position: fixed;
             left: 0;
-            top: 64px; /* Adjust as necessary */
+            top: 64px; /* 네비게이션 바 높이에 맞춰 조정 */
             width: 220px;
             background-color: #222;
             padding-top: 20px;
             transition: all 0.3s ease;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-            overflow-y: auto; /* Ensure sidebar scrolls if content exceeds viewport */
-            height: calc(100% - 64px); /* Adjust for the top navbar height */
+            overflow-y: auto; /* 세로 스크롤을 추가합니다. */
+            height: 100vh; /* 뷰포트 높이에 맞추어 조정 */
         }
 
         .sidebar-heading {
@@ -82,7 +82,7 @@
             margin-left: 220px; /* Adjust margin for sidebar width */
             padding: 20px;
             transition: all 0.3s ease;
-            overflow-y: auto; /* Ensure content area scrolls if content exceeds viewport */
+            overflow-y: auto; /* 내용이 뷰포트를 초과할 경우 스크롤 허용 */
             height: calc(100vh - 64px); /* Adjust for the top navbar height */
         }
 
@@ -144,15 +144,26 @@
             background-color: #0056b3;
         }
 
-        .event-table {
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            width: 100%; /* 테이블 전체 너비 설정 */
-        }
+     .event-table {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: auto; /* 스크롤 추가 */
+    width: 100%; /* 테이블 너비 설정 */
+    max-width: 100%; /* 최대 너비 설정 */
+    max-height: 400px; /* 최대 높이 설정 */
+}
 
-        .event-table th,
+
+    
         .event-table td {
+            text-align: center;
+            vertical-align: middle;
+            font-size: 11px;
+        }
+        
+         .event-table th
+       {
             text-align: center;
             vertical-align: middle;
             font-size: 11px;
@@ -187,7 +198,6 @@
     </style>
 </head>
 <body>
-
 <nav class="navbar navbar-expand-lg">
     <a class="navbar-brand" href="#">Attack 상세 모니터링</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -263,12 +273,12 @@
 									<tr>
 										<th>시간</th>
 										<th>출발 IP</th>
-										<th>출발 Port</th>
+										<th>sPort</th>
 										<th>목적 IP</th>
-										<th>목적 Port</th>
-										<th>패턴1</th>
-										<th>패턴2</th>
-										<th>패턴3</th>
+										<th>dPort</th>
+										<th>1</th>
+										<th>2</th>
+										<th>3</th>
 									</tr>
 								</thead>
 								<tbody id="eventTableBody">
