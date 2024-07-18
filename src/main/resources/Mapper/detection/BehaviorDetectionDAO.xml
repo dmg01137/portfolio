@@ -15,8 +15,8 @@
 
     <!-- 행동 탐지 추가 -->
     <insert id="addBehaviorDetection" parameterType="com.example.demo.dto.detection.BehaviorDetection">
-        INSERT INTO detection_db.behavior_detection (detection_number,s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous, base_cnt, comp_cnt, base_time)
-        VALUES (#{detection_number}, #{s_to_ip}, #{s_ip}, #{d_ip}, #{s_port}, #{d_port}, #{create_dt}, #{modify_dt}, #{action_type}, #{policy_name}, #{policy_info}, #{pattern_1}, #{pattern_2}, #{pattern_3}, #{dangerous}, #{base_cnt}, #{comp_cnt}, #{base_time})
+        INSERT INTO detection_db.behavior_detection (detection_number,s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous, base_cnt,  base_time)
+        VALUES (#{detection_number}, #{s_to_ip}, #{s_ip}, #{d_ip}, #{s_port}, #{d_port}, #{create_dt}, #{modify_dt}, #{action_type}, #{policy_name}, #{policy_info}, #{pattern_1}, #{pattern_2}, #{pattern_3}, #{dangerous}, #{base_cnt}, #{base_time})
     </insert>
 
     <!-- 행동 탐지 수정 -->
@@ -52,7 +52,7 @@
     AND (policy_name LIKE '%' || COALESCE(#{policy_name}, '') || '%' OR #{policy_name} IS NULL)
     AND (policy_info LIKE '%' || COALESCE(#{policy_info}, '') || '%' OR #{policy_info} IS NULL)
     AND (base_cnt = #{base_cnt} OR #{base_cnt} IS NULL)
-    AND (comp_cnt = #{comp_cnt} OR #{comp_cnt} IS NULL)
+
     AND (base_time = #{base_time} OR #{base_time} IS NULL)
     AND (pattern_1 LIKE '%' || COALESCE(#{pattern_1}, '') || '%' OR #{pattern_1} IS NULL)
     AND (pattern_2 LIKE '%' || COALESCE(#{pattern_2}, '') || '%' OR #{pattern_2} IS NULL)

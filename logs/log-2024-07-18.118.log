@@ -1,0 +1,218 @@
+13:53:17.309 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+13:53:17.317 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+13:53:47.328 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+13:53:47.328 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+13:54:17.338 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+13:54:17.338 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+13:54:47.339 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+13:54:47.339 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+13:55:17.341 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+13:55:17.341 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+13:55:47.346 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+13:55:47.346 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+13:55:49.268 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/behaviorpolicy", parameters={}
+13:55:49.268 [http-nio-8080-exec-2] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.BehaviorDetectionController#showPolicyList2(Model)
+13:55:49.270 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+13:55:49.270 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@67c97d31] was not registered for synchronization because synchronization is not active
+13:55:49.270 [http-nio-8080-exec-2] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+13:55:49.271 [http-nio-8080-exec-2] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@1218331268 wrapping org.mariadb.jdbc.Connection@13cf4953] will not be managed by Spring
+13:55:49.271 [http-nio-8080-exec-2] DEBUG c.e.d.d.d.B.getAllBehaviorDetections - ==>  Preparing: SELECT * FROM detection_db.behavior_detection
+13:55:49.271 [http-nio-8080-exec-2] DEBUG c.e.d.d.d.B.getAllBehaviorDetections - ==> Parameters: 
+13:55:49.271 [http-nio-8080-exec-2] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.behavior_detection
+13:55:49.273 [http-nio-8080-exec-2] DEBUG c.e.d.d.d.B.getAllBehaviorDetections - <==      Total: 4
+13:55:49.274 [http-nio-8080-exec-2] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@67c97d31]
+13:55:49.275 [http-nio-8080-exec-2] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+13:55:49.283 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+13:55:49.336 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - POST "/api/search-behavior-detections", parameters={}
+13:55:49.337 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.BehaviorDetectionController#searchBehaviorDetections(BehaviorDetection)
+13:55:49.338 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Read "application/json;charset=UTF-8" to [BehaviorDetection{detection_number=null, s_to_ip='null', s_ip='null', d_ip='null', s_port=null, d_po (truncated)...]
+13:55:49.338 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+13:55:49.338 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3269fb9a] was not registered for synchronization because synchronization is not active
+13:55:49.339 [http-nio-8080-exec-4] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+13:55:49.339 [http-nio-8080-exec-4] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@924912366 wrapping org.mariadb.jdbc.Connection@13cf4953] will not be managed by Spring
+13:55:49.339 [http-nio-8080-exec-4] DEBUG c.e.d.d.d.B.searchBehaviorDetections - ==>  Preparing: SELECT * FROM detection_db.behavior_detection WHERE (detection_number LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (s_to_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (s_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (s_port = ? OR ? IS NULL) AND (d_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (d_port = ? OR ? IS NULL) AND (create_dt >= ? OR ? IS NULL) AND (modify_dt LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (action_type LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (policy_name LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (policy_info LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (base_cnt = ? OR ? IS NULL) AND (comp_cnt = ? OR ? IS NULL) AND (base_time = ? OR ? IS NULL) AND (pattern_1 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (pattern_2 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (pattern_3 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL) AND (dangerous = ? OR ? IS NULL)
+13:55:49.339 [http-nio-8080-exec-4] DEBUG c.e.d.d.d.B.searchBehaviorDetections - ==> Parameters: null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null
+13:55:49.339 [http-nio-8080-exec-4] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM detection_db.behavior_detection
+    WHERE (detection_number LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (s_to_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    
+    AND (s_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (s_port = ? OR ? IS NULL)
+    AND (d_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+   
+    AND (d_port = ? OR ? IS NULL)
+    AND (create_dt >= ? OR ? IS NULL)
+    AND (modify_dt LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (action_type LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (policy_name LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (policy_info LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (base_cnt = ? OR ? IS NULL)
+    AND (comp_cnt = ? OR ? IS NULL)
+    AND (base_time = ? OR ? IS NULL)
+    AND (pattern_1 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (pattern_2 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (pattern_3 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)
+    AND (dangerous = ? OR ? IS NULL)
+13:55:49.341 [http-nio-8080-exec-4] WARN  o.m.jdbc.message.server.ErrorPacket - Error: 1054-42S22: Unknown column 'comp_cnt' in 'where clause'
+13:55:49.341 [http-nio-8080-exec-4] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3269fb9a]
+13:55:49.341 [http-nio-8080-exec-4] DEBUG o.s.j.s.SQLErrorCodeSQLExceptionTranslator - Translating SQLException with SQL state '42S22', error code '1054', message [(conn=1379) Unknown column 'comp_cnt' in 'where clause'] for task [
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=1379) Unknown column 'comp_cnt' in 'where clause'
+### The error may exist in file [C:\Users\Administrator\Documents\workspace-spring-tool-suite-4-4.23.1.RELEASE\CetrinOs\bin\main\mapper\detection\BehaviorDetectionDAO.xml]
+### The error may involve com.example.demo.dao.detection.BehaviorDetectionDAO.searchBehaviorDetections-Inline
+### The error occurred while setting parameters
+### SQL: SELECT * FROM detection_db.behavior_detection     WHERE (detection_number LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (s_to_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)          AND (s_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (s_port = ? OR ? IS NULL)     AND (d_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)         AND (d_port = ? OR ? IS NULL)     AND (create_dt >= ? OR ? IS NULL)     AND (modify_dt LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (action_type LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (policy_name LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (policy_info LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (base_cnt = ? OR ? IS NULL)     AND (comp_cnt = ? OR ? IS NULL)     AND (base_time = ? OR ? IS NULL)     AND (pattern_1 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (pattern_2 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (pattern_3 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (dangerous = ? OR ? IS NULL)
+### Cause: java.sql.SQLSyntaxErrorException: (conn=1379) Unknown column 'comp_cnt' in 'where clause'
+]
+13:55:49.342 [http-nio-8080-exec-4] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.example.demo.controller.detection.GlobalExceptionHandler#handleException(Exception)
+13:55:49.342 [http-nio-8080-exec-4] ERROR c.e.d.c.d.GlobalExceptionHandler - 알 수 없는 예외가 발생했습니다.
+org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=1379) Unknown column 'comp_cnt' in 'where clause'
+### The error may exist in file [C:\Users\Administrator\Documents\workspace-spring-tool-suite-4-4.23.1.RELEASE\CetrinOs\bin\main\mapper\detection\BehaviorDetectionDAO.xml]
+### The error may involve com.example.demo.dao.detection.BehaviorDetectionDAO.searchBehaviorDetections-Inline
+### The error occurred while setting parameters
+### SQL: SELECT * FROM detection_db.behavior_detection     WHERE (detection_number LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (s_to_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)          AND (s_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (s_port = ? OR ? IS NULL)     AND (d_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)         AND (d_port = ? OR ? IS NULL)     AND (create_dt >= ? OR ? IS NULL)     AND (modify_dt LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (action_type LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (policy_name LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (policy_info LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (base_cnt = ? OR ? IS NULL)     AND (comp_cnt = ? OR ? IS NULL)     AND (base_time = ? OR ? IS NULL)     AND (pattern_1 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (pattern_2 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (pattern_3 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (dangerous = ? OR ? IS NULL)
+### Cause: java.sql.SQLSyntaxErrorException: (conn=1379) Unknown column 'comp_cnt' in 'where clause'
+; bad SQL grammar []
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:246)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:439)
+	at jdk.proxy2/jdk.proxy2.$Proxy64.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:224)
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:147)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:80)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
+	at jdk.proxy3/jdk.proxy3.$Proxy65.searchBehaviorDetections(Unknown Source)
+	at com.example.demo.service.detection.BehaviorDetectionService.searchBehaviorDetections(BehaviorDetectionService.java:28)
+	at com.example.demo.controller.detection.BehaviorDetectionController.searchBehaviorDetections(BehaviorDetectionController.java:57)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.sql.SQLSyntaxErrorException: (conn=1379) Unknown column 'comp_cnt' in 'where clause'
+	at org.mariadb.jdbc.export.ExceptionFactory.createException(ExceptionFactory.java:282)
+	at org.mariadb.jdbc.export.ExceptionFactory.create(ExceptionFactory.java:370)
+	at org.mariadb.jdbc.message.ClientMessage.readPacket(ClientMessage.java:134)
+	at org.mariadb.jdbc.client.impl.StandardClient.readPacket(StandardClient.java:872)
+	at org.mariadb.jdbc.client.impl.StandardClient.readResults(StandardClient.java:811)
+	at org.mariadb.jdbc.client.impl.StandardClient.readResponse(StandardClient.java:730)
+	at org.mariadb.jdbc.client.impl.StandardClient.execute(StandardClient.java:654)
+	at org.mariadb.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:95)
+	at org.mariadb.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:268)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:58)
+	at jdk.proxy4/jdk.proxy4.$Proxy94.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:65)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:80)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:65)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:336)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:158)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:110)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:90)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:154)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:142)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425)
+	... 57 common frames omitted
+13:55:49.344 [http-nio-8080-exec-4] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.jdbc.BadSqlGrammarException: <EOL><EOL>### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=1379) Unknown column 'comp_cnt' in 'where clause'<EOL><EOL>### The error may exist in file [C:\Users\Administrator\Documents\workspace-spring-tool-suite-4-4.23.1.RELEASE\CetrinOs\bin\main\mapper\detection\BehaviorDetectionDAO.xml]<EOL><EOL>### The error may involve com.example.demo.dao.detection.BehaviorDetectionDAO.searchBehaviorDetections-Inline<EOL><EOL>### The error occurred while setting parameters<EOL><EOL>### SQL: SELECT * FROM detection_db.behavior_detection     WHERE (detection_number LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (s_to_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)          AND (s_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (s_port = ? OR ? IS NULL)     AND (d_ip LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)         AND (d_port = ? OR ? IS NULL)     AND (create_dt >= ? OR ? IS NULL)     AND (modify_dt LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (action_type LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (policy_name LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (policy_info LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (base_cnt = ? OR ? IS NULL)     AND (comp_cnt = ? OR ? IS NULL)     AND (base_time = ? OR ? IS NULL)     AND (pattern_1 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (pattern_2 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (pattern_3 LIKE '%' || COALESCE(?, '') || '%' OR ? IS NULL)     AND (dangerous = ? OR ? IS NULL)<EOL><EOL>### Cause: java.sql.SQLSyntaxErrorException: (conn=1379) Unknown column 'comp_cnt' in 'where clause'<EOL>; bad SQL grammar []]
+13:55:49.344 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Using resolved error view: ModelAndView [view="500"; model={}]
+13:55:49.344 [http-nio-8080-exec-4] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected '*/*' given [*/*]
+13:55:49.347 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+13:55:49.374 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+13:55:49.375 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+13:55:49.376 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+13:55:49.376 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+13:55:49.376 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+13:56:17.351 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+13:56:17.351 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+13:56:47.353 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+13:56:47.353 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+13:57:17.365 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+13:57:17.365 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+13:57:47.381 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+13:57:47.381 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+13:58:17.383 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+13:58:17.383 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+13:58:47.386 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+13:58:47.386 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+13:59:17.395 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+13:59:17.395 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+13:59:22.815 [RMI TCP Connection(9)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+13:59:22.815 [RMI TCP Connection(9)-127.0.0.1] DEBUG o.s.b.a.ApplicationAvailabilityBean - Application availability state ReadinessState changed from ACCEPTING_TRAFFIC to REFUSING_TRAFFIC
+13:59:22.816 [RMI TCP Connection(9)-127.0.0.1] DEBUG o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@53543e02, started on Thu Jul 18 13:52:13 KST 2024
+13:59:22.820 [RMI TCP Connection(9)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase 2147483647
+13:59:22.821 [RMI TCP Connection(9)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Bean 'applicationTaskExecutor' completed its stop procedure
+13:59:22.821 [RMI TCP Connection(9)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase 2147482623
+13:59:22.822 [RMI TCP Connection(9)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Bean 'webServerGracefulShutdown' completed its stop procedure
+13:59:22.823 [RMI TCP Connection(9)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase 2147481599
+13:59:22.823 [RMI TCP Connection(9)-127.0.0.1] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+13:59:22.828 [RMI TCP Connection(9)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Bean 'webServerStartStop' completed its stop procedure
+13:59:22.828 [RMI TCP Connection(9)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase -2147483647
+13:59:22.829 [RMI TCP Connection(9)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Bean 'springBootLoggingLifecycle' completed its stop procedure
+13:59:23.073 [RMI TCP Connection(9)-127.0.0.1] DEBUG o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+13:59:23.073 [RMI TCP Connection(9)-127.0.0.1] DEBUG o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans
+13:59:23.073 [RMI TCP Connection(9)-127.0.0.1] DEBUG o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+13:59:23.074 [RMI TCP Connection(9)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+13:59:23.075 [RMI TCP Connection(9)-127.0.0.1] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Before shutdown stats (total=10, active=0, idle=10, waiting=0)
+13:59:23.076 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@13cf4953: (connection evicted)
+13:59:23.078 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@56a384a3: (connection evicted)
+13:59:23.078 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@3ef0665: (connection evicted)
+13:59:23.079 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@6334553e: (connection evicted)
+13:59:23.080 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@79fdead3: (connection evicted)
+13:59:23.080 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@531da46e: (connection evicted)
+13:59:23.082 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@15f11d18: (connection evicted)
+13:59:23.082 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@7aad77c9: (connection evicted)
+13:59:23.083 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@24fe6804: (connection evicted)
+13:59:23.084 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@1d0d3253: (connection evicted)
+13:59:23.085 [RMI TCP Connection(9)-127.0.0.1] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+13:59:23.085 [RMI TCP Connection(9)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
