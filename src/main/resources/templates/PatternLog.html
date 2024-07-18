@@ -107,6 +107,7 @@
             justify-content: center;
             margin-top: 20px;
             margin-bottom: 10px;
+            
         }
 
         .searchTitle {
@@ -119,7 +120,7 @@
             width: 100%;
             max-width: 200px;
             padding: 0.375rem 0.75rem;
-            font-size: 0.9rem;
+            font-size: 0.7rem;
             line-height: 1.5;
             border: 1px solid #ced4da;
             border-radius: 0.25rem;
@@ -228,6 +229,9 @@
             <div style="flex: 1;">
                 <input type="text" id="searchValue6" class="form-control searchInput" placeholder="도착지PORT">
             </div>
+             <div style="flex: 1;">
+                <input type="text" id="searchValue10" class="form-control searchInput" placeholder="액션타입">
+            </div>
             <div style="flex: 1;">
                 <input type="text" id="searchValue7" class="form-control searchInput" placeholder="패킷길이">
             </div>
@@ -237,9 +241,7 @@
             <div style="flex: 1;">
                 <input type="text" id="searchValue9" class="form-control searchInput" placeholder="패킷">
             </div>
-            <div style="flex: 1;">
-                <input type="text" id="searchValue10" class="form-control searchInput" placeholder="정책이름">
-            </div>
+           
         </div>
         <div class="searchButtons" style="text-align: center; margin-top: 10px;">
             <button id="searchButton" class="btn btn-primary searchButton">Search</button>
@@ -256,12 +258,13 @@
                 <th>출발지PORT</th>
                 <th>도착지IP</th>
                 <th>도착지PORT</th>
+                   <th>액션 타입</th>
                 <th>패킷길이</th>
                 <th>패턴1</th>
                 <th>패턴2</th>
                 <th>패턴3</th>
                 <th>패킷</th>
-                <th>정책이름</th>
+             
             </tr>
         </thead>
         <tbody id="logTableBody">
@@ -287,18 +290,19 @@ $(document).ready(function () {
                 let encodedPacket = encodeURIComponent(log.packet);
                 $("#logTableBody").append(
                     `<tr>
-                        <td>${log.detection_number}</td>
+                        <td>${log.id}</td>
                         <td>${log.time}</td>
                         <td>${log.sIp}</td>
                         <td>${log.sPort}</td>
                         <td>${log.dIp}</td>
                         <td>${log.dPort}</td>
+                        <td>${log.action_type}</td>
                         <td>${log.len}</td>
                         <td>${log.pattern1}</td>
                         <td>${log.pattern2}</td>
                         <td>${log.pattern3}</td>
                         <td>${encodedPacket}</td>
-                        <td>${log.policyName}</td>
+                       
                     </tr>`
                 );
             });

@@ -33,10 +33,10 @@ public class PatternLogController {
     }
 
     // 특정 ID의 패턴 로그 조회
-    @GetMapping("/{detection_number}")
-    public ResponseEntity<PatternLog> getPatternLogById(@PathVariable int detection_number) {
+    @GetMapping("/{id}")
+    public ResponseEntity<PatternLog> getPatternLogById(@PathVariable int id) {
         try {
-            PatternLog patternLog = patternLogService.getPatternLogById(detection_number);
+            PatternLog patternLog = patternLogService.getPatternLogById(id);
             if (patternLog != null) {
                 return ResponseEntity.ok(patternLog);
             } else {
@@ -59,12 +59,12 @@ public class PatternLogController {
     }
 
     // 패턴 로그 업데이트
-    @PutMapping("/{detection_number}")
-    public ResponseEntity<Void> updatePatternLog(@PathVariable int detection_number, @RequestBody PatternLog patternLog) {
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> updatePatternLog(@PathVariable int id, @RequestBody PatternLog patternLog) {
         try {
-            PatternLog existingPatternLog = patternLogService.getPatternLogById(detection_number);
+            PatternLog existingPatternLog = patternLogService.getPatternLogById(id);
             if (existingPatternLog != null) {
-                patternLog.setDetection_number(detection_number);
+                patternLog.setId(id);
                 patternLogService.updatePatternLog(patternLog);
                 return ResponseEntity.ok().build();
             } else {
@@ -76,12 +76,12 @@ public class PatternLogController {
     }
 
     // 패턴 로그 삭제
-    @DeleteMapping("/{detection_number}")
-    public ResponseEntity<Void> deletePatternLog(@PathVariable int detection_number) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePatternLog(@PathVariable int id) {
         try {
-            PatternLog existingPatternLog = patternLogService.getPatternLogById(detection_number);
+            PatternLog existingPatternLog = patternLogService.getPatternLogById(id);
             if (existingPatternLog != null) {
-                patternLogService.deletePatternLog(detection_number);
+                patternLogService.deletePatternLog(id);
                 return ResponseEntity.ok().build();
             } else {
                 return ResponseEntity.notFound().build();

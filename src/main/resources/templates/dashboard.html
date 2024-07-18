@@ -285,9 +285,11 @@
 									<!-- 여기에 서버에서 동적으로 데이터가 추가됩니다 -->
 								</tbody>
 							</table>
+					
 							<button class="btn btn-primary" id="loadMoreBtn"
 								onclick="loadMoreData()">next</button>
 						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -368,7 +370,7 @@
             data: {
                 labels: labels,
                 datasets: [{
-                    label: '행동지 IP 탐지 이벤트 Top 5',
+                    label: '행동지 IP 탐지 이벤트',
                     data: data,
                     backgroundColor: '#e74c3c', // 막대 색상
                     borderWidth: 1

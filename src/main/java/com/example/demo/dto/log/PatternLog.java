@@ -1,7 +1,7 @@
 package com.example.demo.dto.log;
 
 public class PatternLog {
-    private int detection_number;
+    private int id; // Changed from detection_number
     private String time;
     private String sIp;
     private String dIp;
@@ -12,13 +12,13 @@ public class PatternLog {
     private String pattern2;
     private String pattern3;
     private String packet;
-    private String policyName;
+    private String action_type;
 
     public PatternLog() {
     }
 
-    public PatternLog(int detection_number, String time, String sIp, String dIp, int sPort, int dPort, int len, String pattern1, String pattern2, String pattern3, String packet, String policyName) {
-        this.detection_number = detection_number;
+    public PatternLog(int id, String time, String sIp, String dIp, int sPort, int dPort, int len, String pattern1, String pattern2, String pattern3, String packet, String action_type) {
+        this.id = id; // Changed from detection_number
         this.time = time;
         this.sIp = sIp;
         this.dIp = dIp;
@@ -29,15 +29,15 @@ public class PatternLog {
         this.pattern2 = pattern2;
         this.pattern3 = pattern3;
         this.packet = packet;
-        this.policyName = policyName;
+        this.action_type = action_type;
     }
 
-    public int getDetection_number() {
-        return detection_number;
+    public int getId() { // Getter for id
+        return id;
     }
 
-    public void setDetection_number(int detection_number) {
-        this.detection_number = detection_number;
+    public void setId(int id) { // Setter for id
+        this.id = id;
     }
 
     public String getTime() {
@@ -120,18 +120,18 @@ public class PatternLog {
         this.packet = packet;
     }
 
-    public String getPolicyName() {
-        return policyName;
+    public String getaction_type() {
+        return action_type;
     }
 
-    public void setPolicyName(String policyName) {
-        this.policyName = policyName;
+    public void setaction_type(String action_type) {
+        this.action_type = action_type;
     }
 
     @Override
     public String toString() {
         return "PatternLog{" +
-                "detection_number=" + detection_number +
+                "id=" + id +
                 ", time='" + time + '\'' +
                 ", sIp='" + sIp + '\'' +
                 ", dIp='" + dIp + '\'' +
@@ -142,8 +142,7 @@ public class PatternLog {
                 ", pattern2='" + pattern2 + '\'' +
                 ", pattern3='" + pattern3 + '\'' +
                 ", packet='" + packet + '\'' +
-                ", policyName='" + policyName + '\'' +
+                ", action_type='" + action_type + '\'' +
                 '}';
     }
-
 }
