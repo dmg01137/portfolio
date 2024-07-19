@@ -13,12 +13,15 @@
 
     <!-- Select by ID -->
     <select id="findByDangerousNumber" resultMap="dangerousLogResultMap" parameterType="int">
-        SELECT * FROM dangerous_log_20240719 WHERE dangerous_number = #{dangerous_number}
+        SELECT *
+        FROM log_db.dangerous_log_20240717
+        WHERE dangerous_number = #{dangerous_number}
     </select>
 
     <!-- Select all -->
     <select id="findAll" resultMap="dangerousLogResultMap">
-        SELECT * FROM log_db.dangerous_log_20240717
+        SELECT *
+        FROM log_db.dangerous_log_20240717
     </select>
 
     <!-- Insert -->
@@ -36,26 +39,28 @@
 
     <!-- Delete -->
     <delete id="delete" parameterType="int">
-        DELETE FROM dangerous_log_20240717 WHERE dangerous_number = #{dangerous_number}
+        DELETE FROM log_db.dangerous_log_20240717 WHERE dangerous_number = #{dangerous_number}
     </delete>
 
-    <!-- Search with multiple criteria -->
-    <select id="search" resultMap="dangerousLogResultMap" parameterType="map">
+    <!-- Multiple criteria search -->
+    <select id="findByMultipleCriteria" resultMap="dangerousLogResultMap" parameterType="map">
         SELECT *
         FROM log_db.dangerous_log_20240717
-        WHERE 1=1
-        <if test="dangerous_number != null">
-            AND dangerous_number = #{dangerous_number}
-        </if>
-        <if test="ip != null and ip != ''">
-            AND ip = #{ip}
-        </if>
-        <if test="port != null">
-            AND port = #{port}
-        </if>
-        <if test="detection_number != null and detection_number != ''">
-            AND detection_number = #{detection_number}
-        </if>
+         WHERE 1=1
+        <where>
+            <if test="dangerous_number != null">
+                AND dangerous_number = #{dangerous_number}
+            </if>
+            <if test="ip!= null">
+                AND ip LIKE CONCAT('%', #{ip}, '%')
+            </if>
+            <if test="port != null">
+                AND port = #{port}
+            </if>
+            <if test="detection_number != null">
+                AND detection_number = #{detection_number}
+            </if>
+        </where>
     </select>
 
 </mapper>

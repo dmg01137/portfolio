@@ -21,8 +21,8 @@ public class DangerousLogService {
         this.dangerousLogDAO = dangerousLogDAO;
     }
 
-    public DangerousLog findBydangerous_number(int dangerous_number) {
-        return dangerousLogDAO.findBydangerous_number(dangerous_number);
+    public DangerousLog findByDangerousNumber(int dangerousNumber) {
+        return dangerousLogDAO.findByDangerousNumber(dangerousNumber);
     }
 
     public List<DangerousLog> findAll() {
@@ -37,19 +37,16 @@ public class DangerousLogService {
         dangerousLogDAO.update(log);
     }
 
-    public void delete(int dangerous_number) {
-        dangerousLogDAO.delete(dangerous_number);
+    public void delete(int dangerousNumber) {
+        dangerousLogDAO.delete(dangerousNumber);
     }
 
-    public List<DangerousLog> search(Integer dangerous_number, String ip, Integer port, Integer detection_number) {
-        return dangerousLogDAO.search(dangerous_number, ip, port,detection_number);
+    public List<DangerousLog> search(Integer dangerousNumber, String ip, Integer port, Integer detectionNumber) {
+        return dangerousLogDAO.search(dangerousNumber, ip, port, detectionNumber);
     }
-    
- // 다중 검색 기능을 위한 패턴 로그 조회
+
     @Transactional(readOnly = true)
-    public List<DangerousLog> findByMultipleCriteria(Map<String, String> params) {
-        return dangerousLogDAO.findByMultipleCriteria(params);
+    public List<DangerousLog> findByMultipleCriteria(Map<String, Object> criteria) {
+        return dangerousLogDAO.findByMultipleCriteria(criteria);
     }
-
-	
 }
