@@ -1,13 +1,14 @@
 package com.example.demo.service.log;
 
-import com.example.demo.dao.log.DangerousLogDAO;
-import com.example.demo.dto.log.DangerousLog;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.example.demo.dao.log.DangerousLogDAO;
+import com.example.demo.dto.log.DangerousLog;
 
 @Service
 @Transactional
@@ -43,4 +44,12 @@ public class DangerousLogService {
     public List<DangerousLog> search(Integer dangerous_number, String ip, Integer port, Integer detection_number) {
         return dangerousLogDAO.search(dangerous_number, ip, port,detection_number);
     }
+    
+ // 다중 검색 기능을 위한 패턴 로그 조회
+    @Transactional(readOnly = true)
+    public List<DangerousLog> findByMultipleCriteria(Map<String, String> params) {
+        return dangerousLogDAO.findByMultipleCriteria(params);
+    }
+
+	
 }

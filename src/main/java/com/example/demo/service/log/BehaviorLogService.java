@@ -47,9 +47,9 @@ public class BehaviorLogService {
         return behaviorLogDAO.findTopSIPs();
     }
 
-    // Top 5 SIP 조회 (s_ip 값만)
+    // 다중 검색 기능을 위한 패턴 로그 조회
     @Transactional(readOnly = true)
-    public List<String> findTop5SIPs() {
-        return behaviorLogDAO.findTop5SIPs();
+    public List<BehaviorLog> findByMultipleCriteria(Map<String, Object> criteria) {
+        return behaviorLogDAO.findByMultipleCriteria(criteria);
     }
 }

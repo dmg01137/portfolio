@@ -23,6 +23,6 @@ public interface BehaviorLogDAO {
     // Top 5 s_ip 값 조회
     List<Map<String, Object>> findTopSIPs();
 
-    // Top 5 SIP 조회 (s_ip 값만)
-    List<String> findTop5SIPs();
+    // 다중 검색 기능을 위한 패턴 로그 조회
+    List<BehaviorLog> findByMultipleCriteria(Map<String, Object> criteria);
 }

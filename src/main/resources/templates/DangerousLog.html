@@ -210,10 +210,11 @@
         <h3 style="text-align: center; margin-top: 20px; margin-left:40px ">위험 로그</h3>
         <form id="searchForm" action="/dangerouslog/search" method="get" class="searchForm">
 
-            <input type="text" id="dangerousNumberInput" name="dangerous_number" class="form-control searchInput" placeholder="위험 번호">
-            <input type="text" id="ipInput" name="ip" class="form-control searchInput" placeholder="IP">
-            <input type="text" id="portInput" name="port" class="form-control searchInput" placeholder="PORT">
-            <input type="text" id="detectionNumberInput" name="detection_number" class="form-control searchInput" placeholder="탐지 번호">
+           <input type="text" id="dangerous_number" name="dangerous_number" class="form-control searchInput" placeholder="위험 번호">
+<input type="text" id="ip" name="ip" class="form-control searchInput" placeholder="IP">
+<input type="text" id="port" name="port" class="form-control searchInput" placeholder="PORT">
+<input type="text" id="detection_number" name="detection_number" class="form-control searchInput" placeholder="탐지 번호">
+
             <div style="display: flex; align-items: center;">
                 <button type="submit" class="btn btn-primary mb-2 mr-2" id="searchButton">Search</button>
                 <button type="button" id="clearButton" class="btn btn-secondary mb-2">Clear</button>
@@ -330,9 +331,8 @@
             renderPagination();
         };
 
-        // 검색 버튼 클릭 이벤트 리스너
-        $("#searchButton").click(function (e) {
-            e.preventDefault(); // 폼 기본 제출 동작 막기
+     // 검색 버튼 클릭 이벤트 리스너
+        $("#searchButton").click(function () {
             handleSearch();
         });
 
@@ -342,50 +342,35 @@
             fetchAndDisplayLogs(); // 모든 데이터 다시 불러오기
         });
 
+
         // 검색 처리 함수
+
         function handleSearch() {
-            let searchValues = {}; // 검색어를 저장할 객체
+            let searchParams = {};
 
-            // 각 입력 필드에서 검색어를 가져와 객체에 저장합니다.
-            searchValues.dangerous_number = $("#dangerousNumberInput").val().trim().toLowerCase();
-            searchValues.ip = $("#ipInput").val().trim().toLowerCase();
-            searchValues.port = $("#portInput").val().trim().toLowerCase();
-            searchValues.detection_number = $("#detectionNumberInput").val().trim().toLowerCase();
+            // 각 입력 필드에서 검색어를 가져와 query parameters에 추가합니다.
+            searchParams["dangerous_number"] = $("#dangerous_number").val().trim();
+            searchParams["ip"] = $("#ip").val().trim();
+            searchParams["port"] = $("#port").val().trim();
+            searchParams["detection_number"] = $("#detection_number").val().trim();
 
-            let rows = $("#logTableBody tr"); // 모든 테이블 행을 가져옵니다.
-
-            rows.each(function() {
-                let row = $(this);
-                let shouldDisplay = true; // 일치 여부를 판단하는 변수
-
-                // 각 행의 데이터를 가져와서 검색어와 비교합니다.
-                let rowData = row.find('td').map(function() {
-                    return $(this).text().toLowerCase();
-                }).get();
-
-                // 검색어와 일치하지 않는 경우 행을 숨깁니다.
-                for (let key in searchValues) {
-                    let searchValue = searchValues[key];
-                    let dataIndex = Object.keys(searchValues).indexOf(key); // 검색어 인덱스 구하기
-                    if (searchValue !== "" && rowData[dataIndex].includes(searchValue)) {
-                        shouldDisplay = true;
-                    } else if (searchValue !== "" && !rowData[dataIndex].includes(searchValue)) {
-                        shouldDisplay = false;
-                        break; // 한 개라도 일치하지 않으면 행을 숨깁니다.
-                    }
-                }
-
-                // 검색 결과에 따라 행의 표시 여부를 결정합니다.
-                if (shouldDisplay) {
-                    row.show(); // 일치하는 경우 행을 보여줍니다.
-                } else {
-                    row.hide(); // 일치하지 않는 경우 행을 숨깁니다.
-                }
+            // 서버로 GET 요청을 보냅니다.
+            $.get("/api/dangerouslogs/search", searchParams, function (data) {
+                logsData = data;
+                totalLogs = logsData.length;
+                currentPage = 1; // 첫 페이지로 초기화
+                displayLogs(); // 데이터 표시
+                renderPagination(); // 페이지네이션 렌더링
+            }).fail(function() {
+                console.error("검색에 실패했습니다.");
             });
         }
 
-    });
-</script>
 
-</body>
-</html>
+
+    });
+    </script>
+
+
+    </body>
+    </html>

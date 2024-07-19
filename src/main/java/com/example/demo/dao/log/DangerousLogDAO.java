@@ -1,11 +1,13 @@
 package com.example.demo.dao.log;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.example.demo.dto.log.DangerousLog;
+import com.example.demo.dto.log.PatternLog;
 
 @Mapper
 public interface DangerousLogDAO {
@@ -30,5 +32,8 @@ public interface DangerousLogDAO {
                               @Param("ip") String ip, 
                               @Param("port") Integer port, 
                               @Param("detection_number") Integer detection_number);
+    
+ // 다중 조건으로 패턴 로그를 조회합니다.
+    List<DangerousLog> findByMultipleCriteria(Map<String, String> params);
 
 }

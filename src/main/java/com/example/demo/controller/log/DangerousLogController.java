@@ -1,8 +1,11 @@
 package com.example.demo.controller.log;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,12 +32,13 @@ public class DangerousLogController {
         model.addAttribute("logs", logs);
         return "dangerouslog"; // Thymeleaf 템플릿 이름 수정
     }
+
+    // API - 모든 위험 로그 가져오기
     @GetMapping("/api/dangerouslogs")
     @ResponseBody
     public List<DangerousLog> getAllDangerousLogs() {
-        return dangerousLogService.findAll(); // DangerousLogService에서 모든 위험 로그 가져오기
+        return dangerousLogService.findAll();
     }
-
 
     // 검색 기능 추가
     @GetMapping("/dangerouslog/search")
@@ -45,8 +49,19 @@ public class DangerousLogController {
             @RequestParam(name = "dangerous_number", required = false) Integer dangerous_number,
             Model model) {
 
-        List<DangerousLog> logs = dangerousLogService.search(dangerous_number, ip, port,detection_number );
+        List<DangerousLog> logs = dangerousLogService.search(dangerous_number, ip, port, detection_number);
         model.addAttribute("logs", logs);
         return "dangerouslog"; // Thymeleaf 템플릿 이름 수정
+    }
+
+    // 다중 조건으로 위험 로그 조회 (DB에서 처리)
+    @GetMapping("/search")
+    public ResponseEntity<List<DangerousLog>> searchDangerousLogsFromDB(@RequestParam Map<String, String> params) {
+        try {
+            List<DangerousLog> dangerousLogs = dangerousLogService.findByMultipleCriteria(params);
+            return ResponseEntity.ok(dangerousLogs);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 }
