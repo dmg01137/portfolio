@@ -72,7 +72,7 @@
         }
         table {
             width: 100%;
-            min-width: 100%; /* 최소 너비 설정 */
+            min-width: 1200px; /* 최소 너비 설정 */
             border-collapse: collapse;
             border: 1px solid #dee2e6;
             font-size: 0.8em;
@@ -87,7 +87,6 @@
             color: #060606;
             white-space: nowrap;
             text-align: center;
-            min-width: 100px; /* 각 셀의 최소 너비 설정 */
         }
         thead th {
             vertical-align: middle;
@@ -108,7 +107,6 @@
             justify-content: center;
             margin-top: 20px;
             margin-bottom: 10px;
-            
         }
 
         .searchTitle {
@@ -210,8 +208,8 @@
 
 <div class="container">
     <div class="searchContainer">
-         <h3 style="text-align: center; margin-top: 20px; margin-right:100px ">패턴 로그</h3>
-           <div id="searchForm" class="searchForm">
+        <h3 style="text-align: center; margin-top: 20px;">패턴 로그</h3>
+        <div class="searchForm">
             <div style="flex: 1;">
                 <input type="text" id="searchValue1" class="form-control searchInput" placeholder="로그번호">
             </div>
@@ -230,9 +228,7 @@
             <div style="flex: 1;">
                 <input type="text" id="searchValue6" class="form-control searchInput" placeholder="도착지PORT">
             </div>
-             </div>
-               <div id="searchForm" class="searchForm">
-             <div style="flex: 1;">
+            <div style="flex: 1;">
                 <input type="text" id="searchValue7" class="form-control searchInput" placeholder="액션타입">
             </div>
             <div style="flex: 1;">
@@ -250,7 +246,6 @@
             <div style="flex: 1;">
                 <input type="text" id="searchValue12" class="form-control searchInput" placeholder="패킷">
             </div>
-           
         </div>
         <div class="searchButtons" style="text-align: center; margin-top: 10px;">
             <button id="searchButton" class="btn btn-primary searchButton">Search</button>
@@ -258,37 +253,39 @@
         </div>
     </div>
     <!-- 로그를 표시할 테이블 -->
-    <table id="logTable" class="table table-striped table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>로그번호</th>
-                <th>탐지시간</th>
-                <th>출발지IP</th>
-                <th>출발지PORT</th>
-                <th>도착지IP</th>
-                <th>도착지PORT</th>
-                   <th>액션 타입</th>
-                <th>패킷길이</th>
-                <th>패턴1</th>
-                <th>패턴2</th>
-                <th>패턴3</th>
-                <th>패킷</th>
-             
-            </tr>
-        </thead>
-     <tbody id="logTableBody">
-            <!-- 여기에 JavaScript로 동적으로 추가될 테이블 로우들이 들어갈 자리 -->
-        </tbody>
-    </table>
-    <!-- 페이지네이션 -->
-    <nav id="paginationNav" aria-label="Page navigation example">
-        <ul id="paginationList" class="pagination justify-content-center">
-            <!-- 여기에 JavaScript로 생성될 페이지 번호 목록 -->
-        </ul>
-    </nav>
+    <div class="table-responsive">
+        <table id="logTable" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>로그번호</th>
+                    <th>탐지시간</th>
+                    <th>출발지IP</th>
+                    <th>출발지PORT</th>
+                    <th>도착지IP</th>
+                    <th>도착지PORT</th>
+                    <th>액션 타입</th>
+                    <th>패킷길이</th>
+                    <th>패턴1</th>
+                    <th>패턴2</th>
+                    <th>패턴3</th>
+                    <th>패킷</th>
+                </tr>
+            </thead>
+            <tbody id="logTableBody">
+                <!-- 여기에 JavaScript로 동적으로 추가될 테이블 로우들이 들어갈 자리 -->
+            </tbody>
+        </table>
+    </div>
+<!-- HTML 페이지네이션을 표시할 곳 -->
+<nav aria-label="Page navigation example">
+    <ul id="pagination" class="pagination justify-content-center">
+        <!-- 여기에 페이지네이션 버튼들이 동적으로 추가됩니다 -->
+    </ul>
+</nav>
+
+
 </div>
 
-<!-- jQuery, Popper.js, 부트스트랩 JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -344,26 +341,48 @@ $(document).ready(function () {
         });
     }
 
-    // 페이지네이션 생성
+    // 페이지네이션 버튼 렌더링 함수
     function renderPagination() {
         let totalPages = Math.ceil(totalLogs / logsPerPage);
-        $("#paginationList").empty();
+        let paginationHTML = "";
 
-        for (let i = 1; i <= totalPages; i++) {
-            $("#paginationList").append(
-                `<li class="page-item ${currentPage === i ? 'active' : ''}">
-                    <a class="page-link" href="#" data-page="${i}">${i}</a>
-                </li>`
-            );
+        // Calculate start and end page numbers for display
+        let startPage = Math.max(1, currentPage - 2);
+        let endPage = Math.min(totalPages, startPage + 4);
+
+        // Previous 버튼
+        paginationHTML += `<li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                            <a class="page-link" href="#" aria-label="Previous" onclick="changePage(${currentPage - 1})">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                          </li>`;
+
+        // 페이지 버튼들
+        for (let i = startPage; i <= endPage; i++) {
+            paginationHTML += `<li class="page-item ${currentPage === i ? 'active' : ''}">
+                                <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
+                              </li>`;
         }
 
-        $(".page-link").click(function (event) {
-            event.preventDefault();
-            currentPage = parseInt($(this).attr("data-page"));
-            displayLogs();
-            renderPagination();
-        });
+        // Next 버튼
+        paginationHTML += `<li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                            <a class="page-link" href="#" aria-label="Next" onclick="changePage(${currentPage + 1})">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                          </li>`;
+
+        $("#pagination").html(paginationHTML);
     }
+
+    // 페이지 변경 함수
+    window.changePage = function (page) {
+        if (page < 1 || page > Math.ceil(totalLogs / logsPerPage)) {
+            return;
+        }
+        currentPage = page;
+        displayLogs();
+        renderPagination();
+    };
 
     // 검색 버튼 클릭 이벤트 리스너
     $("#searchButton").click(function () {
@@ -376,34 +395,50 @@ $(document).ready(function () {
         fetchAndDisplayLogs(); // 모든 데이터 다시 불러오기
     });
 
-    // 검색 처리 함수
+ // 검색 처리 함수
     function handleSearch() {
-        let rows = document.querySelectorAll("#logTable tbody tr");
+        let searchValues = []; // 검색어를 저장할 배열
 
-        rows.forEach(row => {
-            let shouldDisplay = true;
+        // 각 입력 필드에서 검색어를 가져와 배열에 저장합니다.
+        for (let i = 1; i <= 12; i++) {
+            searchValues.push($("#searchValue" + i).val().trim().toLowerCase());
+        }
 
-            for (let i = 0; i < 12; i++) { // 검색 입력창 개수에 맞게 수정
-                let value = document.getElementById(`searchValue${i + 1}`).value.trim().toLowerCase();
-                let cellValue = row.cells[i].textContent.trim().toLowerCase();
+        let rows = $("#logTable tbody tr"); // 모든 테이블 행을 가져옵니다.
 
-                if (cellValue.includes(value) || value === "") {
-                    continue;
+        rows.each(function() {
+            let row = $(this);
+            let shouldDisplay = false; // 일치 여부를 판단하는 변수
+
+            // 각 행의 데이터를 가져와서 검색어와 비교합니다.
+            let rowData = row.find('td').map(function() {
+                return $(this).text().toLowerCase();
+            }).get();
+
+            // 모든 검색어에 대해 일치 여부를 확인합니다.
+            for (let i = 0; i < searchValues.length; i++) {
+                let searchValue = searchValues[i];
+                if (searchValue === "" || rowData[i].includes(searchValue)) {
+                    shouldDisplay = true;
                 } else {
                     shouldDisplay = false;
-                    break;
+                    break; // 한 개라도 일치하지 않으면 행을 숨깁니다.
                 }
             }
 
+            // 검색 결과에 따라 행의 표시 여부를 결정합니다.
             if (shouldDisplay) {
-                row.style.display = "";
+                row.show(); // 일치하는 경우 행을 보여줍니다.
             } else {
-                row.style.display = "none";
+                row.hide(); // 일치하지 않는 경우 행을 숨깁니다.
             }
         });
     }
 
+
 });
+
 </script>
+
 </body>
 </html>
