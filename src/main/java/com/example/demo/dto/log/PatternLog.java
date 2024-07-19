@@ -1,24 +1,24 @@
 package com.example.demo.dto.log;
 
 public class PatternLog {
-    private int id; // Changed from detection_number
-    private String time;
-    private String sIp;
-    private String dIp;
-    private int sPort;
-    private int dPort;
-    private int len;
-    private String pattern1;
-    private String pattern2;
-    private String pattern3;
-    private String packet;
-    private String action_type;
+    private int id; // detection_number에서 id로 변경
+    private String time; // 시간
+    private String sIp; // 송신 IP
+    private String dIp; // 수신 IP
+    private int sPort; // 송신 포트
+    private int dPort; // 수신 포트
+    private int len; // 길이
+    private String pattern1; // 패턴1
+    private String pattern2; // 패턴2
+    private String pattern3; // 패턴3
+    private byte[] packet; // 패킷
+    private int actionType; // 액션 타입
 
     public PatternLog() {
     }
 
-    public PatternLog(int id, String time, String sIp, String dIp, int sPort, int dPort, int len, String pattern1, String pattern2, String pattern3, String packet, String action_type) {
-        this.id = id; // Changed from detection_number
+    public PatternLog(int id, String time, String sIp, String dIp, int sPort, int dPort, int len, String pattern1, String pattern2, String pattern3, byte[] packet, int actionType) {
+        this.id = id;
         this.time = time;
         this.sIp = sIp;
         this.dIp = dIp;
@@ -29,14 +29,14 @@ public class PatternLog {
         this.pattern2 = pattern2;
         this.pattern3 = pattern3;
         this.packet = packet;
-        this.action_type = action_type;
+        this.actionType = actionType;
     }
 
-    public int getId() { // Getter for id
+    public int getId() {
         return id;
     }
 
-    public void setId(int id) { // Setter for id
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -112,20 +112,20 @@ public class PatternLog {
         this.pattern3 = pattern3;
     }
 
-    public String getPacket() {
+    public byte[] getPacket() {
         return packet;
     }
 
-    public void setPacket(String packet) {
+    public void setPacket(byte[] packet) {
         this.packet = packet;
     }
 
-    public String getaction_type() {
-        return action_type;
+    public int getActionType() {
+        return actionType;
     }
 
-    public void setaction_type(String action_type) {
-        this.action_type = action_type;
+    public void setActionType(int actionType) {
+        this.actionType = actionType;
     }
 
     @Override
@@ -141,8 +141,8 @@ public class PatternLog {
                 ", pattern1='" + pattern1 + '\'' +
                 ", pattern2='" + pattern2 + '\'' +
                 ", pattern3='" + pattern3 + '\'' +
-                ", packet='" + packet + '\'' +
-                ", action_type='" + action_type + '\'' +
+                ", packet='" + (packet != null ? new String(packet) : null) + '\'' +
+                ", actionType=" + actionType +
                 '}';
     }
 }

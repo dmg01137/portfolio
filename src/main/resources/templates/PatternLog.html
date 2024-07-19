@@ -276,14 +276,12 @@
             </tbody>
         </table>
     </div>
-<!-- HTML 페이지네이션을 표시할 곳 -->
-<nav aria-label="Page navigation example">
-    <ul id="pagination" class="pagination justify-content-center">
-        <!-- 여기에 페이지네이션 버튼들이 동적으로 추가됩니다 -->
-    </ul>
-</nav>
-
-
+    <!-- HTML 페이지네이션을 표시할 곳 -->
+    <nav aria-label="Page navigation example">
+        <ul id="pagination" class="pagination justify-content-center">
+            <!-- 여기에 페이지네이션 버튼들이 동적으로 추가됩니다 -->
+        </ul>
+    </nav>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -341,6 +339,7 @@ $(document).ready(function () {
         });
     }
 
+
     // 페이지네이션 버튼 렌더링 함수
     function renderPagination() {
         let totalPages = Math.ceil(totalLogs / logsPerPage);
@@ -395,49 +394,32 @@ $(document).ready(function () {
         fetchAndDisplayLogs(); // 모든 데이터 다시 불러오기
     });
 
- // 검색 처리 함수
+    // 검색 처리 함수
+    // 검색 처리 함수
     function handleSearch() {
-        let searchValues = []; // 검색어를 저장할 배열
+        let searchParams = {};
 
-        // 각 입력 필드에서 검색어를 가져와 배열에 저장합니다.
+        // 각 입력 필드에서 검색어를 가져와 query parameters에 추가합니다.
         for (let i = 1; i <= 12; i++) {
-            searchValues.push($("#searchValue" + i).val().trim().toLowerCase());
+            let value = $("#searchValue" + i).val().trim();
+            if (value !== "") {
+                searchParams["searchValue" + i] = value;
+            }
         }
 
-        let rows = $("#logTable tbody tr"); // 모든 테이블 행을 가져옵니다.
-
-        rows.each(function() {
-            let row = $(this);
-            let shouldDisplay = false; // 일치 여부를 판단하는 변수
-
-            // 각 행의 데이터를 가져와서 검색어와 비교합니다.
-            let rowData = row.find('td').map(function() {
-                return $(this).text().toLowerCase();
-            }).get();
-
-            // 모든 검색어에 대해 일치 여부를 확인합니다.
-            for (let i = 0; i < searchValues.length; i++) {
-                let searchValue = searchValues[i];
-                if (searchValue === "" || rowData[i].includes(searchValue)) {
-                    shouldDisplay = true;
-                } else {
-                    shouldDisplay = false;
-                    break; // 한 개라도 일치하지 않으면 행을 숨깁니다.
-                }
-            }
-
-            // 검색 결과에 따라 행의 표시 여부를 결정합니다.
-            if (shouldDisplay) {
-                row.show(); // 일치하는 경우 행을 보여줍니다.
-            } else {
-                row.hide(); // 일치하지 않는 경우 행을 숨깁니다.
-            }
+        // 서버로 GET 요청을 보냅니다.
+        $.get("/api/patternlogs/search", searchParams, function (data) {
+            logsData = data;
+            totalLogs = logsData.length;
+            currentPage = 1; // 첫 페이지로 초기화
+            displayLogs(); // 데이터 표시
+            renderPagination(); // 페이지네이션 렌더링
+        }).fail(function() {
+            console.error("검색에 실패했습니다.");
         });
     }
 
-
 });
-
 </script>
 
 </body>

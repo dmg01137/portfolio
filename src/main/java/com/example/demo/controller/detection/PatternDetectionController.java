@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.demo.controller.log.SearchCriteria;
 import com.example.demo.dto.detection.PatternDetection;
 import com.example.demo.service.UDPClient;
 import com.example.demo.service.detection.PatternDetectionService;
@@ -26,7 +25,6 @@ public class PatternDetectionController {
 
     private final PatternDetectionService patternDetectionService;
     private final UDPClient udpClient; // UDPClient 인스턴스 추가
-
 
     @Autowired
     public PatternDetectionController(PatternDetectionService patternDetectionService, UDPClient udpClient) {
@@ -40,12 +38,13 @@ public class PatternDetectionController {
         model.addAttribute("patternDetections", patternDetections);
         return "policylist"; // policylist.html 템플릿을 반환
     }
+
     @GetMapping("/search-pattern-detections")
     public ResponseEntity<List<PatternDetection>> searchPatternDetections() {
         List<PatternDetection> detections = patternDetectionService.getAllPatternDetections();
         return ResponseEntity.ok(detections);
     }
-    
+
     @PostMapping("/api/search-pattern-detections")
     @ResponseBody
     public List<PatternDetection> searchPatternDetections(@RequestBody SearchCriteria searchCriteria) {
@@ -72,9 +71,9 @@ public class PatternDetectionController {
                                                                    @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime end) {
         return patternDetectionService.getPatternDetectionsByTimeRange(start, end);
     }
-    
-    //추가
-    
+
+    // 추가
+
     @GetMapping("/addpolicy")
     public String showAddPatternForm(Model model) {
         model.addAttribute("patternDetection", new PatternDetection());
@@ -83,25 +82,28 @@ public class PatternDetectionController {
 
     @PostMapping("/addpolicy")
     public String addPattern(@ModelAttribute("patternDetection") PatternDetection patternDetection) {
-    	 try {
-    		 patternDetectionService.addPatternDetection(patternDetection);
-    		 // 패턴 변경 메시지를 전송합니다.
-             udpClient.sendPatternChangeMessage();
-             
-             return "redirect:/policylist";
-         } catch (Exception e) {
-             e.printStackTrace();
-             return "500";
-         }
-    
+        try {
+            patternDetectionService.addPatternDetection(patternDetection);
+            // 패턴 변경 메시지를 전송합니다.
+            udpClient.sendPatternChangeMessage();
+
+            return "redirect:/policylist";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "500";
+        }
     }
-    
-    
- //수정
-    
-    @GetMapping("/modifypolicy")
-    public String showModifyPatternForm(Model model) {
-        // 필요한 경우 모델에 추가적인 데이터를 넣어줄 수 있습니다.
+
+    // 수정
+
+    @GetMapping("/modifypolicy/{detection_number}")
+    public String showModifyPatternForm(@PathVariable Long detection_number, Model model) {
+        PatternDetection patternDetection = patternDetectionService.getAllPatternDetections().stream()
+                .filter(pd -> pd.getDetection_number().equals(detection_number))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Invalid detection number: " + detection_number));
+
+        model.addAttribute("patternDetection", patternDetection);
         return "modifypolicy"; // modifypolicy.html 템플릿을 반환
     }
 
@@ -112,21 +114,24 @@ public class PatternDetectionController {
             patternDetectionService.updatePatternDetection(patternDetection);
             // 패턴 변경 메시지를 전송합니다.
             udpClient.sendPatternChangeMessage();
-            
-            return "redirect:/modifypolicy";
+
+            return "redirect:/policylist";
         } catch (Exception e) {
             e.printStackTrace();
             return "500";
         }
     }
 
-    
-    
-//삭제
-    
-    @GetMapping("/deletepolicy")
-    public String showDeletePatternForm(Model model) {
-        // 필요한 경우 모델에 추가적인 데이터를 넣어줄 수 있습니다.
+    // 삭제
+
+    @GetMapping("/deletepolicy/{detection_number}")
+    public String showDeletePatternForm(@PathVariable Long detection_number, Model model) {
+        PatternDetection patternDetection = patternDetectionService.getAllPatternDetections().stream()
+                .filter(pd -> pd.getDetection_number().equals(detection_number))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Invalid detection number: " + detection_number));
+
+        model.addAttribute("patternDetection", patternDetection);
         return "deletepolicy"; // deletepolicy.html 템플릿을 반환
     }
 
@@ -137,8 +142,8 @@ public class PatternDetectionController {
             patternDetectionService.deletePatternDetection(patternDetection);
             // 패턴 변경 메시지를 전송합니다.
             udpClient.sendPatternChangeMessage();
-            
-            return "redirect:/deletepolicy";
+
+            return "redirect:/policylist";
         } catch (Exception e) {
             e.printStackTrace();
             return "500";

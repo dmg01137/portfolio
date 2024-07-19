@@ -123,4 +123,15 @@ public class PatternLogController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+    // 다중 조건으로 패턴 로그 조회
+    @GetMapping("/search")
+    public ResponseEntity<List<PatternLog>> searchPatternLogs(@RequestParam Map<String, Object> params) {
+        try {
+            List<PatternLog> patternLogs = patternLogService.findByMultipleCriteria(params);
+            return ResponseEntity.ok(patternLogs);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }

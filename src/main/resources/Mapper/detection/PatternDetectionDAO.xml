@@ -11,20 +11,20 @@
 
     <!-- 이름으로 패턴 탐지 조회 -->
     <select id="getPatternDetectionByName" resultType="com.example.demo.dto.detection.PatternDetection" parameterType="java.lang.String">
-        SELECT detection_number, s_to_ip,s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
+        SELECT detection_number, s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
         FROM detection_db.pattern_detection WHERE policy_name = #{policy_name}
     </select>
 
     <!-- 패턴 탐지 추가 -->
     <insert id="addPatternDetection" parameterType="com.example.demo.dto.detection.PatternDetection">
-        INSERT INTO detection_db.pattern_detection (detection_number, s_to_ip,s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous)
-        VALUES (#{detection_number},#{s_to_ip}, #{s_ip}, #{d_ip}, #{s_port}, #{d_port}, #{create_dt}, #{modify_dt}, #{action_type}, #{policy_name}, #{policy_info}, #{pattern_1}, #{pattern_2}, #{pattern_3}, #{dangerous})
+        INSERT INTO detection_db.pattern_detection (detection_number, s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous)
+        VALUES (#{detection_number}, #{s_to_ip}, #{s_ip}, #{d_ip}, #{s_port}, #{d_port}, #{create_dt}, #{modify_dt}, #{action_type}, #{policy_name}, #{policy_info}, #{pattern_1}, #{pattern_2}, #{pattern_3}, #{dangerous})
     </insert>
 
     <!-- 패턴 탐지 수정 -->
     <update id="updatePatternDetection" parameterType="com.example.demo.dto.detection.PatternDetection">
         UPDATE detection_db.pattern_detection
-        SET s_to_ip=#{s_to_ip},s_ip = #{s_ip}, d_ip = #{d_ip}, s_port = #{s_port}, d_port = #{d_port}, create_dt = #{create_dt}, modify_dt = #{modify_dt}, action_type = #{action_type},
+        SET s_to_ip = #{s_to_ip}, s_ip = #{s_ip}, d_ip = #{d_ip}, s_port = #{s_port}, d_port = #{d_port}, create_dt = #{create_dt}, modify_dt = #{modify_dt}, action_type = #{action_type},
             policy_name = #{policy_name}, policy_info = #{policy_info}, pattern_1 = #{pattern_1}, pattern_2 = #{pattern_2}, pattern_3 = #{pattern_3}, dangerous = #{dangerous}
         WHERE detection_number = #{detection_number}
     </update>
@@ -34,74 +34,71 @@
         DELETE FROM detection_db.pattern_detection WHERE detection_number = #{detection_number}
     </delete>
 
-<!-- 검색 조건으로 패턴 탐지 조회 -->
-<select id="searchPatternDetections" resultType="com.example.demo.dto.detection.PatternDetection" parameterType="com.example.demo.controller.log.SearchCriteria">
-    SELECT detection_number, s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
-    FROM detection_db.pattern_detection
-    <where>
-        <if test="detection_number != null and !detection_number.isEmpty()">
-            AND detection_number LIKE '%' || #{detection_number} || '%'
-        </if>
-        <if test="s_to_ip != null and !s_to_ip.isEmpty()">
-            AND s_to_ip LIKE '%' || #{s_to_ip} || '%'
-        </if>
-        <if test="s_ip != null and !s_ip.isEmpty()">
-            AND s_ip LIKE '%' || #{s_ip} || '%'
-        </if>
-        <if test="d_ip != null and !d_ip.isEmpty()">
-            AND d_ip LIKE '%' || #{d_ip} || '%'
-        </if>
-        <if test="s_port != null">
-            AND s_port = #{s_port}
-        </if>
-        <if test="d_port != null">
-            AND d_port = #{d_port}
-        </if>
-        <if test="create_dt != null and !create_dt.isEmpty()">
-            AND create_dt >= #{create_dt}
-        </if>
-        <if test="modify_dt != null and !modify_dt.isEmpty()">
-            AND modify_dt LIKE '%' || #{modify_dt} || '%'
-        </if>
-        <if test="action_type != null and !action_type.isEmpty()">
-            AND action_type LIKE '%' || #{action_type} || '%'
-        </if>
-        <if test="policy_name != null and !policy_name.isEmpty()">
-            AND policy_name LIKE '%' || #{policy_name} || '%'
-        </if>
-        <if test="policy_info != null and !policy_info.isEmpty()">
-            AND policy_info LIKE '%' || #{policy_info} || '%'
-        </if>
-        <if test="pattern_1 != null and !pattern_1.isEmpty()">
-            AND pattern_1 LIKE '%' || #{pattern_1} || '%'
-        </if>
-        <if test="pattern_2 != null and !pattern_2.isEmpty()">
-            AND pattern_2 LIKE '%' || #{pattern_2} || '%'
-        </if>
-        <if test="pattern_3 != null and !pattern_3.isEmpty()">
-            AND pattern_3 LIKE '%' || #{pattern_3} || '%'
-        </if>
-        <if test="dangerous != null">
-            AND dangerous = #{dangerous}
-        </if>
-    </where>
-</select>
-
-
-
-
+    <!-- 검색 조건으로 패턴 탐지 조회 -->
+    <select id="searchPatternDetections" resultType="com.example.demo.dto.detection.PatternDetection" parameterType="com.example.demo.controller.log.SearchCriteria">
+        SELECT detection_number, s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
+        FROM detection_db.pattern_detection
+        <where>
+            <if test="detection_number != null and !detection_number.isEmpty()">
+                AND detection_number LIKE '%' || #{detection_number} || '%'
+            </if>
+            <if test="s_to_ip != null and !s_to_ip.isEmpty()">
+                AND s_to_ip LIKE '%' || #{s_to_ip} || '%'
+            </if>
+            <if test="s_ip != null and !s_ip.isEmpty()">
+                AND s_ip LIKE '%' || #{s_ip} || '%'
+            </if>
+            <if test="d_ip != null and !d_ip.isEmpty()">
+                AND d_ip LIKE '%' || #{d_ip} || '%'
+            </if>
+            <if test="s_port != null">
+                AND s_port = #{s_port}
+            </if>
+            <if test="d_port != null">
+                AND d_port = #{d_port}
+            </if>
+            <if test="create_dt != null">
+                AND create_dt >= #{create_dt}
+            </if>
+            <if test="modify_dt != null and !modify_dt.isEmpty()">
+                AND modify_dt LIKE '%' || #{modify_dt} || '%'
+            </if>
+            <if test="action_type != null and !action_type.isEmpty()">
+                AND action_type LIKE '%' || #{action_type} || '%'
+            </if>
+            <if test="policy_name != null and !policy_name.isEmpty()">
+                AND policy_name LIKE '%' || #{policy_name} || '%'
+            </if>
+            <if test="policy_info != null and !policy_info.isEmpty()">
+                AND policy_info LIKE '%' || #{policy_info} || '%'
+            </if>
+            <if test="pattern_1 != null and !pattern_1.isEmpty()">
+                AND pattern_1 LIKE '%' || #{pattern_1} || '%'
+            </if>
+            <if test="pattern_2 != null and !pattern_2.isEmpty()">
+                AND pattern_2 LIKE '%' || #{pattern_2} || '%'
+            </if>
+            <if test="pattern_3 != null and !pattern_3.isEmpty()">
+                AND pattern_3 LIKE '%' || #{pattern_3} || '%'
+            </if>
+            <if test="dangerous != null">
+                AND dangerous = #{dangerous}
+            </if>
+        </where>
+    </select>
 
     <!-- 페이징된 모든 패턴 탐지 조회 -->
     <select id="getAllPatternDetectionsPaged" resultType="com.example.demo.dto.detection.PatternDetection" parameterType="java.util.Map">
         SELECT * FROM (
-            SELECT ROW_NUMBER() OVER (ORDER BY detection_number) AS ROWNUM, detection_number, CONCAT(s_ip, ' to ', d_ip) AS s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
+            SELECT ROW_NUMBER() OVER (ORDER BY detection_number) AS ROWNUM, detection_number, s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
             FROM detection_db.pattern_detection
-        ) WHERE ROWNUM BETWEEN #{startRow} AND #{endRow}
+        ) AS TEMP
+        WHERE ROWNUM BETWEEN #{start} AND #{end}
     </select>
 
     <!-- 시간 범위로 패턴 탐지 조회 -->
     <select id="getPatternDetectionsByTimeRange" resultType="com.example.demo.dto.detection.PatternDetection" parameterType="java.util.Map">
-        SELECT detection_number, CONCAT(s_ip, ' to ', d_ip) AS s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
+        SELECT detection_number, s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
         FROM detection_db.pattern_detection
         WHERE create_dt BETWEEN #{start} AND #{end}
     </select>

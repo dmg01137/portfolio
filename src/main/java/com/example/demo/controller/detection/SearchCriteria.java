@@ -1,53 +1,29 @@
-package com.example.demo.dto.detection;
+package com.example.demo.controller.detection;
 
 import java.time.LocalDateTime;
 
-public class PatternDetection {
+public class SearchCriteria {
+    private Long detection_number;
+    private String s_to_ip;
+    private String s_ip;
+    private String d_ip;
+    private Integer s_port;
+    private Integer d_port;
+    private LocalDateTime create_dt;
+    private LocalDateTime modify_dt;
+    private String action_type;
+    private String policy_name;
+    private String policy_info;
+    private String pattern_1;
+    private String pattern_2;
+    private String pattern_3;
+    private Boolean dangerous;
 
-    private Long detection_number;    // 탐지 번호
-    private String s_to_ip;           // 소스와 목적지 IP 정보
-    private String s_ip;              // 소스 IP
-    private String d_ip;              // 목적지 IP
-    private String s_to_port;         // 소스와 목적지 포트 정보
-    private Integer s_port;           // 소스 포트
-    private Integer d_port;           // 목적지 포트
-    private LocalDateTime create_dt;  // 생성 일시
-    private LocalDateTime modify_dt;  // 수정 일시
-    private Integer action_type;      // 동작 유형
-    private String policy_name;       // 정책 이름
-    private String policy_info;       // 정책 정보
-    private String pattern_1;         // 패턴 1
-    private String pattern_2;         // 패턴 2
-    private String pattern_3;         // 패턴 3
-    private Integer dangerous;        // 위험도
-
-    // 생성자
-    public PatternDetection() {
+    // Constructor
+    public SearchCriteria() {
     }
 
-    public PatternDetection(Long detection_number, String s_to_ip, String s_ip, String d_ip, String s_to_port,
-                            Integer s_port, Integer d_port, LocalDateTime create_dt, LocalDateTime modify_dt,
-                            Integer action_type, String policy_name, String policy_info, String pattern_1,
-                            String pattern_2, String pattern_3, Integer dangerous) {
-        this.detection_number = detection_number;
-        this.s_to_ip = s_to_ip;
-        this.s_ip = s_ip;
-        this.d_ip = d_ip;
-        this.s_to_port = s_to_port;
-        this.s_port = s_port;
-        this.d_port = d_port;
-        this.create_dt = create_dt;
-        this.modify_dt = modify_dt;
-        this.action_type = action_type;
-        this.policy_name = policy_name;
-        this.policy_info = policy_info;
-        this.pattern_1 = pattern_1;
-        this.pattern_2 = pattern_2;
-        this.pattern_3 = pattern_3;
-        this.dangerous = dangerous;
-    }
-
-    // Getter 및 Setter 메소드
+    // Getters and Setters
     public Long getDetection_number() {
         return detection_number;
     }
@@ -78,14 +54,6 @@ public class PatternDetection {
 
     public void setD_ip(String d_ip) {
         this.d_ip = d_ip;
-    }
-
-    public String getS_to_port() {
-        return s_to_port;
-    }
-
-    public void setS_to_port(String s_to_port) {
-        this.s_to_port = s_to_port;
     }
 
     public Integer getS_port() {
@@ -120,11 +88,11 @@ public class PatternDetection {
         this.modify_dt = modify_dt;
     }
 
-    public Integer getAction_type() {
+    public String getAction_type() {
         return action_type;
     }
 
-    public void setAction_type(Integer action_type) {
+    public void setAction_type(String action_type) {
         this.action_type = action_type;
     }
 
@@ -168,27 +136,27 @@ public class PatternDetection {
         this.pattern_3 = pattern_3;
     }
 
-    public Integer getDangerous() {
+    public Boolean getDangerous() {
         return dangerous;
     }
 
-    public void setDangerous(Integer dangerous) {
+    public void setDangerous(Boolean dangerous) {
         this.dangerous = dangerous;
     }
 
+    // toString() method
     @Override
     public String toString() {
-        return "PatternDetection{" +
+        return "SearchCriteria{" +
                 "detection_number=" + detection_number +
                 ", s_to_ip='" + s_to_ip + '\'' +
                 ", s_ip='" + s_ip + '\'' +
                 ", d_ip='" + d_ip + '\'' +
-                ", s_to_port='" + s_to_port + '\'' +
                 ", s_port=" + s_port +
                 ", d_port=" + d_port +
                 ", create_dt=" + create_dt +
                 ", modify_dt=" + modify_dt +
-                ", action_type=" + action_type +
+                ", action_type='" + action_type + '\'' +
                 ", policy_name='" + policy_name + '\'' +
                 ", policy_info='" + policy_info + '\'' +
                 ", pattern_1='" + pattern_1 + '\'' +

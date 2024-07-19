@@ -19,7 +19,7 @@ public interface PatternDetectionDAO {
 
     void deletePatternDetection(PatternDetection patternDetection);
 
-    List<PatternDetection> searchPatternDetections(SearchCriteria searchCriteria);
+    List<PatternDetection> searchPatternDetections(com.example.demo.controller.detection.SearchCriteria searchCriteria);
 
     List<PatternDetection> getAllPatternDetectionsPaged(int page, int size);
 

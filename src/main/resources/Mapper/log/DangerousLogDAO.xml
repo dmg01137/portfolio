@@ -3,19 +3,27 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.dao.log.DangerousLogDAO">
 
+    <!-- Result Map -->
+    <resultMap id="dangerousLogResultMap" type="com.example.demo.dto.log.DangerousLog">
+        <id property="dangerous_number" column="dangerous_number"/>
+        <result property="ip" column="ip"/>
+        <result property="port" column="port"/>
+        <result property="detection_number" column="detection_number"/>
+    </resultMap>
+
     <!-- Select by ID -->
-    <select id="findBydangerous_log" resultType="com.example.demo.dto.log.DangerousLog" parameterType="int">
+    <select id="findByDangerousNumber" resultMap="dangerousLogResultMap" parameterType="int">
         SELECT * FROM dangerous_log WHERE dangerous_number = #{dangerous_number}
     </select>
 
     <!-- Select all -->
-    <select id="findAll" resultType="com.example.demo.dto.log.DangerousLog">
+    <select id="findAll" resultMap="dangerousLogResultMap">
         SELECT * FROM log_db.dangerous_log_20240718
     </select>
 
     <!-- Insert -->
     <insert id="save" parameterType="com.example.demo.dto.log.DangerousLog">
-        INSERT INTO log_db.dangerous_log (ip, port,detection_number)
+        INSERT INTO log_db.dangerous_log (ip, port, detection_number)
         VALUES (#{ip}, #{port}, #{detection_number})
     </insert>
 
@@ -31,12 +39,13 @@
         DELETE FROM dangerous_log WHERE dangerous_number = #{dangerous_number}
     </delete>
 
-    <!-- Search -->
-    <select id="search" resultType="com.example.demo.dto.log.DangerousLog">
-        SELECT * FROM log_db.dangerous_log
-        WHERE 
+    <!-- Search with multiple criteria -->
+    <select id="search" resultMap="dangerousLogResultMap" parameterType="map">
+        SELECT *
+        FROM log_db.dangerous_log
+        WHERE 1=1
         <if test="dangerous_number != null">
-            dangerous_number = #{dangerous_number}
+            AND dangerous_number = #{dangerous_number}
         </if>
         <if test="ip != null and ip != ''">
             AND ip = #{ip}
