@@ -30,4 +30,7 @@ public interface PatternLogDAO {
 
     // 모든 패턴 로그 리스트를 최신 순으로 조회합니다.
     List<PatternLog> findAllOrderedByTimeDesc();
+
+    // 다중 조건으로 패턴 로그를 조회합니다.
+    List<PatternLog> findByMultipleCriteria(Map<String, Object> criteria);
 }

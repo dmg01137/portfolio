@@ -1,14 +1,24 @@
 package com.example.demo.controller.log;
 
-import com.example.demo.dto.log.PatternLog;
-import com.example.demo.service.log.PatternLogService;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Map;
+import com.example.demo.dto.log.PatternLog;
+import com.example.demo.service.log.PatternLogService;
 
 @RestController
 @RequestMapping("/api/patternlogs")
@@ -124,14 +134,27 @@ public class PatternLogController {
         }
     }
 
-    // 다중 조건으로 패턴 로그 조회
+ // 다중 조건으로 패턴 로그 조회 (DB에서 처리)
     @GetMapping("/search")
-    public ResponseEntity<List<PatternLog>> searchPatternLogs(@RequestParam Map<String, Object> params) {
+    public ResponseEntity<List<PatternLog>> searchPatternLogsFromDB(@RequestParam Map<String, String> params) {
         try {
-            List<PatternLog> patternLogs = patternLogService.findByMultipleCriteria(params);
+            // 이전 코드에서는 params를 그대로 넘겼으나, DB에서 처리할 수 있도록 Map<String, String>으로 변경합니다.
+            Map<String, Object> searchParams = new HashMap<>();
+            
+            // 각 파라미터에 대해 값이 비어 있지 않은 경우에만 Map에 추가합니다.
+            for (Map.Entry<String, String> entry : params.entrySet()) {
+                if (!entry.getValue().isEmpty()) {
+                    searchParams.put(entry.getKey(), entry.getValue());
+                }
+            }
+
+            List<PatternLog> patternLogs = patternLogService.findByMultipleCriteria(searchParams);
             return ResponseEntity.ok(patternLogs);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+    
+    
+
 }

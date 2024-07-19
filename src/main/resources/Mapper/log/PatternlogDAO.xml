@@ -115,7 +115,7 @@
         </if>
         <!-- 길이 검색 조건 -->
         <if test="len != null">
-            AND length = #{len}
+            AND len = #{len}
         </if>
         <!-- 패턴 1 검색 조건 -->
         <if test="pattern1 != null">

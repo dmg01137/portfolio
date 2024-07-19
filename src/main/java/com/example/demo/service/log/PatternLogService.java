@@ -1,14 +1,13 @@
 package com.example.demo.service.log;
 
-import java.util.List;
-import java.util.Map;
-
+import com.example.demo.dao.log.PatternLogDAO;
+import com.example.demo.dto.log.PatternLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.dao.log.PatternLogDAO;
-import com.example.demo.dto.log.PatternLog;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class PatternLogService {
@@ -62,6 +61,6 @@ public class PatternLogService {
 
     @Transactional(readOnly = true)
     public List<PatternLog> findByMultipleCriteria(Map<String, Object> criteria) {
-        return ((PatternLogService) patternLogDAO).findByMultipleCriteria(criteria);
+        return patternLogDAO.findByMultipleCriteria(criteria);
     }
 }
