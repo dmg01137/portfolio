@@ -271,12 +271,12 @@
                     <th>패킷</th>
                 </tr>
             </thead>
-            <tbody id="logTableBody">
+              <tbody id="logTableBody">
                 <!-- 여기에 JavaScript로 동적으로 추가될 테이블 로우들이 들어갈 자리 -->
             </tbody>
         </table>
     </div>
-    <!-- HTML 페이지네이션을 표시할 곳 -->
+    <!-- 페이지네이션은 이전과 동일 -->
     <nav aria-label="Page navigation example">
         <ul id="pagination" class="pagination justify-content-center">
             <!-- 여기에 페이지네이션 버튼들이 동적으로 추가됩니다 -->
@@ -339,7 +339,6 @@ $(document).ready(function () {
         });
     }
 
-
     // 페이지네이션 버튼 렌더링 함수
     function renderPagination() {
         let totalPages = Math.ceil(totalLogs / logsPerPage);
@@ -394,7 +393,6 @@ $(document).ready(function () {
         fetchAndDisplayLogs(); // 모든 데이터 다시 불러오기
     });
 
-    // 검색 처리 함수
     // 검색 처리 함수
     function handleSearch() {
         let searchParams = {};
