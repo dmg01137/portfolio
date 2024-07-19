@@ -208,14 +208,14 @@
 <div class="container">
     <div class="searchContainer">
         <h3 style="text-align: center; margin-top: 20px; margin-left:40px ">위험 로그</h3>
-   <form id="searchForm" action="/dangerouslog/search" method="get" class="searchForm">
+        <form id="searchForm" action="/dangerouslog/search" method="get" class="searchForm">
 
             <input type="text" id="dangerousNumberInput" name="dangerous_number" class="form-control searchInput" placeholder="위험 번호">
             <input type="text" id="ipInput" name="ip" class="form-control searchInput" placeholder="IP">
             <input type="text" id="portInput" name="port" class="form-control searchInput" placeholder="PORT">
             <input type="text" id="detectionNumberInput" name="detection_number" class="form-control searchInput" placeholder="탐지 번호">
             <div style="display: flex; align-items: center;">
-                <button type="submit" class="btn btn-primary mb-2 mr-2">Search</button>
+                <button type="submit" class="btn btn-primary mb-2 mr-2" id="searchButton">Search</button>
                 <button type="button" id="clearButton" class="btn btn-secondary mb-2">Clear</button>
             </div>
         </form>
@@ -229,11 +229,11 @@
                 <th>탐지 번호</th>
             </tr>
         </thead>
-         <tbody id="logTableBody">
-                <!-- 여기에 JavaScript로 동적으로 추가될 테이블 로우들이 들어갈 자리 -->
-            </tbody>
-        </table>
-    </div>
+        <tbody id="logTableBody">
+            <!-- 여기에 JavaScript로 동적으로 추가될 테이블 로우들이 들어갈 자리 -->
+        </tbody>
+    </table>
+</div>
 <!-- HTML 페이지네이션을 표시할 곳 -->
 <nav aria-label="Page navigation example">
     <ul id="pagination" class="pagination justify-content-center">
@@ -287,7 +287,7 @@
             });
         }
 
-     // 페이지네이션 버튼 렌더링 함수
+        // 페이지네이션 버튼 렌더링 함수
         function renderPagination() {
             let totalPages = Math.ceil(totalLogs / logsPerPage);
             let paginationHTML = "";
@@ -331,7 +331,8 @@
         };
 
         // 검색 버튼 클릭 이벤트 리스너
-        $("#searchButton").click(function () {
+        $("#searchButton").click(function (e) {
+            e.preventDefault(); // 폼 기본 제출 동작 막기
             handleSearch();
         });
 
@@ -341,32 +342,34 @@
             fetchAndDisplayLogs(); // 모든 데이터 다시 불러오기
         });
 
-     // 검색 처리 함수
+        // 검색 처리 함수
         function handleSearch() {
-            let searchValues = []; // 검색어를 저장할 배열
+            let searchValues = {}; // 검색어를 저장할 객체
 
-            // 각 입력 필드에서 검색어를 가져와 배열에 저장합니다.
-            for (let i = 1; i <= 12; i++) {
-                searchValues.push($("#searchValue" + i).val().trim().toLowerCase());
-            }
+            // 각 입력 필드에서 검색어를 가져와 객체에 저장합니다.
+            searchValues.dangerous_number = $("#dangerousNumberInput").val().trim().toLowerCase();
+            searchValues.ip = $("#ipInput").val().trim().toLowerCase();
+            searchValues.port = $("#portInput").val().trim().toLowerCase();
+            searchValues.detection_number = $("#detectionNumberInput").val().trim().toLowerCase();
 
-            let rows = $("#logTable tbody tr"); // 모든 테이블 행을 가져옵니다.
+            let rows = $("#logTableBody tr"); // 모든 테이블 행을 가져옵니다.
 
             rows.each(function() {
                 let row = $(this);
-                let shouldDisplay = false; // 일치 여부를 판단하는 변수
+                let shouldDisplay = true; // 일치 여부를 판단하는 변수
 
                 // 각 행의 데이터를 가져와서 검색어와 비교합니다.
                 let rowData = row.find('td').map(function() {
                     return $(this).text().toLowerCase();
                 }).get();
 
-                // 모든 검색어에 대해 일치 여부를 확인합니다.
-                for (let i = 0; i < searchValues.length; i++) {
-                    let searchValue = searchValues[i];
-                    if (searchValue === "" || rowData[i].includes(searchValue)) {
+                // 검색어와 일치하지 않는 경우 행을 숨깁니다.
+                for (let key in searchValues) {
+                    let searchValue = searchValues[key];
+                    let dataIndex = Object.keys(searchValues).indexOf(key); // 검색어 인덱스 구하기
+                    if (searchValue !== "" && rowData[dataIndex].includes(searchValue)) {
                         shouldDisplay = true;
-                    } else {
+                    } else if (searchValue !== "" && !rowData[dataIndex].includes(searchValue)) {
                         shouldDisplay = false;
                         break; // 한 개라도 일치하지 않으면 행을 숨깁니다.
                     }
@@ -381,10 +384,8 @@
             });
         }
 
-
     });
+</script>
 
-    </script>
-
-    </body>
-    </html>
+</body>
+</html>
