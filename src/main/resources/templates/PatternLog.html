@@ -211,40 +211,40 @@
         <h3 style="text-align: center; margin-top: 20px;">패턴 로그</h3>
         <div class="searchForm">
             <div style="flex: 1;">
-                <input type="text" id="searchValue1" class="form-control searchInput" placeholder="로그번호">
+                <input type="text" id="id" class="form-control searchInput" placeholder="로그번호">
             </div>
             <div style="flex: 1;">
-                <input type="text" id="searchValue2" class="form-control searchInput" placeholder="탐지시간">
+                <input type="text" id="time" class="form-control searchInput" placeholder="탐지시간">
             </div>
             <div style="flex: 1;">
-                <input type="text" id="searchValue3" class="form-control searchInput" placeholder="출발지IP">
+                <input type="text" id="sIp" class="form-control searchInput" placeholder="출발지IP">
             </div>
             <div style="flex: 1;">
-                <input type="text" id="searchValue4" class="form-control searchInput" placeholder="출발지PORT">
+                <input type="text" id="sPort" class="form-control searchInput" placeholder="출발지PORT">
             </div>
             <div style="flex: 1;">
-                <input type="text" id="searchValue5" class="form-control searchInput" placeholder="도착지IP">
+                <input type="text" id="dIp" class="form-control searchInput" placeholder="도착지IP">
             </div>
             <div style="flex: 1;">
-                <input type="text" id="searchValue6" class="form-control searchInput" placeholder="도착지PORT">
+                <input type="text" id="dPort" class="form-control searchInput" placeholder="도착지PORT">
             </div>
             <div style="flex: 1;">
-                <input type="text" id="searchValue7" class="form-control searchInput" placeholder="액션타입">
+                <input type="text" id="actionType" class="form-control searchInput" placeholder="액션타입">
             </div>
             <div style="flex: 1;">
-                <input type="text" id="searchValue8" class="form-control searchInput" placeholder="패킷길이">
+                <input type="text" id="len" class="form-control searchInput" placeholder="패킷길이">
             </div>
             <div style="flex: 1;">
-                <input type="text" id="searchValue9" class="form-control searchInput" placeholder="패턴1">
+                <input type="text" id="pattern1" class="form-control searchInput" placeholder="패턴1">
             </div>
             <div style="flex: 1;">
-                <input type="text" id="searchValue10" class="form-control searchInput" placeholder="패턴2">
+                <input type="text" id="pattern2" class="form-control searchInput" placeholder="패턴2">
             </div>
             <div style="flex: 1;">
-                <input type="text" id="searchValue11" class="form-control searchInput" placeholder="패턴3">
+                <input type="text" id="pattern3" class="form-control searchInput" placeholder="패턴3">
             </div>
             <div style="flex: 1;">
-                <input type="text" id="searchValue12" class="form-control searchInput" placeholder="패킷">
+                <input type="text" id="packet" class="form-control searchInput" placeholder="패킷">
             </div>
         </div>
         <div class="searchButtons" style="text-align: center; margin-top: 10px;">
@@ -393,17 +393,28 @@ $(document).ready(function () {
         fetchAndDisplayLogs(); // 모든 데이터 다시 불러오기
     });
 
+ // 검색 버튼 클릭 이벤트 리스너
+    $("#searchButton").click(function () {
+        handleSearch();
+    });
+
     // 검색 처리 함수
     function handleSearch() {
         let searchParams = {};
 
         // 각 입력 필드에서 검색어를 가져와 query parameters에 추가합니다.
-        for (let i = 1; i <= 12; i++) {
-            let value = $("#searchValue" + i).val().trim();
-            if (value !== "") {
-                searchParams["searchValue" + i] = value;
-            }
-        }
+        searchParams["id"] = $("#id").val().trim();
+        searchParams["time"] = $("#time").val().trim();
+        searchParams["sIp"] = $("#sIp").val().trim();
+        searchParams["sPort"] = $("#sPort").val().trim();
+        searchParams["dIp"] = $("#dIp").val().trim();
+        searchParams["dPort"] = $("#dPort").val().trim();
+        searchParams["actionType"] = $("#actionType").val().trim();
+        searchParams["len"] = $("#len").val().trim();
+        searchParams["pattern1"] = $("#pattern1").val().trim();
+        searchParams["pattern2"] = $("#pattern2").val().trim();
+        searchParams["pattern3"] = $("#pattern3").val().trim();
+        searchParams["packet"] = $("#packet").val().trim();
 
         // 서버로 GET 요청을 보냅니다.
         $.get("/api/patternlogs/search", searchParams, function (data) {
@@ -416,6 +427,7 @@ $(document).ready(function () {
             console.error("검색에 실패했습니다.");
         });
     }
+
 
 });
 </script>

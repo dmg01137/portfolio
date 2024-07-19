@@ -85,55 +85,56 @@
     </select>
 
     <!-- 다중 검색 기능을 위한 패턴 로그 조회 -->
-    <select id="findByMultipleCriteria" resultMap="patternLogResultMap" parameterType="map">
-        SELECT *
-        FROM log_db.pattern_log_20240719
-        WHERE 1=1
-        <!-- ID 검색 조건 -->
-        <if test="id != null">
-            AND id = #{id}
-        </if>
-        <!-- 시간 검색 조건 -->
-        <if test="time != null">
-            AND time = #{time}
-        </if>
-        <!-- 송신 IP 검색 조건 -->
-        <if test="sIp != null">
-            AND s_ip = #{sIp}
-        </if>
-        <!-- 수신 IP 검색 조건 -->
-        <if test="dIp != null">
-            AND d_ip = #{dIp}
-        </if>
-        <!-- 송신 포트 검색 조건 -->
-        <if test="sPort != null">
-            AND s_port = #{sPort}
-        </if>
-        <!-- 수신 포트 검색 조건 -->
-        <if test="dPort != null">
-            AND d_port = #{dPort}
-        </if>
-        <!-- 길이 검색 조건 -->
-        <if test="len != null">
-            AND len = #{len}
-        </if>
-        <!-- 패턴 1 검색 조건 -->
-        <if test="pattern1 != null">
-            AND pattern1 = #{pattern1}
-        </if>
-        <!-- 패턴 2 검색 조건 -->
-        <if test="pattern2 != null">
-            AND pattern2 = #{pattern2}
-        </if>
-        <!-- 패턴 3 검색 조건 -->
-        <if test="pattern3 != null">
-            AND pattern3 = #{pattern3}
-        </if>
-        <!-- 액션 타입 검색 조건 -->
-        <if test="actionType != null">
-            AND action_type = #{actionType}
-        </if>
-        ORDER BY time DESC;
-    </select>
+<select id="findByMultipleCriteria" resultMap="patternLogResultMap" parameterType="map">
+    SELECT *
+    FROM log_db.pattern_log_20240719
+    WHERE 1=1
+    <!-- ID 검색 조건 -->
+    <if test="id != null">
+        AND id = #{id}
+    </if>
+    <!-- 시간 검색 조건 -->
+    <if test="time != null">
+        AND time = #{time}
+    </if>
+    <!-- 송신 IP 검색 조건 -->
+    <if test="sIp != null">
+        AND s_ip = #{sIp}
+    </if>
+    <!-- 수신 IP 검색 조건 -->
+    <if test="dIp != null">
+        AND d_ip = #{dIp}
+    </if>
+    <!-- 송신 포트 검색 조건 -->
+    <if test="sPort != null">
+        AND s_port = #{sPort}
+    </if>
+    <!-- 수신 포트 검색 조건 -->
+    <if test="dPort != null">
+        AND d_port = #{dPort}
+    </if>
+    <!-- 길이 검색 조건 -->
+    <if test="len != null">
+        AND len = #{len}
+    </if>
+    <!-- 패턴 1 검색 조건 -->
+    <if test="pattern1 != null">
+        AND pattern1 = #{pattern1}
+    </if>
+    <!-- 패턴 2 검색 조건 -->
+    <if test="pattern2 != null">
+        AND pattern2 = #{pattern2}
+    </if>
+    <!-- 패턴 3 검색 조건 -->
+    <if test="pattern3 != null">
+        AND pattern3 = #{pattern3}
+    </if>
+    <!-- 액션 타입 검색 조건 -->
+    <if test="actionType != null">
+        AND action_type = #{actionType}
+    </if>
+    ORDER BY time DESC;
+</select>
+
 
 </mapper>
