@@ -321,14 +321,14 @@ $(document).ready(function () {
     // Initial fetch and display of logs
     fetchAndDisplayLogs();
 
-    // Function to fetch logs from API
+    // Function to fetch logs from server and display
     function fetchAndDisplayLogs() {
         $.get("/api/behaviorlogs", function (data) {
             logsData = data;
             totalLogs = logsData.length;
             displayLogs();
             renderPagination();
-        }).fail(function () {
+        }).fail(function() {
             console.error("Failed to fetch data.");
         });
     }
@@ -412,11 +412,10 @@ $(document).ready(function () {
         handleSearch();
     });
 
-    // Clear button click handler
-    $("#clearButton").on("click", function (e) {
-        e.preventDefault();
-        $("#searchForm").trigger("reset");
-        fetchAndDisplayLogs();
+    // Clear button click event listener
+    $("#clearButton").click(function () {
+        $(".searchInput").val(""); // Clear input fields
+        fetchAndDisplayLogs(); // Fetch all logs again
     });
 
     // Function to handle search
