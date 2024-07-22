@@ -81,7 +81,7 @@ public class BehaviorLogController {
     }
 
     
-    // 다중 조건으로 위험 로그 조회 (DB에서 처리)
+ // 다중 조건으로 위험 로그 조회 (DB에서 처리)
     @GetMapping("/behaviorlog/multipleSearch")
     public ResponseEntity<List<BehaviorLog>> searchBehaviorLogsFromDB(@RequestParam Map<String, String> params) {
         try {

@@ -48,6 +48,7 @@ public class BehaviorLogService {
         return behaviorLogDAO.findTopSIPs();
     }
 
+
     // 다중 검색 조건을 처리하며 페이지네이션 기능이 포함된 검색
     @Transactional(readOnly = true)
     public List<BehaviorLog> findByMultipleCriteria(Map<String, Object> criteria) {

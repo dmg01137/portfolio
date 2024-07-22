@@ -285,25 +285,48 @@ $(document).ready(function () {
         });
     }
 
-    // Function to render pagination buttons
+    // 페이지네이션 버튼 렌더링 함수
     function renderPagination() {
         let totalPages = Math.ceil(totalLogs / logsPerPage);
-        $("#pagination").empty(); // Clear pagination
+        let paginationHTML = "";
 
-        for (let i = 1; i <= totalPages; i++) {
-            let activeClass = (i === currentPage) ? "active" : "";
-            $("#pagination").append(
-                '<li class="page-item ' + activeClass + '"><a class="page-link" href="#">' + i + '</a></li>'
-            );
+        // Calculate start and end page numbers for display
+        let startPage = Math.max(1, currentPage - 2);
+        let endPage = Math.min(totalPages, startPage + 4);
+
+        // Previous 버튼
+        paginationHTML += `<li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                            <a class="page-link" href="#" aria-label="Previous" onclick="changePage(${currentPage - 1})">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                          </li>`;
+
+        // 페이지 버튼들
+        for (let i = startPage; i <= endPage; i++) {
+            paginationHTML += `<li class="page-item ${currentPage === i ? 'active' : ''}">
+                                <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
+                              </li>`;
         }
 
-        // Add click event listeners to pagination buttons
-        $("#pagination").on("click", ".page-link", function () {
-            currentPage = parseInt($(this).text().trim());
-            displayLogs();
-            renderPagination();
-        });
+        // Next 버튼
+        paginationHTML += `<li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                            <a class="page-link" href="#" aria-label="Next" onclick="changePage(${currentPage + 1})">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                          </li>`;
+
+        $("#pagination").html(paginationHTML);
     }
+
+    // 페이지 변경 함수
+    window.changePage = function (page) {
+        if (page < 1 || page > Math.ceil(totalLogs / logsPerPage)) {
+            return;
+        }
+        currentPage = page;
+        displayLogs();
+        renderPagination();
+    };
 
     // Search button click event listener
     $("#searchButton").click(function () {
