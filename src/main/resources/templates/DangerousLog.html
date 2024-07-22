@@ -229,14 +229,14 @@
                 <th>탐지 번호</th>
             </tr>
         </thead>
-        <tbody id="logTableBody">
-            <!-- 여기에 JavaScript로 동적으로 추가될 테이블 로우들이 들어갈 자리 -->
+       <tbody id="logTableBody">
+            <!-- Table body where rows will be dynamically added -->
         </tbody>
     </table>
 </div>
 <nav aria-label="Page navigation example">
     <ul id="pagination" class="pagination justify-content-center">
-        <!-- 여기에 페이지네이션 버튼들이 동적으로 추가됩니다 -->
+        <!-- Pagination buttons will be dynamically added here -->
     </ul>
 </nav>
 
@@ -245,14 +245,14 @@
 <script>
 $(document).ready(function () {
     let currentPage = 1;
-    let logsPerPage = 10; // 한 페이지당 로그 수
+    let logsPerPage = 10; // Number of logs per page
     let totalLogs = 0;
     let logsData = [];
 
-    // 페이지 로드 시 초기 데이터 가져오기
+    // Initial fetch and display logs
     fetchAndDisplayLogs();
 
-    // 서버에서 로그 데이터 가져와서 표시하는 함수
+    // Function to fetch logs from server and display
     function fetchAndDisplayLogs() {
         $.get("/api/dangerouslogs", function (data) {
             logsData = data;
@@ -260,17 +260,17 @@ $(document).ready(function () {
             displayLogs();
             renderPagination();
         }).fail(function() {
-            console.error("데이터를 불러오는데 실패했습니다.");
+            console.error("Failed to fetch data.");
         });
     }
 
-    // 테이블에 로그 데이터 표시
+    // Function to display logs in the table
     function displayLogs() {
         let startIndex = (currentPage - 1) * logsPerPage;
         let endIndex = startIndex + logsPerPage;
         let displayedLogs = logsData.slice(startIndex, endIndex);
 
-        $("#logTableBody").empty(); // 기존의 테이블 내용을 지웁니다.
+        $("#logTableBody").empty(); // Clear existing table rows
 
         displayedLogs.forEach(function (log) {
             $("#logTableBody").append(
@@ -284,43 +284,59 @@ $(document).ready(function () {
         });
     }
 
-    // 페이지네이션 버튼 렌더링 함수 생략
+    // Function to render pagination buttons
+    function renderPagination() {
+        let totalPages = Math.ceil(totalLogs / logsPerPage);
+        $("#pagination").empty(); // Clear pagination
 
-    // 검색 버튼 클릭 이벤트 리스너
+        for (let i = 1; i <= totalPages; i++) {
+            let activeClass = (i === currentPage) ? "active" : "";
+            $("#pagination").append(
+                '<li class="page-item ' + activeClass + '"><a class="page-link" href="#">' + i + '</a></li>'
+            );
+        }
+
+        // Add click event listeners to pagination buttons
+        $("#pagination").on("click", ".page-link", function () {
+            currentPage = parseInt($(this).text().trim());
+            displayLogs();
+            renderPagination();
+        });
+    }
+
+    // Search button click event listener
     $("#searchButton").click(function () {
         handleSearch();
     });
 
-    // 초기화 버튼 클릭 이벤트 리스너
+    // Clear button click event listener
     $("#clearButton").click(function () {
-        $(".searchInput").val(""); // 입력 필드 초기화
-        fetchAndDisplayLogs(); // 모든 데이터 다시 불러오기
+        $(".searchInput").val(""); // Clear input fields
+        fetchAndDisplayLogs(); // Fetch all logs again
     });
 
-    // 검색 처리 함수
+    // Function to handle search
     function handleSearch() {
-        let searchParams = {};
-        searchParams["dangerous_number"] = $("#dangerous_number").val().trim();
-        searchParams["ip"] = $("#ip").val().trim();
-        searchParams["port"] = $("#port").val().trim();
-        searchParams["detection_number"] = $("#detection_number").val().trim();
+        let searchParams = {
+            "dangerous_number": $("#dangerous_number").val().trim(),
+            "ip": $("#ip").val().trim(),
+            "port": $("#port").val().trim(),
+            "detection_number": $("#detection_number").val().trim()
+        };
 
-        // 파라미터를 쿼리스트링 형태로 변환
-        let queryString = $.param(searchParams);
+        let queryString = $.param(searchParams); // Convert params to query string
 
-        // GET 요청을 보내고 결과를 처리합니다.
         $.get("/dangerouslog/multipleSearch?" + queryString, function (data) {
             logsData = data;
             totalLogs = logsData.length;
-            currentPage = 1; // 첫 페이지로 초기화
-            displayLogs(); // 데이터 표시
-            renderPagination(); // 페이지네이션 렌더링
+            currentPage = 1; // Reset to first page
+            displayLogs(); // Display search results
+            renderPagination(); // Render pagination for search results
         }).fail(function() {
-            console.error("검색에 실패했습니다.");
+            console.error("Search failed.");
         });
     }
 });
 </script>
 </body>
 </html>
-
