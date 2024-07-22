@@ -10,13 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dto.log.BehaviorLog;
+import com.example.demo.dto.log.DangerousLog;
 import com.example.demo.service.log.BehaviorLogService;
 
 @Controller
@@ -36,7 +34,7 @@ public class BehaviorLogController {
         return "behaviorlog"; // Thymeleaf 템플릿 이름
     }
  
-    // 모든 행동 로그 조회 페이지
+   
     // API 엔드포인트: 모든 위험 로그 가져오기
     @GetMapping("/api/behaviorlogs")
     public ResponseEntity<List<BehaviorLog>> getAllBehaviorLogs() {
@@ -45,28 +43,6 @@ public class BehaviorLogController {
     }
   
  
-   
-    // 행동 로그 저장 처리
-    @PostMapping("/save")
-    public String saveLog(@ModelAttribute BehaviorLog log) {
-        behaviorLogService.save(log);
-        return "redirect:/behaviorlog"; // 저장 후 목록 페이지로 리다이렉트합니다.
-    }
-
-    // 특정 행동 로그 업데이트 처리
-    @PostMapping("/update/{id}")
-    public String updateLog(@PathVariable("id") int id, @ModelAttribute BehaviorLog log) {
-        log.setId(id); // 경로에서 받은 ID를 설정하여 업데이트 대상을 설정합니다.
-        behaviorLogService.update(log);
-        return "redirect:/behaviorlog"; // 업데이트 후 목록 페이지로 리다이렉트합니다.
-    }
-
-    // 특정 행동 로그 삭제 처리
-    @GetMapping("/delete/{id}")
-    public String deleteLog(@PathVariable("id") int id) {
-        behaviorLogService.delete(id);
-        return "redirect:/behaviorlog"; // 삭제 후 목록 페이지로 리다이렉트합니다.
-    }
 
     // Top 5 s_ip 값 조회 API
     @GetMapping("/behaviorlog/top-sips")
@@ -99,7 +75,7 @@ public class BehaviorLogController {
             @RequestParam(name = "packet", required = false) String packet,
             Model model) {
         try {
-            List<BehaviorLog> logs = behaviorLogService.search(id, time, s_ip, s_port, d_ip, d_port, action_type, len, base_cnt, base_time, pattern1, pattern2, pattern3, packet);
+            List<BehaviorLog> logs = behaviorLogService.search(id, time, s_ip, d_ip, s_port, d_port, action_type, len, base_cnt, base_time, pattern1, pattern2, pattern3, packet);
             model.addAttribute("logs", logs);
             return "behaviorlog"; // Thymeleaf 템플릿 이름
         } catch (Exception e) {
@@ -109,20 +85,20 @@ public class BehaviorLogController {
             return "error"; // 오류 페이지의 Thymeleaf 템플릿 이름
         }
     }
-    // 다중 조건으로 행동 로그 조회 (API 엔드포인트)
-    @GetMapping("/api/behaviorlog/multipleSearch")
-    @ResponseBody
-    public ResponseEntity<List<BehaviorLog>> searchBehaviorLogsAPI(
-            @RequestParam Map<String, String> params) {
+    // 다중 조건으로 위험 로그 조회 (DB에서 처리)
+    @GetMapping("/behaviorlog/multipleSearch")
+    public ResponseEntity<List<BehaviorLog>> searchBehaviorLogsFromDB(@RequestParam Map<String, String> params) {
         try {
+            // 파라미터에서 빈 값을 제외하고 유효한 검색 조건만 처리
             Map<String, Object> searchParams = new HashMap<>();
             for (Map.Entry<String, String> entry : params.entrySet()) {
-                if (entry.getValue() != null && !entry.getValue().isEmpty()) {
+                if (!entry.getValue().isEmpty()) {
                     searchParams.put(entry.getKey(), entry.getValue());
                 }
             }
-            List<BehaviorLog> logs = behaviorLogService.findByMultipleCriteria(searchParams);
-            return ResponseEntity.ok(logs);
+
+            List<BehaviorLog> behaviorLogs = behaviorLogService.findByMultipleCriteria(searchParams);
+            return ResponseEntity.ok(behaviorLogs);
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

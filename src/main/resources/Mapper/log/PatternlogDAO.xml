@@ -31,30 +31,7 @@
         SELECT * FROM log_db.pattern_log_20240716
     </select>
 
-    <!-- 새로운 패턴 로그를 저장합니다 -->
-    <insert id="save"
-            parameterType="com.example.demo.dto.log.PatternLog">
-        INSERT INTO log_db.pattern_log_20240716(time, s_ip, d_ip, s_port, d_port, len,
-                                        pattern1, pattern2, pattern3, packet, action_type)
-        VALUES (#{time}, #{sIp}, #{dIp}, #{sPort}, #{dPort}, #{len}, #{pattern1},
-                #{pattern2}, #{pattern3}, #{packet}, #{actionType})
-    </insert>
-
-    <!-- 기존 패턴 로그를 업데이트합니다 -->
-    <update id="update"
-            parameterType="com.example.demo.dto.log.PatternLog">
-        UPDATE log_db.pattern_log_20240716
-        SET time = #{time}, s_ip = #{sIp}, d_ip = #{dIp}, s_port = #{sPort},
-            d_port = #{dPort}, len = #{len}, pattern1 = #{pattern1}, pattern2 =
-            #{pattern2}, pattern3 = #{pattern3}, packet = #{packet}, action_type =
-            #{actionType}
-        WHERE id = #{id}
-    </update>
-
-    <!-- ID를 기반으로 특정 패턴 로그를 삭제합니다 -->
-    <delete id="delete" parameterType="int">
-        DELETE FROM log_db.pattern_log_20240716 WHERE id = #{id}
-    </delete>
+  
 
     <!-- Top 5 s_ip 값 조회 -->
     <select id="findTopSIPs" resultType="java.util.Map">
