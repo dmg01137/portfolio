@@ -14,38 +14,38 @@
     <!-- Select by ID -->
     <select id="findByDangerousNumber" resultMap="dangerousLogResultMap" parameterType="int">
         SELECT *
-        FROM log_db.dangerous_log_20240717
+        FROM log_db.dangerous_log_20240719
         WHERE dangerous_number = #{dangerous_number}
     </select>
 
     <!-- Select all -->
     <select id="findAll" resultMap="dangerousLogResultMap">
         SELECT *
-        FROM log_db.dangerous_log_20240717
+        FROM log_db.dangerous_log_20240719
     </select>
 
     <!-- Insert -->
     <insert id="save" parameterType="com.example.demo.dto.log.DangerousLog">
-        INSERT INTO log_db.dangerous_log_20240717 (ip, port, detection_number)
+        INSERT INTO log_db.dangerous_log_20240719 (ip, port, detection_number)
         VALUES (#{ip}, #{port}, #{detection_number})
     </insert>
 
     <!-- Update -->
     <update id="update" parameterType="com.example.demo.dto.log.DangerousLog">
-        UPDATE log_db.dangerous_log_20240717
+        UPDATE log_db.dangerous_log_20240719
         SET ip = #{ip}, port = #{port}, detection_number = #{detection_number}
         WHERE dangerous_number = #{dangerous_number}
     </update>
 
     <!-- Delete -->
     <delete id="delete" parameterType="int">
-        DELETE FROM log_db.dangerous_log_20240717 WHERE dangerous_number = #{dangerous_number}
+        DELETE FROM log_db.dangerous_log_20240719 WHERE dangerous_number = #{dangerous_number}
     </delete>
 
     <!-- Multiple criteria search -->
     <select id="findByMultipleCriteria" resultMap="dangerousLogResultMap" parameterType="map">
         SELECT *
-        FROM log_db.dangerous_log_20240717
+        FROM log_db.dangerous_log_20240719
          WHERE 1=1
         <where>
             <if test="dangerous_number != null">
