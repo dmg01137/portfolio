@@ -26,4 +26,12 @@ public interface BehaviorLogDAO {
 
     // 다중 검색 기능을 위한 행동 로그 조회
     List<BehaviorLog> findByMultipleCriteria(@Param("criteria") Map<String, Object> criteria);
+    
+    // 특정 매개변수로 행동 로그 검색
+    List<BehaviorLog> search(@Param("id") Integer id, @Param("time") String time, @Param("s_ip") String sIp,
+            @Param("s_port") Integer sPort, @Param("d_ip") String dIp, @Param("d_port") Integer dPort,
+            @Param("action_type") String actionType, @Param("len") Integer len, @Param("base_cnt") Integer baseCnt,
+            @Param("base_time") String baseTime, @Param("pattern1") String pattern1, @Param("pattern2") String pattern2,
+            @Param("pattern3") String pattern3, @Param("packet") String packet);
+
 }

@@ -61,7 +61,7 @@
         <if test="id != null">
             AND id LIKE CONCAT('%', #{id}, '%')
         </if>
-         <!-- time검색 조건 -->
+         <!-- time 검색 조건 -->
         <if test="time!= null">
             AND time LIKE CONCAT('%', #{time}, '%')
         </if>
@@ -104,11 +104,11 @@
         </if>
         <!-- 기본 카운트 검색 조건 -->
         <if test="base_cnt != null">
-            AND base_cnt = #{base_cnt}
+            AND base_cnt LIKE CONCAT('%', #{base_cnt}, '%')
         </if>
         <!-- 기본 시간 검색 조건 -->
         <if test="base_time != null">
-            AND base_time = #{base_time}
+            AND base_time LIKE CONCAT('%', #{base_time}, '%')
         </if>
         <!-- 액션 타입 검색 조건 -->
         <if test="action_type != null">

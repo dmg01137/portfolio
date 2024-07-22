@@ -293,7 +293,7 @@
                 
             </tr>
         </thead>
-            <tbody id="logTableBody">
+           <tbody id="logTableBody">
                 <!-- 로그 데이터가 여기에 동적으로 추가됩니다. -->
             </tbody>
         </table>
@@ -361,6 +361,7 @@ $(document).ready(function () {
             );
         });
     }
+
     // 페이지네이션 버튼 렌더링 함수
     function renderPagination() {
         let totalPages = Math.ceil(totalLogs / logsPerPage);
@@ -407,19 +408,57 @@ $(document).ready(function () {
     // 검색 버튼 클릭 이벤트 핸들러
     $("#searchButton").on("click", function (e) {
         e.preventDefault();
-        // 검색 조건에 따라 필터링하고 다시 로그 표시
-        fetchAndDisplayLogs();
+        handleSearch();
     });
 
     // 지우기 버튼 클릭 이벤트 핸들러
     $("#clearButton").on("click", function (e) {
         e.preventDefault();
-        // 입력 필드 지우기
-        $(".searchInput").val("");
-        // 모든 로그 표시
-        fetchAndDisplayLogs();
+        $(".searchInput").val(""); // 입력 필드 지우기
+        fetchAndDisplayLogs(); // 모든 로그 표시
     });
+
+    // 검색 처리 함수
+    function handleSearch() {
+        let searchParams = {
+            "id": $("#id").val().trim(),
+            "time": $("#time").val().trim(),
+            "s_ip": $("#s_ip").val().trim(),
+            "d_ip": $("#d_ip").val().trim(),
+            "s_port": $("#s_port").val().trim(),
+            "d_port": $("#d_port").val().trim(),
+            "action_type": $("#action_type").val().trim(),
+            "len": $("#len").val().trim(),
+            "base_cnt": $("#base_cnt").val().trim(),
+            "base_time": $("#base_time").val().trim(),
+            "pattern1": $("#pattern1").val().trim(),
+            "pattern2": $("#pattern2").val().trim(),
+            "pattern3": $("#pattern3").val().trim(),
+            "packet": $("#packet").val().trim()
+        };
+
+        // 빈 값은 필터링에서 제외
+        Object.keys(searchParams).forEach(key => {
+            if (searchParams[key] === "") {
+                delete searchParams[key];
+            }
+        });
+
+        let queryString = $.param(searchParams); // 쿼리 스트링 생성
+
+        $.get("/behaviorlog/multipleSearch?" + queryString, function (data) {
+            logsData = data;
+            totalLogs = logsData.length;
+            currentPage = 1; // 검색 결과는 첫 페이지부터 시작
+            displayLogs();
+            renderPagination();
+        }).fail(function () {
+            console.error("검색에 실패했습니다.");
+        });
+    }
+
 });
- </script>
- </body>
- </html>
+</script>
+
+</body>
+</html>

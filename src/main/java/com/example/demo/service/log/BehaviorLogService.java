@@ -48,11 +48,18 @@ public class BehaviorLogService {
         return behaviorLogDAO.findTopSIPs();
     }
 
-
- // 다중 검색 조건을 처리하며 페이지네이션 기능이 포함된 검색
+    // 다중 검색 조건을 처리하며 페이지네이션 기능이 포함된 검색
     @Transactional(readOnly = true)
     public List<BehaviorLog> findByMultipleCriteria(Map<String, Object> criteria) {
         return behaviorLogDAO.findByMultipleCriteria(criteria);
     }
 
+    // 특정 매개변수로 행동 로그 검색
+    @Transactional(readOnly = true)
+    public List<BehaviorLog> search(Integer id, String time, String s_ip, Integer s_port, String d_ip, Integer d_port,
+            String action_type, Integer len, Integer base_cnt, String base_time, String pattern1, String pattern2,
+            String pattern3, String packet) {
+        return behaviorLogDAO.search(id, time, s_ip, s_port, d_ip, d_port, action_type, len, base_cnt, base_time, pattern1,
+                pattern2, pattern3, packet);
+    }
 }
