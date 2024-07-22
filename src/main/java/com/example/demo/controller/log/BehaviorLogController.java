@@ -1,5 +1,6 @@
 package com.example.demo.controller.log;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dto.log.BehaviorLog;
-import com.example.demo.dto.log.DangerousLog;
 import com.example.demo.service.log.BehaviorLogService;
 
 @Controller
@@ -104,4 +104,6 @@ public class BehaviorLogController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+    
+    
 }

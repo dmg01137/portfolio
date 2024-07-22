@@ -59,4 +59,6 @@ public class BehaviorLogService {
     public List<BehaviorLog> findByMultipleCriteria(Map<String, Object> criteria) {
         return behaviorLogDAO.findByMultipleCriteria(criteria);
     }
+    
+    
 }

@@ -1,0 +1,246 @@
+16:56:03.673 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+16:56:03.679 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+16:56:03.983 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+16:56:03.983 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+16:56:33.687 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+16:56:33.687 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+16:56:33.997 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+16:56:33.997 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+16:57:03.692 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+16:57:03.692 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+16:57:04.006 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+16:57:04.006 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+16:57:33.705 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+16:57:33.705 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+16:57:34.020 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+16:57:34.020 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+16:57:54.149 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/patternlog", parameters={}
+16:57:54.149 [http-nio-8080-exec-6] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.detection.UsersController#patternlog()
+16:57:54.150 [http-nio-8080-exec-6] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+16:57:54.158 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+16:57:54.186 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/api/patternlogs", parameters={}
+16:57:54.187 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.PatternLogController#getAllPatternLogs()
+16:57:54.187 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+16:57:54.187 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@55550527] was not registered for synchronization because synchronization is not active
+16:57:54.187 [http-nio-8080-exec-3] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+16:57:54.188 [http-nio-8080-exec-3] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@325599764 wrapping org.mariadb.jdbc.Connection@43070234] will not be managed by Spring
+16:57:54.189 [http-nio-8080-exec-3] DEBUG c.e.d.dao.log.PatternLogDAO.findAll - ==>  Preparing: SELECT * FROM log_db.pattern_log_20240716
+16:57:54.189 [http-nio-8080-exec-3] DEBUG c.e.d.dao.log.PatternLogDAO.findAll - ==> Parameters: 
+16:57:54.189 [http-nio-8080-exec-3] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT * FROM log_db.pattern_log_20240716
+16:57:54.224 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+16:57:54.224 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+16:57:54.225 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+16:57:54.225 [http-nio-8080-exec-7] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+16:57:54.225 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+16:57:54.235 [http-nio-8080-exec-3] DEBUG c.e.d.dao.log.PatternLogDAO.findAll - <==      Total: 812
+16:57:54.235 [http-nio-8080-exec-3] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@55550527]
+16:57:54.236 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+16:57:54.237 [http-nio-8080-exec-3] DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Writing [[PatternLog{id=1, time='2024-07-16 01:57:52', sIp='192.168.1.152', dIp='192.168.1.33', sPort=54015,  (truncated)...]
+16:57:54.244 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+16:57:55.824 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/behaviorlog", parameters={}
+16:57:55.824 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.BehaviorLogController#showBehaviorLogPage(Model)
+16:57:55.824 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - Creating a new SqlSession
+16:57:55.824 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@59f9576e] was not registered for synchronization because synchronization is not active
+16:57:55.824 [http-nio-8080-exec-5] DEBUG o.s.jdbc.datasource.DataSourceUtils - Fetching JDBC Connection from DataSource
+16:57:55.825 [http-nio-8080-exec-5] DEBUG o.m.s.t.SpringManagedTransaction - JDBC Connection [HikariProxyConnection@817391870 wrapping org.mariadb.jdbc.Connection@43070234] will not be managed by Spring
+16:57:55.825 [http-nio-8080-exec-5] DEBUG c.e.d.dao.log.BehaviorLogDAO.findAll - ==>  Preparing: SELECT * FROM log_db.behavior_log_
+16:57:55.825 [http-nio-8080-exec-5] DEBUG c.e.d.dao.log.BehaviorLogDAO.findAll - ==> Parameters: 
+16:57:55.826 [http-nio-8080-exec-5] DEBUG o.m.jdbc.client.impl.StandardClient - execute query: SELECT *
+        FROM log_db.behavior_log_
+16:57:55.827 [http-nio-8080-exec-5] WARN  o.m.jdbc.message.server.ErrorPacket - Error: 1146-42S02: Table 'log_db.behavior_log_' doesn't exist
+16:57:55.827 [http-nio-8080-exec-5] DEBUG org.mybatis.spring.SqlSessionUtils - Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@59f9576e]
+16:57:55.827 [http-nio-8080-exec-5] DEBUG o.s.j.s.SQLErrorCodeSQLExceptionTranslator - Translating SQLException with SQL state '42S02', error code '1146', message [(conn=2118) Table 'log_db.behavior_log_' doesn't exist] for task [
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=2118) Table 'log_db.behavior_log_' doesn't exist
+### The error may exist in file [C:\Users\Administrator\Documents\workspace-spring-tool-suite-4-4.23.1.RELEASE\CetrinOs\bin\main\mapper\log\BehaviorLogDAO.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT *         FROM log_db.behavior_log_
+### Cause: java.sql.SQLSyntaxErrorException: (conn=2118) Table 'log_db.behavior_log_' doesn't exist
+]
+16:57:55.827 [http-nio-8080-exec-5] DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Using @ExceptionHandler com.example.demo.controller.detection.GlobalExceptionHandler#handleException(Exception)
+16:57:55.827 [http-nio-8080-exec-5] ERROR c.e.d.c.d.GlobalExceptionHandler - 알 수 없는 예외가 발생했습니다.
+org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=2118) Table 'log_db.behavior_log_' doesn't exist
+### The error may exist in file [C:\Users\Administrator\Documents\workspace-spring-tool-suite-4-4.23.1.RELEASE\CetrinOs\bin\main\mapper\log\BehaviorLogDAO.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT *         FROM log_db.behavior_log_
+### Cause: java.sql.SQLSyntaxErrorException: (conn=2118) Table 'log_db.behavior_log_' doesn't exist
+; bad SQL grammar []
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:246)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:92)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:439)
+	at jdk.proxy2/jdk.proxy2.$Proxy64.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:224)
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:147)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:80)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
+	at jdk.proxy3/jdk.proxy3.$Proxy72.findAll(Unknown Source)
+	at com.example.demo.service.log.BehaviorLogService.findAll(BehaviorLogService.java:27)
+	at com.example.demo.controller.log.BehaviorLogController.showBehaviorLogPage(BehaviorLogController.java:32)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.sql.SQLSyntaxErrorException: (conn=2118) Table 'log_db.behavior_log_' doesn't exist
+	at org.mariadb.jdbc.export.ExceptionFactory.createException(ExceptionFactory.java:282)
+	at org.mariadb.jdbc.export.ExceptionFactory.create(ExceptionFactory.java:370)
+	at org.mariadb.jdbc.message.ClientMessage.readPacket(ClientMessage.java:134)
+	at org.mariadb.jdbc.client.impl.StandardClient.readPacket(StandardClient.java:872)
+	at org.mariadb.jdbc.client.impl.StandardClient.readResults(StandardClient.java:811)
+	at org.mariadb.jdbc.client.impl.StandardClient.readResponse(StandardClient.java:730)
+	at org.mariadb.jdbc.client.impl.StandardClient.execute(StandardClient.java:654)
+	at org.mariadb.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:95)
+	at org.mariadb.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:268)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:58)
+	at jdk.proxy4/jdk.proxy4.$Proxy95.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:65)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:80)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:65)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:336)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:158)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:110)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:90)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:154)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:142)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425)
+	... 57 common frames omitted
+16:57:55.830 [http-nio-8080-exec-5] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.jdbc.BadSqlGrammarException: <EOL><EOL>### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: (conn=2118) Table 'log_db.behavior_log_' doesn't exist<EOL><EOL>### The error may exist in file [C:\Users\Administrator\Documents\workspace-spring-tool-suite-4-4.23.1.RELEASE\CetrinOs\bin\main\mapper\log\BehaviorLogDAO.xml]<EOL><EOL>### The error may involve defaultParameterMap<EOL><EOL>### The error occurred while setting parameters<EOL><EOL>### SQL: SELECT *         FROM log_db.behavior_log_<EOL><EOL>### Cause: java.sql.SQLSyntaxErrorException: (conn=2118) Table 'log_db.behavior_log_' doesn't exist<EOL>; bad SQL grammar []]
+16:57:55.830 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Using resolved error view: ModelAndView [view="500"; model={}]
+16:57:55.831 [http-nio-8080-exec-5] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8, application/signed-exchange;v=b3;q=0.7]
+16:57:55.834 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+16:57:55.846 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/css/bootstrap.min.css", parameters={}
+16:57:55.846 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - GET "/css/style.css", parameters={}
+16:57:55.848 [http-nio-8080-exec-9] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+16:57:55.848 [http-nio-8080-exec-8] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+16:57:55.849 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - GET "/lib/chart/chart.min.js", parameters={}
+16:57:55.850 [http-nio-8080-exec-10] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+16:57:55.853 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - GET "/lib/easing/easing.min.js", parameters={}
+16:57:55.854 [http-nio-8080-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+16:57:55.854 [http-nio-8080-exec-4] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+16:57:55.854 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+16:57:55.858 [http-nio-8080-exec-4] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+16:57:55.860 [http-nio-8080-exec-10] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+16:57:55.862 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - GET "/lib/waypoints/waypoints.min.js", parameters={}
+16:57:55.863 [http-nio-8080-exec-2] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+16:57:55.866 [http-nio-8080-exec-2] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+16:57:55.867 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - GET "/lib/owlcarousel/owl.carousel.min.js", parameters={}
+16:57:55.869 [http-nio-8080-exec-1] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+16:57:55.876 [http-nio-8080-exec-1] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+16:57:55.878 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - GET "/lib/tempusdominus/js/moment.min.js", parameters={}
+16:57:55.878 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - GET "/lib/tempusdominus/js/moment-timezone.min.js", parameters={}
+16:57:55.879 [http-nio-8080-exec-7] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+16:57:55.882 [http-nio-8080-exec-6] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+16:57:55.883 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - GET "/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js", parameters={}
+16:57:55.883 [http-nio-8080-exec-3] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+16:57:55.884 [http-nio-8080-exec-7] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+16:57:55.886 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - GET "/js/main.js", parameters={}
+16:57:55.886 [http-nio-8080-exec-3] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+16:57:55.886 [http-nio-8080-exec-6] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+16:57:55.887 [http-nio-8080-exec-5] DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+16:57:55.889 [http-nio-8080-exec-5] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+16:57:57.032 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - GET "/favicon.ico", parameters={}
+16:57:57.032 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - Mapped to com.example.demo.controller.log.FaviconController#returnNoFavicon()
+16:57:57.042 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json]
+16:57:57.042 [http-nio-8080-exec-9] DEBUG o.s.w.s.m.m.a.RequestResponseBodyMethodProcessor - Nothing to write: null body
+16:57:57.042 [http-nio-8080-exec-9] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+16:58:03.712 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+16:58:03.712 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+16:58:04.027 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Pool stats (total=10, active=0, idle=10, waiting=0)
+16:58:04.027 [HikariPool-2 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Fill pool skipped, pool has sufficient level or currently being filled.
+16:58:27.043 [RMI TCP Connection(7)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+16:58:27.044 [RMI TCP Connection(7)-127.0.0.1] DEBUG o.s.b.a.ApplicationAvailabilityBean - Application availability state ReadinessState changed from ACCEPTING_TRAFFIC to REFUSING_TRAFFIC
+16:58:27.045 [RMI TCP Connection(7)-127.0.0.1] DEBUG o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@1a4da9b8, started on Mon Jul 22 16:54:54 KST 2024
+16:58:27.049 [RMI TCP Connection(7)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase 2147483647
+16:58:27.050 [RMI TCP Connection(7)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Bean 'applicationTaskExecutor' completed its stop procedure
+16:58:27.050 [RMI TCP Connection(7)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase 2147482623
+16:58:27.051 [RMI TCP Connection(7)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Bean 'webServerGracefulShutdown' completed its stop procedure
+16:58:27.051 [RMI TCP Connection(7)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase 2147481599
+16:58:27.052 [RMI TCP Connection(7)-127.0.0.1] INFO  o.a.coyote.http11.Http11NioProtocol - Stopping ProtocolHandler ["http-nio-8080"]
+16:58:27.058 [RMI TCP Connection(7)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Bean 'webServerStartStop' completed its stop procedure
+16:58:27.058 [RMI TCP Connection(7)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase -2147483647
+16:58:27.058 [RMI TCP Connection(7)-127.0.0.1] DEBUG o.s.c.s.DefaultLifecycleProcessor - Bean 'springBootLoggingLifecycle' completed its stop procedure
+16:58:27.058 [RMI TCP Connection(7)-127.0.0.1] DEBUG o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+16:58:27.059 [RMI TCP Connection(7)-127.0.0.1] DEBUG o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans
+16:58:27.059 [RMI TCP Connection(7)-127.0.0.1] DEBUG o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+16:58:27.060 [RMI TCP Connection(7)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown initiated...
+16:58:27.061 [RMI TCP Connection(7)-127.0.0.1] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - Before shutdown stats (total=10, active=0, idle=10, waiting=0)
+16:58:27.062 [HikariPool-2 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.mariadb.jdbc.Connection@43070234: (connection evicted)
+16:58:27.064 [HikariPool-2 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.mariadb.jdbc.Connection@5f9d8f2a: (connection evicted)
+16:58:27.065 [HikariPool-2 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.mariadb.jdbc.Connection@ad822c0: (connection evicted)
+16:58:27.066 [HikariPool-2 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.mariadb.jdbc.Connection@47da2e65: (connection evicted)
+16:58:27.066 [HikariPool-2 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.mariadb.jdbc.Connection@3be12cc4: (connection evicted)
+16:58:27.067 [HikariPool-2 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.mariadb.jdbc.Connection@344e76db: (connection evicted)
+16:58:27.068 [HikariPool-2 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.mariadb.jdbc.Connection@27373e58: (connection evicted)
+16:58:27.069 [HikariPool-2 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.mariadb.jdbc.Connection@42294def: (connection evicted)
+16:58:27.069 [HikariPool-2 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.mariadb.jdbc.Connection@22ef616c: (connection evicted)
+16:58:27.070 [HikariPool-2 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-2 - Closing connection org.mariadb.jdbc.Connection@2cc7e1b3: (connection evicted)
+16:58:27.071 [RMI TCP Connection(7)-127.0.0.1] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-2 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+16:58:27.071 [RMI TCP Connection(7)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-2 - Shutdown completed.
+16:58:27.071 [RMI TCP Connection(7)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+16:58:27.071 [RMI TCP Connection(7)-127.0.0.1] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Before shutdown stats (total=10, active=0, idle=10, waiting=0)
+16:58:27.071 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@6fd62802: (connection evicted)
+16:58:27.072 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@ece3bb3: (connection evicted)
+16:58:27.073 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@5bda84a4: (connection evicted)
+16:58:27.074 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@2e9ccad8: (connection evicted)
+16:58:27.075 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@570791de: (connection evicted)
+16:58:27.075 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@46ff6f7b: (connection evicted)
+16:58:27.076 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@308c74bb: (connection evicted)
+16:58:27.076 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@57df458a: (connection evicted)
+16:58:27.077 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@ff1e80: (connection evicted)
+16:58:27.078 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.mariadb.jdbc.Connection@67387665: (connection evicted)
+16:58:27.078 [RMI TCP Connection(7)-127.0.0.1] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+16:58:27.078 [RMI TCP Connection(7)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

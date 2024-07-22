@@ -32,25 +32,6 @@
         FROM log_db.behavior_log_20240717
     </select>
 
-    <!-- 데이터 삽입 -->
-    <insert id="save" parameterType="com.example.demo.dto.log.BehaviorLog">
-        INSERT INTO log_db.behavior_log_20240719 (time, s_ip, d_ip, s_port, d_port, len, pattern1, pattern2, pattern3, packet, base_cnt, base_time, action_type)
-        VALUES (#{time}, #{s_ip}, #{d_ip}, #{s_port}, #{d_port}, #{len}, #{pattern1}, #{pattern2}, #{pattern3}, #{packet}, #{base_cnt}, #{base_time}, #{action_type})
-    </insert>
-
-    <!-- 데이터 업데이트 -->
-    <update id="update" parameterType="com.example.demo.dto.log.BehaviorLog">
-        UPDATE log_db.behavior_log_20240717
-        SET time = #{time}, s_ip = #{s_ip}, d_ip = #{d_ip}, s_port = #{s_port}, d_port = #{d_port},
-            len = #{len}, pattern1 = #{pattern1}, pattern2 = #{pattern2}, pattern3 = #{pattern3}, 
-            packet = #{packet}, base_cnt = #{base_cnt}, base_time = #{base_time}, action_type = #{action_type}
-        WHERE id = #{id}
-    </update>
-
-    <!-- 데이터 삭제 -->
-    <delete id="delete" parameterType="int">
-        DELETE FROM log_db.behavior_log_20240717 WHERE id = #{id}
-    </delete>
 
  <!-- 다중 검색 기능을 위한 패턴 로그 조회 -->
 
