@@ -438,24 +438,16 @@ $(document).ready(function () {
             packet: $("#packet").val()
         };
 
-        // Remove empty properties from searchParams
-        Object.keys(searchParams).forEach(key => searchParams[key] === "" && delete searchParams[key]);
+        let queryString = $.param(searchParams); // Convert params to query string
 
-        // Fetch logs based on search parameters
-        $.ajax({
-            url: "/api/behaviorlogs/search",
-            type: "GET",
-            data: searchParams,
-            success: function (data) {
-                logsData = data;
-                totalLogs = logsData.length;
-                currentPage = 1; // Reset to first page after search
-                displayLogs();
-                renderPagination();
-            },
-            error: function () {
-                console.error("Error fetching search results.");
-            }
+        $.get("/behaviorlog/multipleSearch?" + queryString, function (data) {
+            logsData = data;
+            totalLogs = logsData.length;
+            currentPage = 1; // Reset to first page
+            displayLogs(); // Display search results
+            renderPagination(); // Render pagination for search results
+        }).fail(function() {
+            console.error("Search failed.");
         });
     }
 });

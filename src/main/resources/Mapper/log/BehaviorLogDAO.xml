@@ -60,7 +60,7 @@
     WHERE 1=1
     <!-- ID 검색 조건 -->
     <if test="id != null">
-        AND id = #{id}
+        AND id LIKE CONCAT('%', #{id}, '%')
     </if>
     <!-- time 검색 조건 -->
     <if test="time != null and time != ''">
@@ -72,7 +72,7 @@
     </if>
     <!-- 송신 포트 검색 조건 -->
     <if test="s_port != null">
-        AND s_port = #{s_port}
+        AND s_port LIKE CONCAT('%', #{s_port}, '%')
     </if>
     <!-- 수신 IP 검색 조건 -->
     <if test="d_ip != null and d_ip != ''">
@@ -80,11 +80,11 @@
     </if>
     <!-- 수신 포트 검색 조건 -->
     <if test="d_port != null">
-        AND d_port = #{d_port}
+        AND d_port  LIKE CONCAT('%', #{d_port}, '%')
     </if>
     <!-- 길이 검색 조건 -->
     <if test="len != null">
-        AND len = #{len}
+        AND len  LIKE CONCAT('%', #{len}, '%')
     </if>
     <!-- 패턴 1 검색 조건 -->
     <if test="pattern1 != null and pattern1 != ''">
@@ -104,7 +104,7 @@
     </if>
     <!-- 기본 카운트 검색 조건 -->
     <if test="base_cnt != null">
-        AND base_cnt = #{base_cnt}
+        AND base_cnt  LIKE CONCAT('%', #{base_cnt}, '%')
     </if>
     <!-- 기본 시간 검색 조건 -->
     <if test="base_time != null and base_time != ''">
