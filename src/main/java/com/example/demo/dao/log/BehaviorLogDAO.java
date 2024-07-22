@@ -1,11 +1,12 @@
 package com.example.demo.dao.log;
 
-import com.example.demo.dto.log.BehaviorLog;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
-import java.util.Map;
+import com.example.demo.dto.log.BehaviorLog;
 
 @Mapper
 public interface BehaviorLogDAO {
@@ -23,6 +24,6 @@ public interface BehaviorLogDAO {
     // Top 5 s_ip 값 조회
     List<Map<String, Object>> findTopSIPs();
 
-    // 다중 검색 기능을 위한 패턴 로그 조회
-    List<BehaviorLog> findByMultipleCriteria(Map<String, Object> criteria);
+    // 다중 검색 기능을 위한 행동 로그 조회
+    List<BehaviorLog> findByMultipleCriteria(@Param("criteria") Map<String, Object> criteria);
 }

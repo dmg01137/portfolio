@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.dto.log.DangerousLog;
-import com.example.demo.dto.log.PatternLog;
 import com.example.demo.service.log.DangerousLogService;
 
 @Controller

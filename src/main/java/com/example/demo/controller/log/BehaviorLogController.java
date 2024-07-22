@@ -1,5 +1,6 @@
 package com.example.demo.controller.log;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,27 +13,39 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dto.log.BehaviorLog;
 import com.example.demo.service.log.BehaviorLogService;
 
 @Controller
-@RequestMapping("/behaviorlog")
+
 public class BehaviorLogController {
 
     @Autowired
     private BehaviorLogService behaviorLogService;
 
-    // 모든 행동 로그 조회 페이지
-    @GetMapping("")
-    public String getAllLogs(Model model) {
-        List<BehaviorLog> logs = behaviorLogService.findAll();
+  
+    
+    // 페이지: 모든 위험 로그 보기
+    @GetMapping("/behaviorlog")
+    public String showBehaviorLogPage(Model model) {
+    	 List<BehaviorLog> logs = behaviorLogService.findAll();
         model.addAttribute("logs", logs);
-        return "behaviorlog"; // behaviorlog.html로 이동하여 전체 로그를 보여줍니다.
+        return "behaviorlog"; // Thymeleaf 템플릿 이름
     }
-
+ 
+    // 모든 행동 로그 조회 페이지
+    // API 엔드포인트: 모든 위험 로그 가져오기
+    @GetMapping("/api/behaviorlogs")
+    public ResponseEntity<List<BehaviorLog>> getAllBehaviorLogs() {
+    	 List<BehaviorLog> logs = behaviorLogService.findAll();
+        return ResponseEntity.ok(logs);
+    }
+  
+ 
+   
     // 행동 로그 저장 처리
     @PostMapping("/save")
     public String saveLog(@ModelAttribute BehaviorLog log) {
@@ -67,4 +80,23 @@ public class BehaviorLogController {
         }
     }
 
+    // 다중 조건으로 행동 로그 조회 (DB에서 처리)
+    @GetMapping("/behaviorlogs/multipleSearch")
+    public ResponseEntity<List<BehaviorLog>> searchBehaviorLogsFromDB(@RequestParam Map<String, String> params) {
+        try {
+            // 파라미터에서 빈 값을 제외하고 유효한 검색 조건만 처리
+            Map<String, Object> searchParams = new HashMap<>();
+            for (Map.Entry<String, String> entry : params.entrySet()) {
+                if (!entry.getValue().isEmpty()) {
+                    searchParams.put(entry.getKey(), entry.getValue());
+                }
+            }
+
+            List<BehaviorLog> behaviorLogs = behaviorLogService.findByMultipleCriteria(searchParams);
+            return ResponseEntity.ok(behaviorLogs);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }
