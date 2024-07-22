@@ -44,23 +44,20 @@
 
     <!-- Multiple criteria search -->
     <select id="findByMultipleCriteria" resultMap="dangerousLogResultMap" parameterType="map">
-        SELECT *
-        FROM log_db.dangerous_log_20240719
-         WHERE 1=1
-        <where>
-            <if test="dangerous_number != null">
-                AND dangerous_number = #{dangerous_number}
-            </if>
-            <if test="ip!= null">
-                AND ip LIKE CONCAT('%', #{ip}, '%')
-            </if>
-            <if test="port != null">
-                AND port = #{port}
-            </if>
-            <if test="detection_number != null">
-                AND detection_number = #{detection_number}
-            </if>
-        </where>
+        SELECT * FROM log_db.dangerous_log_20240719
+        WHERE 1=1
+        <if test="dangerous_number != null">
+            AND dangerous_number = #{dangerous_number}
+        </if>
+        <if test="ip != null and ip != ''">
+            AND ip = #{ip}
+        </if>
+        <if test="port != null">
+            AND port = #{port}
+        </if>
+        <if test="detection_number != null">
+            AND detection_number = #{detection_number}
+        </if>
     </select>
 
 </mapper>

@@ -86,23 +86,24 @@
             overflow-x: hidden; /* 가로 스크롤바를 숨김 */
         }
         table {
-            margin-left: 5px;
-            width: auto;
-            max-width: 1000px;
-            border-collapse: collapse; /* 셀 간격 제거 */
+            width: auto; /* 테이블 너비를 자동으로 조정 */
+            table-layout: auto; /* 콘텐츠에 따라 열의 너비 자동 조정 */
+            min-width: 100%; /* 최소 너비를 100%로 설정하여 컨테이너에 맞추기 */
+            border-collapse: collapse;
             border: 1px solid #dee2e6;
-            font-size: 0.8em;
+            font-size: 0.75rem;
             background-color: #f5f7f8;
             color: #060606;
-            table-layout: auto;
-            white-space: nowrap;
+            /* 내용에 따라 자동으로 열 너비 조정 */
         }
         th, td {
-            padding: 0.3rem; /* 예시로 줄여본 패딩 */
-            vertical-align: top;
+            font-size: 0.75rem;
+            padding: 0.5rem; /* 패딩을 조금 줄여서 테이블을 더 압축 */
+            vertical-align: middle;
             border-top: 1px solid #dee2e6;
             color: #060606;
-            white-space: nowrap; /* 텍스트 줄 바꿈 금지 */
+            white-space: nowrap;
+            text-align: center;
         }
         thead th {
             vertical-align: bottom;
@@ -229,7 +230,7 @@
                 <th>탐지 번호</th>
             </tr>
         </thead>
-       <tbody id="logTableBody">
+        <tbody id="logTableBody">
             <!-- Table body where rows will be dynamically added -->
         </tbody>
     </table>

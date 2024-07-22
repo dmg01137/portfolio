@@ -60,14 +60,12 @@ public class DangerousLogController {
             return "error"; // 오류 페이지의 Thymeleaf 템플릿 이름
         }
     }
- // 다중 조건으로 위험 로그 조회 (DB에서 처리)
-    @GetMapping("/search")
+    // 다중 조건으로 위험 로그 조회 (DB에서 처리)
+    @GetMapping("/dangerouslog/multipleSearch")
     public ResponseEntity<List<DangerousLog>> searchDangerousLogsFromDB(@RequestParam Map<String, String> params) {
         try {
-            // 이전 코드에서는 params를 그대로 넘겼으나, DB에서 처리할 수 있도록 Map<String, Object>으로 변경합니다.
+            // 파라미터에서 빈 값을 제외하고 유효한 검색 조건만 처리
             Map<String, Object> searchParams = new HashMap<>();
-            
-            // 각 파라미터에 대해 값이 비어 있지 않은 경우에만 Map에 추가합니다.
             for (Map.Entry<String, String> entry : params.entrySet()) {
                 if (!entry.getValue().isEmpty()) {
                     searchParams.put(entry.getKey(), entry.getValue());
@@ -77,9 +75,8 @@ public class DangerousLogController {
             List<DangerousLog> dangerousLogs = dangerousLogService.findByMultipleCriteria(searchParams);
             return ResponseEntity.ok(dangerousLogs);
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
-
 }
