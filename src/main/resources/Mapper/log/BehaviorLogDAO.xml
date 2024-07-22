@@ -20,7 +20,6 @@
     <result property="action_type" column="action_type" />
 </resultMap>
 
-
     <!-- ID로 조회 -->
     <select id="findById" resultType="com.example.demo.dto.log.BehaviorLog" parameterType="int">
         SELECT *
@@ -60,56 +59,56 @@
     FROM log_db.behavior_log_20240717
     WHERE 1=1
     <!-- ID 검색 조건 -->
-    <if test="criteria.id != null">
-        AND id LIKE CONCAT('%', #{criteria.id}, '%')
+    <if test="id != null">
+        AND id LIKE CONCAT('%', #{id}, '%')
     </if>
     <!-- 송신 IP 검색 조건 -->
-    <if test="criteria.s_ip != null">
-        AND s_ip LIKE CONCAT('%', #{criteria.s_ip}, '%')
+    <if test="s_ip != null">
+        AND s_ip LIKE CONCAT('%', #{s_ip}, '%')
     </if>
     <!-- 수신 IP 검색 조건 -->
-    <if test="criteria.d_ip != null">
-        AND d_ip LIKE CONCAT('%', #{criteria.d_ip}, '%')
+    <if test="d_ip != null">
+        AND d_ip LIKE CONCAT('%', #{d_ip}, '%')
     </if>
     <!-- 송신 포트 검색 조건 -->
-    <if test="criteria.s_port != null">
-        AND s_port LIKE CONCAT('%', #{criteria.s_port}, '%')
+    <if test="s_port != null">
+        AND s_port LIKE CONCAT('%', #{s_port}, '%')
     </if>
     <!-- 수신 포트 검색 조건 -->
-    <if test="criteria.d_port != null">
-        AND d_port LIKE CONCAT('%', #{criteria.d_port}, '%')
+    <if test="d_port != null">
+        AND d_port LIKE CONCAT('%', #{d_port}, '%')
     </if>
     <!-- 길이 검색 조건 -->
-    <if test="criteria.len != null">
-        AND len = #{criteria.len}
+    <if test="len != null">
+        AND len = #{len}
     </if>
     <!-- 패턴 1 검색 조건 -->
-    <if test="criteria.pattern1 != null">
-        AND pattern1 LIKE CONCAT('%', #{criteria.pattern1}, '%')
+    <if test="pattern1 != null">
+        AND pattern1 LIKE CONCAT('%', #{pattern1}, '%')
     </if>
     <!-- 패턴 2 검색 조건 -->
-    <if test="criteria.pattern2 != null">
-        AND pattern2 LIKE CONCAT('%', #{criteria.pattern2}, '%')
+    <if test="pattern2 != null">
+        AND pattern2 LIKE CONCAT('%', #{pattern2}, '%')
     </if>
     <!-- 패턴 3 검색 조건 -->
-    <if test="criteria.pattern3 != null">
-        AND pattern3 LIKE CONCAT('%', #{criteria.pattern3}, '%')
+    <if test="pattern3 != null">
+        AND pattern3 LIKE CONCAT('%', #{pattern3}, '%')
     </if>
     <!-- 패킷 검색 조건 -->
-    <if test="criteria.packet != null">
-        AND packet LIKE CONCAT('%', #{criteria.packet}, '%')
+    <if test="packet != null">
+        AND packet LIKE CONCAT('%', #{packet}, '%')
     </if>
     <!-- 기본 카운트 검색 조건 -->
-    <if test="criteria.base_cnt != null">
-        AND base_cnt = #{criteria.base_cnt}
+    <if test="base_cnt != null">
+        AND base_cnt = #{base_cnt}
     </if>
     <!-- 기본 시간 검색 조건 -->
-    <if test="criteria.base_time != null">
-        AND base_time = #{criteria.base_time}
+    <if test="base_time != null">
+        AND base_time = #{base_time}
     </if>
     <!-- 액션 타입 검색 조건 -->
-    <if test="criteria.action_type != null">
-        AND action_type LIKE CONCAT('%', #{criteria.action_type}, '%')
+    <if test="action_type != null">
+        AND action_type LIKE CONCAT('%', #{action_type}, '%')
     </if>
 </select>
 

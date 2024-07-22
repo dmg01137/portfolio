@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dto.log.BehaviorLog;
@@ -80,15 +80,15 @@ public class BehaviorLogController {
         }
     }
 
-    // 다중 조건으로 행동 로그 조회 (POST 방식으로 변경)
-    @PostMapping("/behaviorlog/multipleSearch")
-    @ResponseBody
-    public ResponseEntity<List<BehaviorLog>> searchBehaviorLogsFromDB(@RequestBody Map<String, Object> params) {
+    
+    // 다중 조건으로 위험 로그 조회 (DB에서 처리)
+    @GetMapping("/behaviorlog/multipleSearch")
+    public ResponseEntity<List<BehaviorLog>> searchBehaviorLogsFromDB(@RequestParam Map<String, String> params) {
         try {
-            // 빈 값을 제외한 유효한 검색 조건만 처리
+            // 파라미터에서 빈 값을 제외하고 유효한 검색 조건만 처리
             Map<String, Object> searchParams = new HashMap<>();
-            for (Map.Entry<String, Object> entry : params.entrySet()) {
-                if (entry.getValue() != null && !entry.getValue().toString().isEmpty()) {
+            for (Map.Entry<String, String> entry : params.entrySet()) {
+                if (entry.getValue() != null && !entry.getValue().isEmpty()) {
                     searchParams.put(entry.getKey(), entry.getValue());
                 }
             }

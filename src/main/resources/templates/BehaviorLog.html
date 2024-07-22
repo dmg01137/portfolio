@@ -321,109 +321,90 @@ $(document).ready(function () {
     // Function to fetch logs from server and display
     function fetchAndDisplayLogs() {
         $.get("/api/behaviorlogs", function (data) {
-            logsData = data;
-            totalLogs = logsData.length;
-            displayLogs();
-            renderPagination();
-        }).fail(function() {
-            console.error("Failed to fetch data.");
-        });
-    }
+        	 logsData = data;
+             totalLogs = logsData.length;
+             displayLogs();
+             renderPagination();
+         }).fail(function() {
+             console.error("Failed to fetch data.");
+         });
+     }
 
-    // Function to display logs in the table
-    function displayLogs() {
-        let startIndex = (currentPage - 1) * logsPerPage;
-        let endIndex = startIndex + logsPerPage;
-        let displayedLogs = logsData.slice(startIndex, endIndex);
+     // Function to display logs in the table
+     function displayLogs() {
+         let startIndex = (currentPage - 1) * logsPerPage;
+         let endIndex = startIndex + logsPerPage;
+         let displayedLogs = logsData.slice(startIndex, endIndex);
 
-        $("#logTableBody").empty(); // Clear existing table rows
+         $("#logTableBody").empty(); // Clear existing table rows
 
-        displayedLogs.forEach(function (log) {
-            $("#logTableBody").append(
-                '<tr>' +
-                '<td>' + log.id + '</td>' +
-                '<td>' + log.time + '</td>' +
-                '<td>' + log.s_ip + '</td>' +
-                '<td>' + log.s_port + '</td>' +
-                '<td>' + log.d_ip + '</td>' +
-                '<td>' + log.d_port + '</td>' +
-                '<td>' + log.action_type + '</td>' +
-                '<td>' + log.len + '</td>' +
-                '<td>' + log.base_cnt + '</td>' +
-                '<td>' + log.base_time + '</td>' +
-                '<td>' + log.pattern1 + '</td>' +
-                '<td>' + log.pattern2 + '</td>' +
-                '<td>' + log.pattern3 + '</td>' +
-                '<td>' + log.packet + '</td>' +
-                '</tr>'
-            );
-        });
-    }
+         displayedLogs.forEach(function (log) {
+             $("#logTableBody").append(
+            	     '<tr>' +
+            	     '<td>' +log.id+ '</td>' +
+            	     '<td>' +log.time+ '</td>' +
+            	     '<td>' +log.s_ip+ '</td>' +
+            	     '<td>' +log.s_port+ '</td>' +
+            	     '<td>' +log.d_ip+ '</td>' +
+            	     '<td>' +log.d_port+ '</td>' +
+            	     '<td>' +log.action_type+ '</td>' +
+            	     '<td>' +log.len+ '</td>' +
+            	     '<td>' +log.base_cnt+ '</td>' +
+            	     '<td>' +log.base_time+ '</td>' +
+            	     '<td>' +log.pattern1+ '</td>' +
+            	     '<td>' +log.pattern2+ '</td>' +
+            	     '<td>' +log.pattern3+ '</td>' +
+            	     '<td>' +log.packet+ '</td>' +
+            	       '</tr>'
+             );
+         });
+     }
 
-    // Function to render pagination buttons
-    function renderPagination() {
-        let totalPages = Math.ceil(totalLogs / logsPerPage);
-        $("#pagination").empty(); // Clear pagination
+     // Function to render pagination buttons
+     function renderPagination() {
+         let totalPages = Math.ceil(totalLogs / logsPerPage);
+         $("#pagination").empty(); // Clear pagination
 
-        for (let i = 1; i <= totalPages; i++) {
-            let activeClass = (i === currentPage) ? "active" : "";
-            $("#pagination").append(
-                '<li class="page-item ' + activeClass + '"><a class="page-link" href="#" data-page="' + i + '">' + i + '</a></li>'
-            );
-        }
+         for (let i = 1; i <= totalPages; i++) {
+             let activeClass = (i === currentPage) ? "active" : "";
+             $("#pagination").append(
+                 '<li class="page-item ' + activeClass + '"><a class="page-link" href="#" data-page="' + i + '">' + i + '</a></li>'
+             );
+         }
 
-        // Add click event listeners to pagination buttons
-        $("#pagination").on("click", ".page-link", function (event) {
-            event.preventDefault();
-            currentPage = parseInt($(this).attr("data-page"));
-            fetchAndDisplayLogs(); // Fetch logs for selected page
-        });
-    }
+         // Add click event listeners to pagination buttons
+         $("#pagination").on("click", ".page-link", function (event) {
+             event.preventDefault();
+             currentPage = parseInt($(this).attr("data-page"));
+             fetchAndDisplayLogs(); // Fetch logs for selected page
+         });
+     }
 
-    // Search button click event listener
-    $("#searchButton").click(function () {
-        handleSearch();
-    });
+     // Search button click event listener
+     $("#searchButton").click(function () {
+         currentPage = 1; // Reset to first page
+         fetchAndDisplayLogs(); // Fetch logs with the current search criteria
+     });
 
-    // Clear button click event listener
-    $("#clearButton").click(function () {
-        $(".searchInput").val(""); // Clear input fields
-        fetchAndDisplayLogs(); // Fetch all logs again
-    });
+     // Clear button click event listener
+     $("#clearButton").click(function () {
+         $(".searchInput").val(""); // Clear input fields
+         currentPage = 1; // Reset to first page
+         fetchAndDisplayLogs(); // Fetch all logs again
+     });
 
-    // Function to handle search
-    function handleSearch() {
-        let searchParams = {
-            id: $("#searchValue1").val(),
-            time: $("#searchValue2").val(),
-            s_ip: $("#searchValue3").val(),
-            s_port: $("#searchValue4").val(),
-            d_ip: $("#searchValue5").val(),
-            d_port: $("#searchValue6").val(),
-            action_type: $("#searchValue7").val(),
-            len: $("#searchValue8").val(),
-            base_cnt: $("#searchValue9").val(),
-            base_time: $("#searchValue10").val(),
-            pattern1: $("#searchValue11").val(),
-            pattern2: $("#searchValue12").val(),
-            pattern3: $("#searchValue13").val(),
-            packet: $("#searchValue14").val()
-        };
+     $.get("/behaviorlog/multipleSearch?" + queryString, function (data) {
+         logsData = data;
+         totalLogs = logsData.length;
+         currentPage = 1; // Reset to first page
+         displayLogs(); // Display search results
+         renderPagination(); // Render pagination for search results
+     }).fail(function() {
+         console.error("Search failed.");
+     });
 
-        let queryString = $.param(searchParams); // Convert params to query string
-
-        $.get("/behaviorlog/multipleSearch?" + queryString, function (data) {
-            logsData = data;
-            totalLogs = logsData.length;
-            currentPage = 1; // Reset to first page
-            displayLogs(); // Display search results
-            renderPagination(); // Render pagination for search results
-        }).fail(function() {
-            console.error("Search failed.");
-        });
-    }
 });
 
-</script>
-</body>
-</html>
+ </script>
+ </body>
+ </html>
