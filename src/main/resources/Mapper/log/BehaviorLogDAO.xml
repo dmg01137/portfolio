@@ -3,6 +3,24 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.dao.log.BehaviorLogDAO">
 
+<resultMap id="behaviorLogResultMap" type="com.example.demo.dto.log.BehaviorLog">
+    <id property="id" column="id" />
+    <result property="time" column="time" />
+    <result property="s_ip" column="s_ip" />
+    <result property="d_ip" column="d_ip" />
+    <result property="s_port" column="s_port" />
+    <result property="d_port" column="d_port" />
+    <result property="len" column="len" />
+    <result property="pattern1" column="pattern1" />
+    <result property="pattern2" column="pattern2" />
+    <result property="pattern3" column="pattern3" />
+    <result property="packet" column="packet" />
+    <result property="base_cnt" column="base_cnt" />
+    <result property="base_time" column="base_time" />
+    <result property="action_type" column="action_type" />
+</resultMap>
+
+
     <!-- ID로 조회 -->
     <select id="findById" resultType="com.example.demo.dto.log.BehaviorLog" parameterType="int">
         SELECT *
@@ -36,22 +54,64 @@
         DELETE FROM log_db.behavior_log_20240717 WHERE id = #{id}
     </delete>
 
-    <!-- 검색 -->
-    <select id="search" resultType="com.example.demo.dto.log.BehaviorLog">
-        SELECT *
-        FROM log_db.behavior_log_20240717
-        WHERE 
-        <if test="detectionNumber != null">
-            id = #{id}
-        </if>
-        <if test="sIp != null and sIp != ''">
-            AND s_ip = #{s_ip}
-        </if>
-        <if test="sPort != null">
-            AND s_port = #{s_port}
-        </if>
-       
-    </select>
+     <!-- 다중 검색 기능을 위한 패턴 로그 조회 -->
+<select id="findByMultipleCriteria" resultMap="behaviorLogResultMap" parameterType="map">
+    SELECT *
+    FROM log_db.behavior_log_20240717
+    WHERE 1=1
+    <!-- ID 검색 조건 -->
+    <if test="criteria.id != null">
+        AND id LIKE CONCAT('%', #{criteria.id}, '%')
+    </if>
+    <!-- 송신 IP 검색 조건 -->
+    <if test="criteria.s_ip != null">
+        AND s_ip LIKE CONCAT('%', #{criteria.s_ip}, '%')
+    </if>
+    <!-- 수신 IP 검색 조건 -->
+    <if test="criteria.d_ip != null">
+        AND d_ip LIKE CONCAT('%', #{criteria.d_ip}, '%')
+    </if>
+    <!-- 송신 포트 검색 조건 -->
+    <if test="criteria.s_port != null">
+        AND s_port LIKE CONCAT('%', #{criteria.s_port}, '%')
+    </if>
+    <!-- 수신 포트 검색 조건 -->
+    <if test="criteria.d_port != null">
+        AND d_port LIKE CONCAT('%', #{criteria.d_port}, '%')
+    </if>
+    <!-- 길이 검색 조건 -->
+    <if test="criteria.len != null">
+        AND len = #{criteria.len}
+    </if>
+    <!-- 패턴 1 검색 조건 -->
+    <if test="criteria.pattern1 != null">
+        AND pattern1 LIKE CONCAT('%', #{criteria.pattern1}, '%')
+    </if>
+    <!-- 패턴 2 검색 조건 -->
+    <if test="criteria.pattern2 != null">
+        AND pattern2 LIKE CONCAT('%', #{criteria.pattern2}, '%')
+    </if>
+    <!-- 패턴 3 검색 조건 -->
+    <if test="criteria.pattern3 != null">
+        AND pattern3 LIKE CONCAT('%', #{criteria.pattern3}, '%')
+    </if>
+    <!-- 패킷 검색 조건 -->
+    <if test="criteria.packet != null">
+        AND packet LIKE CONCAT('%', #{criteria.packet}, '%')
+    </if>
+    <!-- 기본 카운트 검색 조건 -->
+    <if test="criteria.base_cnt != null">
+        AND base_cnt = #{criteria.base_cnt}
+    </if>
+    <!-- 기본 시간 검색 조건 -->
+    <if test="criteria.base_time != null">
+        AND base_time = #{criteria.base_time}
+    </if>
+    <!-- 액션 타입 검색 조건 -->
+    <if test="criteria.action_type != null">
+        AND action_type LIKE CONCAT('%', #{criteria.action_type}, '%')
+    </if>
+</select>
 
     <!-- Top 5 s_ip 값 조회 -->
     <select id="findTopSIPs" resultType="java.util.Map">
