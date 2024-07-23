@@ -236,7 +236,7 @@
                 <th>위험 번호</th>
                 <th>IP</th>
                 <th>PORT</th>
-                <th>탐지 번호</th>
+                <th>정책 이름</th>
             </tr>
          </thead>
         <tbody id="logTableBody">
@@ -334,7 +334,8 @@ $(document).ready(function () {
         fetchAndDisplayLogs();
     });
 
-    $("#searchButton").click(function () {
+    $("#searchForm").submit(function (event) {
+        event.preventDefault(); // Prevent default form submission
         handleSearch();
     });
 
@@ -351,14 +352,17 @@ $(document).ready(function () {
         $.get("/dangerouslog/multipleSearch?" + queryString, function (data) {
             logsData = data;
             totalLogs = logsData.length;
-            currentPage = 1; // Reset to first page
-            displayLogs(); // Display search results
-            renderPagination(); // Render pagination for search results
-        }).fail(function() {
-            console.error("Search failed.");
+            currentPage = 1;
+            displayLogs();
+            renderPagination();
+        }).fail(function () {
+            console.error("Failed to search data.");
         });
     }
 });
-</script>
-</body>
-</html>
+
+  </script>
+
+
+  </body>
+  </html>
