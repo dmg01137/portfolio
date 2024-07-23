@@ -18,20 +18,19 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
     sqlSessionFactoryRef = "detectionSqlSessionFactory"
 )
 public class DetectionMapperConfig {
-	
-	 @Bean(name = "detectionDataSource")
-	    @ConfigurationProperties(prefix = "spring.datasource.detection")
-	    public DataSource detectionDataSource() {
-	        return DataSourceBuilder.create().build();
-	    }
-
-	  
-	    @Bean(name = "detectionSqlSessionFactory")
-	    public SqlSessionFactory detectionSqlSessionFactory(@Qualifier("detectionDataSource") DataSource dataSource) throws Exception {
-	        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-	        sqlSessionFactoryBean.setDataSource(dataSource);
-	        sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
-	                .getResources("classpath:mapper/detection/*.xml"));
-	        return sqlSessionFactoryBean.getObject();
-	    }
+    
+    @Bean(name = "detectionDataSource")
+    @ConfigurationProperties(prefix = "spring.datasource.detection")
+    public DataSource detectionDataSource() {
+        return DataSourceBuilder.create().build();
+    }
+    
+    @Bean(name = "detectionSqlSessionFactory")
+    public SqlSessionFactory detectionSqlSessionFactory(@Qualifier("detectionDataSource") DataSource dataSource) throws Exception {
+        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+        sqlSessionFactoryBean.setDataSource(dataSource);
+        sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
+                .getResources("classpath:mapper/detection/*.xml"));
+        return sqlSessionFactoryBean.getObject();
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.demo.service.log;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -21,32 +22,36 @@ public class DangerousLogService {
         this.dangerousLogDAO = dangerousLogDAO;
     }
 
+    // Find a log by dangerous number
+    @Transactional(readOnly = true)
     public DangerousLog findByDangerousNumber(int dangerousNumber) {
         return dangerousLogDAO.findByDangerousNumber(dangerousNumber);
     }
 
-    public List<DangerousLog> findAll() {
-        return dangerousLogDAO.findAll();
-    }
-
-    public void save(DangerousLog log) {
-        dangerousLogDAO.save(log);
-    }
-
-    public void update(DangerousLog log) {
-        dangerousLogDAO.update(log);
-    }
-
-    public void delete(int dangerousNumber) {
-        dangerousLogDAO.delete(dangerousNumber);
-    }
-
-    public List<DangerousLog> search(Integer dangerousNumber, String ip, Integer port, Integer detectionNumber) {
-        return dangerousLogDAO.search(dangerousNumber, ip, port, detectionNumber);
-    }
-
+    // Find all logs from a specific table
     @Transactional(readOnly = true)
-    public List<DangerousLog> findByMultipleCriteria(Map<String, Object> criteria) {
-        return dangerousLogDAO.findByMultipleCriteria(criteria);
+    public List<DangerousLog> findAll(String tableName) {
+        if (tableName == null) {
+            tableName = "dangerous_log_" + LocalDate.now().toString().replace("-", "");
+        }
+        return dangerousLogDAO.findAll(tableName);
     }
+
+
+    // Search logs by specific criteria
+    @Transactional(readOnly = true)
+    public List<DangerousLog> search(Integer dangerousNumber, String ip, Integer port, String policy_name) {
+        return dangerousLogDAO.search(dangerousNumber, ip, port, policy_name);
+    }
+
+ // Search logs by multiple criteria
+    @Transactional(readOnly = true)
+    public List<DangerousLog> findByMultipleCriteria(String tableName, Map<String, Object> criteria) {
+        if (tableName == null) {
+            tableName = "dangerous_log_" + LocalDate.now().toString().replace("-", "");
+        }
+        return dangerousLogDAO.findByMultipleCriteria(tableName, criteria);
+    }
+
+
 }

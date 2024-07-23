@@ -4,16 +4,16 @@ public class DangerousLog {
     private int dangerous_number; // 위험 번호
     private String ip; // IP 주소
     private int port; // 포트 번호
-    private int detection_number; // 위험 로그 ID
+    private String policy_name; // 위험 로그 ID
 
     public DangerousLog() {
     }
 
     // IP, 포트, 위험 번호를 입력받는 생성자
-    public DangerousLog(String ip, int port, int detection_number) {
+    public DangerousLog(String ip, int port, String policy_name) {
         this.ip = ip;
         this.port = port;
-        this.detection_number = detection_number;
+        this.policy_name = policy_name;
     }
 
     public int getDangerous_number() {
@@ -40,12 +40,12 @@ public class DangerousLog {
         this.port = port;
     }
 
-    public int getDetection_number() {
-        return detection_number;
+    public String getpolicy_name() {
+        return policy_name;
     }
 
-    public void setDetection_number(int detection_number) {
-        this.detection_number = detection_number;
+    public void setpolicy_name(String policy_name) {
+        this.policy_name = policy_name;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class DangerousLog {
                 "dangerous_number=" + dangerous_number +
                 ", ip='" + ip + '\'' +
                 ", port=" + port +
-                ", detection_number=" + detection_number +
+                ", policy_name=" + policy_name +
                 '}';
     }
 }

@@ -20,29 +20,31 @@
 
     <!-- Select all -->
     <select id="findAll" resultMap="dangerousLogResultMap">
-        SELECT *
-        FROM log_db.dangerous_log_20240719
+           SELECT *
+        FROM log_db.${tableName}
     </select>
 
   
 
     <!-- Multiple criteria search -->
-    <select id="findByMultipleCriteria" resultMap="dangerousLogResultMap" parameterType="map">
-        SELECT * FROM log_db.dangerous_log_20240719
-        WHERE 1=1
-        <if test="dangerous_number != null">
-            AND dangerous_number LIKE CONCAT('%', #{dangerous_number}, '%')
-        </if>
-        <if test="ip != null and ip != ''">
-            AND ip LIKE CONCAT('%', #{ip}, '%')
-        </if>
-        <if test="port != null">
-            AND port LIKE CONCAT('%', #{port}, '%')
-        </if>
-        <if test="detection_number != null">
-            AND detection_number LIKE CONCAT('%', #{detection_number}, '%')
-        </if>
-    </select>
+   <select id="findByMultipleCriteria" resultMap="dangerousLogResultMap" parameterType="map">
+    SELECT *
+    FROM log_db.${tableName}
+    WHERE 1=1
+    <if test="criteria.dangerous_number != null">
+        AND dangerous_number LIKE CONCAT('%', #{criteria.dangerous_number}, '%')
+    </if>
+    <if test="criteria.ip != null and criteria.ip != ''">
+        AND ip LIKE CONCAT('%', #{criteria.ip}, '%')
+    </if>
+    <if test="criteria.port != null">
+        AND port LIKE CONCAT('%', #{criteria.port}, '%')
+    </if>
+    <if test="criteria.policy_name != null">
+        AND policy_name LIKE CONCAT('%', #{criteria.policy_name}, '%')
+    </if>
+</select>
+
     
    
 

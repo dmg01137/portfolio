@@ -13,11 +13,12 @@ public class PatternLog {
     private String pattern3; // 패턴3
     private byte[] packet; // 패킷
     private int actionType; // 액션 타입
-
+    private String policy_name; // 위험 로그 ID
+    
     public PatternLog() {
     }
 
-    public PatternLog(int id, String time, String sIp, String dIp, int sPort, int dPort, int len, String pattern1, String pattern2, String pattern3, byte[] packet, int actionType) {
+    public PatternLog(int id, String time, String sIp, String dIp, int sPort, int dPort, int len, String pattern1, String pattern2, String pattern3, byte[] packet, int actionType,String policy_name) {
         this.id = id;
         this.time = time;
         this.sIp = sIp;
@@ -30,6 +31,8 @@ public class PatternLog {
         this.pattern3 = pattern3;
         this.packet = packet;
         this.actionType = actionType;
+ 
+        this.policy_name = policy_name;
     }
 
     public int getId() {
@@ -145,4 +148,12 @@ public class PatternLog {
                 ", actionType=" + actionType +
                 '}';
     }
+
+	public String getPolicy_name() {
+		return policy_name;
+	}
+
+	public void setPolicy_name(String policy_name) {
+		this.policy_name = policy_name;
+	}
 }

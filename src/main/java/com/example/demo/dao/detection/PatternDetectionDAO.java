@@ -3,7 +3,6 @@ package com.example.demo.dao.detection;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.example.demo.controller.log.SearchCriteria;
 import com.example.demo.dto.detection.PatternDetection;
 
 public interface PatternDetectionDAO {
@@ -19,7 +18,7 @@ public interface PatternDetectionDAO {
 
     void deletePatternDetection(PatternDetection patternDetection);
 
-    List<PatternDetection> searchPatternDetections(com.example.demo.controller.detection.SearchCriteria searchCriteria);
+    List<PatternDetection> searchPatternDetections(com.example.demo.controller.policy.SearchCriteria searchCriteria);
 
     List<PatternDetection> getAllPatternDetectionsPaged(int page, int size);
 

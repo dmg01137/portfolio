@@ -18,20 +18,19 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
     sqlSessionFactoryRef = "logSqlSessionFactory"
 )
 public class LogMapperConfig {
-	
-	  @Bean(name = "logDataSource")
-	  @ConfigurationProperties(prefix = "spring.datasource.log")
-	  public DataSource logDataSource() {
-	      return DataSourceBuilder.create().build();
-	  }
-	  
-	  @Bean(name = "logSqlSessionFactory")
-	    public SqlSessionFactory logSqlSessionFactory(@Qualifier("logDataSource") DataSource dataSource) throws Exception {
-	        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-	        sqlSessionFactoryBean.setDataSource(dataSource);
-	        sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
-	                .getResources("classpath:mapper/log/*.xml"));
-	        return sqlSessionFactoryBean.getObject();
-	    }
-
+    
+    @Bean(name = "logDataSource")
+    @ConfigurationProperties(prefix = "spring.datasource.log")
+    public DataSource logDataSource() {
+        return DataSourceBuilder.create().build();
+    }
+    
+    @Bean(name = "logSqlSessionFactory")
+    public SqlSessionFactory logSqlSessionFactory(@Qualifier("logDataSource") DataSource dataSource) throws Exception {
+        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+        sqlSessionFactoryBean.setDataSource(dataSource);
+        sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
+                .getResources("classpath:mapper/log/*.xml"));
+        return sqlSessionFactoryBean.getObject();
+    }
 }

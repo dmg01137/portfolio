@@ -218,7 +218,16 @@
 <div class="container">
     <div class="searchContainer">
         <h3 style="text-align: center; margin-top: 20px; margin-left:40px ">행동 로그</h3>
-        <div id="searchForm" class="searchForm">
+ <form class="searchForm" id="searchForm1" action="/behaviorlog/multipleSearch" method="get">
+    <div style="flex: 1;">
+        <input type="text" name="tableName" id="tableName" class="form-control searchInput" placeholder="테이블 이름 (yyyyMMdd)">
+    </div>
+    <button type="submit" id="searchTableButton" class="btn btn-primary">테이블 검색</button>
+</form>
+
+
+            <form class="searchForm" id="searchForm2">
+
             <div style="flex: 1;">
                 <input type="text" id="id" class="form-control searchInput" placeholder="번호">
             </div>
@@ -239,8 +248,9 @@
             </div>
             <div style="flex: 1;">
                 <input type="text" id="action_type" class="form-control searchInput" placeholder="액션타입">
-            </div>
-             <div id="searchForm" class="searchForm">
+           </div>
+               </form>
+               <form class="searchForm" id="searchForm3">
            
             <div style="flex: 1;">
                 <input type="text" id="len" class="form-control searchInput" placeholder="패턴 길이">
@@ -250,6 +260,9 @@
             </div>
             <div style="flex: 1;">
                 <input type="text" id="base_time" class="form-control searchInput" placeholder="base_time">
+            </div>
+             <div style="flex: 1;">
+                <input type="text" id="policy_name" class="form-control searchInput" placeholder="policy_name">
             </div>
       
        
@@ -264,9 +277,9 @@
             </div>
             <div style="flex: 1;">
                 <input type="text" id="packet" class="form-control searchInput" placeholder="패킷">
-              </div></div>
+              </div>
      
-        </div>
+      </form>
         <div class="searchButtons">
             <button id="searchButton" class="btn btn-primary">Search</button>
             <button id="clearButton" class="btn btn-secondary">Clear</button>
@@ -287,6 +300,7 @@
                 <th>패턴 길이</th>
                 <th>base_cnt</th>
                 <th>base_time</th>
+                <th>정책 이름</th>
                 <th>패턴1</th>
                 <th>패턴2</th>
                 <th>패턴3</th>
@@ -318,10 +332,14 @@ $(document).ready(function () {
     let totalLogs = 0;
     let logsData = [];
 
-    // Initial fetch and display of logs
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = (now.getMonth() + 1).toString().padStart(2, '0');
+    var day = now.getDate().toString().padStart(2, '0');
+    var today = year + month + day;
+    $('#tableName').val(today);
     fetchAndDisplayLogs();
 
-    // Function to fetch logs from server and display
     function fetchAndDisplayLogs() {
         $.get("/api/behaviorlogs", function (data) {
             logsData = data;
@@ -329,17 +347,16 @@ $(document).ready(function () {
             displayLogs();
             renderPagination();
         }).fail(function() {
-            console.error("Failed to fetch data.");
+            console.error("데이터 가져오기 실패.");
         });
     }
 
-    // Function to display logs in the table
     function displayLogs() {
         let startIndex = (currentPage - 1) * logsPerPage;
         let endIndex = startIndex + logsPerPage;
         let displayedLogs = logsData.slice(startIndex, endIndex);
 
-        $("#logTableBody").empty(); // Clear existing table rows
+        $("#logTableBody").empty();
 
         displayedLogs.forEach(function (log) {
             $("#logTableBody").append(
@@ -354,6 +371,7 @@ $(document).ready(function () {
                 '<td>' + log.len + '</td>' +
                 '<td>' + log.base_cnt + '</td>' +
                 '<td>' + log.base_time + '</td>' +
+                '<td>' + log.policy_name + '</td>' +
                 '<td>' + log.pattern1 + '</td>' +
                 '<td>' + log.pattern2 + '</td>' +
                 '<td>' + log.pattern3 + '</td>' +
@@ -363,40 +381,67 @@ $(document).ready(function () {
         });
     }
 
-    // Function to render pagination
+    $('#searchForm1').submit(function (event) {
+        event.preventDefault();
+
+        let tableName = $('#tableName').val().trim();
+
+        $.get('/behaviorlog/multipleSearch?tableName=' + tableName, function (data) {
+            logsData = data;
+            totalLogs = logsData.length;
+            currentPage = 1;
+            displayLogs();
+            renderPagination();
+        }).fail(function () {
+            console.error('데이터 가져오기 실패.');
+        });
+    });
+
+    $('#clearButton').click(function () {
+    	 $('#searchForm1').trigger('reset'); // Reset searchForm1
+        $('#searchForm2').trigger('reset'); // Reset searchForm1
+        $('#searchForm3').trigger('reset'); // Reset searchForm2
+        fetchAndDisplayLogs(); // Fetch and display initial data
+    });
+    // Search 버튼 클릭 시 검색 수행
+    $('#searchButton').click(function () {
+        handleSearch(); // handleSearch 함수 호출
+    });
+
+    // 페이지네이션 버튼 렌더링 함수
     function renderPagination() {
         let totalPages = Math.ceil(totalLogs / logsPerPage);
-        let paginationHTML = '';
+        let paginationHTML = "";
 
         // Calculate start and end page numbers for display
         let startPage = Math.max(1, currentPage - 2);
         let endPage = Math.min(totalPages, startPage + 4);
 
-        // Previous button
+        // Previous 버튼
         paginationHTML += `<li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
                             <a class="page-link" href="#" aria-label="Previous" onclick="changePage(${currentPage - 1})">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                           </li>`;
 
-        // Page buttons
+        // 페이지 버튼들
         for (let i = startPage; i <= endPage; i++) {
             paginationHTML += `<li class="page-item ${currentPage === i ? 'active' : ''}">
                                 <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
                               </li>`;
         }
 
-        // Next button
+        // Next 버튼
         paginationHTML += `<li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
                             <a class="page-link" href="#" aria-label="Next" onclick="changePage(${currentPage + 1})">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                           </li>`;
 
-        $("#pagination").html(paginationHTML); // Update pagination
+        $("#pagination").html(paginationHTML);
     }
 
-    // Function to change current page
+    // 페이지 변경 함수
     window.changePage = function (page) {
         if (page < 1 || page > Math.ceil(totalLogs / logsPerPage)) {
             return;
@@ -406,20 +451,39 @@ $(document).ready(function () {
         renderPagination();
     };
 
-    // Search button click handler
-    $("#searchButton").on("click", function (e) {
+    $("#searchTableButton").click(function (e) {
         e.preventDefault();
-        handleSearch();
+
+        let tableName = $("#tableName").val().trim();
+        let currentDate = getCurrentDate(); // 현재 날짜를 가져오는 함수 호출
+
+        // tableName이 비어있으면 현재 날짜를 기본값으로 설정
+        if (tableName === '') {
+            tableName = currentDate;
+        }
+
+        $.get("/behaviorlog/multipleSearch?tableName=" + tableName, function (data) {
+            logsData = data;
+            totalLogs = logsData.length;
+            currentPage = 1;
+            displayLogs();
+            renderPagination();
+        }).fail(function () {
+            console.error("검색 실패.");
+        });
     });
 
-    // Clear button click event listener
-    $("#clearButton").click(function () {
-        $(".searchInput").val(""); // Clear input fields
-        fetchAndDisplayLogs(); // Fetch all logs again
-    });
+    function getCurrentDate() {
+        let now = new Date();
+        let year = now.getFullYear();
+        let month = ('0' + (now.getMonth() + 1)).slice(-2); // 월을 두 자리 숫자로
+        let day = ('0' + now.getDate()).slice(-2); // 일을 두 자리 숫자로
+
+        return year + month + day;
+    }
 
     // Function to handle search
-    function handleSearch() {
+       function handleSearch() {
         let searchParams = {
             id: $("#id").val(),
             time: $("#time").val(),
@@ -431,25 +495,29 @@ $(document).ready(function () {
             len: $("#len").val(),
             base_cnt: $("#base_cnt").val(),
             base_time: $("#base_time").val(),
+            policy_name: $("#policy_name").val(),
             pattern1: $("#pattern1").val(),
             pattern2: $("#pattern2").val(),
             pattern3: $("#pattern3").val(),
             packet: $("#packet").val()
         };
 
-        let queryString = $.param(searchParams); // Convert params to query string
+        let queryString = $.param(searchParams);
 
         $.get("/behaviorlog/multipleSearch?" + queryString, function (data) {
             logsData = data;
             totalLogs = logsData.length;
-            currentPage = 1; // Reset to first page
-            displayLogs(); // Display search results
-            renderPagination(); // Render pagination for search results
-        }).fail(function() {
-            console.error("Search failed.");
+            currentPage = 1;
+            displayLogs();
+            renderPagination();
+        }).fail(function () {
+            console.error("Failed to search data.");
         });
     }
 });
+
 </script>
+
+
 </body>
 </html>
