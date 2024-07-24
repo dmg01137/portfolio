@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--  이 xml파일은 namespace에 지정한 mapper인터페이스와 연동하여 SQL을 설정할 것이다. 라고 선언한 것. -->
+<mapper namespace="com.example.demo.dao.detection.PatternPolicyDao">
+
+	<select id="listPatternPolicy" resultType="com.example.demo.dto.PatternPolicyDto">
+		SELECT *
+		FROM pattern_detection
+	</select>
+	
+	<select id="getLastDetectionNumber" resultType="int">
+    	SELECT COALESCE(MAX(detection_number), 0) FROM pattern_detection
+	</select>
+	
+	<insert id="addPatternPolicy" parameterType="com.example.demo.dto.PatternPolicyDto">
+    	INSERT INTO pattern_detection (enable_disable, s_to_ip, s_ip, d_ip, s_to_port, s_port, d_port, create_dt, 
+    	modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous)
+    	VALUES (#{enable_disable}, #{s_to_ip}, #{s_ip}, #{d_ip}, #{s_to_port}, #{s_port}, #{d_port}, #{create_dt}, 
+    	#{modify_dt}, #{action_type}, #{policy_name}, #{policy_info}, #{pattern_1}, #{pattern_2}, #{pattern_3}, #{dangerous})
+	</insert>
+	
+	<update id="clickPatternPolicy" parameterType="int"> 
+		UPDATE pattern_detection
+		SET enable_disable = CASE
+    	WHEN enable_disable = 0 THEN 1
+   	 	WHEN enable_disable = 1 THEN 0
+		END
+		WHERE detection_number = #{detection_number}
+	</update>
+	
+	<update id="updatePatternPolicy" parameterType="com.example.demo.dto.PatternPolicyDto">
+      UPDATE pattern_detection
+      SET enable_disable = #{enable_disable}, detection_number = #{detection_number}, s_to_ip = #{s_to_ip},
+      s_ip = #{s_ip}, d_ip = #{d_ip}, s_to_port = #{s_to_port}, s_port = #{s_port}, d_port = #{d_port},
+      create_dt = #{create_dt}, modify_dt = #{modify_dt}, action_type = #{action_type}, policy_name = #{policy_name},
+      policy_info = #{policy_info}, pattern_1 = #{pattern_1}, pattern_2 = #{pattern_2}, pattern_3 = #{pattern_3},
+      dangerous = #{dangerous}
+      WHERE detection_number = #{detection_number}
+	</update>
+   
+	<select id="findByDetectionNumber" parameterType="int" resultType="com.example.demo.dto.PatternPolicyDto">
+        SELECT *
+        FROM pattern_detection
+        WHERE detection_number = #{detection_number}
+    </select>
+
+    <select id="searchPatternPolicy" resultType="com.example.demo.dto.PatternPolicyDto">
+        SELECT *
+        FROM pattern_detection
+        <where>
+            <if test="detection_number != null">
+                AND detection_number = #{detection_number}
+            </if>
+            <if test="s_to_ip != null and s_to_ip != ''">
+                AND s_to_ip = #{s_to_ip}
+            </if>
+            <if test="s_ip != null and s_ip != ''">
+                AND s_ip = #{s_ip}
+            </if>
+            <if test="d_ip != null and d_ip != ''">
+                AND d_ip = #{d_ip}
+            </if>
+            <if test="s_to_port != null and s_to_port != ''">
+                AND s_to_port = #{s_to_port}
+            </if>
+            <if test="s_port != null">
+                AND s_port = #{s_port}
+            </if>
+            <if test="d_port != null">
+                AND d_port = #{d_port}
+            </if>
+	     	<if test="create_dt_from != null">
+             	AND create_dt &gt;= CONCAT(#{create_dt_from}, ' 00:00:00')
+         	</if>
+         	<if test="create_dt_to != null">
+            	 AND create_dt &lt;= CONCAT(#{create_dt_to}, ' 23:59:59')
+         	</if>
+         	<if test="modify_dt_from != null">
+            	 AND modify_dt &gt;= CONCAT(#{modify_dt_from}, ' 00:00:00')
+         	</if>
+         	<if test="modify_dt_to != null">
+            	 AND modify_dt &lt;= CONCAT(#{modify_dt_to}, ' 23:59:59')
+         	</if>
+            <if test="action_type != null">
+                AND action_type = #{action_type}
+            </if>
+            <if test="policy_name != null and policy_name != ''">
+                AND policy_name = #{policy_name}
+            </if>
+            <if test="policy_info != null and policy_info != ''">
+                AND policy_info = #{policy_info}
+            </if>
+            <if test="pattern_1 != null and pattern_1 != ''">
+                AND pattern_1 = #{pattern_1}
+            </if>
+            <if test="pattern_2 != null and pattern_2 != ''">
+                AND pattern_2 = #{pattern_2}
+            </if>
+            <if test="pattern_3 != null and pattern_3 != ''">
+                AND pattern_3 = #{pattern_3}
+            </if>
+            <if test="dangerous != null">
+                AND dangerous = #{dangerous}
+            </if>
+        </where>
+    </select>
+</mapper>
+

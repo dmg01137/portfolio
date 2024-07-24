@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Behavior Policy List</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>
+                <form action="addBehaviorPolicy" method="get">
+                    <input type="submit" value="행동 정책 추가">
+                </form>
+            </td>
+            <td>
+                <form action="dashboard" method="get">
+                    <input type="submit" value="메인화면">
+                </form>
+            </td>
+            <td>
+                <form action="signin" method="get">
+                    <input type="submit" value="로그아웃">
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <form action="/searchBehaviorPolicy" method="get">
+        <table>
+            <tr>
+                <td>
+                    <label for="detectionNumber">정책 번호</label>
+                    <input type="text" id="detectionNumber" name="detection_number" th:value="${param.detection_number}">
+                </td>
+                <td>
+                    <label for="sToIp">출발지 범위 IP</label>
+                    <input type="text" id="sToIp" name="s_to_ip" th:value="${param.s_to_ip}">
+                </td>
+                <td>
+                    <label for="sIp">출발지 IP</label>
+                    <input type="text" id="sIp" name="s_ip" th:value="${param.s_ip}">
+                </td>
+                <td>
+                    <label for="dIp">목적지 IP</label>
+                    <input type="text" id="dIp" name="d_ip" th:value="${param.d_ip}">
+                </td>
+                <td>
+                    <label for="sToPort">출발지 범위 PORT</label>
+                    <input type="text" id="sToPort" name="s_to_port" th:value="${param.s_to_port}">
+                </td>
+                <td>
+                    <label for="sPort">출발지 PORT</label>
+                    <input type="text" id="sPort" name="s_port" th:value="${param.s_port}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="dPort">목적지 PORT</label>
+                    <input type="text" id="dPort" name="d_port" th:value="${param.d_port}">
+                </td>
+	            <td>
+	                <label for="createDtFrom">생성 일자 시작</label>
+	                <input type="datetime-local" id="createDtFrom" name="create_dt_from" th:value="${param.create_dt_from}">
+	            </td>
+	            <td>
+	                <label for="createDtTo">생성 일자 종료</label>
+	                <input type="datetime-local" id="createDtTo" name="create_dt_to" th:value="${param.create_dt_to}">
+	            </td>
+	            <td>
+	                <label for="modifyDtFrom">수정 일자 시작</label>
+	                <input type="datetime-local" id="modifyDtFrom" name="modify_dt_from" th:value="${param.modify_dt_from}">
+	            </td>
+	            <td>
+	                <label for="modifyDtTo">수정 일자 종료</label>
+	                <input type="datetime-local" id="modifyDtTo" name="modify_dt_to" th:value="${param.modify_dt_to}">
+	            </td>
+                <td>
+                    <label for="actionType">동작 유형</label>
+                    <input type="text" id="actionType" name="action_type" th:value="${param.action_type}">
+                </td>
+           </tr>
+           <tr>
+                <td>
+                    <label for="policyName">정책 이름</label>
+                    <input type="text" id="policyName" name="policy_name" th:value="${param.policy_name}">
+                </td>
+                <td>
+                    <label for="policyInfo">정책 내용</label>
+                    <input type="text" id="policyInfo" name="policy_info" th:value="${param.policy_info}">
+                </td>
+                <td>
+                    <label for="baseCnt">탐지 횟수</label>
+                    <input type="text" id="baseCnt" name="base_cnt" th:value="${param.base_cnt}">
+                </td>
+                <td>
+                    <label for="baseTime">탐지 시간</label>
+                    <input type="text" id="baseTime" name="base_time" th:value="${param.base_time}">
+                </td>
+           </tr>
+           <tr>
+                <td>
+                    <label for="pattern1">패턴 1</label>
+                    <input type="text" id="pattern1" name="pattern_1" th:value="${param.pattern_1}">
+                </td>
+                <td>
+                    <label for="pattern2">패턴 2</label>
+                    <input type="text" id="pattern2" name="pattern_2" th:value="${param.pattern_2}">
+                </td>
+                <td>
+                    <label for="pattern3">패턴 3</label>
+                    <input type="text" id="pattern3" name="pattern_3" th:value="${param.pattern_3}">
+                </td>
+                <td>
+                    <label for="dangerous">위험도</label>
+                    <input type="text" id="dangerous" name="dangerous" th:value="${param.dangerous}">
+                </td>
+                <td>
+                    <input type="submit" value="검색">
+                    <a href="/listBehaviorPolicy"><input type="button" value="초기화"></a>
+                </td>
+            </tr>
+        </table>
+    </form>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>활성화 / 비활성화</th>
+                <th>패턴 정책 번호</th>
+                <th>출발지 범위 IP</th>
+                <th>출발지 IP</th>
+                <th>목적지 IP</th>
+                <th>출발지 범위 PORT</th>
+                <th>출발지 PORT</th>
+                <th>목적지 PORT</th>
+                <th>정책 생성일</th>
+                <th>정책 수정일</th>
+                <th>동작 유형</th>
+                <th>정책 이름</th>
+                <th>정책 정보</th>
+                <th>탐지 횟수</th>
+                <th>탐지 시간</th>
+                <th>패턴 1</th>
+                <th>패턴 2</th>
+                <th>패턴 3</th>
+                <th>위험도</th>
+                <th>정책 수정</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="listBehaviorPolicy : ${listBehaviorPolicy}">
+                <td>
+                    <button type="button" th:attr="onclick='clickBehaviorPolicy(' + ${listBehaviorPolicy.detection_number} + ')'">
+                        <span th:text="${listBehaviorPolicy.enable_disable} == 0 ? '활성화' : '비활성화'"></span>
+                    </button>
+                </td>
+                <td th:text="${listBehaviorPolicy.detection_number}"></td>
+                <td th:text="${listBehaviorPolicy.s_to_ip}"></td>
+                <td th:text="${listBehaviorPolicy.s_ip}"></td>
+                <td th:text="${listBehaviorPolicy.d_ip}"></td>
+                <td th:text="${listBehaviorPolicy.s_to_port}"></td>
+                <td th:text="${listBehaviorPolicy.s_port}"></td>
+                <td th:text="${listBehaviorPolicy.d_port}"></td>
+                <td th:text="${listBehaviorPolicy.create_dt}"></td>
+                <td th:text="${listBehaviorPolicy.modify_dt}"></td>
+                <td th:text="${listBehaviorPolicy.action_type}"></td>
+                <td th:text="${listBehaviorPolicy.policy_name}"></td>
+                <td th:text="${listBehaviorPolicy.policy_info}"></td>
+                <td th:text="${listBehaviorPolicy.base_cnt}"></td>
+                <td th:text="${listBehaviorPolicy.base_time}"></td>
+                <td th:text="${listBehaviorPolicy.pattern_1}"></td>
+                <td th:text="${listBehaviorPolicy.pattern_2}"></td>
+                <td th:text="${listBehaviorPolicy.pattern_3}"></td>
+                <td th:text="${listBehaviorPolicy.dangerous}"></td>
+                <td>
+                    <form action="/updateBehaviorPolicy" method="get">
+                        <input type="hidden" name="detection_number" th:value="${listBehaviorPolicy.detection_number}">
+                        <input type="submit" value="수정">
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function clickBehaviorPolicy(detectionNumber) {
+            $.ajax({
+                type: 'POST',
+                url: '/clickBehaviorPolicy',
+                contentType: 'application/json',
+                data: JSON.stringify({ detection_number: detectionNumber }),
+                success: function (data) {
+                    if (data) {
+                        // 성공적으로 요청이 완료되었음을 알리는 로직
+                        location.reload(); // 페이지를 새로고침하여 변경된 내용을 반영합니다.
+                    } else {
+                        // 실패할 경우 로직
+                        alert('문제가 발생했습니다.');
+                    }
+                },
+                error: function (error) {
+                    console.error('Error:', error);
+                    alert('문제가 발생했습니다.');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
