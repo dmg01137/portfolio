@@ -16,7 +16,9 @@ import com.example.demo.dto.log.DangerousLog;
 public class DangerousLogService {
 
     private final DangerousLogDAO dangerousLogDAO;
-
+    LocalDate currentDate = LocalDate.now();
+    String tableName = currentDate.toString().replace("-", "");
+    
     @Autowired
     public DangerousLogService(DangerousLogDAO dangerousLogDAO) {
         this.dangerousLogDAO = dangerousLogDAO;

@@ -125,14 +125,12 @@
             background-color: #dae1e7; /* 짝수 행 배경색 */
         }
 
-        .searchContainer {
+       .searchContainer {
             text-align: center;
             margin-top: 20px;
             margin-right: 100px;
         }
         
-        
-
         .searchForm {
             display: flex;
             flex-wrap: wrap;
@@ -142,10 +140,16 @@
             margin-left: 5px;
             width: 900px;
         }
+/* Add this CSS to center-align the buttons */
+.searchFormButtons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; /* Adjust this margin as needed */
+}
 
         .searchForm .searchInput {
-            margin-bottom: 0px; /* 입력 창 아래 간격을 0px로 조정 */
-           font-size: 0.7rem;
+            margin-bottom: 10px; /* 입력 창 아래 간격을 10px로 조정 */
+            font-size: 0.7rem;
         }
 
         /* Clear 버튼 스타일 */
@@ -153,10 +157,23 @@
             background-color: #8a8888;
             color: #fff;
             border: none;
+            margin-top: 10px; /* Clear 버튼 위 간격 추가 */
         }
 
         .searchForm .btn-secondary:hover {
             background-color: #656565;
+        }
+
+        /* Search 버튼 스타일 */
+        .searchForm .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            margin-top: 10px; /* Search 버튼 위 간격 추가 */
+        }
+
+        .searchForm .btn-primary:hover {
+            background-color: #0069d9;
         }
 
         /* Search 버튼 스타일 */
@@ -217,74 +234,70 @@
 
 <div class="container">
     <div class="searchContainer">
-        <h3 style="text-align: center; margin-top: 20px; margin-left:40px ">행동 로그</h3>
- <form class="searchForm" id="searchForm1" action="/behaviorlog/multipleSearch" method="get">
+        <h3 style="text-align: center; margin-top: 20px;">행동 로그</h3>
+       <form class="searchForm" id="searchForm1" action="/behaviorlog/multipleSearch" method="get">
+
+            <!-- Search input fields -->
+            <div style="flex: 1;">
+                <input type="text" name="time" class="form-control searchInput" placeholder="탐지시간(yyyyMMdd)">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" name="id" class="form-control searchInput" placeholder="번호">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" name="s_ip" class="form-control searchInput" placeholder="출발지IP">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" name="s_port" class="form-control searchInput" placeholder="출발지PORT">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" name="d_ip" class="form-control searchInput" placeholder="도착지IP">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" name="d_port" class="form-control searchInput" placeholder="도착지PORT">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" name="action_type" class="form-control searchInput" placeholder="액션타입">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" name="len" class="form-control searchInput" placeholder="패턴 길이">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" name="base_cnt" class="form-control searchInput" placeholder="base_cnt">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" name="base_time" class="form-control searchInput" placeholder="base_time">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" name="policy_name" class="form-control searchInput" placeholder="policy_name">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" name="pattern1" class="form-control searchInput" placeholder="패턴1">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" name="pattern2" class="form-control searchInput" placeholder="패턴2">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" name="pattern3" class="form-control searchInput" placeholder="패턴3">
+            </div>
+            <div style="flex: 1;">
+                <input type="text" name="packet" class="form-control searchInput" placeholder="패킷">
+            </div>
+          <!-- Inside your form, wrap the buttons in a div and add a class for styling -->
+
+
+ 
+        <div class="searchFormButtons">
     <div style="flex: 1;">
-        <input type="text" name="tableName" id="tableName" class="form-control searchInput" placeholder="테이블 이름 (yyyyMMdd)">
+        <button type="submit" id="searchButton2" class="btn btn-primary">Search</button>
+  
+        <button type="button" id="clearButton" class="btn btn-secondary">Clear</button>
     </div>
-    <button type="submit" id="searchTableButton" class="btn btn-primary">테이블 검색</button>
-</form>
-
-
-            <form class="searchForm" id="searchForm2">
-
-            <div style="flex: 1;">
-                <input type="text" id="id" class="form-control searchInput" placeholder="번호">
-            </div>
-            <div style="flex: 1;">
-                <input type="text" id="time" class="form-control searchInput" placeholder="탐지시간">
-            </div>
-            <div style="flex: 1;">
-                <input type="text" id="s_ip" class="form-control searchInput" placeholder="출발지IP">
-            </div>
-            <div style="flex: 1;">
-                <input type="text" id="s_port" class="form-control searchInput" placeholder="출발지PORT">
-            </div>
-            <div style="flex: 1;">
-                <input type="text" id="d_ip" class="form-control searchInput" placeholder="도착지IP">
-            </div>
-            <div style="flex: 1;">
-                <input type="text" id="d_port" class="form-control searchInput" placeholder="도착지PORT">
-            </div>
-            <div style="flex: 1;">
-                <input type="text" id="action_type" class="form-control searchInput" placeholder="액션타입">
-           </div>
-               </form>
-               <form class="searchForm" id="searchForm3">
-           
-            <div style="flex: 1;">
-                <input type="text" id="len" class="form-control searchInput" placeholder="패턴 길이">
-            </div>
-            <div style="flex: 1;">
-                <input type="text" id="base_cnt" class="form-control searchInput" placeholder="base_cnt">
-            </div>
-            <div style="flex: 1;">
-                <input type="text" id="base_time" class="form-control searchInput" placeholder="base_time">
-            </div>
-             <div style="flex: 1;">
-                <input type="text" id="policy_name" class="form-control searchInput" placeholder="policy_name">
-            </div>
-      
-       
-            <div style="flex: 1;">
-                <input type="text" id="spattern1" class="form-control searchInput" placeholder="패턴1">
-            </div>
-            <div style="flex: 1;">
-                <input type="text" id="pattern2" class="form-control searchInput" placeholder="패턴2">
-            </div>
-            <div style="flex: 1;">
-                <input type="text" id="pattern3" class="form-control searchInput" placeholder="패턴3">
-            </div>
-            <div style="flex: 1;">
-                <input type="text" id="packet" class="form-control searchInput" placeholder="패킷">
-              </div>
-     
-      </form>
-        <div class="searchButtons">
-            <button id="searchButton" class="btn btn-primary">Search</button>
-            <button id="clearButton" class="btn btn-secondary">Clear</button>
-        </div>
+    
+</div>
+       </form>
     </div>
+
     
   <div style="overflow-x: auto;">
         <table id="logTable" class="table">
@@ -328,29 +341,26 @@
 <script>
 $(document).ready(function () {
     let currentPage = 1;
-    let logsPerPage = 10; // Number of logs per page
+    let logsPerPage = 10; // 페이지당 표시할 로그 수
     let totalLogs = 0;
     let logsData = [];
 
-    var now = new Date();
-    var year = now.getFullYear();
-    var month = (now.getMonth() + 1).toString().padStart(2, '0');
-    var day = now.getDate().toString().padStart(2, '0');
-    var today = year + month + day;
-    $('#tableName').val(today);
-    fetchAndDisplayLogs();
-
+    // 로그를 가져와서 표시하는 함수
     function fetchAndDisplayLogs() {
         $.get("/api/behaviorlogs", function (data) {
             logsData = data;
             totalLogs = logsData.length;
             displayLogs();
             renderPagination();
-        }).fail(function() {
+        }).fail(function () {
             console.error("데이터 가져오기 실패.");
         });
     }
 
+    // 초기 데이터 가져오기 및 표시
+    fetchAndDisplayLogs();
+
+    // 테이블에 로그를 표시하는 함수
     function displayLogs() {
         let startIndex = (currentPage - 1) * logsPerPage;
         let endIndex = startIndex + logsPerPage;
@@ -381,57 +391,26 @@ $(document).ready(function () {
         });
     }
 
-    $('#searchForm1').submit(function (event) {
-        event.preventDefault();
-
-        let tableName = $('#tableName').val().trim();
-
-        $.get('/behaviorlog/multipleSearch?tableName=' + tableName, function (data) {
-            logsData = data;
-            totalLogs = logsData.length;
-            currentPage = 1;
-            displayLogs();
-            renderPagination();
-        }).fail(function () {
-            console.error('데이터 가져오기 실패.');
-        });
-    });
-
-    $('#clearButton').click(function () {
-    	 $('#searchForm1').trigger('reset'); // Reset searchForm1
-        $('#searchForm2').trigger('reset'); // Reset searchForm1
-        $('#searchForm3').trigger('reset'); // Reset searchForm2
-        fetchAndDisplayLogs(); // Fetch and display initial data
-    });
-    // Search 버튼 클릭 시 검색 수행
-    $('#searchButton').click(function () {
-        handleSearch(); // handleSearch 함수 호출
-    });
-
-    // 페이지네이션 버튼 렌더링 함수
+    // 페이지네이션 버튼을 렌더링하는 함수
     function renderPagination() {
         let totalPages = Math.ceil(totalLogs / logsPerPage);
         let paginationHTML = "";
 
-        // Calculate start and end page numbers for display
-        let startPage = Math.max(1, currentPage - 2);
-        let endPage = Math.min(totalPages, startPage + 4);
-
-        // Previous 버튼
+        // 이전 버튼
         paginationHTML += `<li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
                             <a class="page-link" href="#" aria-label="Previous" onclick="changePage(${currentPage - 1})">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                           </li>`;
 
-        // 페이지 버튼들
-        for (let i = startPage; i <= endPage; i++) {
+        // 페이지 버튼
+        for (let i = 1; i <= totalPages; i++) {
             paginationHTML += `<li class="page-item ${currentPage === i ? 'active' : ''}">
                                 <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
                               </li>`;
         }
 
-        // Next 버튼
+        // 다음 버튼
         paginationHTML += `<li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
                             <a class="page-link" href="#" aria-label="Next" onclick="changePage(${currentPage + 1})">
                                 <span aria-hidden="true">&raquo;</span>
@@ -441,7 +420,7 @@ $(document).ready(function () {
         $("#pagination").html(paginationHTML);
     }
 
-    // 페이지 변경 함수
+    // 현재 페이지를 변경하는 함수
     window.changePage = function (page) {
         if (page < 1 || page > Math.ceil(totalLogs / logsPerPage)) {
             return;
@@ -451,58 +430,54 @@ $(document).ready(function () {
         renderPagination();
     };
 
-    $("#searchTableButton").click(function (e) {
-        e.preventDefault();
+    // 검색 폼 제출 이벤트 리스너
+    $('#searchForm1').submit(function (event) {
+        event.preventDefault();
 
-        let tableName = $("#tableName").val().trim();
-        let currentDate = getCurrentDate(); // 현재 날짜를 가져오는 함수 호출
+        // 폼 데이터 가져오기
+        let formData = $(this).serialize();
 
-        // tableName이 비어있으면 현재 날짜를 기본값으로 설정
-        if (tableName === '') {
-            tableName = currentDate;
-        }
-
-        $.get("/behaviorlog/multipleSearch?tableName=" + tableName, function (data) {
+        // 검색을 위한 AJAX 요청 수행
+        $.get('/behaviorlog/multipleSearch?' + formData, function (data) {
             logsData = data;
             totalLogs = logsData.length;
             currentPage = 1;
             displayLogs();
             renderPagination();
         }).fail(function () {
-            console.error("검색 실패.");
+            console.error('검색 실패.');
         });
     });
 
-    function getCurrentDate() {
-        let now = new Date();
-        let year = now.getFullYear();
-        let month = ('0' + (now.getMonth() + 1)).slice(-2); // 월을 두 자리 숫자로
-        let day = ('0' + now.getDate()).slice(-2); // 일을 두 자리 숫자로
-
-        return year + month + day;
-    }
-
-    // Function to handle search
-       function handleSearch() {
+    // 클리어 버튼 기능
+    $('#clearButton').click(function (event) {
+        event.preventDefault(); // 기본 폼 제출 동작 방지
+        $('#searchForm1')[0].reset(); // JavaScript를 사용하여 폼 재설정
+        $('#searchForm3')[0].reset(); // JavaScript를 사용하여 폼 재설정
+        fetchAndDisplayLogs(); // 폼을 지운 후 로그 다시 불러오기
+    });
+    
+    function handleSearch() {
         let searchParams = {
-            id: $("#id").val(),
-            time: $("#time").val(),
-            s_ip: $("#s_ip").val(),
-            s_port: $("#s_port").val(),
-            d_ip: $("#d_ip").val(),
-            d_port: $("#d_port").val(),
-            action_type: $("#action_type").val(),
-            len: $("#len").val(),
-            base_cnt: $("#base_cnt").val(),
-            base_time: $("#base_time").val(),
-            policy_name: $("#policy_name").val(),
-            pattern1: $("#pattern1").val(),
-            pattern2: $("#pattern2").val(),
-            pattern3: $("#pattern3").val(),
-            packet: $("#packet").val()
+        		"tableName": $("#tableName").val().trim(),
+            "id": $("#id").val().trim(),
+            "time": $("#time").val().trim(),
+            "s_ip": $("#s_ip").val().trim(),
+            "s_port": $("#s_port").val().trim(),
+            "d_ip": $("#d_ip").val().trim(),
+            "d_port": $("#d_port").val().trim(),
+            "action_type": $("#action_type").val().trim(),
+            "len": $("#len").val().trim(),
+            "base_cnt": $("#base_cnt").val().trim(),
+            "base_time": $("#base_time").val().trim(),
+            "policy_name": $("#policy_name").val().trim(),
+            "pattern1": $("#pattern1").val().trim(),
+            "pattern2": $("#pattern2").val().trim(),
+            "pattern3": $("#pattern3").val().trim(),
+            "packet": $("#packet").val().trim()
         };
 
-        let queryString = $.param(searchParams);
+        let queryString = $.param(searchParams); // Convert params to query string
 
         $.get("/behaviorlog/multipleSearch?" + queryString, function (data) {
             logsData = data;
@@ -514,10 +489,10 @@ $(document).ready(function () {
             console.error("Failed to search data.");
         });
     }
+
+
 });
-
 </script>
-
 
 </body>
 </html>

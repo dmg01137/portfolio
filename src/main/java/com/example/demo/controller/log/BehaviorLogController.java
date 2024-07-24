@@ -1,6 +1,7 @@
 package com.example.demo.controller.log;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,6 +54,7 @@ public class BehaviorLogController {
     // 특정 매개변수로 검색하는 기능 (BehaviorLog 검색)
     @GetMapping("/behaviorlog/search")
     public String searchBehaviorLogs(
+    		 @RequestParam(name = "tableName", required = false) LocalDateTime tableName,
             @RequestParam(name = "id", required = false) Integer id,
             @RequestParam(name = "time", required = false) LocalDateTime time,
             @RequestParam(name = "s_ip", required = false) String s_ip,
@@ -84,22 +86,28 @@ public class BehaviorLogController {
     }
 
     // 다중 조건으로 위험 로그 조회 (DB에서 처리)
+
+    // 다중 검색 기능 API 엔드포인트
     @GetMapping("/behaviorlog/multipleSearch")
+    @ResponseBody
     public ResponseEntity<List<BehaviorLog>> searchBehaviorLogsFromDB(@RequestParam Map<String, String> params) {
         try {
-            // 파라미터에서 빈 값을 제외하고 유효한 검색 조건만 처리
             Map<String, Object> searchParams = new HashMap<>();
             for (Map.Entry<String, String> entry : params.entrySet()) {
                 if (!entry.getValue().isEmpty()) {
+                    // 각 파라미터의 값이 비어 있지 않으면 매핑 추가
                     searchParams.put(entry.getKey(), entry.getValue());
                 }
             }
 
-            List<BehaviorLog> behaviorLogs = behaviorLogService.findByMultipleCriteria(searchParams);
+            // BehaviorLogService를 이용하여 검색
+            List<BehaviorLog> behaviorLogs = behaviorLogService.findByMultipleCriteria(params);
             return ResponseEntity.ok(behaviorLogs);
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    
     }
+
 }

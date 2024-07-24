@@ -25,6 +25,7 @@ public class BehaviorPolicyController
     public BehaviorPolicyController(BehaviorPolicyService behaviorPolicyService)
     {
         this.behaviorPolicyService = behaviorPolicyService;
+        System.out.println("잠시 Git 테스트 좀 할께");
     }
     
     
