@@ -27,4 +27,6 @@ public interface DangerousLogDAO {
 
     // Search logs by multiple criteria with pagination
     List<DangerousLog> findByMultipleCriteria(@Param("tableName") String tableName, @Param("criteria") Map<String, Object> criteria);
+
+
 }

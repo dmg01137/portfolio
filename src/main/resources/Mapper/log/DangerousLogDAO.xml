@@ -46,6 +46,24 @@
 </select>
 
     
-   
+    <!-- 다중 검색 기능을 위한 패턴 로그 조회 -->
+<select id="date"  resultMap="dangerousLogResultMap" parameterType="map">
+
+    SELECT *
+    FROM log_db.${tableName}
+    WHERE 1=1
+   <if test="criteria.dangerous_number != null">
+        AND dangerous_number LIKE CONCAT('%', #{criteria.dangerous_number}, '%')
+    </if>
+    <if test="criteria.ip != null and criteria.ip != ''">
+        AND ip LIKE CONCAT('%', #{criteria.ip}, '%')
+    </if>
+    <if test="criteria.port != null">
+        AND port LIKE CONCAT('%', #{criteria.port}, '%')
+    </if>
+    <if test="criteria.policy_name != null">
+        AND policy_name LIKE CONCAT('%', #{criteria.policy_name}, '%')
+    </if>
+</select>
 
 </mapper>
