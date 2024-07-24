@@ -96,16 +96,18 @@ public class PatternDetectionController {
 
     // 수정
 
-    @GetMapping("/modifypolicy/{detection_number}")
-    public String showModifyPatternForm(@PathVariable Long detection_number, Model model) {
-        PatternDetection patternDetection = patternDetectionService.getAllPatternDetections().stream()
-                .filter(pd -> pd.getDetection_number().equals(detection_number))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Invalid detection number: " + detection_number));
-
-        model.addAttribute("patternDetection", patternDetection);
-        return "modifypolicy"; // modifypolicy.html 템플릿을 반환
-    }
+	/*
+	 * @GetMapping("/modifypolicy/{detection_number}") public String
+	 * showModifyPatternForm(@PathVariable Long detection_number, Model model) {
+	 * PatternDetection patternDetection =
+	 * patternDetectionService.getAllPatternDetections().stream() .filter(pd ->
+	 * pd.getDetection_number().equals(detection_number)) .findFirst()
+	 * .orElseThrow(() -> new IllegalArgumentException("Invalid detection number: "
+	 * + detection_number));
+	 * 
+	 * model.addAttribute("patternDetection", patternDetection); return
+	 * "modifypolicy"; // modifypolicy.html 템플릿을 반환 }
+	 */
 
     @PostMapping("/modifypolicy")
     public String modifyPattern(@ModelAttribute("patternDetection") PatternDetection patternDetection) {
@@ -124,16 +126,18 @@ public class PatternDetectionController {
 
     // 삭제
 
-    @GetMapping("/deletepolicy/{detection_number}")
-    public String showDeletePatternForm(@PathVariable Long detection_number, Model model) {
-        PatternDetection patternDetection = patternDetectionService.getAllPatternDetections().stream()
-                .filter(pd -> pd.getDetection_number().equals(detection_number))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Invalid detection number: " + detection_number));
-
-        model.addAttribute("patternDetection", patternDetection);
-        return "deletepolicy"; // deletepolicy.html 템플릿을 반환
-    }
+	/*
+	 * @GetMapping("/deletepolicy/{detection_number}") public String
+	 * showDeletePatternForm(@PathVariable Long detection_number, Model model) {
+	 * PatternDetection patternDetection =
+	 * patternDetectionService.getAllPatternDetections().stream() .filter(pd ->
+	 * pd.getDetection_number().equals(detection_number)) .findFirst()
+	 * .orElseThrow(() -> new IllegalArgumentException("Invalid detection number: "
+	 * + detection_number));
+	 * 
+	 * model.addAttribute("patternDetection", patternDetection); return
+	 * "deletepolicy"; // deletepolicy.html 템플릿을 반환 }
+	 */
 
     @PostMapping("/deletepolicy")
     public String deletePattern(@ModelAttribute("patternDetection") PatternDetection patternDetection) {
