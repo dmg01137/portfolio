@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.dao.log.DangerousLogDAO;
 import com.example.demo.dto.log.DangerousLog;
-import com.example.demo.dto.log.PatternLog;
 
 @Service
 @Transactional

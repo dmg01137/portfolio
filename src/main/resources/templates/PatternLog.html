@@ -333,6 +333,7 @@ $(document).ready(function () {
 
         displayedLogs.forEach(function (log) {
             let encodedPacket = encodeURIComponent(log.packet);
+            
             $("#logTableBody").append(
                 `<tr>
                     <td>${log.id}</td>

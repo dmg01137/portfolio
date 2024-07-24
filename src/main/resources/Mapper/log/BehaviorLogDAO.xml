@@ -40,10 +40,7 @@
     SELECT *
     FROM log_db.${tableName}
     WHERE 1=1
-        <!-- Date 검색 조건 -->
-        <if test="criteria.date != null and criteria.date != ''">
-            AND date_format(time, '%Y%m%d') = #{criteria.date}
-        </if>
+   
    
         <!-- ID 검색 조건 -->
         <if test="criteria.id != null and criteria.id != ''">
@@ -116,10 +113,7 @@
     FROM log_db.${tableName}
     WHERE 1=1
  <!-- Date 검색 조건 -->
-        <if test="criteria.date != null and criteria.date != ''">
-            AND date_format(time, '%Y%m%d') = #{criteria.date}
-        </if>
-   
+    
         <!-- ID 검색 조건 -->
         <if test="criteria.id != null and criteria.id != ''">
             AND id LIKE CONCAT('%', #{criteria.id}, '%')

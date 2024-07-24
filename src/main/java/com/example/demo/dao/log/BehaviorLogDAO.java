@@ -8,7 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.example.demo.dto.log.BehaviorLog;
-import com.example.demo.dto.log.PatternLog;
 
 @Mapper
 public interface BehaviorLogDAO {
@@ -21,6 +20,23 @@ public interface BehaviorLogDAO {
 
    
 
+    // Search logs by specific criteria
+    List<BehaviorLog> search(  @Param("id") Integer id,
+    	    @Param("time") LocalDateTime time,
+    	    @Param("s_ip")String s_ip,
+    	    @Param("d_ip") String d_ip,
+    	    @Param("s_port") Integer s_port,
+    	    @Param("d_port")  Integer d_port,
+    	    @Param("action_type") Integer action_type,
+    	    @Param("len") Integer len,
+    	    @Param("base_cnt")Integer base_cnt,
+    	    @Param("base_time")  Integer base_time,
+    	    @Param("pattern1") String pattern1,
+    	    @Param("pattern2") String pattern2,
+    	    @Param("pattern3") String pattern3,
+    	    @Param("packet")  byte[] packet,
+    	    @Param("policy_name") String policy_name);
+    
     // 다중 조건으로 패턴 로그 조회
-    List<BehaviorLog> findByMultipleCriteria(@Param("tableName") String tableName, @Param("criteria") Map<String, Object> criteria);
+    List<BehaviorLog>  findByMultipleCriteria(@Param("tableName") String tableName, @Param("criteria") Map<String, Object> criteria);
 }

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.demo.dto.log.BehaviorLog;
 import com.example.demo.service.log.BehaviorLogService;
 
-@Controller("/api/behaviorlogs")
+@Controller
 public class BehaviorLogController {
 
     @Autowired
@@ -100,4 +100,5 @@ public class BehaviorLogController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
 }

@@ -3,7 +3,6 @@ package com.example.demo.service.log;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.dao.log.BehaviorLogDAO;
 import com.example.demo.dto.log.BehaviorLog;
-import com.example.demo.dto.log.PatternLog;
 
 @Service
 @Transactional
@@ -21,7 +19,9 @@ public class BehaviorLogService {
 
     @Autowired
     private BehaviorLogDAO behaviorLogDAO;
-
+    LocalDate currentDate = LocalDate.now();
+    String tableName = currentDate.toString().replace("-", "");
+    
     public List<BehaviorLog> findAll(String tableName) {
         if (tableName == null) {
             tableName = "behavior_log_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
@@ -36,17 +36,7 @@ public class BehaviorLogService {
     }
 
    
-   
-
-    private Map<String, Object> convertCriteriaToMap(Map<String, String> criteria) {
-        Map<String, Object> searchParams = new HashMap<>();
-        for (Map.Entry<String, String> entry : criteria.entrySet()) {
-            if (entry.getValue() != null && !entry.getValue().isEmpty()) {
-                searchParams.put(entry.getKey(), entry.getValue());
-            }
-        }
-        return searchParams;
-    }
+ 
 
 	public List<BehaviorLog> search(Integer id, LocalDateTime time, String s_ip, String d_ip, Integer s_port,
 			Integer d_port, Integer action_type, Integer len, Integer base_cnt, Integer base_time, String pattern1,
