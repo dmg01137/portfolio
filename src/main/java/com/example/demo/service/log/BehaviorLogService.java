@@ -25,53 +25,43 @@ public class BehaviorLogService {
         return behaviorLogDAO.findById(id, tableName);
     }
 
- // 모든 행동 로그 리스트를 조회합니다.
+    // 모든 행동 로그 리스트를 조회합니다.
     public List<BehaviorLog> findAll(String tableName) {
-        String tableName1;
         if (tableName == null) {
-            tableName1 = "behavior_log_" + LocalDate.now().toString().replace("-", "");
-        } else {
-            tableName1 = tableName;
+            tableName = "behavior_log_" + LocalDate.now().toString().replace("-", "");
         }
-        return behaviorLogDAO.findAll(tableName1);
+        return behaviorLogDAO.findAll(tableName);
     }
-
-
-  
 
     // Top 5 s_ip 값 조회
     @Transactional(readOnly = true)
     public List<Map<String, Object>> findTopSIPs() {
-        // 테이블 이름 설정
         String tableName = "behavior_log_" + LocalDate.now().toString().replace("-", "");
         return behaviorLogDAO.findTopSIPs(tableName);
     }
 
     // 특정 매개변수로 행동 로그 검색
     public List<BehaviorLog> search(Integer id, LocalDateTime time, String s_ip, String d_ip, Integer s_port,
-			Integer d_port, Integer action_type, Integer len, Integer base_cnt, Integer base_time, String pattern1,
-			String pattern2, String pattern3, byte[] packet, String policy_name) {
-        // 테이블 이름 설정
+                                    Integer d_port, Integer action_type, Integer len, Integer base_cnt, Integer base_time,
+                                    String pattern1, String pattern2, String pattern3, byte[] packet, String policy_name) {
         String tableName = "behavior_log_" + LocalDate.now().toString().replace("-", "");
-        return behaviorLogDAO.search(tableName, buildSearchParams(id, time, s_ip, d_ip, s_port, d_port, action_type, len, base_cnt, base_time, pattern1, pattern2, pattern3, packet,policy_name));
+        return behaviorLogDAO.search(tableName, buildSearchParams(id, time, s_ip, d_ip, s_port, d_port, action_type,
+                len, base_cnt, base_time, pattern1, pattern2, pattern3, packet, policy_name));
     }
 
- 
-
-	// 다중 검색 조건을 처리하며 페이지네이션 기능이 포함된 검색
+    // 다중 검색 조건을 처리하며 페이지네이션 기능이 포함된 검색
     @Transactional(readOnly = true)
-    public List<BehaviorLog> findByMultipleCriteria(Map<String, Object> criteria) {
-        // 테이블 이름 설정
+    public List<BehaviorLog> findByMultipleCriteria(Map<String, String> criteria) {
         String tableName = "behavior_log_" + LocalDate.now().toString().replace("-", "");
-        return behaviorLogDAO.findByMultipleCriteria(tableName, criteria);
+        Map<String, Object> searchParams = convertCriteriaToMap(criteria);
+        return behaviorLogDAO.findByMultipleCriteria(tableName, searchParams);
     }
 
- // 검색 파라미터에서 빈 값을 제외한 맵을 구성합니다.
+    // 검색 파라미터에서 빈 값을 제외한 맵을 구성합니다.
     private Map<String, Object> buildSearchParams(Integer id, LocalDateTime time, String s_ip, String d_ip,
                                                   Integer s_port, Integer d_port, Integer action_type, Integer len,
                                                   Integer base_cnt, Integer base_time, String pattern1, String pattern2,
                                                   String pattern3, byte[] packet, String policy_name) {
-        // 생성된 검색 맵을 초기화합니다.
         Map<String, Object> searchParams = new HashMap<>();
         if (id != null) {
             searchParams.put("id", id);
@@ -121,5 +111,14 @@ public class BehaviorLogService {
         return searchParams;
     }
 
-	
+    // Map<String, String> 형태의 검색 조건을 Map<String, Object>로 변환합니다.
+    private Map<String, Object> convertCriteriaToMap(Map<String, String> criteria) {
+        Map<String, Object> searchParams = new HashMap<>();
+        for (Map.Entry<String, String> entry : criteria.entrySet()) {
+            if (entry.getValue() != null && !entry.getValue().isEmpty()) {
+                searchParams.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return searchParams;
+    }
 }

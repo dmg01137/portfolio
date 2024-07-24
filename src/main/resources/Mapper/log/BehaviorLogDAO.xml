@@ -35,13 +35,15 @@
     </select>
 
     <!-- 다중 검색 기능을 위한 패턴 로그 조회 -->
-   <select id="findByMultipleCriteria" resultMap="behaviorLogResultMap" parameterType="map">
+  <select id="findByMultipleCriteria" resultMap="behaviorLogResultMap" parameterType="map">
+   <foreach collection="tableNames" item="tableName" separator=" UNION ">
     SELECT *
     FROM log_db.${tableName}
     WHERE 1=1
-       <if test="criteria.time != null">
-        AND time = #{criteria.time}
-    </if>
+    <!-- tableName 조건 -->
+    <if test="criteria.tableName != null and criteria.tableName == tableName">
+        AND tableName = #{criteria.tableName}
+        </if>
         <!-- ID 검색 조건 -->
         <if test="criteria.id != null">
             AND id LIKE CONCAT('%', #{criteria.id}, '%')
@@ -70,7 +72,7 @@
         <if test="criteria.len != null">
             AND len  LIKE CONCAT('%', #{criteria.len}, '%')
         </if>
-          <!-- 길이 검색 조건 -->
+        <!-- 길이 검색 조건 -->
         <if test="criteria.policy_name != null">
             AND policy_name  LIKE CONCAT('%', #{criteria.policy_name}, '%')
         </if>
@@ -102,7 +104,9 @@
         <if test="criteria.action_type != null and criteria.action_type != ''">
             AND action_type LIKE CONCAT('%', #{criteria.action_type}, '%')
         </if>
-    </select>
+    </foreach>
+</select>
+
 
     <!-- Top 5 s_ip 값 조회 -->
     <select id="findTopSIPs" resultType="java.util.Map">

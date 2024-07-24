@@ -43,7 +43,6 @@ public interface BehaviorLogDAO {
     
     // 다중 조건으로 행동 로그 조회
     List<BehaviorLog> findByMultipleCriteria(@Param("tableName") String tableName, @Param("criteria") Map<String, Object> criteria);
-
     
 
 
