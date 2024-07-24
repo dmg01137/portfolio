@@ -34,7 +34,7 @@ public class BehaviorLogService {
         return behaviorLogDAO.findTopSIPs(" behavior_log_" + LocalDate.now().toString().replace("-", ""));
     }
 
-    public List<BehaviorLog> search(LocalDateTime date, Integer id, LocalDateTime time, String s_ip, String d_ip,
+    public List<BehaviorLog> search(LocalDate date, Integer id, LocalDateTime time, String s_ip, String d_ip,
                                     Integer s_port, Integer d_port, Integer action_type, Integer len, Integer base_cnt,
                                     Integer base_time, String pattern1, String pattern2, String pattern3,
                                     String packet, String tableName) {

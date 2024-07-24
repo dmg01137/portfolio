@@ -366,6 +366,9 @@ $(document).ready(function () {
 
     // Function to fetch and display filtered logs
     function fetchAndDisplayFilteredLogs() {
+    	
+    	console.log("fetchAndDisplayFilteredLogs");
+    	
         let searchParams = {
             date: $("#date").val(),
             id: $("#id").val(),
@@ -383,13 +386,19 @@ $(document).ready(function () {
             pattern3: $("#pattern3").val(),
             packet: $("#packet").val()
         };
+        
+        console.log("filter");
 
         // Remove empty fields from searchParams
         Object.keys(searchParams).forEach(key => searchParams[key] === "" && delete searchParams[key]);
+        
+        console.log("searchParams setting");
 
         // AJAX request with additional searchParams
-        $.get("/api/behaviorlogs/search", searchParams, function (data) {
-            logsData = data;
+        $.get("/behaviorlogs/search", searchParams, function (data, status) {
+        	
+            console.log("success 라고???" + status);
+        	logsData = data;
             totalLogs = logsData.length;
             currentPage = 1; // Reset to first page
             displayLogs();
@@ -401,6 +410,7 @@ $(document).ready(function () {
 
     // Event listener for Search button
     $("#searchButton").click(function () {
+    	console.log("searchButton Click"); // srlee
         fetchAndDisplayFilteredLogs();
     });
 

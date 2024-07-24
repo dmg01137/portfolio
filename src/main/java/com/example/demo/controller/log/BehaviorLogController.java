@@ -1,5 +1,6 @@
 package com.example.demo.controller.log;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -25,21 +26,12 @@ public class BehaviorLogController {
 
     @GetMapping("/behaviorlog")
     public String showBehaviorLogPage(Model model) {
+    	System.out.println("showBehaviorLogPage");
         List<BehaviorLog> logs = behaviorLogService.findAll(getTableName());
         model.addAttribute("logs", logs);
         return "behaviorlog";
     }
-    // Top 5 s_ip 값 조회 API
-    @GetMapping("/behaviorlog/top-sips")
-    @ResponseBody
-    public ResponseEntity<List<Map<String, Object>>> getTopSIPs() {
-        try {
-            List<Map<String, Object>> topSIPs = behaviorLogService.findTopSIPs();
-            return ResponseEntity.ok(topSIPs);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
+
     @GetMapping("/api/behaviorlogs")
     @ResponseBody
     public ResponseEntity<List<BehaviorLog>> getAllBehaviorLogs() {
@@ -47,9 +39,9 @@ public class BehaviorLogController {
         return ResponseEntity.ok(logs);
     }
 
-    @GetMapping("/behaviorlog/search")
+    @GetMapping("/behaviorlogs/search")
     public String searchBehaviorLogs(
-            @RequestParam(name = "date", required = false) LocalDateTime date,
+            @RequestParam(name = "date", required = false) LocalDate date,
             @RequestParam(name = "id", required = false) Integer id,
             @RequestParam(name = "time", required = false) LocalDateTime time,
             @RequestParam(name = "s_ip", required = false) String s_ip,
@@ -66,9 +58,12 @@ public class BehaviorLogController {
             @RequestParam(name = "packet", required = false) String packet,
             Model model) {
         try {
+        	
+        	System.out.println("searchBehaviorLogs");
             List<BehaviorLog> logs = behaviorLogService.search(date, id, time, s_ip, d_ip, s_port, d_port, action_type,
                     len, base_cnt, base_time, pattern1, pattern2, pattern3, packet, getTableName());
             model.addAttribute("logs", logs);
+            System.out.println("???");
             return "behaviorlog";
         } catch (Exception e) {
             e.printStackTrace();
