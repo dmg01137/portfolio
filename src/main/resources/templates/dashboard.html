@@ -56,7 +56,7 @@
             padding-top: 20px;
             transition: all 0.3s ease;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-            overflow-y: auto; /* 세로 스크롤을 추가합니다. */
+           
             height: 100vh; /* 뷰포트 높이에 맞추어 조정 */
         }
 
@@ -82,8 +82,8 @@
             margin-left: 220px; /* Adjust margin for sidebar width */
             padding: 20px;
             transition: all 0.3s ease;
-            overflow-y: auto; /* 내용이 뷰포트를 초과할 경우 스크롤 허용 */
-            height: calc(100vh - 64px); /* Adjust for the top navbar height */
+            overflow-y: hidden; /* 내용이 뷰포트를 초과할 경우 스크롤 허용 */
+            height: calc(100vh - 100px); /* Adjust for the top navbar height */
         }
 
         .chart-container {
@@ -103,99 +103,109 @@
             border-radius: 5px; /* 차트 둥근 모서리 추가 */
         }
 
+         .search-form {
+        margin-bottom: 10px;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+    }
+
+    .search-form select,
+    .search-form input[type="text"],
+    .search-form button {
+        border-radius: 3px;
+        min-width: 100px; /* Ensures the search input and buttons have a minimum width */
+    }
+
+    .search-form select {
+        flex: 1; /* Makes the select element flexible to occupy remaining space */
+        margin-right: 5px;
+    }
+
+    .search-form input[type="text"] {
+        flex: 2; /* Makes the text input flexible to occupy more space */
+        border: none;
+        padding: 8px;
+        margin-right: 5px;
+    }
+
+    .search-form button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 8px 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        border: none;
+    }
+
+    .search-form button:hover {
+        background-color: #0056b3;
+    }
+
+    .event-table {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        overflow: auto;
+        width: 100%;
+        max-width: 100%;
+        max-height: 400px;
+    }
+
+    .event-table th,
+    .event-table td {
+        text-align: center;
+        vertical-align: middle;
+        font-size: 11px;
+        white-space: nowrap; /* Prevents table content from wrapping */
+    }
+
+    .event-table thead {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .event-table tbody tr:hover {
+        background-color: #f2f2f2;
+    }
+
+    @media (max-width: 768px) {
+        .sidebar {
+            position: static;
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: none;
+            z-index: 0;
+        }
+
+        .content-area {
+            margin-left: 0;
+        }
+
         .search-form {
-            margin-bottom: 10px; /* 높이 줄임 */
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
+            flex-direction: column; /* Stacks elements vertically on small screens */
         }
 
         .search-form select,
-        .search-form input[type="text"],
-        .search-form button {
-            border-radius: 3px; /* 선택 상자와 버튼 둥근 모서리 추가 */
-        }
-
-        .search-form select {
-            width: 150px;
-            margin-right: 5px;
-        }
-
         .search-form input[type="text"] {
-            flex: 1;
-            border: none;
-            padding: 8px; /* 패딩 감소 */
-            margin-right: 5px;
+            margin-bottom: 5px;
+            width: 100%; /* Full width for input and select in small screens */
         }
 
-        .search-form button {
-            border: none;
-            background-color: #007bff;
-            color: #fff;
-            padding: 8px 16px; /* 패딩 감소 */
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+        .pagination-btns {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px; /* Adds spacing above pagination buttons */
         }
 
-        .search-form button:hover {
-            background-color: #0056b3;
+        .pagination-btns button {
+            margin: 0 5px; /* Adds space between pagination buttons */
         }
-
-     .event-table {
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    overflow: auto; /* 스크롤 추가 */
-    width: 100%; /* 테이블 너비 설정 */
-    max-width: 100%; /* 최대 너비 설정 */
-    max-height: 400px; /* 최대 높이 설정 */
-}
-
-
-    
-        .event-table td {
-            text-align: center;
-            vertical-align: middle;
-            font-size: 11px;
-        }
-        
-         .event-table th
-       {
-            text-align: center;
-            vertical-align: middle;
-            font-size: 11px;
-        }
-
-        .event-table thead {
-            background-color: #007bff;
-            color: #fff;
-        }
-
-        .event-table tbody tr:hover {
-            background-color: #f2f2f2;
-        }
-
-        @media (max-width: 768px) {
-            .sidebar {
-                position: static;
-                width: 100%;
-                margin-top: 20px; /* 작은 화면에서 네비게이션 바 위 여백 추가 */
-                box-shadow: none;
-                z-index: 0; /* 작은 화면에서도 사이드바가 네비게이션 바 뒤에 있도록 설정 */
-            }
-
-            .content-area {
-                margin-left: 0;
-            }
-        }
-
-        .bg-primary {
-            background-color: #3498db !important; /* 색상 변경 */
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg">
@@ -286,8 +296,10 @@
 								</tbody>
 							</table>
 					
-							<button class="btn btn-primary" id="loadMoreBtn"
-								onclick="loadMoreData()">next</button>
+							 <div class="pagination-btns">
+        <button class="btn btn-primary" id="previousBtn" onclick="loadPreviousData()">이전</button>
+        <button class="btn btn-primary" id="loadMoreBtn" onclick="loadMoreData()">다음</button>
+    </div>
 						</div>
 						
 					</div>
@@ -447,14 +459,34 @@
             tableBody.innerHTML += row;
         });
     }
+    function loadPreviousData() {
+        if (currentPage > 1) {
+            currentPage--;
+            var startIndex = (currentPage - 1) * rowsPerPage;
+            var endIndex = startIndex + rowsPerPage;
+            var previousPageData = eventDetailsData.slice(startIndex, endIndex);
+            populateEventDetailsTable(previousPageData);
 
- // 다음 페이지 데이터 로드
+            // Enable the "Next" button if previously disabled
+            document.getElementById('loadMoreBtn').disabled = false;
+        }
+
+        // Disable "Previous" button if on the first page
+        if (currentPage === 1) {
+            document.getElementById('previousBtn').disabled = true;
+        }
+    }
+
+    // Function to load next data
     function loadMoreData() {
         var startIndex = currentPage * rowsPerPage;
         var endIndex = startIndex + rowsPerPage;
         var nextPageData = eventDetailsData.slice(startIndex, endIndex);
         populateEventDetailsTable(nextPageData);
         currentPage++;
+
+        // Enable the "Previous" button when loading next data
+        document.getElementById('previousBtn').disabled = false;
     }
 
     // 검색 필드를 지우는 함수

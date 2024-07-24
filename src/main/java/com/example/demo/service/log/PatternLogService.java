@@ -15,7 +15,8 @@ import com.example.demo.dto.log.PatternLog;
 public class PatternLogService {
 
     private final PatternLogDAO patternLogDAO;
-
+    LocalDate currentDate = LocalDate.now();
+    String tableName = currentDate.toString().replace("-", "");
     @Autowired
     public PatternLogService(PatternLogDAO patternLogDAO) {
         this.patternLogDAO = patternLogDAO;

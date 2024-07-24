@@ -35,10 +35,13 @@
     </select>
 
     <!-- 다중 검색 기능을 위한 패턴 로그 조회 -->
-    <select id="findByMultipleCriteria" resultMap="behaviorLogResultMap" parameterType="map">
-        SELECT *
-        FROM log_db.${tableName}
-        WHERE 1=1
+   <select id="findByMultipleCriteria" resultMap="behaviorLogResultMap" parameterType="map">
+    SELECT *
+    FROM log_db.${tableName}
+    WHERE 1=1
+       <if test="criteria.time != null">
+        AND time = #{criteria.time}
+    </if>
         <!-- ID 검색 조건 -->
         <if test="criteria.id != null">
             AND id LIKE CONCAT('%', #{criteria.id}, '%')

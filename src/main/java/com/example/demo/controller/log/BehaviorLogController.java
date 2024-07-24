@@ -1,6 +1,7 @@
 package com.example.demo.controller.log;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -84,22 +85,30 @@ public class BehaviorLogController {
     }
 
     // 다중 조건으로 위험 로그 조회 (DB에서 처리)
-    @GetMapping("/behaviorlog/multipleSearch")
-    public ResponseEntity<List<BehaviorLog>> searchBehaviorLogsFromDB(@RequestParam Map<String, String> params) {
-        try {
-            // 파라미터에서 빈 값을 제외하고 유효한 검색 조건만 처리
-            Map<String, Object> searchParams = new HashMap<>();
-            for (Map.Entry<String, String> entry : params.entrySet()) {
-                if (!entry.getValue().isEmpty()) {
+
+@GetMapping("/behaviorlog/multipleSearch")
+public ResponseEntity<List<BehaviorLog>> searchBehaviorLogsFromDB(@RequestParam Map<String, String> params) {
+    try {
+        // 파라미터에서 빈 값을 제외하고 유효한 검색 조건만 처리
+        Map<String, Object> searchParams = new HashMap<>();
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            if (!entry.getValue().isEmpty()) {
+                if ("time".equals(entry.getKey())) {
+                    // 시간 파싱 예시: "yyyyMMdd" 형식을 LocalDateTime으로 변환
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+                    LocalDateTime time = LocalDateTime.parse(entry.getValue(), formatter);
+                    searchParams.put(entry.getKey(), time);
+                } else {
                     searchParams.put(entry.getKey(), entry.getValue());
                 }
             }
-
-            List<BehaviorLog> behaviorLogs = behaviorLogService.findByMultipleCriteria(searchParams);
-            return ResponseEntity.ok(behaviorLogs);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+
+        List<BehaviorLog> behaviorLogs = behaviorLogService.findByMultipleCriteria(searchParams);
+        return ResponseEntity.ok(behaviorLogs);
+    } catch (Exception e) {
+        e.printStackTrace();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
+}
 }
