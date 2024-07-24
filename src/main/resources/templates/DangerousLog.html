@@ -219,6 +219,9 @@
         <h3 style="text-align: center; margin-top: 20px;">위험 로그</h3>
          <!-- 검색 폼 -->
         <form id="searchForm" class="searchForm" th:action="@{/dangerouslog/multipleSearch}" method="get">
+       
+                <input type="date" id="date" class="form-control searchInput" placeholder="날짜">
+          
             <input type="text" id="dangerous_number" name="dangerous_number" class="form-control searchInput" placeholder="위험 번호">
             <input type="text" id="ip" name="ip" class="form-control searchInput" placeholder="IP">
             <input type="text" id="port" name="port" class="form-control searchInput" placeholder="PORT">

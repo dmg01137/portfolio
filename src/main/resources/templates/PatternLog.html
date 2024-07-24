@@ -78,10 +78,9 @@
             font-size: 0.6rem;
             background-color: #f5f7f8;
             color: #060606;
-            
         }
         th, td {
-         font-size: 0.75rem;
+            font-size: 0.75rem;
             padding: 0.8rem;
             vertical-align: middle;
             border-top: 1px solid #dee2e6;
@@ -103,7 +102,7 @@
         }
 
         .searchForm {
-        font-size: 0.75rem;
+            font-size: 0.75rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -213,6 +212,9 @@
         <h3 style="text-align: center; margin-top: 20px;">패턴 로그</h3>
         <div class="searchForm">
             <div style="flex: 1;">
+                <input type="date" id="date" class="form-control searchInput" placeholder="날짜">
+            </div>
+            <div style="flex: 1;">
                 <input type="text" id="id" class="form-control searchInput" placeholder="로그번호">
             </div>
             <div style="flex: 1;">
@@ -236,7 +238,7 @@
             <div style="flex: 1;">
                 <input type="text" id="len" class="form-control searchInput" placeholder="패킷길이">
             </div>
-             <div style="flex: 1;">
+            <div style="flex: 1;">
                 <input type="text" id="policy_name" class="form-control searchInput" placeholder="정책이름">
             </div>
             <div style="flex: 1;">
@@ -277,7 +279,7 @@
                     <th>패킷</th>
                 </tr>
             </thead>
-              <tbody id="logTableBody">
+            <tbody id="logTableBody">
                 <!-- 여기에 JavaScript로 동적으로 추가될 테이블 로우들이 들어갈 자리 -->
             </tbody>
         </table>
@@ -314,9 +316,18 @@ $(document).ready(function () {
     }
 
     function displayLogs() {
+        let startDate = $("#date").val().trim();
+        let filteredLogs = logsData;
+
+        if (startDate !== "") {
+            filteredLogs = logsData.filter(function(log) {
+                return log.time.startsWith(startDate);
+            });
+        }
+
         let startIndex = (currentPage - 1) * logsPerPage;
         let endIndex = startIndex + logsPerPage;
-        let displayedLogs = logsData.slice(startIndex, endIndex);
+        let displayedLogs = filteredLogs.slice(startIndex, endIndex);
 
         $("#logTableBody").empty();
 
@@ -417,7 +428,6 @@ $(document).ready(function () {
 });
 
 </script>
-
 
 </body>
 </html>

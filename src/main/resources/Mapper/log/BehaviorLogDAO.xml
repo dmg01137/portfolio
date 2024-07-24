@@ -35,15 +35,16 @@
     </select>
 
     <!-- 다중 검색 기능을 위한 패턴 로그 조회 -->
-  <select id="findByMultipleCriteria" resultMap="behaviorLogResultMap" parameterType="map">
-   <foreach collection="tableNames" item="tableName" separator=" UNION ">
-    SELECT *
-    FROM log_db.${tableName}
-    WHERE 1=1
-    <!-- tableName 조건 -->
-    <if test="criteria.tableName != null and criteria.tableName == tableName">
-        AND tableName = #{criteria.tableName}
+ <select id="findByMultipleCriteria" resultMap="behaviorLogResultMap" parameterType="map">
+    <foreach collection="dates" item="date" separator=" UNION ">
+        SELECT *
+        FROM log_db.${tableName}
+        WHERE 1=1
+        <!-- Date 검색 조건 -->
+        <if test="criteria.date != null and criteria.date != ''">
+            AND date_format(time, '%Y%m%d') = #{criteria.date}
         </if>
+   
         <!-- ID 검색 조건 -->
         <if test="criteria.id != null">
             AND id LIKE CONCAT('%', #{criteria.id}, '%')

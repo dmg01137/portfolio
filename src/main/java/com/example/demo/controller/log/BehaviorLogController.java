@@ -2,7 +2,6 @@ package com.example.demo.controller.log;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,21 +23,12 @@ public class BehaviorLogController {
     @Autowired
     private BehaviorLogService behaviorLogService;
 
-    // 페이지: 모든 위험 로그 보기
     @GetMapping("/behaviorlog")
     public String showBehaviorLogPage(Model model) {
-        List<BehaviorLog> logs = behaviorLogService.findAll(null);
+        List<BehaviorLog> logs = behaviorLogService.findAll(getTableName());
         model.addAttribute("logs", logs);
-        return "behaviorlog"; // Thymeleaf 템플릿 이름
+        return "behaviorlog";
     }
-
-    // API 엔드포인트: 모든 위험 로그 가져오기
-    @GetMapping("/api/behaviorlogs")
-    public ResponseEntity<List<BehaviorLog>> getAllBehaviorLogs() {
-        List<BehaviorLog> logs = behaviorLogService.findAll(null);
-        return ResponseEntity.ok(logs);
-    }
-
     // Top 5 s_ip 값 조회 API
     @GetMapping("/behaviorlog/top-sips")
     @ResponseBody
@@ -50,64 +40,56 @@ public class BehaviorLogController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+    @GetMapping("/api/behaviorlogs")
+    @ResponseBody
+    public ResponseEntity<List<BehaviorLog>> getAllBehaviorLogs() {
+        List<BehaviorLog> logs = behaviorLogService.findAll(getTableName());
+        return ResponseEntity.ok(logs);
+    }
 
-    // 특정 매개변수로 검색하는 기능 (BehaviorLog 검색)
     @GetMapping("/behaviorlog/search")
     public String searchBehaviorLogs(
-    		 @RequestParam(name = "tableName", required = false) LocalDateTime tableName,
+            @RequestParam(name = "date", required = false) LocalDateTime date,
             @RequestParam(name = "id", required = false) Integer id,
             @RequestParam(name = "time", required = false) LocalDateTime time,
             @RequestParam(name = "s_ip", required = false) String s_ip,
             @RequestParam(name = "s_port", required = false) Integer s_port,
             @RequestParam(name = "d_ip", required = false) String d_ip,
             @RequestParam(name = "d_port", required = false) Integer d_port,
-        
+            @RequestParam(name = "action_type", required = false) Integer action_type,
             @RequestParam(name = "len", required = false) Integer len,
-          
+            @RequestParam(name = "base_cnt", required = false) Integer base_cnt,
+            @RequestParam(name = "base_time", required = false) Integer base_time,
             @RequestParam(name = "pattern1", required = false) String pattern1,
             @RequestParam(name = "pattern2", required = false) String pattern2,
             @RequestParam(name = "pattern3", required = false) String pattern3,
-            @RequestParam(name = "packet", required = false) byte[] packet,
-            @RequestParam(name = "base_cnt", required = false) Integer base_cnt,
-            @RequestParam(name = "base_time", required = false) Integer base_time,
-            @RequestParam(name = "action_type", required = false) Integer action_type,
-            @RequestParam(name = "policy_name", required = false) String policy_name,
+            @RequestParam(name = "packet", required = false) String packet,
             Model model) {
         try {
-            List<BehaviorLog> logs = behaviorLogService.search(id, time, s_ip, d_ip, s_port, d_port, action_type, len, base_cnt, base_time, pattern1, pattern2, pattern3, packet,policy_name);
+            List<BehaviorLog> logs = behaviorLogService.search(date, id, time, s_ip, d_ip, s_port, d_port, action_type,
+                    len, base_cnt, base_time, pattern1, pattern2, pattern3, packet, getTableName());
             model.addAttribute("logs", logs);
-            return "behaviorlog"; // Thymeleaf 템플릿 이름
+            return "behaviorlog";
         } catch (Exception e) {
-            // 예외 발생 시 로깅하고 오류 페이지로 리다이렉트
             e.printStackTrace();
             model.addAttribute("error", "Failed to retrieve behavior logs");
-            return "error"; // 오류 페이지의 Thymeleaf 템플릿 이름
+            return "error";
         }
     }
 
-    // 다중 조건으로 위험 로그 조회 (DB에서 처리)
-
-    // 다중 검색 기능 API 엔드포인트
     @GetMapping("/behaviorlog/multipleSearch")
     @ResponseBody
     public ResponseEntity<List<BehaviorLog>> searchBehaviorLogsFromDB(@RequestParam Map<String, String> params) {
         try {
-            Map<String, Object> searchParams = new HashMap<>();
-            for (Map.Entry<String, String> entry : params.entrySet()) {
-                if (!entry.getValue().isEmpty()) {
-                    // 각 파라미터의 값이 비어 있지 않으면 매핑 추가
-                    searchParams.put(entry.getKey(), entry.getValue());
-                }
-            }
-
-            // BehaviorLogService를 이용하여 검색
-            List<BehaviorLog> behaviorLogs = behaviorLogService.findByMultipleCriteria(params);
+            List<BehaviorLog> behaviorLogs = behaviorLogService.findByMultipleCriteria(params, getTableName());
             return ResponseEntity.ok(behaviorLogs);
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-    
     }
 
+    private String getTableName() {
+        return "behavior_log_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+    }
 }

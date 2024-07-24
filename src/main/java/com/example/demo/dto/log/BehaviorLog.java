@@ -3,21 +3,21 @@ package com.example.demo.dto.log;
 import java.time.LocalDateTime;
 
 public class BehaviorLog {
-    private int id;             // ID (formerly detection_number)
-    private LocalDateTime time; // 발생 시간
-    private String s_ip;        // 출발지 IP
-    private String d_ip;        // 목적지 IP
-    private int s_port;         // 출발지 포트
-    private int d_port;         // 목적지 포트
-    private int len;            // 길이
-    private String pattern1;    // 패턴1
-    private String pattern2;    // 패턴2
-    private String pattern3;    // 패턴3
-    private byte[] packet;      // 패킷 데이터
-    private int base_cnt;       // 횟수 (formerly count)
-    private int base_time;      // 기본 시간
-    private int action_type;    // 액션 타입
-    private String policy_name; // 위험 로그 ID
+	   private int id;
+	    private LocalDateTime time;
+	    private String s_ip;
+	    private String d_ip;
+	    private int s_port;
+	    private int d_port;
+	    private int len;
+	    private String pattern1;
+	    private String pattern2;
+	    private String pattern3;
+	    private byte[] packet;
+	    private int base_cnt;
+	    private int base_time;
+	    private int action_type;
+
     // Getter 및 Setter 메서드
     public int getId() {
         return id;
@@ -130,12 +130,4 @@ public class BehaviorLog {
     public void setAction_type(int action_type) {
         this.action_type = action_type;
     }
-
-	public String getPolicy_name() {
-		return policy_name;
-	}
-
-	public void setPolicy_name(String policy_name) {
-		this.policy_name = policy_name;
-	}
 }
