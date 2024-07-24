@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Behavior Policy Form</title>
+</head>
+<body>
+    <form action="/addBehaviorPolicy" method="post">
+        <table>
+            <tr>
+                <td><label for="enable_disable">활성화/비활성화(1 / 0):</label></td>
+                <td><input type="number" name="enable_disable" id="enable_disable" required></td>
+            </tr>
+            
+            <tr>
+                            <td><label for="detection_number">행동 정책 번호:</label></td>
+                <td><input type="text" name="detection_number" id="detection_number" th:value="${detectionNumber}" readonly required></td>
+            </tr>
+            <tr>
+                <td><label for="s_to_ip">출발지 범위 IP:</label></td>
+                <td><input type="text" name="s_to_ip" id="s_to_ip"></td>
+            </tr>
+            <tr>
+                <td><label for="s_ip">출발지 IP:</label></td>
+                <td><input type="text" name="s_ip" id="s_ip"></td>
+            </tr>
+            <tr>
+                <td><label for="d_ip">목적지 IP:</label></td>
+                <td><input type="text" name="d_ip" id="d_ip"></td>
+            </tr>
+            <tr>
+                <td><label for="s_to_port">출발지 범위 PORT:</label></td>
+                <td><input type="text" name="s_to_port" id="s_to_port"></td>
+            </tr>
+            <tr>
+                <td><label for="s_port">출발지 PORT:</label></td>
+                <td><input type="number" name="s_port" id="s_port" value="0"></td>
+            </tr>
+            <tr>
+                <td><label for="d_port">목적지 PORT:</label></td>
+                <td><input type="number" name="d_port" id="d_port" value="0"></td>
+            </tr>
+            <tr>
+                <td><label for="create_dt">생성 일자:</label></td>
+                <td><input type="datetime-local" name="create_dt" id="create_dt" required></td>
+            </tr>
+            <tr>
+                <td><label for="modify_dt">수정 일자:</label></td>
+                <td><input type="datetime-local" name="modify_dt" id="modify_dt" required></td>
+            </tr>
+            <tr>
+                <td><label for="action_type">동작 유형(0 : 로깅, 1 : 로깅 + 차단):</label></td>
+                <td><input type="number" name="action_type" id="action_type" required></td>
+            </tr>
+            <tr>
+                <td><label for="policy_name">정책 이름:</label></td>
+                <td><input type="text" name="policy_name" id="policy_name" required></td>
+            </tr>
+            <tr>
+                <td><label for="policy_info">정책 정보:</label></td>
+                <td><input type="text" name="policy_info" id="policy_info" required></td>
+            </tr>
+            <tr>
+                <td><label for="base_cnt">기준 횟수:</label></td>
+                <td><input type="text" name="base_cnt" id="base_cnt" required></td>
+            </tr>
+            <tr>
+                <td><label for="base_time">기준 시간:</label></td>
+                <td><input type="text" name="base_time" id="base_time" required></td>
+            </tr>
+            <tr>
+                <td><label for="pattern_1">패턴 1:</label></td>
+                <td><input type="text" name="pattern_1" id="pattern_1"></td>
+            </tr>
+            <tr>
+                <td><label for="pattern_2">패턴 2:</label></td>
+                <td><input type="text" name="pattern_2" id="pattern_2"></td>
+            </tr>
+            <tr>
+                <td><label for="pattern_3">패턴 3:</label></td>
+                <td><input type="text" name="pattern_3" id="pattern_3"></td>
+            </tr>
+            <tr>
+                <td><label for="dangerous">위험도:</label></td>
+                <td><input type="number" name="dangerous" id="dangerous" required></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="추가"></td>
+            </tr>
+        </table>
+    </form>
+
+    <form action="listBehaviorPolicy" method="get">
+        <input type="submit" value="취소">
+    </form>
+
+</body>
+</html>
