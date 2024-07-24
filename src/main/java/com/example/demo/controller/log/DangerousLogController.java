@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.dto.log.DangerousLog;
-
 import com.example.demo.service.log.DangerousLogService;
 
 @Controller
@@ -26,45 +25,46 @@ public class DangerousLogController {
         this.dangerousLogService = dangerousLogService;
     }
 
-    // 페이지: 모든 위험 로그 보기
+    // Page: View all dangerous logs
     @GetMapping("/dangerous")
     public String showDangerousLogPage(Model model) {
-        List<DangerousLog> logs = dangerousLogService.findAll();
+        List<DangerousLog> logs = dangerousLogService.findAll(null);
         model.addAttribute("logs", logs);
-        return "dangerouslog"; // Thymeleaf 템플릿 이름
+        return "dangerouslog"; // Thymeleaf template name
     }
 
-    // API 엔드포인트: 모든 위험 로그 가져오기
+    // API endpoint: Get all dangerous logs
     @GetMapping("/api/dangerouslogs")
     public ResponseEntity<List<DangerousLog>> getAllDangerousLogs() {
-        List<DangerousLog> logs = dangerousLogService.findAll();
+        List<DangerousLog> logs = dangerousLogService.findAll(null);
         return ResponseEntity.ok(logs);
     }
 
-    // 특정 매개변수로 검색하는 기능
+    // Search logs by specific parameters
     @GetMapping("/dangerouslog/search")
     public String searchDangerousLogs(
             @RequestParam(name = "dangerous_number", required = false) Integer dangerousNumber,
             @RequestParam(name = "ip", required = false) String ip,
             @RequestParam(name = "port", required = false) Integer port,
-            @RequestParam(name = "detection_number", required = false) Integer detectionNumber,
+            @RequestParam(name = "policy_name", required = false) String policy_name,
             Model model) {
         try {
-            List<DangerousLog> logs = dangerousLogService.search(dangerousNumber, ip, port, detectionNumber);
+            List<DangerousLog> logs = dangerousLogService.search(dangerousNumber, ip, port, policy_name);
             model.addAttribute("logs", logs);
-            return "dangerouslog"; // Thymeleaf 템플릿 이름
+            return "dangerouslog"; // Thymeleaf template name
         } catch (Exception e) {
-            // 예외 발생 시 로깅하고 오류 페이지로 리다이렉트
+            // Log exception and redirect to error page
             e.printStackTrace();
             model.addAttribute("error", "Failed to retrieve dangerous logs");
-            return "error"; // 오류 페이지의 Thymeleaf 템플릿 이름
+            return "error"; // Thymeleaf template name for error page
         }
     }
-    // 다중 조건으로 위험 로그 조회 (DB에서 처리)
+
+    // Search logs by multiple criteria (processed in the DB)
     @GetMapping("/dangerouslog/multipleSearch")
     public ResponseEntity<List<DangerousLog>> searchDangerousLogsFromDB(@RequestParam Map<String, String> params) {
         try {
-            // 파라미터에서 빈 값을 제외하고 유효한 검색 조건만 처리
+            // Exclude empty values from parameters and process valid search conditions only
             Map<String, Object> searchParams = new HashMap<>();
             for (Map.Entry<String, String> entry : params.entrySet()) {
                 if (!entry.getValue().isEmpty()) {
@@ -72,7 +72,7 @@ public class DangerousLogController {
                 }
             }
 
-            List<DangerousLog> dangerousLogs = dangerousLogService.findByMultipleCriteria(searchParams);
+            List<DangerousLog> dangerousLogs = dangerousLogService.findByMultipleCriteria(null, searchParams);
             return ResponseEntity.ok(dangerousLogs);
         } catch (Exception e) {
             e.printStackTrace();

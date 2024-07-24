@@ -117,54 +117,62 @@
         tbody tr:nth-of-type(even) {
             background-color: #dae1e7; /* 짝수 행 배경색 */
         }
-        .searchContainer {
-            text-align: center;
-            margin-top: 20px;
-            margin-right: 100px;
-        }
-        .searchForm {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            margin-left: 5px;
-            width: 900px;
-        }
-        /* 검색창 간격 조정 */
-        .searchForm .searchInput {
-            margin-right: 10px;
-            font-size: 0.7rem;
-        }
-        /* 버튼 높이 조정 */
-        .searchForm button {
-            padding: 0.375rem 0.75rem;
-            font-size: 1rem;
-            line-height: 1.5;
-            border-radius: 0.25rem;
-            cursor: pointer;
-            transition: background-color 0.15s ease-in-out;
-            height: calc(100% - 2px); /* 검색창과 동일한 높이로 조정 */
-        }
-        /* Clear 버튼 스타일 */
-        .searchForm .btn-secondary {
-            background-color: #8a8888;
-            color: #fff;
-            border: none;
-        }
-        .searchForm .btn-secondary:hover {
-            background-color:  #656565;
-        }
-        /* Search 버튼 스타일 */
-        .searchForm .btn-primary {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-        }
-        .searchForm .btn-primary:hover {
-            background-color: #0069d9;
-        }
-    </style>
+           /* 검색창 스타일 */
+    .searchContainer {
+        text-align: center;
+        margin-top: 20px;
+        margin-right: 100px;
+    }
+
+    .searchForm {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        margin-left: 5px;
+        width: 900px;
+    }
+
+    /* 검색 입력창 간격 조정 */
+    .searchForm .searchInput {
+        margin-right: 10px;
+        font-size: 0.7rem;
+    }
+
+    /* 버튼 높이 및 폭 조정 */
+    .searchForm button {
+        padding: 0.375rem 1.5rem; /* Adjusted padding for height and width */
+        font-size: 0.9rem;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        transition: background-color 0.15s ease-in-out;
+        height: auto; /* Allow height to adjust based on content */
+    }
+
+    /* Clear 버튼 스타일 */
+    .searchForm .btn-secondary {
+        background-color: #8a8888;
+        color: #fff;
+        border: none;
+    }
+
+    .searchForm .btn-secondary:hover {
+        background-color: #656565;
+    }
+
+    /* Search 버튼 스타일 */
+    .searchForm .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+    }
+
+    .searchForm .btn-primary:hover {
+        background-color: #0069d9;
+    }
+</style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -209,14 +217,15 @@
 <div class="container">
     <div class="searchContainer">
         <h3 style="text-align: center; margin-top: 20px;">위험 로그</h3>
-        <form id="searchForm" class="searchForm">
-            <input type="text" id="dangerous_number" class="form-control searchInput" placeholder="위험 번호">
-            <input type="text" id="ip" class="form-control searchInput" placeholder="IP">
-            <input type="text" id="port" class="form-control searchInput" placeholder="PORT">
-            <input type="text" id="detection_number" class="form-control searchInput" placeholder="탐지 번호">
+         <!-- 검색 폼 -->
+        <form id="searchForm" class="searchForm" th:action="@{/dangerouslog/multipleSearch}" method="get">
+            <input type="text" id="dangerous_number" name="dangerous_number" class="form-control searchInput" placeholder="위험 번호">
+            <input type="text" id="ip" name="ip" class="form-control searchInput" placeholder="IP">
+            <input type="text" id="port" name="port" class="form-control searchInput" placeholder="PORT">
+            <input type="text" id="policy_name" name="policy_name" class="form-control searchInput" placeholder="정책 이름">
 
-            <div style="display: flex; align-items: center;">
-                <button type="button" class="btn btn-primary mb-2 mr-2" id="searchButton">Search</button>
+             <div style="display: flex; align-items: center;">
+                <button type="submit" class="btn btn-primary mb-2 mr-2">Search</button>
                 <button type="button" id="clearButton" class="btn btn-secondary mb-2">Clear</button>
             </div>
         </form>
@@ -227,9 +236,9 @@
                 <th>위험 번호</th>
                 <th>IP</th>
                 <th>PORT</th>
-                <th>탐지 번호</th>
+                <th>정책 이름</th>
             </tr>
-        </thead>
+         </thead>
         <tbody id="logTableBody">
             <!-- Table body where rows will be dynamically added -->
         </tbody>
@@ -279,7 +288,7 @@ $(document).ready(function () {
                 '<td>' + log.dangerous_number + '</td>' +
                 '<td>' + log.ip + '</td>' +
                 '<td>' + log.port + '</td>' +
-                '<td>' + log.detection_number + '</td>' +
+                '<td>' + log.policy_name + '</td>' +
                 '</tr>'
             );
         });
@@ -290,25 +299,18 @@ $(document).ready(function () {
         let totalPages = Math.ceil(totalLogs / logsPerPage);
         let paginationHTML = "";
 
-        // Calculate start and end page numbers for display
-        let startPage = Math.max(1, currentPage - 2);
-        let endPage = Math.min(totalPages, startPage + 4);
-
-        // Previous 버튼
         paginationHTML += `<li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
                             <a class="page-link" href="#" aria-label="Previous" onclick="changePage(${currentPage - 1})">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                           </li>`;
 
-        // 페이지 버튼들
-        for (let i = startPage; i <= endPage; i++) {
+        for (let i = 1; i <= totalPages; i++) {
             paginationHTML += `<li class="page-item ${currentPage === i ? 'active' : ''}">
                                 <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
                               </li>`;
         }
 
-        // Next 버튼
         paginationHTML += `<li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
                             <a class="page-link" href="#" aria-label="Next" onclick="changePage(${currentPage + 1})">
                                 <span aria-hidden="true">&raquo;</span>
@@ -318,7 +320,6 @@ $(document).ready(function () {
         $("#pagination").html(paginationHTML);
     }
 
-    // 페이지 변경 함수
     window.changePage = function (page) {
         if (page < 1 || page > Math.ceil(totalLogs / logsPerPage)) {
             return;
@@ -328,24 +329,22 @@ $(document).ready(function () {
         renderPagination();
     };
 
-    // Search button click event listener
-    $("#searchButton").click(function () {
+    $("#clearButton").click(function () {
+        $(".searchInput").val("");
+        fetchAndDisplayLogs();
+    });
+
+    $("#searchForm").submit(function (event) {
+        event.preventDefault(); // Prevent default form submission
         handleSearch();
     });
 
-    // Clear button click event listener
-    $("#clearButton").click(function () {
-        $(".searchInput").val(""); // Clear input fields
-        fetchAndDisplayLogs(); // Fetch all logs again
-    });
-
-    // Function to handle search
     function handleSearch() {
         let searchParams = {
             "dangerous_number": $("#dangerous_number").val().trim(),
             "ip": $("#ip").val().trim(),
             "port": $("#port").val().trim(),
-            "detection_number": $("#detection_number").val().trim()
+            "policy_name": $("#policy_name").val().trim()
         };
 
         let queryString = $.param(searchParams); // Convert params to query string
@@ -353,14 +352,17 @@ $(document).ready(function () {
         $.get("/dangerouslog/multipleSearch?" + queryString, function (data) {
             logsData = data;
             totalLogs = logsData.length;
-            currentPage = 1; // Reset to first page
-            displayLogs(); // Display search results
-            renderPagination(); // Render pagination for search results
-        }).fail(function() {
-            console.error("Search failed.");
+            currentPage = 1;
+            displayLogs();
+            renderPagination();
+        }).fail(function () {
+            console.error("Failed to search data.");
         });
     }
 });
-</script>
-</body>
-</html>
+
+  </script>
+
+
+  </body>
+  </html>

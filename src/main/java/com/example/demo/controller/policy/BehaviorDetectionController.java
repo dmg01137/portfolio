@@ -1,4 +1,4 @@
-package com.example.demo.controller.detection;
+package com.example.demo.controller.policy;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dto.detection.BehaviorDetection;
-import com.example.demo.dto.detection.PatternDetection;
 import com.example.demo.service.UDPClient;
 import com.example.demo.service.detection.BehaviorDetectionService;
 

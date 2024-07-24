@@ -236,6 +236,9 @@
             <div style="flex: 1;">
                 <input type="text" id="len" class="form-control searchInput" placeholder="패킷길이">
             </div>
+             <div style="flex: 1;">
+                <input type="text" id="policy_name" class="form-control searchInput" placeholder="정책이름">
+            </div>
             <div style="flex: 1;">
                 <input type="text" id="pattern1" class="form-control searchInput" placeholder="패턴1">
             </div>
@@ -267,6 +270,7 @@
                     <th>도착지PORT</th>
                     <th>액션 타입</th>
                     <th>패킷길이</th>
+                    <th>정책이름</th>
                     <th>패턴1</th>
                     <th>패턴2</th>
                     <th>패턴3</th>
@@ -292,14 +296,12 @@
 <script>
 $(document).ready(function () {
     let currentPage = 1;
-    let logsPerPage = 10; // 한 페이지당 보여줄 로그 수
+    let logsPerPage = 10;
     let totalLogs = 0;
     let logsData = [];
 
-    // 페이지 로드 시 초기 데이터 가져오기
     fetchAndDisplayLogs();
 
-    // 서버에서 로그 데이터 가져와서 표시하는 함수
     function fetchAndDisplayLogs() {
         $.get("/api/patternlogs", function (data) {
             logsData = data;
@@ -307,20 +309,18 @@ $(document).ready(function () {
             displayLogs();
             renderPagination();
         }).fail(function() {
-            console.error("데이터를 불러오는데 실패했습니다.");
+            console.error("Failed to fetch data.");
         });
     }
 
-    // 테이블에 로그 데이터 표시
     function displayLogs() {
         let startIndex = (currentPage - 1) * logsPerPage;
         let endIndex = startIndex + logsPerPage;
         let displayedLogs = logsData.slice(startIndex, endIndex);
 
-        $("#logTableBody").empty(); // 기존의 테이블 내용을 지웁니다.
+        $("#logTableBody").empty();
 
         displayedLogs.forEach(function (log) {
-            // 패킷 데이터를 HTML 엔티티로 인코딩하여 추가합니다.
             let encodedPacket = encodeURIComponent(log.packet);
             $("#logTableBody").append(
                 `<tr>
@@ -332,6 +332,7 @@ $(document).ready(function () {
                     <td>${log.dPort}</td>
                     <td>${log.actionType}</td>
                     <td>${log.len}</td>
+                    <td>${log.policy_name}</td>
                     <td>${log.pattern1}</td>
                     <td>${log.pattern2}</td>
                     <td>${log.pattern3}</td>
@@ -341,30 +342,22 @@ $(document).ready(function () {
         });
     }
 
-    // 페이지네이션 버튼 렌더링 함수
     function renderPagination() {
         let totalPages = Math.ceil(totalLogs / logsPerPage);
         let paginationHTML = "";
 
-        // Calculate start and end page numbers for display
-        let startPage = Math.max(1, currentPage - 2);
-        let endPage = Math.min(totalPages, startPage + 4);
-
-        // Previous 버튼
         paginationHTML += `<li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
                             <a class="page-link" href="#" aria-label="Previous" onclick="changePage(${currentPage - 1})">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                           </li>`;
 
-        // 페이지 버튼들
-        for (let i = startPage; i <= endPage; i++) {
+        for (let i = 1; i <= totalPages; i++) {
             paginationHTML += `<li class="page-item ${currentPage === i ? 'active' : ''}">
                                 <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
                               </li>`;
         }
 
-        // Next 버튼
         paginationHTML += `<li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
                             <a class="page-link" href="#" aria-label="Next" onclick="changePage(${currentPage + 1})">
                                 <span aria-hidden="true">&raquo;</span>
@@ -374,7 +367,6 @@ $(document).ready(function () {
         $("#pagination").html(paginationHTML);
     }
 
-    // 페이지 변경 함수
     window.changePage = function (page) {
         if (page < 1 || page > Math.ceil(totalLogs / logsPerPage)) {
             return;
@@ -384,54 +376,46 @@ $(document).ready(function () {
         renderPagination();
     };
 
-    // 검색 버튼 클릭 이벤트 리스너
-    $("#searchButton").click(function () {
-        handleSearch();
-    });
-
-    // 초기화 버튼 클릭 이벤트 리스너
     $("#clearButton").click(function () {
-        $(".searchInput").val(""); // 입력 필드 초기화
-        fetchAndDisplayLogs(); // 모든 데이터 다시 불러오기
+        $(".searchInput").val("");
+        fetchAndDisplayLogs();
     });
 
- // 검색 버튼 클릭 이벤트 리스너
     $("#searchButton").click(function () {
         handleSearch();
     });
 
-    // 검색 처리 함수
     function handleSearch() {
-        let searchParams = {};
+        let searchParams = {
+            "id": $("#id").val().trim(),
+            "time": $("#time").val().trim(),
+            "sIp": $("#sIp").val().trim(),
+            "dIp": $("#dIp").val().trim(),
+            "sPort": $("#sPort").val().trim(),
+            "dPort": $("#dPort").val().trim(),
+            "actionType": $("#actionType").val().trim(),
+            "len": $("#len").val().trim(),
+            "pattern1": $("#pattern1").val().trim(),
+            "pattern2": $("#pattern2").val().trim(),
+            "pattern3": $("#pattern3").val().trim(),
+            "packet": $("#packet").val().trim(),
+            "policy_name": $("#policy_name").val().trim()
+        };
 
-        // 각 입력 필드에서 검색어를 가져와 query parameters에 추가합니다.
-        searchParams["id"] = $("#id").val().trim();
-        searchParams["time"] = $("#time").val().trim();
-        searchParams["sIp"] = $("#sIp").val().trim();
-        searchParams["sPort"] = $("#sPort").val().trim();
-        searchParams["dIp"] = $("#dIp").val().trim();
-        searchParams["dPort"] = $("#dPort").val().trim();
-        searchParams["actionType"] = $("#actionType").val().trim();
-        searchParams["len"] = $("#len").val().trim();
-        searchParams["pattern1"] = $("#pattern1").val().trim();
-        searchParams["pattern2"] = $("#pattern2").val().trim();
-        searchParams["pattern3"] = $("#pattern3").val().trim();
-        searchParams["packet"] = $("#packet").val().trim();
+        let queryString = $.param(searchParams);
 
-        // 서버로 GET 요청을 보냅니다.
-        $.get("/api/patternlogs/search", searchParams, function (data) {
+        $.get("/api/patternlogs/patternlog/multipleSearch?" + queryString, function (data) {
             logsData = data;
             totalLogs = logsData.length;
-            currentPage = 1; // 첫 페이지로 초기화
-            displayLogs(); // 데이터 표시
-            renderPagination(); // 페이지네이션 렌더링
-        }).fail(function() {
-            console.error("검색에 실패했습니다.");
+            currentPage = 1;
+            displayLogs();
+            renderPagination();
+        }).fail(function () {
+            console.error("Failed to search data.");
         });
     }
-
-
 });
+
 </script>
 
 

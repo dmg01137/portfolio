@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.controller.log.SearchCriteria;
 import com.example.demo.dao.detection.PatternDetectionDAO;
 import com.example.demo.dto.detection.PatternDetection;
 
@@ -24,7 +23,7 @@ public class PatternDetectionService {
         return patternDetectionDAO.getAllPatternDetections();
     }
 
-    public List<PatternDetection> searchPatternDetections(com.example.demo.controller.detection.SearchCriteria searchCriteria) {
+    public List<PatternDetection> searchPatternDetections(com.example.demo.controller.policy.SearchCriteria searchCriteria) {
         // 모든 검색 조건이 null 또는 빈 값인 경우 모든 패턴 탐지를 조회
         if (isEmptyCriteria(searchCriteria)) {
             return patternDetectionDAO.getAllPatternDetections();
@@ -35,7 +34,7 @@ public class PatternDetectionService {
     }
 
     // 모든 검색 조건이 null 또는 빈 값인지 확인하는 유틸리티 메서드
-    private boolean isEmptyCriteria(com.example.demo.controller.detection.SearchCriteria searchCriteria) {
+    private boolean isEmptyCriteria(com.example.demo.controller.policy.SearchCriteria searchCriteria) {
         return searchCriteria.getDetection_number() == null &&
                 searchCriteria.getS_to_ip() == null &&
                 searchCriteria.getS_ip() == null &&

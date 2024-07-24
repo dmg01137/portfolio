@@ -17,7 +17,7 @@ public class BehaviorLog {
     private int base_cnt;       // 횟수 (formerly count)
     private int base_time;      // 기본 시간
     private int action_type;    // 액션 타입
-
+    private String policy_name; // 위험 로그 ID
     // Getter 및 Setter 메서드
     public int getId() {
         return id;
@@ -130,4 +130,12 @@ public class BehaviorLog {
     public void setAction_type(int action_type) {
         this.action_type = action_type;
     }
+
+	public String getPolicy_name() {
+		return policy_name;
+	}
+
+	public void setPolicy_name(String policy_name) {
+		this.policy_name = policy_name;
+	}
 }

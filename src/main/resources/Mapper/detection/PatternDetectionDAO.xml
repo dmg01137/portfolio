@@ -35,7 +35,7 @@
     </delete>
 
     <!-- 검색 조건으로 패턴 탐지 조회 -->
-    <select id="searchPatternDetections" resultType="com.example.demo.dto.detection.PatternDetection" parameterType="com.example.demo.controller.log.SearchCriteria">
+    <select id="searchPatternDetections" resultType="com.example.demo.dto.detection.PatternDetection" parameterType="com.example.demo.controller.policy.SearchCriteria">
         SELECT detection_number, s_to_ip, s_ip, d_ip, s_port, d_port, create_dt, modify_dt, action_type, policy_name, policy_info, pattern_1, pattern_2, pattern_3, dangerous
         FROM detection_db.pattern_detection
         <where>

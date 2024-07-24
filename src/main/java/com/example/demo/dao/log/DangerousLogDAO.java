@@ -7,34 +7,24 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.example.demo.dto.log.DangerousLog;
-import com.example.demo.dto.log.PatternLog;
 
 @Mapper
 public interface DangerousLogDAO {
 
-    // Select by ID
+    // Select by dangerous number
     DangerousLog findByDangerousNumber(@Param("dangerous_number") int dangerous_number);
 
-    // Select all
-    List<DangerousLog> findAll();
+    // Select all logs from a specific table
+    List<DangerousLog> findAll(@Param("tableName") String tableName);
 
-    // Insert
-    void save(DangerousLog dangerousLog);
+ 
 
-    // Update
-    void update(DangerousLog dangerousLog);
-
-    // Delete
-    void delete(@Param("dangerous_number") int dangerous_number);
-
-    // Search method
+    // Search logs by specific criteria
     List<DangerousLog> search(@Param("dangerous_number") Integer dangerous_number,
                               @Param("ip") String ip,
                               @Param("port") Integer port,
-                              @Param("detection_number") Integer detection_number);
+                              @Param("policy_name") String detection_number);
 
- // 다중 조건으로 위험 로그를 조회합니다.
-    List<DangerousLog> findByMultipleCriteria(Map<String, Object> criteria);
-
-
+    // Search logs by multiple criteria with pagination
+    List<DangerousLog> findByMultipleCriteria(@Param("tableName") String tableName, @Param("criteria") Map<String, Object> criteria);
 }
