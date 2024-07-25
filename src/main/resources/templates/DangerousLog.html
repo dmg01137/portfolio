@@ -219,6 +219,9 @@
         <h3 style="text-align: center; margin-top: 20px;">위험 로그</h3>
          <!-- 검색 폼 -->
         <form id="searchForm" class="searchForm" th:action="@{/dangerouslog/multipleSearch}" method="get">
+       
+              <input type="date" id="date" class="form-control searchInput" placeholder="날짜">
+          
             <input type="text" id="dangerous_number" name="dangerous_number" class="form-control searchInput" placeholder="위험 번호">
             <input type="text" id="ip" name="ip" class="form-control searchInput" placeholder="IP">
             <input type="text" id="port" name="port" class="form-control searchInput" placeholder="PORT">
@@ -294,7 +297,6 @@ $(document).ready(function () {
         });
     }
 
-    // 페이지네이션 버튼 렌더링 함수
     function renderPagination() {
         let totalPages = Math.ceil(totalLogs / logsPerPage);
         let paginationHTML = "";
@@ -341,13 +343,15 @@ $(document).ready(function () {
 
     function handleSearch() {
         let searchParams = {
+        		"date": $("#date").val().trim(),
             "dangerous_number": $("#dangerous_number").val().trim(),
             "ip": $("#ip").val().trim(),
             "port": $("#port").val().trim(),
             "policy_name": $("#policy_name").val().trim()
         };
 
-        let queryString = $.param(searchParams); // Convert params to query string
+        // Convert searchParams to URL query string
+        let queryString = $.param(searchParams);
 
         $.get("/dangerouslog/multipleSearch?" + queryString, function (data) {
             logsData = data;
@@ -361,8 +365,7 @@ $(document).ready(function () {
     }
 });
 
-  </script>
+</script>
 
-
-  </body>
-  </html>
+</body>
+</html>

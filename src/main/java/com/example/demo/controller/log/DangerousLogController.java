@@ -40,24 +40,23 @@ public class DangerousLogController {
         return ResponseEntity.ok(logs);
     }
 
-    // Search logs by specific parameters
     @GetMapping("/dangerouslog/search")
     public String searchDangerousLogs(
-            @RequestParam(name = "dangerous_number", required = false) Integer dangerousNumber,
+            @RequestParam(name = "dangerous_number", required = false) Integer dangerous_number,
             @RequestParam(name = "ip", required = false) String ip,
             @RequestParam(name = "port", required = false) Integer port,
             @RequestParam(name = "policy_name", required = false) String policy_name,
             Model model) {
-        try {
-            List<DangerousLog> logs = dangerousLogService.search(dangerousNumber, ip, port, policy_name);
-            model.addAttribute("logs", logs);
-            return "dangerouslog"; // Thymeleaf template name
-        } catch (Exception e) {
-            // Log exception and redirect to error page
-            e.printStackTrace();
-            model.addAttribute("error", "Failed to retrieve dangerous logs");
-            return "error"; // Thymeleaf template name for error page
-        }
+    	   try {
+               List<DangerousLog> logs = dangerousLogService.search(dangerous_number, ip, port, policy_name);
+               model.addAttribute("logs", logs);
+               return "dangerouslog"; // Thymeleaf template name
+           } catch (Exception e) {
+               // Log exception and redirect to error page
+               e.printStackTrace();
+               model.addAttribute("error", "Failed to retrieve dangerous logs");
+               return "error"; // Thymeleaf template name for error page
+           }
     }
 
     // Search logs by multiple criteria (processed in the DB)
@@ -80,3 +79,5 @@ public class DangerousLogController {
         }
     }
 }
+
+

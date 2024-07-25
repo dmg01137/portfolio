@@ -64,6 +64,7 @@
 
     <!-- 다중 검색 기능을 위한 패턴 로그 조회 -->
 <select id="findByMultipleCriteria" resultMap="patternLogResultMap" parameterType="map">
+
     SELECT *
     FROM log_db.${tableName}
     WHERE 1=1
@@ -114,5 +115,59 @@
   
 </select>
 
+
+
+    <!-- 다중 검색 기능을 위한 패턴 로그 조회 -->
+<select id="date" resultMap="patternLogResultMap" parameterType="map">
+
+    SELECT *
+    FROM log_db.${tableName}
+    WHERE 1=1
+    <!-- ID 검색 조건 -->
+    <if test="criteria.id != null and criteria.ip != ''">
+        AND id LIKE CONCAT('%', #{criteria.id}, '%')
+    </if>
+    <!-- 시간 검색 조건 -->
+    <if test="criteria.time != null">
+        AND time LIKE CONCAT('%', #{criteria.time}, '%')
+    </if>
+    <!-- 송신 IP 검색 조건 -->
+    <if test="criteria.sIp != null">
+        AND s_ip LIKE CONCAT('%',  #{criteria.sIp}, '%')
+    </if>
+    <!-- 수신 IP 검색 조건 -->
+    <if test="criteria.dIp != null">
+        AND d_ip LIKE CONCAT('%',  #{criteria.dIp}, '%')
+    </if>
+    <!-- 송신 포트 검색 조건 -->
+    <if test="criteria.sPort != null">
+        AND s_port LIKE CONCAT('%',  #{criteria.sPort}, '%')
+    </if>
+    <!-- 수신 포트 검색 조건 -->
+    <if test="criteria.dPort != null">
+        AND d_port LIKE CONCAT('%',  #{criteria.dPort}, '%')
+    </if>
+    <!-- 길이 검색 조건 -->
+    <if test="criteria.len != null">
+        AND len LIKE CONCAT('%',  #{criteria.len}, '%')
+    </if>
+    <!-- 패턴 1 검색 조건 -->
+    <if test="criteria.pattern1 != null">
+        AND pattern1 LIKE CONCAT('%',  #{criteria.pattern1}, '%')
+    </if>
+    <!-- 패턴 2 검색 조건 -->
+    <if test="criteria.pattern2 != null">
+        AND pattern2 LIKE CONCAT('%',  #{criteria.pattern2}, '%')
+    </if>
+    <!-- 패턴 3 검색 조건 -->
+    <if test="criteria.pattern3 != null">
+        AND pattern3 LIKE CONCAT('%',  #{criteria.pattern3}, '%')
+    </if>
+    <!-- 액션 타입 검색 조건 -->
+    <if test="criteria.actionType != null">
+        AND action_type LIKE CONCAT('%',  #{criteria.actionType}, '%')
+    </if>
+  
+</select>
 
 </mapper>

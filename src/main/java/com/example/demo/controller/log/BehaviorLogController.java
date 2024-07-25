@@ -1,11 +1,10 @@
 package com.example.demo.controller.log;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import org.springframework.util.StringUtils; // StringUtils import 추가
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +23,25 @@ public class BehaviorLogController {
     @Autowired
     private BehaviorLogService behaviorLogService;
 
+    //패킷 상세보기
+    @GetMapping("/packet")
+    public String packet() {       
+        return "packet"; 
+    }
+    // 패킷 상세 데이터 가져오기
+    @GetMapping("/packet-info")
+    public ResponseEntity<BehaviorLog> getPacketInfoById(@RequestParam int id) {
+        try {
+            BehaviorLog packetInfo = behaviorLogService.findPacketInfoById(id);
+            if (packetInfo != null) {
+                return ResponseEntity.ok(packetInfo);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
     // 페이지: 모든 위험 로그 보기
     @GetMapping("/behaviorlog")
     public String showBehaviorLogPage(Model model) {
@@ -51,19 +69,16 @@ public class BehaviorLogController {
         }
     }
 
-    // 특정 매개변수로 검색하는 기능 (BehaviorLog 검색)
+    // 다중 조건으로 위험 로그 조회 (Thymeleaf 템플릿)
     @GetMapping("/behaviorlog/search")
     public String searchBehaviorLogs(
-    		 @RequestParam(name = "tableName", required = false) LocalDateTime tableName,
             @RequestParam(name = "id", required = false) Integer id,
             @RequestParam(name = "time", required = false) LocalDateTime time,
             @RequestParam(name = "s_ip", required = false) String s_ip,
             @RequestParam(name = "s_port", required = false) Integer s_port,
             @RequestParam(name = "d_ip", required = false) String d_ip,
             @RequestParam(name = "d_port", required = false) Integer d_port,
-        
             @RequestParam(name = "len", required = false) Integer len,
-          
             @RequestParam(name = "pattern1", required = false) String pattern1,
             @RequestParam(name = "pattern2", required = false) String pattern2,
             @RequestParam(name = "pattern3", required = false) String pattern3,
@@ -74,40 +89,34 @@ public class BehaviorLogController {
             @RequestParam(name = "policy_name", required = false) String policy_name,
             Model model) {
         try {
-            List<BehaviorLog> logs = behaviorLogService.search(id, time, s_ip, d_ip, s_port, d_port, action_type, len, base_cnt, base_time, pattern1, pattern2, pattern3, packet,policy_name);
+            List<BehaviorLog> logs = behaviorLogService.search(id, time, s_ip, d_ip, s_port, d_port, action_type, len, base_cnt, base_time, pattern1, pattern2, pattern3, packet, policy_name);
             model.addAttribute("logs", logs);
-            return "behaviorlog"; // Thymeleaf 템플릿 이름
+            return "behaviorlog";
         } catch (Exception e) {
-            // 예외 발생 시 로깅하고 오류 페이지로 리다이렉트
             e.printStackTrace();
             model.addAttribute("error", "Failed to retrieve behavior logs");
-            return "error"; // 오류 페이지의 Thymeleaf 템플릿 이름
+            return "error";
         }
     }
 
-    // 다중 조건으로 위험 로그 조회 (DB에서 처리)
-
-    // 다중 검색 기능 API 엔드포인트
+    // 다중 조건으로 위험 로그 조회 (API)
     @GetMapping("/behaviorlog/multipleSearch")
     @ResponseBody
     public ResponseEntity<List<BehaviorLog>> searchBehaviorLogsFromDB(@RequestParam Map<String, String> params) {
         try {
+            // 비어 있지 않은 파라미터만 필터링하여 검색 조건으로 사용
             Map<String, Object> searchParams = new HashMap<>();
             for (Map.Entry<String, String> entry : params.entrySet()) {
-                if (!entry.getValue().isEmpty()) {
-                    // 각 파라미터의 값이 비어 있지 않으면 매핑 추가
+                if (StringUtils.hasText(entry.getValue())) {
                     searchParams.put(entry.getKey(), entry.getValue());
                 }
             }
-
-            // BehaviorLogService를 이용하여 검색
-            List<BehaviorLog> behaviorLogs = behaviorLogService.findByMultipleCriteria(params);
+            List<BehaviorLog> behaviorLogs = behaviorLogService.findByMultipleCriteria(null, searchParams);
             return ResponseEntity.ok(behaviorLogs);
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-    
     }
 
 }

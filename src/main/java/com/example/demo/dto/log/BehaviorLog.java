@@ -1,24 +1,49 @@
 package com.example.demo.dto.log;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 public class BehaviorLog {
-    private int id;             // ID (formerly detection_number)
-    private LocalDateTime time; // 발생 시간
-    private String s_ip;        // 출발지 IP
-    private String d_ip;        // 목적지 IP
-    private int s_port;         // 출발지 포트
-    private int d_port;         // 목적지 포트
-    private int len;            // 길이
-    private String pattern1;    // 패턴1
-    private String pattern2;    // 패턴2
-    private String pattern3;    // 패턴3
-    private byte[] packet;      // 패킷 데이터
-    private int base_cnt;       // 횟수 (formerly count)
-    private int base_time;      // 기본 시간
-    private int action_type;    // 액션 타입
-    private String policy_name; // 위험 로그 ID
-    // Getter 및 Setter 메서드
+    private int id;
+    private LocalDateTime time;
+    private String s_ip;
+    private String d_ip;
+    private int s_port;
+    private int d_port;
+    private int len;
+    private String pattern1;
+    private String pattern2;
+    private String pattern3;
+    private byte[] packet;
+    private int base_cnt;
+    private int base_time;
+    private int action_type;
+    private String policy_name;
+
+    public BehaviorLog() {
+        // 기본 생성자
+    }
+
+    public BehaviorLog(int id, LocalDateTime time, String s_ip, String d_ip, int s_port, int d_port,
+                       int len, String pattern1, String pattern2, String pattern3, byte[] packet,
+                       int base_cnt, int base_time, int action_type, String policy_name) {
+        this.id = id;
+        this.time = time;
+        this.s_ip = s_ip;
+        this.d_ip = d_ip;
+        this.s_port = s_port;
+        this.d_port = d_port;
+        this.len = len;
+        this.pattern1 = pattern1;
+        this.pattern2 = pattern2;
+        this.pattern3 = pattern3;
+        this.packet = packet;
+        this.base_cnt = base_cnt;
+        this.base_time = base_time;
+        this.action_type = action_type;
+        this.policy_name = policy_name;
+    }
+
     public int getId() {
         return id;
     }
@@ -131,11 +156,32 @@ public class BehaviorLog {
         this.action_type = action_type;
     }
 
-	public String getPolicy_name() {
-		return policy_name;
-	}
+    public String getPolicy_name() {
+        return policy_name;
+    }
 
-	public void setPolicy_name(String policy_name) {
-		this.policy_name = policy_name;
-	}
+    public void setPolicy_name(String policy_name) {
+        this.policy_name = policy_name;
+    }
+
+    @Override
+    public String toString() {
+        return "BehaviorLog{" +
+                "id=" + id +
+                ", time=" + time +
+                ", s_ip='" + s_ip + '\'' +
+                ", d_ip='" + d_ip + '\'' +
+                ", s_port=" + s_port +
+                ", d_port=" + d_port +
+                ", len=" + len +
+                ", pattern1='" + pattern1 + '\'' +
+                ", pattern2='" + pattern2 + '\'' +
+                ", pattern3='" + pattern3 + '\'' +
+                ", packet=" + Arrays.toString(packet) +
+                ", base_cnt=" + base_cnt +
+                ", base_time=" + base_time +
+                ", action_type=" + action_type +
+                ", policy_name='" + policy_name + '\'' +
+                '}';
+    }
 }

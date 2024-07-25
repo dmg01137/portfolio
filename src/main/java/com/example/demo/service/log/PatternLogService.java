@@ -61,18 +61,18 @@ public class PatternLogService {
     @Transactional(readOnly = true)
     public List<PatternLog> search(Integer id, String  time,  String  sIp, String  dIp, Integer  sPort,Integer  dPort, Integer len,
     		String pattern1,String pattern2,String pattern3,byte[] packet,Integer actionType,String policy_name) {
-        return patternLogDAO.search(id, time, sIp, dIp, sPort, dPort, len, pattern1, pattern2, pattern3, packet, actionType,policy_name);
+        return ((PatternLogService) patternLogDAO).search(id, time, sIp, dIp, sPort, dPort, len, pattern1, pattern2, pattern3, packet, actionType,policy_name);
     }
-
- // Search logs by multiple criteria
+    // Search logs by multiple criteria
     @Transactional(readOnly = true)
     public List<PatternLog> findByMultipleCriteria(String tableName, Map<String, Object> criteria) {
         if (tableName == null) {
             tableName = "pattern_log_" + LocalDate.now().toString().replace("-", "");
         }
+        if (criteria.containsKey("date")) {
+            String date = criteria.get("date").toString();
+            tableName = "pattern_log_" + date.replace("-", "");
+        }
         return patternLogDAO.findByMultipleCriteria(tableName, criteria);
     }
-
-
-	
 }
