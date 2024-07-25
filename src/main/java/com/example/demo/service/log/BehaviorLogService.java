@@ -24,13 +24,21 @@ public class BehaviorLogService {
     public BehaviorLogService(BehaviorLogDAO behaviorLogDAO) {
         this.behaviorLogDAO = behaviorLogDAO;
     }
-    
     // 패킷 정보 가져오기
-    public BehaviorLog findPacketInfoById(int id) {
-        // ID를 기준으로 BehaviorLog를 조회합니다.
-        return behaviorLogDAO.findById(id);
+    public BehaviorLog findPacketInfoById(int id, LocalDateTime date) {
+        String tableName = "behavior_log_" + date.toLocalDate().toString().replace("-", "");
+        try {
+            BehaviorLog packetInfo = behaviorLogDAO.findPacketInfoById(id, date, tableName);
+            if (packetInfo != null) {
+                return packetInfo;
+            } else {
+                throw new RuntimeException("Packet info not found for id " + id);
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // TODO: Replace with logging
+            throw new RuntimeException("Failed to fetch packet details.");
+        }
     }
-
 
     // 특정 테이블에서 모든 로그 조회
     @Transactional(readOnly = true)

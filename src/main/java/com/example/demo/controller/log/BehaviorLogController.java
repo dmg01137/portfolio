@@ -1,15 +1,17 @@
 package com.example.demo.controller.log;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.springframework.util.StringUtils; // StringUtils import 추가
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils; // StringUtils import 추가
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,25 +25,50 @@ public class BehaviorLogController {
     @Autowired
     private BehaviorLogService behaviorLogService;
 
-    //패킷 상세보기
+
+ // 패킷 상세보기 페이지 이동
     @GetMapping("/packet")
-    public String packet() {       
-        return "packet"; 
-    }
-    // 패킷 상세 데이터 가져오기
-    @GetMapping("/packet-info")
-    public ResponseEntity<BehaviorLog> getPacketInfoById(@RequestParam int id) {
+    public String packet(@RequestParam int id,
+            @RequestParam String date,
+            @RequestParam String s_ip,
+            @RequestParam String d_ip,
+            @RequestParam int s_port,
+            @RequestParam int d_port,
+            @RequestParam int len,
+            @RequestParam String packet,
+            Model model) {
+model.addAttribute("id", id);
+model.addAttribute("date", date);
+model.addAttribute("s_ip", s_ip);
+model.addAttribute("d_ip", d_ip);
+model.addAttribute("s_port", s_port);
+model.addAttribute("d_port", d_port);
+model.addAttribute("len", len);
+model.addAttribute("packet", packet);
+
+return "packet"; // 해당하는 패킷 정보를 보여주는 HTML 페이지 (예: packet.html)
+}
+
+ // 패킷 정보 가져오기 API 엔드포인트
+    @GetMapping("/api/packetInfo")
+    @ResponseBody
+    public ResponseEntity<BehaviorLog> getPacketInfo(@RequestParam int id, @RequestParam String date) {
         try {
-            BehaviorLog packetInfo = behaviorLogService.findPacketInfoById(id);
+            LocalDateTime dateTime = LocalDateTime.parse(date, DateTimeFormatter.ofPattern("yyyyMMdd"));
+            BehaviorLog packetInfo = behaviorLogService.findPacketInfoById(id, dateTime);
             if (packetInfo != null) {
                 return ResponseEntity.ok(packetInfo);
             } else {
                 return ResponseEntity.notFound().build();
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
+   
+    
     // 페이지: 모든 위험 로그 보기
     @GetMapping("/behaviorlog")
     public String showBehaviorLogPage(Model model) {

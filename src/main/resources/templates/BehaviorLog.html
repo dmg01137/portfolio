@@ -398,13 +398,41 @@ $(document).ready(function () {
         });
     }
     
+ // 상세조회 버튼 클릭 이벤트 핸들러
     $(document).on('click', '.btn-detail', function () {
-        let logId = $(this).data('log-id'); // 버튼의 data-log-id 속성에서 로그 ID를 가져옵니다
-        let logDate = $(this).data('log-date'); // 버튼의 data-log-date 속성에서 로그 날짜를 가져옵니다
+        let logId = $(this).data('log-id'); // 상세조회 버튼의 data-log-id 속성에서 로그 ID 가져오기
+        let logTime = $(this).data('log-time'); // 상세조회 버튼의 data-log-time 속성에서 로그 시간 가져오기
+        let logS_IP = $(this).data('log-s_ip'); // 상세조회 버튼의 data-log-s_ip 속성에서 출발지 IP 가져오기
+        let logS_Port = $(this).data('log-s_port'); // 상세조회 버튼의 data-log-s_port 속성에서 출발지 포트 가져오기
+        let logD_IP = $(this).data('log-d_ip'); // 상세조회 버튼의 data-log-d_ip 속성에서 도착지 IP 가져오기
+        let logD_Port = $(this).data('log-d_port'); // 상세조회 버튼의 data-log-d_port 속성에서 도착지 포트 가져오기
+        let logLen = $(this).data('log-len'); // 상세조회 버튼의 data-log-len 속성에서 패턴 길이 가져오기
+        let logPacket = $(this).data('log-packet'); // 상세조회 버튼의 data-log-packet 속성에서 패킷 데이터 가져오기
 
-        // 로그 ID와 날짜를 사용하여 상세 보기로 리다이렉트합니다
-        window.location.href = '/packet?id=' + logId + '&date=' + logDate;
+        // logTime을 yyyyMMdd 형식으로 변환하는 함수 정의
+        function formatDateToyyyyMMdd(dateString) {
+            let dateObj = new Date(dateString);
+            let year = dateObj.getFullYear();
+            let month = ('0' + (dateObj.getMonth() + 1)).slice(-2); // 월은 0부터 시작하므로 +1을 해줍니다.
+            let day = ('0' + dateObj.getDate()).slice(-2);
+            return year + month + day;
+        }
+
+        // logTime을 yyyyMMdd 형식으로 변환
+        let formattedDate = formatDateToyyyyMMdd(logTime);
+
+        // 로그 ID와 날짜를 사용하여 패킷 분석 페이지로 리다이렉트
+        window.location.href = '/packet?id=' + logId +
+                              '&date=' + formattedDate +
+                              '&s_ip=' + logS_IP +
+                              '&s_port=' + logS_Port +
+                              '&d_ip=' + logD_IP +
+                              '&d_port=' + logD_Port +
+                              '&len=' + logLen +
+                              '&packet=' + logPacket;
     });
+
+
 
 
     // 페이지네이션을 렌더링하는 함수
