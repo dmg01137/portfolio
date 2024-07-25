@@ -351,46 +351,10 @@ $(document).ready(function () {
             totalLogs = logsData.length;
             displayLogs();
             renderPagination();
-        }).fail(function() {
+        }).fail(function () {
             console.error("Failed to fetch data.");
         });
     }
-
-   
-
-    function renderPagination() {
-        let totalPages = Math.ceil(totalLogs / logsPerPage);
-        let paginationHTML = "";
-
-        paginationHTML += `<li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
-                            <a class="page-link" href="#" aria-label="Previous" onclick="changePage(${currentPage - 1})">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                          </li>`;
-
-        for (let i = 1; i <= totalPages; i++) {
-            paginationHTML += `<li class="page-item ${currentPage === i ? 'active' : ''}">
-                                <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
-                              </li>`;
-        }
-
-        paginationHTML += `<li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
-                            <a class="page-link" href="#" aria-label="Next" onclick="changePage(${currentPage + 1})">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                          </li>`;
-
-        $("#pagination").html(paginationHTML);
-    }
-
-    window.changePage = function (page) {
-        if (page < 1 || page > Math.ceil(totalLogs / logsPerPage)) {
-            return;
-        }
-        currentPage = page;
-        displayLogs();
-        renderPagination();
-    };
 
     // 테이블에 로그 표시하는 함수
     function displayLogs() {
@@ -423,21 +387,56 @@ $(document).ready(function () {
         });
     }
 
-   
+    // 페이지네이션을 렌더링하는 함수
+    function renderPagination() {
+        let totalPages = Math.ceil(totalLogs / logsPerPage);
+        let paginationHTML = "";
+
+        paginationHTML += `<li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                            <a class="page-link" href="#" aria-label="Previous" onclick="changePage(${currentPage - 1})">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                          </li>`;
+
+        for (let i = 1; i <= totalPages; i++) {
+            paginationHTML += `<li class="page-item ${currentPage === i ? 'active' : ''}">
+                                <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
+                              </li>`;
+        }
+
+        paginationHTML += `<li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                            <a class="page-link" href="#" aria-label="Next" onclick="changePage(${currentPage + 1})">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                          </li>`;
+
+        $("#pagination").html(paginationHTML);
+    }
+
+    // 페이지 변경 함수
+    window.changePage = function (page) {
+        if (page < 1 || page > Math.ceil(totalLogs / logsPerPage)) {
+            return;
+        }
+        currentPage = page;
+        displayLogs();
+        renderPagination();
+    };
+
+    // 검색 폼 submit 이벤트 핸들러
+    $("#searchForm").submit(function (event) {
+        event.preventDefault(); // 기본 제출 방지
+        handleSearch();
+    });
 
     // 검색 버튼 클릭 이벤트 핸들러
     $("#searchButton").click(function () {
         handleSearch();
     });
- // Clear 버튼 클릭 이벤트 핸들러
-    $("#clearButton").click(function () {
-        $(".searchInput").val(""); // 입력 필드 초기화
-        fetchAndDisplayLogs(); // 전체 로그 데이터 다시 불러오기
-    });
- // 검색 처리 함수
+
+    // 검색 처리 함수
     function handleSearch() {
         let searchParams = {
-            "date": $("#date").val().trim(),
             "time": $("#time").val().trim(),
             "s_ip": $("#s_ip").val().trim(),
             "s_port": $("#s_port").val().trim(),
@@ -453,10 +452,9 @@ $(document).ready(function () {
             "action_type": $("#action_type").val().trim(),
         };
 
-        // Convert searchParams to URL query string
-        let queryString = $.param(searchParams);
-
-        $.get("/behaviorlog/multipleSearch?" + queryString, function (data) {
+        // 비어있는 파라미터 제외
+        let queryParams = $.param(searchParams);
+        $.get("/behaviorlog/multipleSearch?" + queryParams, function (data) {
             logsData = data;
             totalLogs = logsData.length;
             currentPage = 1;
@@ -467,9 +465,14 @@ $(document).ready(function () {
         });
     }
 
- });
+    // 초기화 버튼 클릭 이벤트 핸들러
+    $("#clearButton").click(function () {
+        $(".searchInput").val(""); // 모든 검색 입력 필드 비우기
+        fetchAndDisplayLogs(); // 초기 로그 데이터 다시 불러오기
+    });
+});
 
- </script>
+</script>
 
- </body>
- </html>
+</body>
+</html>

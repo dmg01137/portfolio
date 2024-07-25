@@ -18,6 +18,7 @@ import com.example.demo.dto.log.BehaviorLog;
 import com.example.demo.service.log.BehaviorLogService;
 
 @Controller
+
 public class BehaviorLogController {
 
     @Autowired
@@ -51,7 +52,8 @@ public class BehaviorLogController {
     }
 
     // 다중 조건으로 위험 로그 조회 (Thymeleaf 템플릿)
-    @GetMapping("/search")
+
+    @GetMapping("/behaviorlog/search")
     public String searchBehaviorLogs(
             @RequestParam(name = "id", required = false) Integer id,
             @RequestParam(name = "time", required = false) LocalDateTime time,
@@ -72,27 +74,23 @@ public class BehaviorLogController {
         try {
             List<BehaviorLog> logs = behaviorLogService.search(id, time, s_ip, d_ip, s_port, d_port, action_type, len, base_cnt, base_time, pattern1, pattern2, pattern3, packet, policy_name);
             model.addAttribute("logs", logs);
-            return "patternlog"; // Thymeleaf template name
+            return "behaviorlog";
         } catch (Exception e) {
-            // Log exception and redirect to error page
             e.printStackTrace();
             model.addAttribute("error", "Failed to retrieve behavior logs");
-            return "error"; // Thymeleaf template name for error page
+            return "error";
         }
     }
 
-    // 다중 조건으로 위험 로그 조회 (DB에서 처리)
     @GetMapping("/behaviorlog/multipleSearch")
     public ResponseEntity<List<BehaviorLog>> searchPatternLogsFromDB(@RequestParam Map<String, String> params) {
         try {
-            // Exclude empty values from parameters and process valid search conditions only
             Map<String, Object> searchParams = new HashMap<>();
             for (Map.Entry<String, String> entry : params.entrySet()) {
                 if (!entry.getValue().isEmpty()) {
                     searchParams.put(entry.getKey(), entry.getValue());
                 }
             }
-
             List<BehaviorLog> behaviorLogs = behaviorLogService.findByMultipleCriteria(null, searchParams);
             return ResponseEntity.ok(behaviorLogs);
         } catch (Exception e) {
@@ -100,5 +98,4 @@ public class BehaviorLogController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
 }
