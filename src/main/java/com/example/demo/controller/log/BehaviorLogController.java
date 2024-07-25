@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import org.springframework.util.StringUtils; // StringUtils import 추가
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,6 @@ import com.example.demo.dto.log.BehaviorLog;
 import com.example.demo.service.log.BehaviorLogService;
 
 @Controller
-
 public class BehaviorLogController {
 
     @Autowired
@@ -52,7 +51,6 @@ public class BehaviorLogController {
     }
 
     // 다중 조건으로 위험 로그 조회 (Thymeleaf 템플릿)
-
     @GetMapping("/behaviorlog/search")
     public String searchBehaviorLogs(
             @RequestParam(name = "id", required = false) Integer id,
@@ -82,12 +80,15 @@ public class BehaviorLogController {
         }
     }
 
+    // 다중 조건으로 위험 로그 조회 (API)
     @GetMapping("/behaviorlog/multipleSearch")
-    public ResponseEntity<List<BehaviorLog>> searchPatternLogsFromDB(@RequestParam Map<String, String> params) {
+    @ResponseBody
+    public ResponseEntity<List<BehaviorLog>> searchBehaviorLogsFromDB(@RequestParam Map<String, String> params) {
         try {
+            // 비어 있지 않은 파라미터만 필터링하여 검색 조건으로 사용
             Map<String, Object> searchParams = new HashMap<>();
             for (Map.Entry<String, String> entry : params.entrySet()) {
-                if (!entry.getValue().isEmpty()) {
+                if (StringUtils.hasText(entry.getValue())) {
                     searchParams.put(entry.getKey(), entry.getValue());
                 }
             }
@@ -98,4 +99,5 @@ public class BehaviorLogController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
 }

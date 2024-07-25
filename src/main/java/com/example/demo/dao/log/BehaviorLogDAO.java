@@ -38,5 +38,6 @@ public interface BehaviorLogDAO {
     	    @Param("policy_name") String policy_name);
     
     // 다중 조건으로 패턴 로그 조회
-    List<BehaviorLog>  findByMultipleCriteria(@Param("tableName") String tableName, @Param("criteria") Map<String, Object> criteria);
+
+    List<BehaviorLog> findByMultipleCriteria(@Param("tableName") String tableName, @Param("criteria") Map<String, Object> criteria);
 }

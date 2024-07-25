@@ -16,10 +16,17 @@ import com.example.demo.dto.log.BehaviorLog;
 @Transactional
 public class BehaviorLogService {
 
+	
+
+	 private BehaviorLogDAO behaviorLogDAO;
+	    LocalDate currentDate = LocalDate.now();
+	    String tableName = currentDate.toString().replace("-", "");
     @Autowired
-    private BehaviorLogDAO behaviorLogDAO;
-    LocalDate currentDate = LocalDate.now();
-    String tableName = currentDate.toString().replace("-", "");
+    public BehaviorLogService(BehaviorLogDAO behaviorLogDAO) {
+        this.behaviorLogDAO = behaviorLogDAO;
+    }
+	
+
     
     // Find all logs from a specific table
     @Transactional(readOnly = true)
@@ -46,7 +53,8 @@ public class BehaviorLogService {
 		 return ((BehaviorLogService) behaviorLogDAO).search(id, time, s_ip, d_ip, s_port, d_port, action_type, len, base_cnt, base_time, pattern1, pattern2, pattern3, packet, policy_name);
 	}
  
-
+    
+    
 	 // Search logs by multiple criteria
     @Transactional(readOnly = true)
     public List<BehaviorLog> findByMultipleCriteria(String tableName, Map<String, Object> criteria) {
