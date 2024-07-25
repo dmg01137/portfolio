@@ -23,6 +23,25 @@ public class BehaviorLogController {
     @Autowired
     private BehaviorLogService behaviorLogService;
 
+    //패킷 상세보기
+    @GetMapping("/packet")
+    public String packet() {       
+        return "packet"; 
+    }
+    // 패킷 상세 데이터 가져오기
+    @GetMapping("/packet-info")
+    public ResponseEntity<BehaviorLog> getPacketInfoById(@RequestParam int id) {
+        try {
+            BehaviorLog packetInfo = behaviorLogService.findPacketInfoById(id);
+            if (packetInfo != null) {
+                return ResponseEntity.ok(packetInfo);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
     // 페이지: 모든 위험 로그 보기
     @GetMapping("/behaviorlog")
     public String showBehaviorLogPage(Model model) {

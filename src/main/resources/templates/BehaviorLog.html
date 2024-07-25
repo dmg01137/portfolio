@@ -370,6 +370,8 @@ $(document).ready(function () {
 
         displayedLogs.forEach(function (log) {
             let encodedPacket = log.packet ? btoa(log.packet) : ""; // 패킷 데이터 Base64 인코딩
+
+            let detailButton = '<button class="btn btn-info btn-sm btn-detail" style="background-color: #b372a2bd; font-size: 10px;" data-log-id="' + log.id + '">상세조회</button>';
             $("#logTableBody").append(
                 '<tr>' +
                 '<td>' + log.id + '</td>' +
@@ -385,11 +387,25 @@ $(document).ready(function () {
                 '<td>' + log.pattern1 + '</td>' +
                 '<td>' + log.pattern2 + '</td>' +
                 '<td>' + log.pattern3 + '</td>' +
-                '<td>' + encodedPacket + '</td>' +
+                '<td>' +
+                '<button class="btn btn-info btn-sm btn-detail" style="background-color: #b372a2bd; font-size: 10px;" ' +
+                'data-log-id="' + log.id + '" ' +
+                'data-log-date="' + log.time + '" ' +
+                '>상세조회</button>' +
+                '</td>'+
                 '</tr>'
             );
         });
     }
+    
+    $(document).on('click', '.btn-detail', function () {
+        let logId = $(this).data('log-id'); // 버튼의 data-log-id 속성에서 로그 ID를 가져옵니다
+        let logDate = $(this).data('log-date'); // 버튼의 data-log-date 속성에서 로그 날짜를 가져옵니다
+
+        // 로그 ID와 날짜를 사용하여 상세 보기로 리다이렉트합니다
+        window.location.href = '/packet?id=' + logId + '&date=' + logDate;
+    });
+
 
     // 페이지네이션을 렌더링하는 함수
     function renderPagination() {
