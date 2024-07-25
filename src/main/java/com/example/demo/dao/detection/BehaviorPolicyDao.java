@@ -26,9 +26,9 @@ public interface BehaviorPolicyDao
 	// 패턴 활성화/비활성화
 	public int clickBehaviorPolicy(int detection_number);
 	
-	// 정책 마지막 번호 가져오기
+	// 정책 마지막 번호 가져오기 
 	public int getLastDetectionNumber();
-	
+	 
 	// 행동 정책 검색
     public List<BehaviorPolicyDto> searchBehaviorPolicy(
             @Param("detection_number") Integer detectionNumber,

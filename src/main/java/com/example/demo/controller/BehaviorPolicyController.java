@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dto.BehaviorPolicyDto;
-import com.example.demo.dto.PatternPolicyDto;
 import com.example.demo.service.BehaviorPolicyService;
 
 @Controller
@@ -25,9 +24,7 @@ public class BehaviorPolicyController
     public BehaviorPolicyController(BehaviorPolicyService behaviorPolicyService)
     {
         this.behaviorPolicyService = behaviorPolicyService;
-        System.out.println("잠시 Git 테스트 좀 할께");
     }
-    
     
     
     // 행동 정책 리스트 출력
@@ -44,9 +41,10 @@ public class BehaviorPolicyController
 	public String addBehaviorPolicy(Model model) 
 	{
 		// primary key인 디텍션 넘버를 + 1해서 넘겨준다
-	    int lastDetectionNumber = behaviorPolicyService.getLastDetectionNumber() + 1;
-	    model.addAttribute("detectionNumber", lastDetectionNumber);
-	    return "addBehaviorPolicy"; // 파일 경로 확인
+		
+		  int lastDetectionNumber = behaviorPolicyService.getLastDetectionNumber() + 1;
+		  model.addAttribute("detectionNumber", lastDetectionNumber);
+		  return "addBehaviorPolicy"; // 파일 경로 확인
 	}
     
     
