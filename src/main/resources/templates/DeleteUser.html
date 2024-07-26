@@ -10,274 +10,129 @@
    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
    
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <style>
-/* 기본 스타일 설정 */
-th {
-    cursor: pointer;
-    position: relative;
-    padding-left: 30px; /* 왼쪽 패딩을 늘려 화살표와 텍스트 간격 확보 */
-    min-width: 150px; /* 헤더 셀의 최소 너비 설정 */
-    box-sizing: border-box; /* 패딩과 보더를 포함한 크기 조정 */
-}
-
-th.sortable::before {
-    content: '\25B2'; /* 기본 화살표 아이콘 */
-    position: absolute;
-    left: 10px; /* 화살표를 텍스트 왼쪽에 위치 */
-    font-size: 0.8em;
-    color: black;
-}
-
-th.sortable.asc::before {
-    content: '\25B2'; /* 오름차순 화살표 */
-    color: blue;
-    left: 10px; /* 오름차순 화살표 위치 조정 */
-}
-
-th.sortable.desc::before {
-    content: '\25BC'; /* 내림차순 화살표 */
-    color: blue;
-    left: 10px; /* 내림차순 화살표 위치 조정 */
-}
-body {
-    background-color: #222; /* 페이지 배경을 사이드바와 네비게이션 바와 같은 색상으로 설정 */
-    color: #fff; /* 기본 텍스트 색상을 흰색으로 설정 */
-    font-family: Arial, sans-serif;
-    padding-top: 80px; /* 네비게이션 바의 높이에 맞추어 여백 추가 */
-}
-
-
-/* 네비게이션 바 스타일 */
-.navbar {
-    background-color: #222; /* 네비게이션 바 배경색 설정 */
-    padding: 14px 16px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000; /* 다른 요소들보다 위에 표시되도록 설정 */
-}
-
-.navbar-brand {
-    font-size: 1.5rem;
-    color: #fff; /* 네비게이션 바 브랜드 텍스트 색상 설정 */
-}
-
-.navbar-nav .nav-item {
-    margin-right: 10px;
-}
-
-.nav-link {
-    color: #fff !important; /* 네비게이션 링크 색상 설정 */
-    transition: all 0.3s ease;
-}
-
-.nav-link:hover {
-    color: #17a2b8 !important; /* 네비게이션 링크 호버 시 색상 설정 */
-}
-
-.nav-link i {
-    margin-right: 5px;
-}
-
-/* 사이드바 스타일 */
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 64px; /* 네비게이션 바 높이만큼 떨어지게 설정 */
-    width: 220px; /* 사이드바 너비 조정 */
-    background-color: #222; /* 사이드바 배경색 설정 */
-    height: calc(100% - 64px); /* 사이드바의 높이를 화면 전체 높이에서 네비게이션 바 높이만큼 빼서 설정 */
-    padding-top: 20px;
-    transition: all 0.3s ease;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    overflow-x: hidden; /* 가로 스크롤바를 숨기는 속성 */
-}
-
-.sidebar-heading {
-    font-size: 1.2rem;
-    color: #fff; /* 사이드바 제목 색상 설정 */
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.nav-sidebar .nav-link {
-    color: #d1d1d1; /* 사이드바 링크 기본 색상 설정 */
-    padding: 10px 20px;
-    transition: all 0.3s ease;
-}
-
-.nav-sidebar .nav-link:hover {
-    background-color: #333; /* 사이드바 링크 호버 시 배경색 설정 */
-    color: #fff; /* 사이드바 링크 호버 시 텍스트 색상 설정 */
-}
-
-.nav-sidebar .nav-link i {
-    margin-right: 10px;
-}
-
-.nav-sidebar .nav-link-custom {
-    color: #d1d1d1; /* 기본 링크 색상 설정 */
-    padding: 10px 20px;
-    transition: all 0.3s ease;
-}
-
-.nav-sidebar .nav-link-custom:hover, .nav-sidebar .nav-link-custom:hover i {
-    color: #17a2b8 !important; /* 호버 시 텍스트 및 아이콘 색상 설정 */
-}
-
-/* 카드 스타일 */
-.card {
-    margin: -20px auto; /* 카드 가운데 정렬 및 여백 설정 */
-    width: 120%; /* 카드 너비를 100%로 설정 */
-    max-width: 1200px; /* 카드 최대 너비 설정 */
-    border-radius: 10px; /* 카드 모서리 둥글게 설정 */
-    background-color: #333; /* 카드 배경색 설정 */
-    color: #fff; /* 카드 텍스트 색상 설정 */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
-    border: transparent; /* 카드 테두리 제거 */
-}
-
-/* 카드 호버 시 그림자 효과 */
-.card:hover {
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* 카드 바디 스타일 */
-.card-body {
-    padding: 15px; /* 카드 내부 여백 설정 */
-    font-size: 14px; /* 카드 텍스트 크기 설정 */
-}
-
-/* 폼 및 버튼 스타일 */
-.form-group {
-    margin-bottom: 15px; /* 폼 그룹 사이의 여백 설정 */
-}
-
-.search-section {
-    margin-bottom: 10px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 10px;
-}
-
-.search-section input[type="text"],
-.search-section input[type="datetime-local"] {
-    width:100%;
-    padding: 8px;
-    font-size: 14px;
-    background-color: #444; /* 입력 필드 배경색 설정 */
-    color: #fff; /* 입력 필드 텍스트 색상 설정 */
-    border: 1px solid #555; /* 입력 필드 테두리 색상 설정 */
-}
-
-.search-section button {
-    padding: 8px 16px;
-    font-size: 14px;
-}
-
-.btn-primary {
-    background-color: #007bff; /* 버튼 기본 색상 설정 */
-    border-color: #007bff;
-}
-
-.btn-secondary {
-    background-color: #6c757d; /* 보조 버튼 색상 설정 */
-    border-color: #6c757d;
-}
-
-.btn-primary:hover,
-.btn-secondary:hover {
-    opacity: 0.9; /* 버튼 호버 시 불투명도 설정 */
-}
-.btn-warning {
-    background-color: #b372a2bd !important; /* 수정 버튼 배경색을 녹색으로 변경 */
-    border-color: #28a745 !important;    /* 수정 버튼 테두리색을 녹색으로 변경 */
-    color: #fff !important;              /* 수정 버튼 텍스트 색상을 흰색으로 변경 */
-}
-.btn-warning:hover {
-    background-color: #b372a2bd !important; /* 수정 버튼 호버 시 배경색을 조금 어두운 녹색으로 변경 */
-    border-color: #b372a2bd !important;     /* 수정 버튼 호버 시 테두리색을 조금 어두운 녹색으로 변경 */
-}
-
-/* 테이블 스타일 */
-.table-container {
-    overflow-x: auto;
-    max-width: 100%; /* 테이블 컨테이너의 최대 너비 설정 */
-}
-
-.table {
-    width: 100%;
-    color: #fff; /* 테이블 텍스트 색상 설정 */
-    background-color: #333; /* 테이블 배경색 설정 */
-}
-
-.table th, .table td {
-    border: 1px solid #555; /* 셀 경계선 색상 설정 */
-    padding: 8px;
-    text-align: center;
-    vertical-align: middle;
-    white-space: nowrap; /* 글자가 너무 길어지면 줄바꿈을 하지 않도록 설정 */
-    text-overflow: ellipsis; /* 글자가 너무 길 경우 ...으로 생략 */
-}
-
-.table th {
-    background-color: #444; /* 테이블 헤더 배경색 설정 */
-}
-
-.table tbody tr:nth-child(even) {
-    background-color: #333; /* 테이블 짝수 행 배경색 설정 */
-}
-
-
-.table tbody tr:hover {
-    background-color: #555; /* 테이블 마우스 호버 시 배경색 설정 */
-}
-
-/* 페이지네이션 스타일 */
-.pagination {
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.pagination .page-link {
-    color: #007bff; /* 페이지네이션 링크 색상 설정 */
-    background-color: #000; /* 페이지네이션 배경색 설정 */
-    border: 1px solid #555; /* 페이지네이션 테두리 색상 설정 */
-}
-
-.pagination .page-link:hover {
-    color: #0056b3; /* 페이지네이션 링크 호버 시 색상 설정 */
-    background-color: #444; /* 페이지네이션 호버 시 배경색 설정 */
-    border-color: #555; /* 페이지네이션 호버 시 테두리 색상 설정 */
-}
-
-.pagination .page-item.active .page-link {
-    z-index: 1;
-    color: #fff; /* 활성 페이지 링크 색상 설정 */
-    background-color: #007bff; /* 활성 페이지 배경색 설정 */
-    border-color: #007bff; /* 활성 페이지 테두리 색상 설정 */
-}
-.container {
-    margin-left: 20px; /* 사이드바 너비만큼 왼쪽 여백 추가 */
-    padding-top: 80px; /* 네비게이션 바 높이만큼 상단 여백 추가 */
-}
-.dropdown-menu {
-    background-color: #222;
-    border: none;
-    position: relative; /* 드롭다운 메뉴의 위치 조정 */
-    z-index: 1050; /* 다른 요소 위에 표시되도록 z-index 설정 */
-}
-
-.dropdown-menu .dropdown-item {
-    color: #d1d1d1;
-}
-
-.dropdown-menu .dropdown-item:hover {
-    background-color: #333;
-    color: #fff;
-}
+       <style>
+        /* 네비게이션바 스타일 */
+        .navbar {
+            background-color: #222;
+            padding: 14px 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000; /* 다른 요소들보다 위에 표시되도록 설정 */
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+        .navbar-nav .nav-item {
+            margin-right: 10px;
+        }
+        .nav-link {
+            color: #fff !important;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #17a2b8 !important;
+        }
+        .nav-link i {
+            margin-right: 5px;
+        }
+        .nav-sidebar .nav-link {
+            color: #d1d1d1;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+        .nav-sidebar .nav-link:hover {
+            background-color: #222;
+            color: #fff;
+        }
+        .nav-sidebar .nav-link i {
+            margin-right: 10px;
+        }
+        /* 왼쪽 세로 메뉴바 스타일 */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 64px;
+            width: 200px; /* 사이드바 너비를 200px로 조정 */
+            background-color: #222;
+            height: 100%;
+            padding-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden; /* 가로 스크롤바를 숨기는 속성 */
+        }
+        .sidebar-heading {
+            font-size: 1.2rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .nav-sidebar .nav-link.active {
+            color: #17a2b8 !important; /* Active 상태에서의 텍스트 색상 변경 */
+        }
+        body {
+         background-color: #333;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+               background-color: #333;
+        }
+        .card {
+            margin-top: 100px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+        .card:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+        .card-body {
+            padding: 30px; /* Increased padding for better spacing */
+        }
+        .form-group {
+            margin-bottom: 20px; /* Increased margin between form groups */
+        }
+        .nav-sidebar .nav-link-custom {
+            color: #17a2b8 !important; /* 텍스트 색상 변경 */
+        }
+        .user-list {
+            margin-top: 20px;
+        }
+        .user-list-item {
+            padding: 15px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .user-list-item:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+        }
+        .btn-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .btn-modify {
+            margin-top: 10px;
+        }
+        .search-section {
+            margin-bottom: 20px;
+        }
+        .pagination-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .page-link {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
