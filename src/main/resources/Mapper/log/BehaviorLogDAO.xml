@@ -35,11 +35,12 @@
         WHERE id = #{id}
     </select>
 
-    <!-- 모든 데이터 조회 -->
-    <select id="findAll" resultType="com.example.demo.dto.log.BehaviorLog">
-        SELECT *
+    <!-- Select all -->
+    <select id="findAll" resultMap="behaviorLogResultMap">
+           SELECT *
         FROM log_db.${tableName}
     </select>
+
 
    <!-- 다중 검색 기능을 위한 패턴 로그 조회 -->
 <select id="findByMultipleCriteria" resultMap="behaviorLogResultMap" parameterType="map">

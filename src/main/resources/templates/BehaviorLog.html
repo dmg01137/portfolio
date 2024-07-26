@@ -364,7 +364,7 @@ $(document).ready(function () {
 
     // 로그 데이터 불러오고 표시하는 함수
     function fetchAndDisplayLogs() {
-        $.get("/api/behaviorlogs", function (data) {
+        $.get("/behaviorlog", function (data) {
             logsData = data;
             totalLogs = logsData.length;
             displayLogs();
@@ -510,7 +510,8 @@ $(document).ready(function () {
     // 초기화 버튼 클릭 이벤트 핸들러
     $("#clearButton").click(function () {
         $(".searchInput").val(""); // 모든 검색 입력 필드 비우기
-        fetchAndDisplayLogs(); // 초기 로그 데이터 다시 불러오기
+        fetchAndDisplayLogs();
+
     });
 });
 

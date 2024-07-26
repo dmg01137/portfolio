@@ -10,7 +10,7 @@
         /* 기본적인 스타일 */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-         background-color: #333;
+         background-color: #222;
             margin: 0;
             padding: 0;
         }
@@ -79,99 +79,124 @@
         }
 
         .content-area {
+         background-color: #444; /* 어두운 배경색 */
+         
             margin-left: 220px; /* Adjust margin for sidebar width */
-            padding: 20px;
+            padding: 5px;
             transition: all 0.3s ease;
             overflow-y: hidden; /* 내용이 뷰포트를 초과할 경우 스크롤 허용 */
             height: calc(100vh - 100px); /* Adjust for the top navbar height */
         }
 
         .chart-container {
-            background-color: rgba(248, 249, 250, 0.9); /* 반투명 유리 효과 */
-            padding: 10px;
+        margin-top: 10px; 
+            background-color: #333; /* 차트 배경색 변경 */
+            color: #fff;
+            padding: 7px;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
 
         .chart-container h4 {
-            color: #333; /* 텍스트 색상 변경 */
+            color: #fff; /* 텍스트 색상 변경 */
+              background-color: #222;
         }
 
         .chart-container canvas {
-            background-color: #fff; /* 차트 배경색 변경 */
+            background-color: #333; /* 차트 배경색 변경 */
+            color: #fff;
             border-radius: 5px; /* 차트 둥근 모서리 추가 */
         }
 
-         .search-form {
-        margin-bottom: 10px;
-        background-color: rgba(255, 255, 255, 0.9);
-        padding: 10px;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        display: flex;
-        align-items: center;
-    }
+       .search-form {
+    margin-bottom: 10px;
+    background-color: #333; /* Dark background color */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+}
 
-    .search-form select,
-    .search-form input[type="text"],
-    .search-form button {
-        border-radius: 3px;
-        min-width: 100px; /* Ensures the search input and buttons have a minimum width */
-    }
+.search-form select,
+.search-form input[type="text"],
+.search-form button {
+    border-radius: 3px;
+    min-width: 100px;
+    background-color: #444;
+    color: #fff; /* Text color for input and buttons */
+}
 
-    .search-form select {
-        flex: 1; /* Makes the select element flexible to occupy remaining space */
-        margin-right: 5px;
-    }
+.search-form select {
+    flex: 1;
+    margin-right: 5px;
+    background-color: #444; /* Darker background for select */
+    border: 1px solid #555; /* Border color */
+    padding: 8px;
+}
 
-    .search-form input[type="text"] {
-        flex: 2; /* Makes the text input flexible to occupy more space */
-        border: none;
-        padding: 8px;
-        margin-right: 5px;
-    }
+.search-form input[type="text"] {
+    flex: 2;
+    border: 1px solid #444; /* Border color */
+    padding: 8px;
+    margin-right: 5px;
+    background-color: #333; /* Darker background for input */
+     color: #fff;
+}
 
-    .search-form button {
-        background-color: #007bff;
-        color: #fff;
-        padding: 8px 16px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        border: none;
-    }
+.search-form button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+}
 
-    .search-form button:hover {
-        background-color: #0056b3;
-    }
+.search-form button:hover {
+    background-color: #0056b3;
+}
 
-    .event-table {
-        background-color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        overflow: auto;
-        width: 100%;
-        max-width: 100%;
-        max-height: 400px;
-    }
+.search-form button.btn-secondary {
+    background-color: #6c757d; /* Secondary button color */
+}
 
-    .event-table th,
-    .event-table td {
-        text-align: center;
-        vertical-align: middle;
-        font-size: 11px;
-        white-space: nowrap; /* Prevents table content from wrapping */
-    }
+.search-form button.btn-secondary:hover {
+    background-color: #5a6268; /* Hover color for secondary button */
+}
 
-    .event-table thead {
-        background-color: #007bff;
-        color: #fff;
-    }
 
-    .event-table tbody tr:hover {
-        background-color: #f2f2f2;
-    }
+.event-table {
+   background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+    width: 100%;
+    max-width: 100%;
+    max-height: 400px;
+}
 
+.event-table th,
+.event-table td {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 12px; /* Increased font size slightly for better readability */
+    white-space: nowrap; /* Prevents table content from wrapping */
+    padding: 8px; /* Added padding for cell content */
+}
+
+.event-table thead {
+   background-color: #333;
+     color: #fff;
+}
+
+.event-table tbody tr:hover {
+    background-color: #333;
+}
     @media (max-width: 768px) {
         .sidebar {
             position: static;
