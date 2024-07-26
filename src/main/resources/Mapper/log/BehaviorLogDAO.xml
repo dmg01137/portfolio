@@ -51,7 +51,7 @@
    
         <!-- ID 검색 조건 -->
         <if test="criteria.id != null and criteria.id != ''">
-            AND id LIKE CONCAT('%', #{criteria.id}, '%')
+             AND id = #{criteria.id}
         </if>
         <!-- time 검색 조건 -->
         <if test="criteria.time != null and criteria.time != ''">

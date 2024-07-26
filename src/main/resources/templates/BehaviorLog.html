@@ -85,55 +85,60 @@
     margin-bottom: 20px;
 }
 
-body {
-    background-color: #343a40; /* Change body background color */
-    font-family: Arial, sans-serif;
-    padding-top: 50px;
-    margin: 0; /* Reset page margin */
-}
 
 .container {
     margin-top: 30px;
-    margin-left: 80px;
+    margin-left:  60px;
     margin-bottom: 30px;
     padding-left: 150px;
     overflow-x: hidden;
     overflow-y: auto; /* Add this line */
+    color: #fff; /* 테이블 텍스트 색상 설정 */
+     background-color: #333;
+}
+   body {
+            background-color: #333;
+            font-family: Arial, sans-serif;
+            padding-top: 50px;
+            margin: 0;
+        }
+
+       
+            
+/* 테이블 스타일 */
+.table-container {
+    overflow-x: auto;
+    max-width: 100%; /* 테이블 컨테이너의 최대 너비 설정 */
 }
 
-table {
+.table {
     width: 100%;
-    min-width: 1200px; /* 최소 너비 설정 */
-    border-collapse: collapse;
-    border: 1px solid #dee2e6;
-    font-size: 0.6rem;
-    background-color: #f5f7f8;
-    color: #060606;
+    color: #fff; /* 테이블 텍스트 색상 설정 */
+    background-color: #333; /* 테이블 배경색 설정 */
+ 
 }
 
-th, td {
-    font-size: 0.75rem;
-    padding: 0.8rem;
-    vertical-align: middle;
-    border-top: 1px solid #dee2e6;
-    color: #060606;
-    white-space: nowrap;
+.table th, .table td {
+    border: 1px solid #555; /* 셀 경계선 색상 설정 */
+    padding: 8px;
     text-align: center;
+    vertical-align: middle;
+    white-space: nowrap; /* 글자가 너무 길어지면 줄바꿈을 하지 않도록 설정 */
+    text-overflow: ellipsis; /* 글자가 너무 길 경우 ...으로 생략 */
+    font-size: 0.75rem; 
 }
 
-thead th {
-    vertical-align: bottom;
-    border-bottom: 2px solid #dee2e6;
-    background-color: #5882ad; /* 테이블 헤더 배경색 */
-    color: #ffffff;
+.table th {
+    background-color: #444; /* 테이블 헤더 배경색 설정 */
 }
 
-tbody+tbody {
-    border-top: 2px solid #dee2e6;
+.table tbody tr:nth-child(even) {
+    background-color: #333; /* 테이블 짝수 행 배경색 설정 */
 }
 
-tbody tr:nth-of-type(even) {
-    background-color: #dae1e7; /* 짝수 행 배경색 */
+
+.table tbody tr:hover {
+    background-color: #555; /* 테이블 마우스 호버 시 배경색 설정 */
 }
 
 .searchContainer {
@@ -146,11 +151,20 @@ tbody tr:nth-of-type(even) {
     flex-wrap: wrap;
     justify-content: space-between;
     margin-top: 20px;
+      color: #d1d1d1; /* Placeholder text color */
+    
 }
 
 .searchForm .searchInput {
     margin-bottom: 2px;
     font-size: 0.6rem;
+     background-color: #444; /* 입력 필드 배경색 설정 */
+    color: #fff; /* 입력 필드 텍스트 색상 설정 */
+    border: 1px solid #555; /* 입력 필드 테두리 색상 설정 */
+}
+.btn-detail {
+    padding: 0.25rem 0.5rem; /* 버튼 내부 패딩 설정 */
+    font-size: 0.75rem; /* 버튼 텍스트 사이즈 설정 */
 }
 
 /* Clear 버튼 스타일 */

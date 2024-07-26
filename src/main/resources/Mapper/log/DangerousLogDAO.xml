@@ -32,7 +32,7 @@
     FROM log_db.${tableName}
     WHERE 1=1
     <if test="criteria.dangerous_number != null">
-        AND dangerous_number LIKE CONCAT('%', #{criteria.dangerous_number}, '%')
+        AND dangerous_number  = #{criteria.dangerous_number}
     </if>
     <if test="criteria.ip != null and criteria.ip != ''">
         AND ip LIKE CONCAT('%', #{criteria.ip}, '%')
