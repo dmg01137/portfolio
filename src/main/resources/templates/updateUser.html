@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang ="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify Policy</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+body {
+    background-color: #1a1a1a; /* 페이지 배경색을 더 어두운 색으로 변경 */
+}
+    /* 네비게이션 바 스타일 */
+    .navbar {
+        background-color: #222;
+        padding: 14px 16px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .navbar-brand {
+        font-size: 1.5rem;
+        color: #fff;
+    }
+
+    .navbar-nav .nav-item {
+        margin-right: 10px;
+    }
+
+    .nav-link {
+        color: #fff !important;
+        transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+        color: #17a2b8 !important;
+    }
+
+    .nav-link i {
+        margin-right: 5px;
+    }
+
+    /* 왼쪽 세로 메뉴바 스타일 */
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 64px;
+        width: 220px;
+        background-color: #1f1f1f; /* 사이드바 배경색 */
+        height: 100%;
+        padding-top: 20px;
+        transition: all 0.3s ease;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        overflow-x: hidden;
+    }
+
+    .sidebar-heading {
+        font-size: 1.2rem;
+        color: #fff;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .nav-sidebar .nav-link.active {
+        color: #17a2b8 !important;
+    }
+
+      body {
+        background-color: #222;
+        font-family: Arial, sans-serif;
+        padding-top: 80px;
+    }
+
+    .container {
+        margin-top: 0px;
+        background-color: #222; /* 컨테이너 배경색 조정 */
+    }
+
+    .card {
+        margin-top: 10px;
+        margin-left: auto; /* 카드 가운데 정렬 */
+        margin-right: auto; /* 카드 가운데 정렬 */
+        width: 95%;
+        max-width: 1100px;
+        border-radius: 15px;
+        background-color: #3a3a3a; /* 카드 배경색 조정 */
+        color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+        border: transparent;
+        transform: translateX(100px); /* 카드 위치를 오른쪽으로 20px 이동 */
+    }
+   .card-title {
+        color: #f1f1f1; /* 카드 제목 색상 */
+    }
+    .card:hover {
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-body {
+        padding: 20px;
+        font-size: 13px;
+        word-break: break-word;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-control {
+        background-color: #333; /* 활성화된 입력 박스 배경색 */
+        color:  #f8f9fa; /* 활성화된 입력 박스 텍스트 색상 */
+        border: 1px solid #444; /* 활성화된 입력 박스 테두리 색상 */
+    }
+    
+        .form-control[readonly] {
+    background-color: #555; /* 읽기 전용 입력 박스 배경색 */
+    color: #ddd; /* 읽기 전용 입력 박스 텍스트 색상 */
+    cursor: not-allowed; /* 커서 모양 변경 */
+}
+
+    .form-control:focus {
+        background-color: #333; /* 포커스 시 배경색 유지 */
+        color: #fff; /* 포커스 시 텍스트 색상 유지 */
+        border-color: #17a2b8; /* 포커스 시 테두리 색상 */
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* 포커스 시 그림자 */
+    }
+
+    /* 비활성화된 입력 박스 스타일 */
+    .form-control:disabled {
+        background-color: #555 !important; /* 비활성화 시 배경색 */
+        color: #ddd !important; /* 비활성화 시 텍스트 색상 */
+        border-color: #666 !important; /* 비활성화 시 테두리 색상 */
+    }
+
+    .nav-sidebar .nav-link-custom {
+        color: #17a2b8 !important;
+    }
+
+    .user-list {
+        margin-top: 20px;
+    }
+
+    .user-list-item {
+        padding: 15px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .user-list-item:hover {
+        background-color: #f0f0f0;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-section {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .btn-modify, .btn-clear {
+        height: 38px;
+        line-height: 24px;
+    }
+
+    /* 검색창 스타일 */
+    .search-section {
+        margin-bottom: 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+    }
+
+    .search-section input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .search-section button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    /* 테이블 스타일 수정 */
+    .table-container {
+        overflow-x: auto;
+        max-width: 100%;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #3a3a3a; /* 테이블 배경색 조정 */
+        color: #fff;
+    }
+
+    .table th, .table td {
+        border: 1px solid #444;
+        padding: 8px;
+        text-align: center;
+        vertical-align: middle;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .table th {
+        background-color: #333;
+    }
+
+    .table tbody tr:nth-child(even) {
+        background-color: #444;
+    }
+
+    .table tbody tr:hover {
+        background-color: #555;
+    }
+
+    .btn-custom {
+        width: 100%;
+        height: 46px;
+        font-size: 16px;
+        text-align: center;
+        line-height: 46px;
+        border: none;
+        border-radius: 4px;
+        padding: 0;
+    }
+
+    .btn-custom.submit {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .btn-custom.cancel {
+        background-color: #6c757d;
+        color: white;
+    }
+    .text-left {
+        text-align: left;
+         text-indent: 10px;
+}
+</style>
+
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <a class="navbar-brand" href="#">정책 관리</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/listPatternPolicy"><i class="fas fa-file-alt mr-1"></i>정책 관리</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/userlist"><i class="fas fa-users-cog"></i> 사용자 관리</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin"><i class="fas fa-user-cog"></i> 관리자</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard"><i class="fas fa-home"></i> 홈</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/signin"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="sidebar">
+    <h5 class="sidebar-heading">메뉴</h5>
+    <ul class="nav flex-column nav-sidebar">
+        <li class="nav-item">
+            <a class="nav-link nav-link-custom" href="#"><i class=" fas fa-edit mr-1"></i> 패턴 정책 수정</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="/listPatternPolicy"><i class=" fas fa-shield-alt mr-1"></i>패턴 정책 리스트</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/addPatternPolicy"><i class="fas fa-plus"></i> 패턴 정책 추가</a>
+        </li>
+    </ul>
+</div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8"> <!-- 카드의 너비를 줄임 -->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">유저 수정</h5>
+                    <form action="/updateUser" method="post">
+                        <input type="hidden" name="user_number" th:value="${user_number}">
+                        <table class="table">
+                            <tr>
+                                <td><label for="">user_number:</label></td>
+                                <td><input type="text" class="form-control" name="user_number" th:value="${user_number}" id="user_number" required readonly></td>
+                            </tr>
+                            <tr>
+                                <td><label for="user_id">user_id:</label></td>
+                                <td><input type="text" class="form-control" name="user_id" th:value="${user_id}" id="user_id" required readonly></td>
+                            </tr> 
+                            <tr>
+                                <td><label for="user_privilege">user_privilege:</label></td>
+                                <td><input type="text" class="form-control" name="user_privilege" th:value="${user_privilege}" id="user_privilege" required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="password">password:</label></td>
+                                <td><input type="password" class="form-control" name="password" id="password" required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="user_name">user_name:</label></td>
+                                <td><input type="text" class="form-control" name="user_name" th:value="${user_name}" id="user_name" required></td>
+                            </tr>
+                           
+                            <tr>
+                               <td colspan="2">
+                                    <div class="d-flex justify-content-between">
+                                        <input type="submit" class="btn btn-custom submit" value="수정">
+                                        <a href="listUser" class="btn btn-custom cancel">취소</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

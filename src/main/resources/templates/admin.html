@@ -30,18 +30,6 @@
         .nav-link i {
             margin-right: 5px;
         }
-        .nav-sidebar .nav-link {
-            color: #d1d1d1;
-            padding: 10px 20px;
-            transition: all 0.3s ease;
-        }
-        .nav-sidebar .nav-link:hover {
-            background-color: #222;
-            color: #fff;
-        }
-        .nav-sidebar .nav-link i {
-            margin-right: 10px;
-        }
 
         /* 왼쪽 세로 메뉴바 스타일 */
         .sidebar {
@@ -62,8 +50,10 @@
             text-align: center;
             margin-bottom: 20px;
         }
+        
+        /* 본문 및 카드 스타일 */
         body {
-            background-color: #f8f9fa;
+            background-color: #222; /* 배경색을 네비게이션과 동일하게 */
             font-family: Arial, sans-serif;
         }
         .container {
@@ -71,6 +61,8 @@
         }
         .card {
             border-radius: 15px;
+            background-color: #333; /* 카드 배경색을 밝은 검정으로 */
+            color: #fff; /* 카드 안의 텍스트 색상 */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease-in-out;
         }
@@ -81,8 +73,13 @@
             padding: 20px;
             text-align: center; /* 텍스트와 아이콘 가운데 정렬 */
         }
-        .btn-custom {
-            border-radius: 25px;
+        .btn-primary {
+            background-color: #007bff; /* 버튼 배경색 */
+            border-color: #007bff; /* 버튼 경계선 색상 */
+        }
+        .btn-primary:hover {
+            background-color: #0056b3; /* 버튼 호버 색상 */
+            border-color: #004085; /* 버튼 호버 경계선 색상 */
         }
     </style>
 </head>
@@ -103,43 +100,37 @@
                 <a class="nav-link" href="/signin"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
             </li>
         </ul>
-    </div>s
+    </div>
 </nav>
 
 <div class="container">
     <div class="row">
         <div class="col-md-4 mb-4">
             <div class="card h-100 shadow">
-            <div class="card-body">
-                <h4 class="card-title">로그 관리 <i class="fas fa-file-alt"></i></h4>
-                <p class="card-text">로그를 확인할 수 있습니다.</p>
-                <a href="/patternlog" class="btn btn-primary btn-block">로그 확인</a>
-            </div>
-            
-        </div>
-    </div>
-    <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow">
-            <div class="card-body">
-                <h4 class="card-title">정책 관리 <i class="fas fa-cogs"></i></h4>
-                <p class="card-text">정책 설정을 수정할 수 있습니다.</p>
-                <a href="/policylist" class="btn btn-primary btn-block">정책 관리</a>
+                <div class="card-body">
+                    <h4 class="card-title">로그 관리 <i class="fas fa-file-alt"></i></h4>
+                    <p class="card-text">로그를 확인할 수 있습니다.</p>
+                    <a href="/patternlog" class="btn btn-primary btn-block">로그 확인</a>
                 </div>
+            </div>
         </div>
-    </div>
-    <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow">
-        
-                
-                   <div class="card h-100 shadow">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow">
+                <div class="card-body">
+                    <h4 class="card-title">정책 관리 <i class="fas fa-cogs"></i></h4>
+                    <p class="card-text">정책 설정을 수정할 수 있습니다.</p>
+                    <a href="/listPatternPolicy" class="btn btn-primary btn-block">정책 관리</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow">
                 <div class="card-body">
                     <h4 class="card-title">사용자 관리 <i class="fas fa-users-cog"></i></h4>
                     <p class="card-text">사용자를 수정할 수 있는 있습니다.</p>
-                      <a href="/userlist" class="btn btn-primary btn-block">사용자 관리</a>
+                    <a href="/listUser" class="btn btn-primary btn-block">사용자 관리</a>
+                </div>
             </div>
-            </div>
-            
-            
         </div>
     </div>
 </div>

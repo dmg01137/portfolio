@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--  이 xml파일은 namespace에 지정한 mapper인터페이스와 연동하여 SQL을 설정할 것이다. 라고 선언한 것. -->
+<mapper namespace="com.example.demo.dao.detection.UserDao">
+
+	<insert id="addUser" parameterType="com.example.demo.dto.UserDto">
+		INSERT INTO user_data
+		VALUES
+		(#{user_number}, #{user_id}, #{password}, #{user_privilege}, #{user_name})
+	</insert>
+	
+	<select id="listUser" resultType="com.example.demo.dto.UserDto">
+		SELECT user_number, user_id, user_privilege, user_name
+		FROM user_data
+	</select>
+	
+	<select id="getUserById" resultType="String">
+		SELECT user_id
+		FROM user_data
+		where user_id = #{user_id}
+	</select>
+	
+	<select id="getUserByPw" resultType="String">
+		SELECT user_password
+		FROM user_data
+		where user_id = #{user_id}
+	</select>
+	
+	<select id="findByUserNumber" parameterType="int" resultType="com.example.demo.dto.UserDto">
+        SELECT *
+        FROM user_data
+        WHERE user_number = #{user_number}
+    </select>
+	
+	<update id="updateUser" parameterType="com.example.demo.dto.UserDto">
+      UPDATE user_data
+      SET user_number = #{user_number}, user_id = #{user_id}, user_privilege = #{user_privilege},
+      password = #{password}, user_name = #{user_name}
+      WHERE user_number = #{user_number}
+	</update>
+	
+	<select id="getLastUserNumber" resultType="int">
+    	SELECT COALESCE(MAX(user_number), 0) FROM user_data
+	</select>
+	
+	
+	<delete id="deleteUser" parameterType="com.example.demo.dto.UserDto">
+		DELETE FROM user_data
+		WHERE user_number = #{user_number}
+	</delete>
+	
+
+</mapper>
