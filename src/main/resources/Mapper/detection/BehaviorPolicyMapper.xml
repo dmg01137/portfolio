@@ -25,8 +25,8 @@
     <update id="clickBehaviorPolicy" parameterType="int"> 
         UPDATE behavior_detection
         SET enable_disable = CASE
-            WHEN enable_disable = 0 THEN 1
-            WHEN enable_disable = 1 THEN 0
+        WHEN enable_disable = 0 THEN 1
+        WHEN enable_disable = 1 THEN 0
         END
         WHERE detection_number = #{detection_number}
     </update>

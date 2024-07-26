@@ -42,8 +42,10 @@ public class PatternPolicyController
 	public String addPatternPolicy(Model model) 
 	{
 		// primary key인 디텍션 넘버를 + 1해서 넘겨준다
-	    int lastDetectionNumber = patternPolicyService.getLastDetectionNumber() + 1;
-	    model.addAttribute("detectionNumber", lastDetectionNumber);
+		
+		  int lastDetectionNumber = patternPolicyService.getLastDetectionNumber() + 1;
+		  model.addAttribute("detectionNumber", lastDetectionNumber);
+		 
 	    return "addPatternPolicy";
 	}
 
@@ -103,7 +105,8 @@ public class PatternPolicyController
 	@ResponseBody
 	public Boolean clickPatternPolicy(@RequestBody PatternPolicyDto patternPolicyDto) 
 	{
-		try {
+		try 
+		{
 			patternPolicyService.clickPatternPolicy(patternPolicyDto.getDetection_number());
 			patternPolicyService.udpPatternPolicy();
 			return true;

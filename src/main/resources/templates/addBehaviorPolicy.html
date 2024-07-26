@@ -1,98 +1,446 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Behavior Policy Form</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify Policy</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+    /* 네비게이션 바 스타일 */
+    .navbar {
+        background-color: #222;
+        padding: 14px 16px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .navbar-brand  {
+        font-size: 1.5rem;
+        color: #fff;
+    }
+
+    .navbar-nav .nav-item {
+        margin-right: 10px;
+    }
+
+    .nav-link {
+        color: #fff !important;
+        transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+        color: #17a2b8 !important;
+    }
+
+    .nav-link i {
+        margin-right: 5px;
+    }
+
+    .nav-sidebar .nav-link {
+        color: #d1d1d1;
+        padding: 10px 20px;
+        transition: all 0.3s ease;
+    }
+
+    .nav-sidebar .nav-link:hover {
+        background-color: #222;
+        color: #fff;
+    }
+
+    .nav-sidebar .nav-link i {
+        margin-right: 10px;
+    }
+
+    /* 왼쪽 세로 메뉴바 스타일 */
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 64px;
+        width: 220px;
+        background-color: #222;
+        height: 100%;
+        padding-top: 20px;
+        transition: all 0.3s ease;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        overflow-x: hidden;
+    }
+
+    .sidebar-heading {
+        font-size: 1.2rem;
+        color: #fff;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .nav-sidebar .nav-link.active {
+        color: #17a2b8 !important;
+    }
+
+    body {
+        background-color: #222;
+        font-family: Arial, sans-serif;
+        padding-top: 80px;
+    }
+
+    .container {
+        margin-top: 0px;
+    }
+
+     .card {
+        margin-top: 10px;
+        margin-left: auto; /* 카드 가운데 정렬 */
+        margin-right: auto; /* 카드 가운데 정렬 */
+        width: 95%;
+        max-width: 1100px;
+        border-radius: 15px;
+        background-color: #3a3a3a; /* 카드 배경색 조정 */
+        color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+        border: transparent;
+        transform: translateX(100px); /* 카드 위치를 오른쪽으로 20px 이동 */
+    }
+
+    .card:hover {
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
+
+      .card-body {
+        padding: 20px;
+        font-size: 13px;
+        word-break: break-word;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        background-color: #333; /* 입력 박스 배경색 */
+        color: #f8f9fa; /* 입력 박스 텍스트 색상 */
+        border: 1px solid #444; /* 입력 박스 경계선 색상 */
+    }
+    
+    .form-control[readonly] {
+    background-color: #555; /* 읽기 전용 입력 박스 배경색 */
+    color: #ddd; /* 읽기 전용 입력 박스 텍스트 색상 */
+    cursor: not-allowed; /* 커서 모양 변경 */
+}
+
+    .form-control:disabled {
+        background-color: #555; /* 비활성화된 입력 박스 배경색 */
+        color: #ddd; /* 비활성화된 입력 박스 텍스트 색상 */
+    }
+
+    .btn-section {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .btn-modify, .btn-clear {
+        height: 38px;
+        line-height: 24px;
+    }
+
+    .search-section {
+        margin-bottom: 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+    }
+
+    .search-section input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .search-section button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    /* 추가한 부분: 테이블 스타일 수정 */
+    .table-container {
+        overflow-x: auto;
+        max-width: 100%;
+    }
+
+    /* 테이블 스타일 수정 */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #3a3a3a; /* 테이블 배경색 조정 */
+    color: #fff;
+}
+
+.table th, .table td {
+    border: 1px solid #444;
+    padding: 8px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.table th {
+    background-color: #333; /* 테이블 헤더 배경색 */
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #444; /* 테이블 홀수 행 배경색 */
+}
+
+.table tbody tr:hover {
+    background-color: #555; /* 테이블 행 호버 색상 */
+}
+    .text-left {
+    text-align: left;
+   text-indent: 10px;
+}
+</style>
+
+<script>
+        // 페이지가 로드될 때 실행되는 함수
+        function setDefaultDateTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+            const dateTime = `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+
+            document.getElementById('create_dt').value = dateTime;
+            document.getElementById('modify_dt').value = dateTime;
+            document.getElementById('create_dt').readOnly = true;
+            document.getElementById('modify_dt').readOnly = true;
+        }
+
+        // 페이지 로드 시 실행
+        window.onload = function() {
+            setDefaultDateTime();
+
+            // 이벤트 리스너 추가
+            document.getElementById('s_ip').addEventListener('input', handleIPChange);
+            document.getElementById('s_to_ip').addEventListener('input', handleIPChange);
+        }
+
+        // 출발지 IP와 IP 범위 필드 간의 상호 배타성 처리
+        function handleIPChange() {
+            const ipRangeField = document.getElementById('s_to_ip');
+            const startIPField = document.getElementById('s_ip');
+
+            if (ipRangeField.value) {
+                startIPField.readOnly = true;
+                startIPField.value = '';
+            } else {
+                startIPField.readOnly = false;
+            }
+
+            if (startIPField.value) {
+                ipRangeField.readOnly = true;
+                ipRangeField.value = '';
+            } else {
+                ipRangeField.readOnly = false;
+            }
+        }
+
+
+        // 폼 유효성 검사 함수
+        function validateForm() {
+            const ipRange = document.getElementById('s_to_ip').value;
+            const startIP = document.getElementById('s_ip').value;
+
+            if (ipRange && startIP) {
+                alert("출발지 IP와 출발지 IP 범위는 동시에 입력할 수 없습니다.");
+                return false;
+            }
+
+            if (ipRange && !validateIPRange(ipRange)) {
+                alert("IP 범위가 올바르지 않습니다.");
+                return false;
+            }
+
+            return true;
+        }
+
+        // IP 범위 유효성 검사 함수
+        function validateIPRange(ipRange) {
+            const [startIP, endIP] = ipRange.split('~');
+            if (!isValidIP(startIP) || !isValidIP(endIP)) return false;
+            return compareIPs(startIP, endIP) <= 0;
+        }
+
+        // IP 형식 유효성 검사 함수
+        function isValidIP(ip) {
+            const parts = ip.split('.').map(Number);
+            if (parts.length !== 4) return false;
+            for (let part of parts) {
+                if (part < 0 || part > 255) return false;
+            }
+            return true;
+        }
+
+        // IP 주소 비교 함수
+        function compareIPs(ip1, ip2) {
+            const ip1Parts = ip1.split('.').map(Number);
+            const ip2Parts = ip2.split('.').map(Number);
+
+            for (let i = 0; i < 4; i++) {
+                if (ip1Parts[i] < ip2Parts[i]) return -1;
+                if (ip1Parts[i] > ip2Parts[i]) return 1;
+            }
+            return 0;
+        }
+        
+    </script>
+
+
 </head>
 <body>
-    <form action="/addBehaviorPolicy" method="post">
-        <table>
-            <tr>
-                <td><label for="enable_disable">활성화/비활성화(1 / 0):</label></td>
-                <td><input type="number" name="enable_disable" id="enable_disable" required></td>
-            </tr>
-            
-            <tr>
-                            <td><label for="detection_number">행동 정책 번호:</label></td>
-                <td><input type="text" name="detection_number" id="detection_number" th:value="${detectionNumber}" readonly required></td>
-            </tr>
-            <tr>
-                <td><label for="s_to_ip">출발지 범위 IP:</label></td>
-                <td><input type="text" name="s_to_ip" id="s_to_ip"></td>
-            </tr>
-            <tr>
-                <td><label for="s_ip">출발지 IP:</label></td>
-                <td><input type="text" name="s_ip" id="s_ip"></td>
-            </tr>
-            <tr>
-                <td><label for="d_ip">목적지 IP:</label></td>
-                <td><input type="text" name="d_ip" id="d_ip"></td>
-            </tr>
-            <tr>
-                <td><label for="s_to_port">출발지 범위 PORT:</label></td>
-                <td><input type="text" name="s_to_port" id="s_to_port"></td>
-            </tr>
-            <tr>
-                <td><label for="s_port">출발지 PORT:</label></td>
-                <td><input type="number" name="s_port" id="s_port" value="0"></td>
-            </tr>
-            <tr>
-                <td><label for="d_port">목적지 PORT:</label></td>
-                <td><input type="number" name="d_port" id="d_port" value="0"></td>
-            </tr>
-            <tr>
-                <td><label for="create_dt">생성 일자:</label></td>
-                <td><input type="datetime-local" name="create_dt" id="create_dt" required></td>
-            </tr>
-            <tr>
-                <td><label for="modify_dt">수정 일자:</label></td>
-                <td><input type="datetime-local" name="modify_dt" id="modify_dt" required></td>
-            </tr>
-            <tr>
-                <td><label for="action_type">동작 유형(0 : 로깅, 1 : 로깅 + 차단):</label></td>
-                <td><input type="number" name="action_type" id="action_type" required></td>
-            </tr>
-            <tr>
-                <td><label for="policy_name">정책 이름:</label></td>
-                <td><input type="text" name="policy_name" id="policy_name" required></td>
-            </tr>
-            <tr>
-                <td><label for="policy_info">정책 정보:</label></td>
-                <td><input type="text" name="policy_info" id="policy_info" required></td>
-            </tr>
-            <tr>
-                <td><label for="base_cnt">기준 횟수:</label></td>
-                <td><input type="text" name="base_cnt" id="base_cnt" required></td>
-            </tr>
-            <tr>
-                <td><label for="base_time">기준 시간:</label></td>
-                <td><input type="text" name="base_time" id="base_time" required></td>
-            </tr>
-            <tr>
-                <td><label for="pattern_1">패턴 1:</label></td>
-                <td><input type="text" name="pattern_1" id="pattern_1"></td>
-            </tr>
-            <tr>
-                <td><label for="pattern_2">패턴 2:</label></td>
-                <td><input type="text" name="pattern_2" id="pattern_2"></td>
-            </tr>
-            <tr>
-                <td><label for="pattern_3">패턴 3:</label></td>
-                <td><input type="text" name="pattern_3" id="pattern_3"></td>
-            </tr>
-            <tr>
-                <td><label for="dangerous">위험도:</label></td>
-                <td><input type="number" name="dangerous" id="dangerous" required></td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="추가"></td>
-            </tr>
-        </table>
-    </form>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <a class="navbar-brand" href="#">정책 관리</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <form action="listBehaviorPolicy" method="get">
-        <input type="submit" value="취소">
-    </form>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/listPatternPolicy"><i class="fas fa-file-alt mr-1"></i>정책 관리</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/userlist"><i class="fas fa-users-cog"></i> 사용자 관리</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin"><i class="fas fa-user-cog"></i> 관리자</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard"><i class="fas fa-home"></i> 홈</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/signin"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="sidebar">
+    <h5 class="sidebar-heading">메뉴</h5>
+    <ul class="nav flex-column nav-sidebar">
+        <li class="nav-item">
+            <a class="nav-link nav-link-custom" href="#"><i class=" fas fa-edit mr-1"></i> 행동 정책 추가</a> 
+        <li class="nav-item">
+            <a class="nav-link " href="listBehaviorPolicy"><i class=" fas fa-shield-alt mr-1"></i> 행동 정책 리스트</a>
+        </li>
+    </ul>
+</div>
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">행동 정책 추가</h5>
+                    <form action="/addBehaviorPolicy" method="post" onsubmit="return validateForm()">
+                        <table class="table table-dark">
+                            <tbody>
+                                <tr>
+                                    <td><label for="enable_disable">활성화(1) / 비활성화(0):</label></td>
+                                    <td><input type="number" class="form-control" name="enable_disable" id="enable_disable" min="0" max="1" required></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="detection_number">패턴 정책 번호:</label></td>
+                                    <td class="text-left"th:text="${detectionNumber}"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="s_to_ip">출발지 범위 IP [ startIP~endIP ]:</label></td>
+                                    <td><input type="text" class="form-control" name="s_to_ip" id="s_to_ip" pattern="^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)~((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="s_ip">출발지 IP:</label></td>
+                                    <td><input type="text" class="form-control" name="s_ip" id="s_ip" pattern="^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="d_ip">목적지 IP:</label></td>
+                                    <td><input type="text" class="form-control" name="d_ip" id="d_ip" pattern="^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="s_to_port">출발지 범위 PORT [ startPORT~endPORT ]:</label></td>
+                                    <td><input type="text" class="form-control" name="s_to_port" id="s_to_port" pattern="^\d{1,5}~\d{1,5}$"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="s_port">출발지 PORT:</label></td>
+                                    <td><input type="number" class="form-control" name="s_port" id="s_port" min="0" max="65535" value="0"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="d_port">목적지 PORT:</label></td>
+                                    <td><input type="number" class="form-control" name="d_port" id="d_port" min="0" max="65535" value="0"></td>
+                                </tr>
+                                <tr>
+								    <td><label for="create_dt">생성 일자:</label></td>
+								    <td><input type="datetime-local" class="form-control" name="create_dt" id="create_dt" readonly></td>
+								</tr>
+								<tr>
+								    <td><label for="modify_dt">수정 일자:</label></td>
+								    <td><input type="datetime-local" class="form-control" name="modify_dt" id="modify_dt" readonly></td>
+								</tr>
+                                <tr>
+                                    <td><label for="action_type">동작 유형 [ 로깅 + 차단(1) / 로깅(0) ]:</label></td>
+                                    <td><input type="number" class="form-control" name="action_type" id="action_type" min="0" max="1" required></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="policy_name">정책 이름:</label></td>
+                                    <td><input type="text" class="form-control" name="policy_name" id="policy_name" required></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="policy_info">정책 정보:</label></td>
+                                    <td><input type="text" class="form-control" name="policy_info" id="policy_info" required></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="base_cnt">탐지 횟수:</label></td>
+                                    <td><input type="number" class="form-control" name="base_cnt" id="base_cnt" min="1"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="base_time">탐지 시간:</label></td>
+                                    <td><input type="number" class="form-control" name="base_time" id="base_time" min="1"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="pattern_1">패턴 1:</label></td>
+                                    <td><input type="text" class="form-control" name="pattern_1" id="pattern_1"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="pattern_2">패턴 2:</label></td>
+                                    <td><input type="text" class="form-control" name="pattern_2" id="pattern_2"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="pattern_3">패턴 3:</label></td>
+                                    <td><input type="text" class="form-control" name="pattern_3" id="pattern_3"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="dangerous">위험도:</label></td>
+                                    <td><input type="number" class="form-control" name="dangerous" id="dangerous" min="1" max="100" required></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="text-center">
+                                        <button type="submit" class="btn btn-primary btn-block">추가</button>
+                                        <a href="listBehaviorPolicy" class="btn btn-secondary btn-block">취소</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

@@ -1,175 +1,516 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Pattern Policy List</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pattern Policy</title>
+<link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+/* 기본 스타일 설정 */
+th {
+    cursor: pointer;
+    position: relative;
+    padding-left: 30px; /* 왼쪽 패딩을 늘려 화살표와 텍스트 간격 확보 */
+    min-width: 150px; /* 헤더 셀의 최소 너비 설정 */
+    box-sizing: border-box; /* 패딩과 보더를 포함한 크기 조정 */
+}
+
+th.sortable::before {
+    content: '\25B2'; /* 기본 화살표 아이콘 */
+    position: absolute;
+    left: 10px; /* 화살표를 텍스트 왼쪽에 위치 */
+    font-size: 0.8em;
+    color: black;
+}
+
+th.sortable.asc::before {
+    content: '\25B2'; /* 오름차순 화살표 */
+    color: blue;
+    left: 10px; /* 오름차순 화살표 위치 조정 */
+}
+
+th.sortable.desc::before {
+    content: '\25BC'; /* 내림차순 화살표 */
+    color: blue;
+    left: 10px; /* 내림차순 화살표 위치 조정 */
+}
+body {
+    background-color: #222; /* 페이지 배경을 사이드바와 네비게이션 바와 같은 색상으로 설정 */
+    color: #fff; /* 기본 텍스트 색상을 흰색으로 설정 */
+    font-family: Arial, sans-serif;
+    padding-top: 80px; /* 네비게이션 바의 높이에 맞추어 여백 추가 */
+}
+
+
+/* 네비게이션 바 스타일 */
+.navbar {
+    background-color: #222; /* 네비게이션 바 배경색 설정 */
+    padding: 14px 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000; /* 다른 요소들보다 위에 표시되도록 설정 */
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    color: #fff; /* 네비게이션 바 브랜드 텍스트 색상 설정 */
+}
+
+.navbar-nav .nav-item {
+    margin-right: 10px;
+}
+
+.nav-link {
+    color: #fff !important; /* 네비게이션 링크 색상 설정 */
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #17a2b8 !important; /* 네비게이션 링크 호버 시 색상 설정 */
+}
+
+.nav-link i {
+    margin-right: 5px;
+}
+
+/* 사이드바 스타일 */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 64px; /* 네비게이션 바 높이만큼 떨어지게 설정 */
+    width: 220px; /* 사이드바 너비 조정 */
+    background-color: #222; /* 사이드바 배경색 설정 */
+    height: calc(100% - 64px); /* 사이드바의 높이를 화면 전체 높이에서 네비게이션 바 높이만큼 빼서 설정 */
+    padding-top: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-x: hidden; /* 가로 스크롤바를 숨기는 속성 */
+}
+
+.sidebar-heading {
+    font-size: 1.2rem;
+    color: #fff; /* 사이드바 제목 색상 설정 */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.nav-sidebar .nav-link {
+    color: #d1d1d1; /* 사이드바 링크 기본 색상 설정 */
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.nav-sidebar .nav-link:hover {
+    background-color: #333; /* 사이드바 링크 호버 시 배경색 설정 */
+    color: #fff; /* 사이드바 링크 호버 시 텍스트 색상 설정 */
+}
+
+.nav-sidebar .nav-link i {
+    margin-right: 10px;
+}
+
+.nav-sidebar .nav-link-custom {
+    color: #d1d1d1; /* 기본 링크 색상 설정 */
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.nav-sidebar .nav-link-custom:hover, .nav-sidebar .nav-link-custom:hover i {
+    color: #17a2b8 !important; /* 호버 시 텍스트 및 아이콘 색상 설정 */
+}
+
+/* 카드 스타일 */
+.card {
+    margin: -20px auto; /* 카드 가운데 정렬 및 여백 설정 */
+    width: 100%; /* 카드 너비를 100%로 설정 */
+    max-width: 950px; /* 카드 최대 너비 설정 */
+    border-radius: 10px; /* 카드 모서리 둥글게 설정 */
+    background-color: #333; /* 카드 배경색 설정 */
+    color: #fff; /* 카드 텍스트 색상 설정 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    border: transparent; /* 카드 테두리 제거 */
+}
+
+/* 카드 호버 시 그림자 효과 */
+.card:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 카드 바디 스타일 */
+.card-body {
+    padding: 15px; /* 카드 내부 여백 설정 */
+    font-size: 14px; /* 카드 텍스트 크기 설정 */
+}
+
+/* 폼 및 버튼 스타일 */
+.form-group {
+    margin-bottom: 15px; /* 폼 그룹 사이의 여백 설정 */
+}
+
+.search-section {
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+}
+
+.search-section input[type="text"],
+.search-section input[type="datetime-local"] {
+    width:100%;
+    padding: 8px;
+    font-size: 14px;
+    background-color: #444; /* 입력 필드 배경색 설정 */
+    color: #fff; /* 입력 필드 텍스트 색상 설정 */
+    border: 1px solid #555; /* 입력 필드 테두리 색상 설정 */
+}
+
+.search-section button {
+    padding: 4px 12px;
+    font-size: 14px;
+}
+
+.btn-primary {
+    background-color: #007bff; /* 버튼 기본 색상 설정 */
+    border-color: #007bff;
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* 보조 버튼 색상 설정 */
+    border-color: #6c757d;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+    opacity: 0.9; /* 버튼 호버 시 불투명도 설정 */
+}
+.btn-warning {
+    background-color: #b372a2bd !important; /* 수정 버튼 배경색을 녹색으로 변경 */
+    border-color: #28a745 !important;    /* 수정 버튼 테두리색을 녹색으로 변경 */
+    color: #fff !important;              /* 수정 버튼 텍스트 색상을 흰색으로 변경 */
+}
+.btn-warning:hover {
+    background-color: #b372a2bd !important; /* 수정 버튼 호버 시 배경색을 조금 어두운 녹색으로 변경 */
+    border-color: #b372a2bd !important;     /* 수정 버튼 호버 시 테두리색을 조금 어두운 녹색으로 변경 */
+}
+
+/* 테이블 스타일 */
+.table-container {
+    overflow-x: auto;
+    max-width: 100%; /* 테이블 컨테이너의 최대 너비 설정 */
+}
+
+.table {
+    width: 100%;
+    color: #fff; /* 테이블 텍스트 색상 설정 */
+    background-color: #333; /* 테이블 배경색 설정 */
+}
+
+.table th, .table td {
+    border: 1px solid #555; /* 셀 경계선 색상 설정 */
+    padding: 8px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap; /* 글자가 너무 길어지면 줄바꿈을 하지 않도록 설정 */
+    text-overflow: ellipsis; /* 글자가 너무 길 경우 ...으로 생략 */
+}
+
+.table th {
+    background-color: #444; /* 테이블 헤더 배경색 설정 */
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #333; /* 테이블 짝수 행 배경색 설정 */
+}
+
+
+.table tbody tr:hover {
+    background-color: #555; /* 테이블 마우스 호버 시 배경색 설정 */
+}
+
+/* 페이지네이션 스타일 */
+.pagination {
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination .page-link {
+    color: #007bff; /* 페이지네이션 링크 색상 설정 */
+    background-color: #000; /* 페이지네이션 배경색 설정 */
+    border: 1px solid #555; /* 페이지네이션 테두리 색상 설정 */
+}
+
+.pagination .page-link:hover {
+    color: #0056b3; /* 페이지네이션 링크 호버 시 색상 설정 */
+    background-color: #444; /* 페이지네이션 호버 시 배경색 설정 */
+    border-color: #555; /* 페이지네이션 호버 시 테두리 색상 설정 */
+}
+
+.pagination .page-item.active .page-link {
+    z-index: 1;
+    color: #fff; /* 활성 페이지 링크 색상 설정 */
+    background-color: #007bff; /* 활성 페이지 배경색 설정 */
+    border-color: #007bff; /* 활성 페이지 테두리 색상 설정 */
+}
+.container {
+    margin-left: 220px; /* 사이드바 너비만큼 왼쪽 여백 추가 */
+    padding-top: 80px; /* 네비게이션 바 높이만큼 상단 여백 추가 */
+}
+.dropdown-menu {
+    background-color: #222;
+    border: none;
+    position: relative; /* 드롭다운 메뉴의 위치 조정 */
+    z-index: 1050; /* 다른 요소 위에 표시되도록 z-index 설정 */
+}
+
+.dropdown-menu .dropdown-item {
+    color: #d1d1d1;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #333;
+    color: #fff;
+}
+    </style>
 </head>
+
+
+
 <body>
-    <table>
-        <tr>
-            <td>
-                <form action="addPatternPolicy" method="get">
-                    <input type="submit" value="패턴 정책 추가">
-                </form>
-            </td>
-            <td>
-                <form action="dashboard" method="get">
-                    <input type="submit" value="메인화면">
-                </form>
-            </td>
-            <td>
-                <form action="signin" method="get">
-                    <input type="submit" value="로그아웃">
-                </form>
-            </td>
-        </tr>
-    </table>
+   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <a class="navbar-brand" href="#">정책 관리</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+         data-target="#navbarSupportedContent"
+         aria-controls="navbarSupportedContent" aria-expanded="false"
+         aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <form action="/searchPatternPolicy" method="get">
-        <table>
-            <tr>
-                <td>
-                    <label for="detectionNumber">정책 번호</label>
-                    <input type="text" id="detectionNumber" name="detection_number" th:value="${param.detection_number}">
-                </td>
-                <td>
-                    <label for="sToIp">출발지 범위 IP</label>
-                    <input type="text" id="sToIp" name="s_to_ip" th:value="${param.s_to_ip}">
-                </td>
-                <td>
-                    <label for="sIp">출발지 IP</label>
-                    <input type="text" id="sIp" name="s_ip" th:value="${param.s_ip}">
-                </td>
-                <td>
-                    <label for="dIp">목적지 IP</label>
-                    <input type="text" id="dIp" name="d_ip" th:value="${param.d_ip}">
-                </td>
-                <td>
-                    <label for="sToPort">출발지 범위 PORT</label>
-                    <input type="text" id="sToPort" name="s_to_port" th:value="${param.s_to_port}">
-                </td>
-                <td>
-                    <label for="sPort">출발지 PORT</label>
-                    <input type="text" id="sPort" name="s_port" th:value="${param.s_port}">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="dPort">목적지 PORT</label>
-                    <input type="text" id="dPort" name="d_port" th:value="${param.d_port}">
-                </td>
-	            <td>
-	                <label for="createDtFrom">생성 일자 시작</label>
-	                <input type="datetime-local" id="createDtFrom" name="create_dt_from" th:value="${param.create_dt_from}">
-	            </td>
-	            <td>
-	                <label for="createDtTo">생성 일자 종료</label>
-	                <input type="datetime-local" id="createDtTo" name="create_dt_to" th:value="${param.create_dt_to}">
-	            </td>
-	            <td>
-	                <label for="modifyDtFrom">수정 일자 시작</label>
-	                <input type="datetime-local" id="modifyDtFrom" name="modify_dt_from" th:value="${param.modify_dt_from}">
-	            </td>
-	            <td>
-	                <label for="modifyDtTo">수정 일자 종료</label>
-	                <input type="datetime-local" id="modifyDtTo" name="modify_dt_to" th:value="${param.modify_dt_to}">
-	            </td>
-                <td>
-                    <label for="actionType">동작 유형</label>
-                    <input type="text" id="actionType" name="action_type" th:value="${param.action_type}">
-                </td>
-           </tr>
-           <tr>
-                <td>
-                    <label for="policyName">정책 이름</label>
-                    <input type="text" id="policyName" name="policy_name" th:value="${param.policy_name}">
-                </td>
-                <td>
-                    <label for="policyInfo">정책 내용</label>
-                    <input type="text" id="policyInfo" name="policy_info" th:value="${param.policy_info}">
-                </td>
-                <td>
-                    <label for="pattern1">패턴 1</label>
-                    <input type="text" id="pattern1" name="pattern_1" th:value="${param.pattern_1}">
-                </td>
-                <td>
-                    <label for="pattern2">패턴 2</label>
-                    <input type="text" id="pattern2" name="pattern_2" th:value="${param.pattern_2}">
-                </td>
-                <td>
-                    <label for="pattern3">패턴 3</label>
-                    <input type="text" id="pattern3" name="pattern_3" th:value="${param.pattern_3}">
-                </td>
-                <td>
-                    <label for="dangerous">위험도</label>
-                    <input type="text" id="dangerous" name="dangerous" th:value="${param.dangerous}">
-                </td>
-                <td>
-                    <input type="submit" value="검색">
-                    <a href="/listPatternPolicy"><input type="button" value="초기화"></a>
-                </td>
-            </tr>
-        </table>
-    </form>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="/patternlog"><i
+                  class="fas fa-file-alt mr-1"></i>로그 관리</a></li>
+            <li class="nav-item"><a class="nav-link" href="/userlist"><i
+                  class="fas fa-users-cog"></i> 사용자 관리</a></li>
+            <li class="nav-item"><a class="nav-link" href="/admin"><i
+                  class="fas fa-user-cog"></i> 관리자</a></li>
+            <li class="nav-item"><a class="nav-link" href="/dashboard"><i
+                  class="fas fa-home"></i> 홈</a></li>
+            <li class="nav-item"><a class="nav-link" href="/signin"><i
+                  class="fas fa-sign-out-alt"></i> 로그아웃</a></li>
+         </ul>
+      </div>   
+      
+   </nav>
+  <div class="sidebar">
+    <h5 class="sidebar-heading">메뉴</h5>
+    <ul class="nav flex-column nav-sidebar">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="pattern-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-shield-alt mr-1"></i> 패턴 정책
+            </a>
+            <div class="dropdown-menu" aria-labelledby="pattern-dropdown">
+                <a class="dropdown-item" href="/listPatternPolicy">패턴 정책 리스트</a>
+                <a class="dropdown-item" href="/addPatternPolicy">패턴 정책 추가</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="behavior-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-shield-alt mr-1"></i> 행동 정책
+            </a>
+            <div class="dropdown-menu" aria-labelledby="behavior-dropdown">
+                <a class="dropdown-item" href="/listBehaviorPolicy">행동 정책 리스트</a>
+                <a class="dropdown-item" href="/addBehaviorPolicy">행동 정책 추가</a>
+            </div>
+        </li>
+    </ul>
+</div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title mb-16" style="text-align: center;">패턴 정책 검색</h5>
+                        <form action="/searchPatternPolicy" method="get">
+                            <div class="search-section">
+                                <div class="form-group">
+                                    <label for="detection_number">no.</label>
+                                    <input type="text" class="form-control" id="detection_number" name="detection_number" placeholder="정책 번호">
+                                </div>
+                                <div class="form-group">
+                                    <label for="s_to_ip">s_to_ip</label>
+                                    <input type="text" class="form-control" id="s_to_ip" name="s_to_ip" placeholder="출발지 범위 IP">
+                                </div>
+                                <div class="form-group">
+                                    <label for="s_ip">s_ip</label>
+                                    <input type="text" class="form-control" id="s_ip" name="s_ip" placeholder="출발지 IP">
+                                </div>
+                                <div class="form-group">
+                                    <label for="d_ip">d_ip</label>
+                                    <input type="text" class="form-control" id="d_ip" name="d_ip" placeholder="목적지 IP">
+                                </div>
+                                <div class="form-group">
+                                     <label for="sToPort">s_to_port</label>
+                                   <input type="text" class="form-control" id="sToPort" name="s_to_port" placeholder="출발지 범위 PORT">
+                                  </div>
+                                <div class="form-group">
+                                    <label for="s_port">s_port</label>
+                                    <input type="text" class="form-control" id="s_port" name="s_port" placeholder="출발지 PORT">
+                                </div>
+                                <div class="form-group">
+                                    <label for="d_port">d_port</label>
+                                    <input type="text" class="form-control" id="d_port" name="d_port" placeholder="목적지 PORT">
+                                </div>
+                                <div class="form-group">
+                                    <label for="create_dt_from">create_dt_from</label>
+                                    <input type="datetime-local" class="form-control" id="create_dt_from" name="create_dt_from">
+                                </div>
+                                <div class="form-group">
+                                    <label for="create_dt_to">create_dt_to</label>
+                                    <input type="datetime-local" class="form-control" id="create_dt_to" name="create_dt_to">
+                                </div>
+                                <div class="form-group">
+                                    <label for="modify_dt_from">modify_dt_from</label>
+                                    <input type="datetime-local" class="form-control" id="modify_dt_from" name="modify_dt_from">
+                                </div>
+                                <div class="form-group">
+                                    <label for="modify_dt_to">modify_dt_to</label>
+                                    <input type="datetime-local" class="form-control" id="modify_dt_to" name="modify_dt_to">
+                                </div>
+                                <div class="form-group">
+                                    <label for="action_type">action_type</label>
+                                    <input type="text" class="form-control" id="action_type" name="action_type" placeholder="동작 유형">
+                                </div>
+                                <div class="form-group">
+                                    <label for="policy_name">policy_name</label>
+                                    <input type="text" class="form-control" id="policy_name" name="policy_name" placeholder="정책 이름">
+                                </div>
+                                <div class="form-group">
+                                    <label for="policy_info">policy_info</label>
+                                    <input type="text" class="form-control" id="policy_info" name="policy_info" placeholder="정책 정보">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pattern_1">pattern1</label>
+                                    <input type="text" class="form-control" id="pattern_1" name="pattern_1" placeholder="패턴 1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pattern_2">pattern2</label>
+                                    <input type="text" class="form-control" id="pattern_2" name="pattern_2" placeholder="패턴 2">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pattern_3">pattern3</label>
+                                    <input type="text" class="form-control" id="pattern_3" name="pattern_3" placeholder="패턴 3">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dangerous">dangerous</label>
+                                    <input type="text" class="form-control" id="dangerous" name="dangerous" placeholder="위험도">
+                                </div>
+                                <div class="form-group">
+                              		<label>&nbsp;</label>
+                                    <button class="btn btn-primary btn-block" type="submit">검색</button>
+                        
+                                </div>
+                                <div class="form-group">
+                       		  		<label>&nbsp;</label>
+                                    <button class="btn btn-secondary btn-block" type="button" onclick="location.href='/listPatternPolicy'">초기화</button>
+                               </div>
+                               <div class="form-group">
+                       		  		<label>&nbsp;</label>
+                               </div>
+                               <div class="form-group">
+                       		  		<label>&nbsp;</label>
+                               </div>
+                               <div class="form-group">
+                       		  		<label>&nbsp;</label>
+                               </div>
+                                <div class="form-group">
+                               		<label>&nbsp;</label>	
+                        			<button id="resetSort" class="btn btn-secondary btn-block" onclick="resetSort()">정렬 초기화</button>        
+                                </div>
+                            </div>
+                        </form>
+                        
+                        <div class="table-container">
+                            <table class="table table-striped" id="policyTable">
+                                <thead>
+                                    <tr>
+                                        <th class="sortable" onclick="addSort(0)">활성화 / 비활성화</th>
+                                        <th class="sortable" onclick="addSort(1)">패턴 정책 번호</th>
+                                        <th class="sortable" onclick="addSort(2)">출발지 범위 IP</th>
+                                        <th class="sortable" onclick="addSort(3)">출발지 IP</th>
+                                        <th class="sortable" onclick="addSort(4)">목적지 IP</th>
+                                        <th class="sortable" onclick="addSort(5)">출발지 범위 PORT</th>
+                                        <th class="sortable" onclick="addSort(6)">출발지 PORT</th>
+                                        <th class="sortable" onclick="addSort(7)">목적지 PORT</th>
+                                        <th class="sortable" onclick="addSort(8)">정책 생성일</th>
+                                        <th class="sortable" onclick="addSort(9)">정책 수정일</th>
+                                        <th class="sortable" onclick="addSort(10)">동작 유형</th>
+                                        <th class="sortable" onclick="addSort(11)">정책 이름</th>
+                                        <th class="sortable" onclick="addSort(12)">정책 정보</th>
+                                        <th class="sortable" onclick="addSort(13)">패턴 1</th>
+                                        <th class="sortable" onclick="addSort(14)">패턴 2</th>
+                                        <th class="sortable" onclick="addSort(15)">패턴 3</th>
+                                        <th class="sortable" onclick="addSort(16)">위험도</th>
+                                        <th>정책 수정</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="policyTableBody">
+                                    <tr th:each="listPatternPolicy : ${listPatternPolicy}">
+                                    <td>
+                                        <img th:src="${listPatternPolicy.enable_disable} == 0 ? '/on-button.png' : '/off-button.png'"
+                                   th:attr="onclick='clickPatternPolicy(' + ${listPatternPolicy.detection_number} + ')'"
+                                   alt="상태 전환"
+                                   style="width: 50%; height: 50%; cursor: pointer;"/>
+                                    </td>
+                                    <td th:text="${listPatternPolicy.detection_number}"></td>
+                                    <td th:text="${listPatternPolicy.s_to_ip}"></td>
+                                    <td th:text="${listPatternPolicy.s_ip}"></td>
+                                    <td th:text="${listPatternPolicy.d_ip}"></td>
+                                    <td th:text="${listPatternPolicy.s_to_port}"></td>
+                                    <td th:text="${listPatternPolicy.s_port}"></td>
+                                    <td th:text="${listPatternPolicy.d_port}"></td>
+                                    <td th:text="${listPatternPolicy.create_dt}"></td>
+                                    <td th:text="${listPatternPolicy.modify_dt}"></td>
+                                    <td th:text="${listPatternPolicy.action_type}"></td>
+                                    <td th:text="${listPatternPolicy.policy_name}"></td>
+                                    <td th:text="${listPatternPolicy.policy_info}"></td>
+                                    <td th:text="${listPatternPolicy.pattern_1}"></td>
+                                    <td th:text="${listPatternPolicy.pattern_2}"></td>
+                                    <td th:text="${listPatternPolicy.pattern_3}"></td>
+                                    <td th:text="${listPatternPolicy.dangerous}"></td>
+                                    <td>
+                                        <form action="/updatePatternPolicy" method="get">
+                                            <input type="hidden" name="detection_number" th:value="${listPatternPolicy.detection_number}">
+                                            <input type="submit" class="btn btn-warning btn-sm" value="수정">
+                                        </form>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+     <script>
+        let initialRows = [];
+        let sortColumns = [];
 
-    <table>
-        <thead>
-            <tr>
-                <th>활성화 / 비활성화</th>
-                <th>패턴 정책 번호</th>
-                <th>출발지 범위 IP</th>
-                <th>출발지 IP</th>
-                <th>목적지 IP</th>
-                <th>출발지 범위 PORT</th>
-                <th>출발지 PORT</th>
-                <th>목적지 PORT</th>
-                <th>정책 생성일</th>
-                <th>정책 수정일</th>
-                <th>동작 유형</th>
-                <th>정책 이름</th>
-                <th>정책 정보</th>
-                <th>패턴 1</th>
-                <th>패턴 2</th>
-                <th>패턴 3</th>
-                <th>위험도</th>
-                <th>정책 수정</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="listPatternPolicy : ${listPatternPolicy}">
-                <td>
-                    <button type="button" th:attr="onclick='clickPatternPolicy(' + ${listPatternPolicy.detection_number} + ')'">
-                        <span th:text="${listPatternPolicy.enable_disable} == 0 ? '활성화' : '비활성화'"></span>
-                    </button>
-                </td>
-                <td th:text="${listPatternPolicy.detection_number}"></td>
-                <td th:text="${listPatternPolicy.s_to_ip}"></td>
-                <td th:text="${listPatternPolicy.s_ip}"></td>
-                <td th:text="${listPatternPolicy.d_ip}"></td>
-                <td th:text="${listPatternPolicy.s_to_port}"></td>
-                <td th:text="${listPatternPolicy.s_port}"></td>
-                <td th:text="${listPatternPolicy.d_port}"></td>
-                <td th:text="${listPatternPolicy.create_dt}"></td>
-                <td th:text="${listPatternPolicy.modify_dt}"></td>
-                <td th:text="${listPatternPolicy.action_type}"></td>
-                <td th:text="${listPatternPolicy.policy_name}"></td>
-                <td th:text="${listPatternPolicy.policy_info}"></td>
-                <td th:text="${listPatternPolicy.pattern_1}"></td>
-                <td th:text="${listPatternPolicy.pattern_2}"></td>
-                <td th:text="${listPatternPolicy.pattern_3}"></td>
-                <td th:text="${listPatternPolicy.dangerous}"></td>
-                <td>
-                    <form action="/updatePatternPolicy" method="get">
-                        <input type="hidden" name="detection_number" th:value="${listPatternPolicy.detection_number}">
-                        <input type="submit" value="수정">
-                    </form>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tableBody = document.getElementById('policyTableBody');
+            initialRows = Array.from(tableBody.rows);
+        });
 
-    <script>
         function clickPatternPolicy(detectionNumber) {
             $.ajax({
                 type: 'POST',
@@ -178,10 +519,8 @@
                 data: JSON.stringify({ detection_number: detectionNumber }),
                 success: function (data) {
                     if (data) {
-                        // 성공적으로 요청이 완료되었음을 알리는 로직
                         location.reload(); // 페이지를 새로고침하여 변경된 내용을 반영합니다.
                     } else {
-                        // 실패할 경우 로직
                         alert('문제가 발생했습니다.');
                     }
                 },
@@ -190,6 +529,74 @@
                     alert('문제가 발생했습니다.');
                 }
             });
+        }
+
+        function addSort(index) {
+            const existingIndex = sortColumns.findIndex(col => col.index === index);
+
+            if (existingIndex !== -1) {
+                sortColumns[existingIndex].direction = (sortColumns[existingIndex].direction === 'asc') ? 'desc' : 'asc';
+            } else {
+                sortColumns.push({ index, direction: 'asc' });
+            }
+
+            sortTable();
+        }
+
+        function sortTable() {
+            const tableBody = document.getElementById('policyTableBody');
+            const rows = Array.from(tableBody.rows);
+
+            rows.sort((a, b) => {
+                for (const col of sortColumns) {
+                    const aCell = a.getElementsByTagName("TD")[col.index];
+                    const bCell = b.getElementsByTagName("TD")[col.index];
+                    let x, y;
+
+                    // 이미지가 있는 열에서만 이미지의 src 속성으로 정렬
+                    if (aCell.getElementsByTagName("IMG").length > 0) {
+                        x = aCell.getElementsByTagName("IMG")[0].src.toLowerCase();
+                        y = bCell.getElementsByTagName("IMG")[0].src.toLowerCase();
+                    } else {
+                        x = aCell.innerText.toLowerCase();
+                        y = bCell.innerText.toLowerCase();
+                    }
+
+                    if (x < y) {
+                        return col.direction === 'asc' ? -1 : 1;
+                    }
+                    if (x > y) {
+                        return col.direction === 'asc' ? 1 : -1;
+                    }
+                }
+                return 0;
+            });
+
+            for (const row of rows) {
+                tableBody.appendChild(row);
+            }
+
+            updateHeaders();
+        }
+
+        function updateHeaders() {
+            const headers = document.querySelectorAll("th.sortable");
+            headers.forEach(header => {
+                header.classList.remove('asc', 'desc');
+            });
+            sortColumns.forEach(col => {
+                headers[col.index].classList.add(col.direction);
+            });
+        }
+
+        function resetSort() {
+            const tableBody = document.getElementById('policyTableBody');
+            // 초기 상태로 복원
+            initialRows.forEach(row => tableBody.appendChild(row));
+
+            // 정렬 상태 초기화
+            sortColumns = [];
+            updateHeaders();
         }
     </script>
 </body>
