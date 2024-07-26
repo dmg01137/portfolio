@@ -24,7 +24,9 @@ public class DangerousLogController {
     public DangerousLogController(DangerousLogService dangerousLogService) {
         this.dangerousLogService = dangerousLogService;
     }
-
+    
+    
+   
     // Page: View all dangerous logs
     @GetMapping("/dangerous")
     public String showDangerousLogPage(Model model) {

@@ -23,7 +23,7 @@
     <!-- ID를 기반으로 패턴 로그를 조회합니다 -->
     <select id="findById" resultMap="patternLogResultMap"
             parameterType="int">
-        SELECT * FROM log_db.pattern_log_20240716 WHERE id = #{id}
+        SELECT * FROM log_db.${tableName} WHERE id = #{id}
     </select>
 
     <!-- 모든 패턴 로그를 조회합니다 -->

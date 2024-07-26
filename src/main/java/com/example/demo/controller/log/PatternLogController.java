@@ -28,6 +28,31 @@ public class PatternLogController {
         this.patternLogService = patternLogService;
     }
 
+ 
+
+ // 웹 페이지: 패턴 패킷 정보 조회
+    // Get pattern packet details
+    @GetMapping("/patternpacket")
+    public ResponseEntity<?> getPatternPacket(
+            @RequestParam(name = "id") Integer id,
+            @RequestParam(name = "time", required = false) String time,
+            @RequestParam(name = "sIp", required = false) String sIp,
+            @RequestParam(name = "sPort", required = false) Integer sPort,
+            @RequestParam(name = "dIp", required = false) String dIp,
+            @RequestParam(name = "dPort", required = false) Integer dPort,
+            @RequestParam(name = "len", required = false) Integer len,
+            @RequestParam(name = "encodedPacket", required = false) String encodedPacket) {
+        try {
+            // Implement your logic to retrieve detailed pattern packet information
+            return ResponseEntity.ok("Received parameters: id=" + id + ", time=" + time + ", sIp=" + sIp + ", sPort=" + sPort
+                    + ", dIp=" + dIp + ", dPort=" + dPort + ", len=" + len + ", encodedPacket=" + encodedPacket);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+       
+    }
+    
  // 웹 페이지: 모든 패턴 로그 조회
     @GetMapping("/patternlog")
     public String showPatternLogPage(Model model) {

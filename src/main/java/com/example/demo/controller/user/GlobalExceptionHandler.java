@@ -37,4 +37,6 @@ public class GlobalExceptionHandler {
         logger.error("서블릿 예외가 발생했습니다.", ex);
         return "404";
     }
+    
+    
 }

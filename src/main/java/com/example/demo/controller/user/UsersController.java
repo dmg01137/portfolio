@@ -318,6 +318,16 @@ public class UsersController {
         return "adminerror";
     }
     
+    @GetMapping("/patternpacket")
+    public String showPatternPacketPage() {
+        // 여기서는 페이지 이름을 반환합니다. Thymeleaf 템플릿 이름이라고 가정합니다.
+        return "patternpacket"; 
+    }
+    @GetMapping("/packet")
+    public String showPacketPage() {
+        // 여기서는 페이지 이름을 반환합니다. Thymeleaf 템플릿 이름이라고 가정합니다.
+        return "packet"; 
+    }
     
 
 }

@@ -369,9 +369,18 @@ $(document).ready(function () {
         $("#logTableBody").empty(); // 기존 테이블 내용 지우기
 
         displayedLogs.forEach(function (log) {
-            let encodedPacket = log.packet ? btoa(log.packet) : ""; // 패킷 데이터 Base64 인코딩
+            let encodedPacket = log.packet ? btoa(log.packet) : ""; // Encode packet data
 
-            let detailButton = '<button class="btn btn-info btn-sm btn-detail" style="background-color: #b372a2bd; font-size: 10px;" data-log-id="' + log.id + '">상세조회</button>';
+            let detailButton = '<button class="btn btn-info btn-sm btn-detail" ' +
+                               'data-log-id="' + log.id + '" ' +
+                               'data-log-time="' + log.time + '" ' +
+                               'data-log-sip="' + log.s_ip + '" ' +
+                               'data-log-sport="' + log.s_port + '" ' +
+                               'data-log-dip="' + log.d_ip + '" ' +
+                               'data-log-dport="' + log.d_port + '" ' +
+                               'data-log-len="' + log.len + '" ' +
+                               'data-log-encodedpacket="' + encodedPacket + '">상세조회</button>';
+
             $("#logTableBody").append(
                 '<tr>' +
                 '<td>' + log.id + '</td>' +
@@ -387,54 +396,29 @@ $(document).ready(function () {
                 '<td>' + log.pattern1 + '</td>' +
                 '<td>' + log.pattern2 + '</td>' +
                 '<td>' + log.pattern3 + '</td>' +
-                '<td>' +
-                '<button class="btn btn-info btn-sm btn-detail" style="background-color: #b372a2bd; font-size: 10px;" ' +
-                'data-log-id="' + log.id + '" ' +
-                'data-log-date="' + log.time + '" ' +
-                '>상세조회</button>' +
-                '</td>'+
+                '<td>' + detailButton + '</td>' + // Append the button here
                 '</tr>'
             );
         });
     }
-    
- // 상세조회 버튼 클릭 이벤트 핸들러
-    $(document).on('click', '.btn-detail', function () {
-        let logId = $(this).data('log-id'); // 상세조회 버튼의 data-log-id 속성에서 로그 ID 가져오기
-        let logTime = $(this).data('log-time'); // 상세조회 버튼의 data-log-time 속성에서 로그 시간 가져오기
-        let logS_IP = $(this).data('log-s_ip'); // 상세조회 버튼의 data-log-s_ip 속성에서 출발지 IP 가져오기
-        let logS_Port = $(this).data('log-s_port'); // 상세조회 버튼의 data-log-s_port 속성에서 출발지 포트 가져오기
-        let logD_IP = $(this).data('log-d_ip'); // 상세조회 버튼의 data-log-d_ip 속성에서 도착지 IP 가져오기
-        let logD_Port = $(this).data('log-d_port'); // 상세조회 버튼의 data-log-d_port 속성에서 도착지 포트 가져오기
-        let logLen = $(this).data('log-len'); // 상세조회 버튼의 data-log-len 속성에서 패턴 길이 가져오기
-        let logPacket = $(this).data('log-packet'); // 상세조회 버튼의 data-log-packet 속성에서 패킷 데이터 가져오기
 
-        // logTime을 yyyyMMdd 형식으로 변환하는 함수 정의
-        function formatDateToyyyyMMdd(dateString) {
-            let dateObj = new Date(dateString);
-            let year = dateObj.getFullYear();
-            let month = ('0' + (dateObj.getMonth() + 1)).slice(-2); // 월은 0부터 시작하므로 +1을 해줍니다.
-            let day = ('0' + dateObj.getDate()).slice(-2);
-            return year + month + day;
-        }
+    // Click event handler for detail button
+    $("#logTableBody").off('click', '.btn-detail').on('click', '.btn-detail', function() {
+        let logId = $(this).data('log-id');
+        let logTime = $(this).data('log-time');
+        let logSip = $(this).data('log-sip');
+        let logSport = $(this).data('log-sport');
+        let logDip = $(this).data('log-dip');
+        let logDport = $(this).data('log-dport');
+        let logLen = $(this).data('log-len');
+        let logEncodedPacket = $(this).data('log-encodedpacket');
 
-        // logTime을 yyyyMMdd 형식으로 변환
-        let formattedDate = formatDateToyyyyMMdd(logTime);
+        // Construct URL for detailed view
+        let detailUrl = `/packet?id=${logId}&time=${encodeURIComponent(logTime)}&sIp=${encodeURIComponent(logSip)}&sPort=${logSport}&dIp=${encodeURIComponent(logDip)}&dPort=${logDport}&len=${logLen}&encodedPacket=${encodeURIComponent(logEncodedPacket)}`;
 
-        // 로그 ID와 날짜를 사용하여 패킷 분석 페이지로 리다이렉트
-        window.location.href = '/packet?id=' + logId +
-                              '&date=' + formattedDate +
-                              '&s_ip=' + logS_IP +
-                              '&s_port=' + logS_Port +
-                              '&d_ip=' + logD_IP +
-                              '&d_port=' + logD_Port +
-                              '&len=' + logLen +
-                              '&packet=' + logPacket;
+        // Redirect to detailed view
+        window.location.href = detailUrl;
     });
-
-
-
-
     // 페이지네이션을 렌더링하는 함수
     function renderPagination() {
         let totalPages = Math.ceil(totalLogs / logsPerPage);

@@ -21,13 +21,12 @@
         <result property="action_type" column="action_type" />
     </resultMap>
 
-<!-- 패킷 상세보기 쿼리 -->
-<select id="findPacketInfoById" resultType="com.example.demo.dto.log.BehaviorLog" parameterType="java.util.Map">
+  <!-- 패킷 상세보기 -->
+ <select id="packet-info" resultType="com.example.demo.dto.log.BehaviorLog" parameterType="int">
     SELECT s_ip, d_ip, s_port, d_port, len
     FROM log_db.${tableName}
     WHERE id = #{id}
 </select>
-
     
     <!-- ID로 조회 -->
     <select id="findById" resultType="com.example.demo.dto.log.BehaviorLog" parameterType="int">

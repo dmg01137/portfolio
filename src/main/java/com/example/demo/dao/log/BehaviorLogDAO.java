@@ -12,10 +12,6 @@ import com.example.demo.dto.log.BehaviorLog;
 @Mapper
 public interface BehaviorLogDAO {
 
-	   // 패킷 정보 가져오기
-    BehaviorLog findPacketInfoById(@Param("id") int id, @Param("date") LocalDateTime date, @Param("tableName") String tableName);
-
-	
     BehaviorLog findById(@Param("id") int id, @Param("tableName") String tableName);
 
     List<BehaviorLog> findAll(@Param("tableName") String tableName);
@@ -44,6 +40,4 @@ public interface BehaviorLogDAO {
     // 다중 조건으로 패턴 로그 조회
 
     List<BehaviorLog> findByMultipleCriteria(@Param("tableName") String tableName, @Param("criteria") Map<String, Object> criteria);
-
-
 }

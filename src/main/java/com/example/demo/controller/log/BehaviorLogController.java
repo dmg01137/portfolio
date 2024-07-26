@@ -1,7 +1,6 @@
 package com.example.demo.controller.log;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,49 +25,28 @@ public class BehaviorLogController {
     private BehaviorLogService behaviorLogService;
 
 
- // 패킷 상세보기 페이지 이동
-    @GetMapping("/packet")
-    public String packet(@RequestParam int id,
-            @RequestParam String date,
-            @RequestParam String s_ip,
-            @RequestParam String d_ip,
-            @RequestParam int s_port,
-            @RequestParam int d_port,
-            @RequestParam int len,
-            @RequestParam String packet,
-            Model model) {
-model.addAttribute("id", id);
-model.addAttribute("date", date);
-model.addAttribute("s_ip", s_ip);
-model.addAttribute("d_ip", d_ip);
-model.addAttribute("s_port", s_port);
-model.addAttribute("d_port", d_port);
-model.addAttribute("len", len);
-model.addAttribute("packet", packet);
-
-return "packet"; // 해당하는 패킷 정보를 보여주는 HTML 페이지 (예: packet.html)
-}
-
- // 패킷 정보 가져오기 API 엔드포인트
-    @GetMapping("/api/packetInfo")
-    @ResponseBody
-    public ResponseEntity<BehaviorLog> getPacketInfo(@RequestParam int id, @RequestParam String date) {
+    // Get pattern packet details
+    @GetMapping("/behaviorlog/packet")
+    public ResponseEntity<?> getPatternPacket(
+            @RequestParam(name = "id") Integer id,
+            @RequestParam(name = "time", required = false) String time,
+            @RequestParam(name = "sIp", required = false) String sIp,
+            @RequestParam(name = "sPort", required = false) Integer sPort,
+            @RequestParam(name = "dIp", required = false) String dIp,
+            @RequestParam(name = "dPort", required = false) Integer dPort,
+            @RequestParam(name = "len", required = false) Integer len,
+            @RequestParam(name = "encodedPacket", required = false) String encodedPacket) {
         try {
-            LocalDateTime dateTime = LocalDateTime.parse(date, DateTimeFormatter.ofPattern("yyyyMMdd"));
-            BehaviorLog packetInfo = behaviorLogService.findPacketInfoById(id, dateTime);
-            if (packetInfo != null) {
-                return ResponseEntity.ok(packetInfo);
-            } else {
-                return ResponseEntity.notFound().build();
-            }
+            // Implement your logic to retrieve detailed pattern packet information
+            return ResponseEntity.ok("Received parameters: id=" + id + ", time=" + time + ", sIp=" + sIp + ", sPort=" + sPort
+                    + ", dIp=" + dIp + ", dPort=" + dPort + ", len=" + len + ", encodedPacket=" + encodedPacket);
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+       
     }
-
-   
-    
+  
     // 페이지: 모든 위험 로그 보기
     @GetMapping("/behaviorlog")
     public String showBehaviorLogPage(Model model) {
@@ -76,13 +54,21 @@ return "packet"; // 해당하는 패킷 정보를 보여주는 HTML 페이지 (�
         model.addAttribute("logs", logs);
         return "behaviorlog"; // Thymeleaf 템플릿 이름
     }
+    
 
     // API 엔드포인트: 모든 위험 로그 가져오기
-    @GetMapping("/api/behaviorlogs")
+ 
+    
+    @GetMapping
     public ResponseEntity<List<BehaviorLog>> getAllBehaviorLogs() {
-        List<BehaviorLog> logs = behaviorLogService.findAll(null);
-        return ResponseEntity.ok(logs);
+        try {
+            List<BehaviorLog> logs = behaviorLogService.findAll(null);
+            return ResponseEntity.ok(logs);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
+
 
     // Top 5 s_ip 값 조회 API
     @GetMapping("/behaviorlog/top-sips")

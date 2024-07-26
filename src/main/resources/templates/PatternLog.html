@@ -332,28 +332,63 @@ $(document).ready(function () {
         $("#logTableBody").empty();
 
         displayedLogs.forEach(function (log) {
-            let encodedPacket = encodeURIComponent(log.packet);
-            
-            $("#logTableBody").append(
-                `<tr>
-                    <td>${log.id}</td>
-                    <td>${log.time}</td>
-                    <td>${log.sIp}</td>
-                    <td>${log.sPort}</td>
-                    <td>${log.dIp}</td>
-                    <td>${log.dPort}</td>
-                    <td>${log.actionType}</td>
-                    <td>${log.len}</td>
-                    <td>${log.policy_name}</td>
-                    <td>${log.pattern1}</td>
-                    <td>${log.pattern2}</td>
-                    <td>${log.pattern3}</td>
-                    <td>${encodedPacket}</td>
-                </tr>`
-            );
-        });
-    }
+        	  let encodedPacket = log.packet ? btoa(log.packet) : "";
 
+              let detailButton = `<button class="btn btn-info btn-sm btn-detail" style="background-color: #b372a2bd; font-size: 10px;"
+                  data-log-id="${log.id}"
+                  data-log-time="${log.time}"
+                  data-log-sIp="${log.sIp}"
+                  data-log-sPort="${log.sPort}"
+                  data-log-dIp="${log.dIp}"
+                  data-log-dPort="${log.dPort}"
+                  data-log-len="${log.len}"
+                  data-log-encodedPacket="${encodedPacket}">상세조회</button>`;
+
+
+              $("#logTableBody").append(
+                  `<tr>
+                      <td>${log.id}</td>
+                      <td>${log.time}</td>
+                      <td>${log.sIp}</td>
+                      <td>${log.sPort}</td>
+                      <td>${log.dIp}</td>
+                      <td>${log.dPort}</td>
+                      <td>${log.actionType}</td>
+                      <td>${log.len}</td>
+                      <td>${log.policy_name}</td>
+                      <td>${log.pattern1}</td>
+                      <td>${log.pattern2}</td>
+                      <td>${log.pattern3}</td>
+                     
+                      <td>${detailButton}</td>
+                  </tr>`
+              );
+
+
+              // 클릭 이벤트 핸들러는 한 번만 설정하면 됩니다.
+              $("#logTableBody").off('click', '.btn-detail').on('click', '.btn-detail', function() {
+            	  //alert("click");
+            	  //console.log("???" , $(this).data('log-id'));
+            	  
+                  let logId = $(this).data('log-id');
+                  let logTime = $(this).data('log-time');
+                  let logSip = $(this).data('log-sip');
+                  let logSport = $(this).data('log-sport');
+                  let logDip = $(this).data('log-dip');
+                  let logDport = $(this).data('log-dport');
+                  let logLen = $(this).data('log-len');
+                  let logEncodedPacket = $(this).data('log-encodedpacket');
+					
+                 
+                  // Construct URL for detailed view
+                  let detailUrl = `/patternpacket?id=${logId}&time=${encodeURIComponent(logTime)}&sIp=${encodeURIComponent(logSip)}&sPort=${logSport}&dIp=${encodeURIComponent(logDip)}&dPort=${logDport}&len=${logLen}&encodedPacket=${encodeURIComponent(logEncodedPacket)}`;
+
+                  // Redirect to detailed view
+                  window.location.href = detailUrl;
+              });
+          });
+        renderPagination();
+    }
     function renderPagination() {
         let totalPages = Math.ceil(totalLogs / logsPerPage);
         let paginationHTML = "";
@@ -377,7 +412,7 @@ $(document).ready(function () {
                           </li>`;
 
         $("#pagination").html(paginationHTML);
-    }
+    } // renderPagination 함수 끝
 
     window.changePage = function (page) {
         if (page < 1 || page > Math.ceil(totalLogs / logsPerPage)) {
@@ -385,8 +420,7 @@ $(document).ready(function () {
         }
         currentPage = page;
         displayLogs();
-        renderPagination();
-    };
+    }; // changePage 함수 끝
 
     $("#clearButton").click(function () {
         $(".searchInput").val("");
@@ -399,7 +433,7 @@ $(document).ready(function () {
 
     function handleSearch() {
         let searchParams = {
-        		   "date": $("#date").val().trim(),
+            "date": $("#date").val().trim(),
             "id": $("#id").val().trim(),
             "time": $("#time").val().trim(),
             "sIp": $("#sIp").val().trim(),
@@ -426,9 +460,9 @@ $(document).ready(function () {
         }).fail(function () {
             console.error("Failed to search data.");
         });
-    }
-});
+    } // handleSearch 함수 끝
 
+}); // docu
 </script>
 
 </body>

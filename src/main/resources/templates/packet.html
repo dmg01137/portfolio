@@ -94,15 +94,12 @@ body {
     color: #fff; /* 흰색 글자색 */
     padding-top: 50px;
     margin: 0; /* 페이지 전체 마진 초기화 */
-    
 }
 
 .container {
     margin-top: 50px;
     margin-left: 200px; /* 왼쪽 사이드바 너비 만큼 마진 추가 */
     width: 800px;
-    height: 500px;
- 
 }
 
 .btn-info {
@@ -116,15 +113,13 @@ body {
     margin-bottom: 1rem;
     background-color: transparent;
     color: #fff;
-       height: 500px;
-       
 }
 
 .packet-table th, .packet-table td {
     padding: 0.75rem;
     vertical-align: top;
     border-top: 1px solid #dee2e6;
-    font-size:15px;
+    font-size: 15px;
 }
 
 .packet-table thead th {
@@ -132,97 +127,46 @@ body {
     border-bottom: 2px solid #dee2e6;
     background-color: #17a2b8; /* 테이블 머리글 배경색 설정 */
     color: #fff; /* 테이블 머리글 글자색 설정 */
-    
 }
 
-/* 로그 내용 테이블 스타일 */
-.log-content-table {
-    width: 100%;
-    margin-bottom: 1rem;
-    background-color: transparent;
-    color: #fff;
-}
-
-.log-content-table th, .log-content-table td {
-    padding: 0.75rem;
-    vertical-align: top;
-    border-top: 1px solid #dee2e6;
-}
-
-.log-content-table thead th {
-    vertical-align: bottom;
-    border-bottom: 2px solid #dee2e6;
-    background-color: #17a2b8; /* 테이블 머리글 배경색 설정 */
-    color: #fff; /* 테이블 머리글 글자색 설정 */
-}
-
-/* 로그 내용 테이블 특정 셀 색상 및 글자색 설정 */
-.log-content-table td.pattern-cell {
-    background-color: #343a40; /* 특정 셀 배경색 설정 */
-    color: #17a2b8; /* 특정 셀 글자색 설정 */
-}
-
-/* 로그 내용 테이블 특정 셀 하이라이트 설정 */
-.log-content-table td.pattern-cell:hover {
-    background-color: #17a2b8; /* 특정 셀 마우스 호버시 배경색 설정 */
-    color: #fff; /* 특정 셀 마우스 호버시 글자색 설정 */
-}
-
-/* 페이지네이션 스타일 */
-.pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.pagination .page-item .page-link {
-    color: #17a2b8; /* 페이지 링크 텍스트 색상 설정 */
-    background-color: #343a40; /* 페이지 링크 배경색 설정 */
-    border-color: #17a2b8; /* 페이지 링크 테두리 색상 설정 */
-}
-
-.pagination .page-item .page-link:hover {
-    color: #fff; /* 페이지 링크 마우스 호버시 텍스트 색상 설정 */
-    background-color: #17a2b8; /* 페이지 링크 마우스 호버시 배경색 설정 */
-    border-color: #17a2b8; /* 페이지 링크 마우스 호버시 테두리 색상 설정 */
-}
-
-/* 패킷 hex 값 스타일 */
+/* 패킷 Hex 값 스타일 */
 .hex-content {
     background-color: #272b30; /* hex 값 배경색 설정 */
-    color: #d1d1d1; /* hex 값 글자색 설정 */
+    color: #fff; /* hex 값 글자색 설정 */
     padding: 10px; /* hex 값 패딩 설정 */
     margin-top: 10px; /* hex 값 상단 마진 설정 */
     overflow: auto; /* hex 값 스크롤 설정 */
 }
 
 .hex-content pre {
+  color: #fff; /* hex 값 글자색 설정 */
     font-family: monospace;
     white-space: pre-wrap;
     line-height: 1.4;
     font-size: 14px; /* hex 값 폰트 크기 설정 */
 }
 
-/* 패킷 ascii 값 스타일 */
+/* 패킷 Ascii 값 스타일 */
 .ascii-content {
     background-color: #272b30; /* ascii 값 배경색 설정 */
-    color: #d1d1d1; /* ascii 값 글자색 설정 */
+    color: #fff; /* ascii 값 글자색 설정 */
     padding: 10px; /* ascii 값 패딩 설정 */
     margin-top: 10px; /* ascii 값 상단 마진 설정 */
     overflow: auto; /* ascii 값 스크롤 설정 */
 }
 
 .ascii-content pre {
+color: #fff; /* ascii 값 글자색 설정 */
     font-family: monospace;
     white-space: pre-wrap;
     line-height: 1.4;
-    font-size: 10px; /* ascii 값 폰트 크기 설정 */
+   font-size: 14px; /* hex 값 폰트 크기 설정 */
 }
 
 </style>
 </head>
-<body>
 
+<body>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <a class="navbar-brand" href="#">로그 관리</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -251,10 +195,10 @@ body {
         <li class="nav-item"><a class="nav-link nav-link-custom pattern-icon" href="#">패킷 상세보기</a></li>
         <li class="nav-item"><a class="nav-link pattern-icon" href="/behaviorlog"><i class="fas fa-walking"></i> 행동 로그</a></li>
         <li class="nav-item"><a class="nav-link" href="/patternlog" style="color: #007bff;"><i class="fas fa-chart-line"></i> 패턴 로그</a></li>
+        
         <li class="nav-item"><a class="nav-link" href="/dangerouslog" style="color: #007bff;"><i class="fas fa-exclamation-triangle"></i> 위험 로그</a></li>
     </ul>
 </div>
-
 
 <div class="container">
     <!-- 패킷 테이블 -->
@@ -266,41 +210,13 @@ body {
                 <th>Value</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td>ID</td>
-                <td id="idField">{{id}}</td>
-            </tr>
-            <tr>
-                <td>Time</td>
-                <td id="dateField">{{date}}</td>
-            </tr>
-            <tr>
-                <td>S_IP</td>
-                <td id="sIpField"></td>
-            </tr>
-            <tr>
-                <td>S_Port</td>
-                <td id="sPortField"></td>
-            </tr>
-            <tr>
-                <td>D_IP</td>
-                <td id="dIpField"></td>
-            </tr>
-            <tr>
-                <td>D_Port</td>
-                <td id="dPortField"></td>
-            </tr>
-            <tr>
-                <td>Length</td>
-                <td id="lenField"></td>
-            </tr>
-          
+        <tbody id="packetTableBody">
+       
         </tbody>
     </table>
 
     <!-- 패킷 Hex 값 -->
-    <h4 class="mt-4 mb-4 ">Hex Content</h4>
+    <h4 class="mt-4 mb-4">Hex Content</h4>
     <div class="hex-content">
         <pre id="hexContent"></pre>
     </div>
@@ -312,65 +228,73 @@ body {
     </div>
 </div>
 
-<!-- JavaScript libraries -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<!-- Custom script to load packet info -->
 <script>
-$(document).ready(function() {
-    // Fetching id and date from URL parameters
-    var urlParams = new URLSearchParams(window.location.search);
-    var id = urlParams.get('id');
-    var date = urlParams.get('date');
-    var s_ip = urlParams.get('s_ip');
-    var d_ip = urlParams.get('d_ip');
-    var s_port = urlParams.get('s_port');
-    var d_port = urlParams.get('d_port');
-    var len = urlParams.get('len');
-    var packet = urlParams.get('packet');
+    $(document).ready(function () {
+        // URL에서 쿼리 매개변수를 읽어와서 변수에 저장
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        const time = decodeURIComponent(urlParams.get('time'));
+        const sIp = decodeURIComponent(urlParams.get('sIp'));
+        const sPort = urlParams.get('sPort');
+        const dIp = decodeURIComponent(urlParams.get('dIp'));
+        const dPort = urlParams.get('dPort');
+        const len = urlParams.get('len');
+        const encodedPacket = decodeURIComponent(urlParams.get('encodedPacket'));
 
-    // Constructing data object for AJAX request
-    var requestData = {
-        id: id,
-        date: date,
-        s_ip: s_ip,
-        d_ip: d_ip,
-        s_port: s_port,
-        d_port: d_port,
-        len: len,
-        packet: packet
-    };
-
-    $.ajax({
-        type: 'GET',
-        url: '/api/packetInfo',
-        data: requestData,
-        success: function(response) {
-            // Update the table fields
-            $('#idField').text(response.id);
-            $('#dateField').text(response.date);
-            $('#sIpField').text(response.s_ip);
-            $('#sPortField').text(response.s_port);
-            $('#dIpField').text(response.d_ip);
-            $('#dPortField').text(response.d_port);
-            $('#lenField').text(response.len);
-
-            // Update hex content
-            $('#hexContent').text(response.hexContent);
-
-            // Update ascii content
-            $('#asciiContent').text(response.asciiContent);
-        },
-        error: function(xhr, status, error) {
-            var errorMessage = xhr.status + ': ' + xhr.statusText;
-            $('#errorContainer').text('Error: ' + errorMessage).show();
+        // 패킷 테이블 데이터 추가
+        function addTableRow(tableId, rowData) {
+            $('#' + tableId).append('<tr>' + rowData + '</tr>');
         }
+
+        addTableRow('packetTableBody',
+            '<td>ID</td>' +
+            '<td>' + id + '</td>'
+        );
+        addTableRow('packetTableBody',
+            '<td>Time</td>' +
+            '<td>' + time + '</td>'
+        );
+        addTableRow('packetTableBody',
+            '<td>S_IP</td>' +
+            '<td>' + sIp + '</td>'
+        );
+        addTableRow('packetTableBody',
+            '<td>S_Port</td>' +
+            '<td>' + sPort + '</td>'
+        );
+        addTableRow('packetTableBody',
+            '<td>D_IP</td>' +
+            '<td>' + dIp + '</td>'
+        );
+        addTableRow('packetTableBody',
+            '<td>D_Port</td>' +
+            '<td>' + dPort + '</td>'
+        );
+        addTableRow('packetTableBody',
+            '<td>Length</td>' +
+            '<td>' + len + '</td>'
+        );
+
+        // 패킷 보기 함수
+        window.showPacket = function () {
+            const decodedPacket = atob(encodedPacket);
+            $('#hexContent').text(decodedPacket);
+
+            // Convert to ASCII
+            let asciiContent = '';
+            for (let i = 0; i < decodedPacket.length; i++) {
+                const asciiChar = decodedPacket.charCodeAt(i);
+                asciiContent += String.fromCharCode(asciiChar < 32 || asciiChar > 126 ? 46 : asciiChar); // Replace non-printable characters with '.'
+            }
+            $('#asciiContent').text(asciiContent);
+        };
+
+        // Call showPacket function to display packet content
+        showPacket();
     });
-});
 </script>
-
-
 </body>
 </html>
