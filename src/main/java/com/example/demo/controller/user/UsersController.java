@@ -48,9 +48,9 @@ public class UsersController {
         return "405";
     }
 
-    // 사용자 목록 페이지로 이동
-    @GetMapping("/userlist")
-    public String userlistForm(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+ // 사용자 목록 페이지로 이동
+    @GetMapping("/listuser")
+    public String listUserForm(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
         // 세션에서 현재 로그인한 사용자 정보 가져오기
         Users currentUser = (Users) session.getAttribute("user");
 
@@ -69,8 +69,10 @@ public class UsersController {
         // 사용자 목록 조회 및 페이지 이동
         List<Users> users = usersService.getAllUsers();
         model.addAttribute("users", users);
-        return "userlist";
+        return "listuser"; // Thymeleaf 템플릿 이름을 변경한 부분입니다.
     }
+
+
 
     // 사용자 정보 수정 폼으로 이동
     @GetMapping("/modifyuser")

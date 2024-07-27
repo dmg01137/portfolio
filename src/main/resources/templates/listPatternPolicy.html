@@ -152,11 +152,11 @@ body {
 
 /* 폼 및 버튼 스타일 */
 .form-group {
-    margin-bottom: 15px; /* 폼 그룹 사이의 여백 설정 */
+    margin-bottom: 5px; / /* 폼 그룹 사이의 여백 설정 */
 }
 
 .search-section {
-    margin-bottom: 10px;
+    margin-bottom:  5px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     gap: 10px;
@@ -170,6 +170,7 @@ body {
     background-color: #444; /* 입력 필드 배경색 설정 */
     color: #fff; /* 입력 필드 텍스트 색상 설정 */
     border: 1px solid #555; /* 입력 필드 테두리 색상 설정 */
+      font-size:11px;
 }
 
 .search-section button {
@@ -216,12 +217,12 @@ body {
 
 .table th, .table td {
     border: 1px solid #555;
-    padding: 8px;
+    padding: 2px 0 0 0;
     text-align: center;
     vertical-align: middle;
     white-space: nowrap;
     text-overflow: ellipsis;
-    font-size:13px;
+    font-size:11px;
 }
 
 .table th {
@@ -297,7 +298,7 @@ body {
          <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a class="nav-link" href="/patternlog"><i
                   class="fas fa-file-alt mr-1"></i>로그 관리</a></li>
-            <li class="nav-item"><a class="nav-link" href="/userlist"><i
+            <li class="nav-item"><a class="nav-link" href="/listUser"><i
                   class="fas fa-users-cog"></i> 사용자 관리</a></li>
             <li class="nav-item"><a class="nav-link" href="/admin"><i
                   class="fas fa-user-cog"></i> 관리자</a></li>
@@ -420,15 +421,7 @@ body {
                        		  		<label>&nbsp;</label>
                                     <button class="btn btn-secondary btn-block" type="button" onclick="location.href='/listPatternPolicy'">초기화</button>
                                </div>
-                               <div class="form-group">
-                       		  		<label>&nbsp;</label>
-                               </div>
-                               <div class="form-group">
-                       		  		<label>&nbsp;</label>
-                               </div>
-                               <div class="form-group">
-                       		  		<label>&nbsp;</label>
-                               </div>
+                              
                                 <div class="form-group">
                                		<label>&nbsp;</label>	
                         			<button id="resetSort" class="btn btn-secondary btn-block" onclick="resetSort()">정렬 초기화</button>        

@@ -1,26 +1,90 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modify Policy</title>
+    <title>UserList</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
+        /* 기본 스타일 설정 */
+        th {
+            cursor: pointer;
+            position: relative;
+            padding-left: 30px;
+            min-width: 150px;
+            box-sizing: border-box;
+        }
+
+        th.sortable::before {
+            content: '\25B2';
+            position: absolute;
+            left: 10px;
+            font-size: 0.8em;
+            color: black;
+        }
+
+        th.sortable.asc::before {
+            content: '\25B2';
+            color: blue;
+            left: 10px;
+        }
+
+        th.sortable.desc::before {
+            content: '\25BC';
+            color: blue;
+            left: 10px;
+        }
+
         body {
             background-color: #222;
+            color: #fff;
             font-family: Arial, sans-serif;
             padding-top: 80px;
         }
 
+        .navbar {
+            background-color: #222;
+            padding: 14px 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .navbar-nav .nav-item {
+            margin-right: 10px;
+        }
+
+        .nav-link {
+            color: #fff !important;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #17a2b8 !important;
+        }
+
+        .nav-link i {
+            margin-right: 5px;
+        }
+
+        /* 카드 및 카드 바디 스타일 */
         .card {
-            margin-top: 10px;
-            margin-left: auto; /* 카드 가운데 정렬 */
-            margin-right: auto; /* 카드 가운데 정렬 */
-            width: 110%;
-            max-width: 2000px;
-            border-radius: 15px;
-            background-color: #3a3a3a; /* 카드 배경색 조정 */
+            margin: 0 auto;
+            width: 100%;
+            max-width: 800px;
+            border-radius: 10px;
+            background-color: #444;
             color: #fff;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease-in-out;
@@ -32,48 +96,26 @@
         }
 
         .card-body {
-            padding: 20px;
-            font-size: 13px;
-            word-break: break-word;
+            padding: 20px; /* Increased padding for better spacing */
+            font-size: 16px; /* Increased font size for better readability */
         }
 
-        .form-control {
-            background-color: #333; /* 입력 박스 배경색 */
-            color: #f8f9fa; /* 입력 박스 텍스트 색상 */
-            border: 1px solid #444; /* 입력 박스 경계선 색상 */
-        }
-
-        .form-control[readonly] {
-            background-color: #555; /* 읽기 전용 입력 박스 배경색 */
-            color: #ddd; /* 읽기 전용 입력 박스 텍스트 색상 */
-            cursor: not-allowed; /* 커서 모양 변경 */
-        }
-
-        .form-control:disabled {
-            background-color: #555; /* 비활성화된 입력 박스 배경색 */
-            color: #ddd; /* 비활성화된 입력 박스 텍스트 색상 */
-        }
-
-        .btn-section {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .btn-modify, .btn-clear {
-            height: 38px;
-            line-height: 24px;
+        /* 테이블 스타일 */
+        .table-container {
+            overflow-x: auto;
+            max-width: 100%;
         }
 
         .table {
             width: 100%;
-            border-collapse: collapse;
-            background-color: #3a3a3a; /* 테이블 배경색 조정 */
             color: #fff;
+            background-color: #333;
         }
 
-        .table th, .table td {
-            border: 1px solid #444;
-            padding: 8px;
+        .table th,
+        .table td {
+            border: 1px solid #555;
+            padding: 10px; /* Increased padding for better spacing */
             text-align: center;
             vertical-align: middle;
             white-space: nowrap;
@@ -81,72 +123,144 @@
         }
 
         .table th {
-            background-color: #333; /* 테이블 헤더 배경색 */
+            background-color: #444;
         }
 
         .table tbody tr:nth-child(even) {
-            background-color: #444; /* 테이블 홀수 행 배경색 */
+            background-color: #333;
         }
 
         .table tbody tr:hover {
-            background-color: #555; /* 테이블 행 호버 색상 */
+            background-color: #555;
         }
 
-        .text-left {
-            text-align: left;
-            text-indent: 10px;
+        /* 버튼 스타일 */
+        .btn {
+            padding: 10px 16px; /* Increased padding for better spacing */
+            font-size: 14px; /* Increased font size for better readability */
+            border-radius: 5px;
+            transition: all 0.3s ease;
         }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+
+        /* 입력창 스타일 */
+        .form-control {
+            background-color: #555; /* Darker background color */
+            border-color: #777; /* Slightly lighter border color */
+            color: #fff; /* White text color */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-control:focus {
+         background-color: #555; /* Darker background color */
+          color: #fff; /* White text color */
+            border-color: #17a2b8; /* Focus border color */
+            box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.25); /* Focus box shadow */
+        }
+
+        /* Select 스타일 */
+        .form-control.selectpicker {
+            background-color: #555;
+            border-color: #777;
+            color: #fff;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-control.selectpicker:focus {
+            border-color: #17a2b8;
+            box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.25);
+        }
+         /* 로그인 링크 스타일 */
+        .nav-link.login-link {
+            font-size: 1.2rem; /* Larger font size */
+            font-weight: bold; /* Bold font weight */
+        }
+        
     </style>
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg ">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+   
+                  <li class="nav-item">
+                    <a class="nav-link login-link" href="/signin"><i class="fas fa-sign-out-alt"></i> 로그인</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title mb-4">회원 가입</h5>
-                    <form action="/addUser" method="post">
-                        <table class="table table-dark">
-                            <tbody>
-                                <tr>
-                                    <td><label for="user_number">user_number:</label></td>
-                                    <td class="text-left" th:text="${user_number}"></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="user_id">user_id:</label></td>
-                                    <td><input type="text" class="form-control" name="user_id" id="user_id" required></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="user_password">user_password:</label></td>
-                                    <td><input type="password" class="form-control" name="password" id="password" required></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="user_privilege">user_privilege:</label></td>
-                                    <td><select class="form-control" id="user_privilege" name="user_privilege">
-                                    <option value="admin">admin</option>
-                                	<option value="user">user</option>
-                                    </select></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="user_name">user_name:</label></td>
-                                    <td><input type="text" class="form-control" name="user_name" id="user_name" required></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" class="text-center">
-                                        <button type="submit" class="btn btn-primary btn-block">추가</button>
-                                        <a href="dashboard" class="btn btn-secondary btn-block">취소</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </form>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">회원 가입</h5>
+                        <form action="/addUser" method="post">
+                            <table class="table table-dark">
+                                <tbody>
+                                    <tr>
+                                        <td><label for="user_number">user_number:</label></td>
+                                        <td class="text-left" th:text="${user_number}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="user_id">user_id:</label></td>
+                                        <td><input type="text" class="form-control" name="user_id" id="user_id" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="user_password">user_password:</label></td>
+                                        <td><input type="password" class="form-control" name="password" id="password" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="user_privilege">user_privilege:</label></td>
+                                        <td>
+                                            <select class="form-control selectpicker" id="user_privilege" name="user_privilege">
+                                                <option value="admin">admin</option>
+                                                <option value="user">user</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="user_name">user_name:</label></td>
+                                        <td><input type="text" class="form-control" name="user_name" id="user_name" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="text-center">
+                                            <button type="submit" class="btn btn-primary btn-block">추가</button>
+                                            <a href="dashboard" class="btn btn-secondary btn-block">취소</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 </body>
+
 </html>
