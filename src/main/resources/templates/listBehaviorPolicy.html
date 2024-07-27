@@ -74,7 +74,9 @@ body {
 .nav-link:hover {
     color: #17a2b8 !important; /* 네비게이션 링크 호버 시 색상 설정 */
 }
-
+ .nav-sidebar .nav-link-custom {
+        color: #17a2b8 !important;
+    }
 .nav-link i {
     margin-right: 5px;
 }
@@ -312,7 +314,7 @@ body {
     <ul class="nav flex-column nav-sidebar">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="pattern-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-shield-alt mr-1"></i> 패턴 정책
+                <i class="fas fa-shield-alt mr-1 "  ></i> 패턴 정책
             </a>
             <div class="dropdown-menu" aria-labelledby="pattern-dropdown">
                 <a class="dropdown-item" href="/listPatternPolicy">패턴 정책 리스트</a>
@@ -324,7 +326,7 @@ body {
                 <i class="fas fa-shield-alt mr-1"></i> 행동 정책
             </a>
             <div class="dropdown-menu" aria-labelledby="behavior-dropdown">
-                <a class="dropdown-item" href="/listBehaviorPolicy">행동 정책 리스트</a>
+                <a class="dropdown-item " href="/listBehaviorPolicy">행동 정책 리스트</a>
                 <a class="dropdown-item" href="/addBehaviorPolicy">행동 정책 추가</a>
             </div>
         </li>
