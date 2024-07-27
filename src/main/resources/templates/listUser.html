@@ -1,352 +1,275 @@
 <!DOCTYPE html>
-<html lang ="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UserList</title>
-<link rel="stylesheet"
-   href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-   
-       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
-/* 기본 스타일 설정 */
+        /* 기본 스타일 설정 */
+        th {
+            cursor: pointer;
+            position: relative;
+            padding-left: 30px;
+            min-width: 150px;
+            box-sizing: border-box;
+        }
 
-th {
-    cursor: pointer;
-    position: relative;
-    padding-left: 30px; /* 왼쪽 패딩을 늘려 화살표와 텍스트 간격 확보 */
-    min-width: 150px; /* 헤더 셀의 최소 너비 설정 */
-    box-sizing: border-box; /* 패딩과 보더를 포함한 크기 조정 */
-}
+        th.sortable::before {
+            content: '\25B2';
+            position: absolute;
+            left: 10px;
+            font-size: 0.8em;
+            color: black;
+        }
 
-th.sortable::before {
-    content: '\25B2'; /* 기본 화살표 아이콘 */
-    position: absolute;
-    left: 10px; /* 화살표를 텍스트 왼쪽에 위치 */
-    font-size: 0.8em;
-    color: black;
-}
+        th.sortable.asc::before {
+            content: '\25B2';
+            color: blue;
+            left: 10px;
+        }
 
-th.sortable.asc::before {
-    content: '\25B2'; /* 오름차순 화살표 */
-    color: blue;
-    left: 10px; /* 오름차순 화살표 위치 조정 */
-}
+        th.sortable.desc::before {
+            content: '\25BC';
+            color: blue;
+            left: 10px;
+        }
 
-th.sortable.desc::before {
-    content: '\25BC'; /* 내림차순 화살표 */
-    color: blue;
-    left: 10px; /* 내림차순 화살표 위치 조정 */
-}
-body {
-    background-color: #222; /* 페이지 배경을 사이드바와 네비게이션 바와 같은 색상으로 설정 */
-    color: #fff; /* 기본 텍스트 색상을 흰색으로 설정 */
-    font-family: Arial, sans-serif;
-    padding-top: 80px; /* 네비게이션 바의 높이에 맞추어 여백 추가 */
-}
+        body {
+            background-color: #222;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding-top: 80px;
+        }
 
+        .navbar {
+            background-color: #222;
+            padding: 14px 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
 
-/* 네비게이션 바 스타일 */
-.navbar {
-    background-color: #222; /* 네비게이션 바 배경색 설정 */
-    padding: 14px 16px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000; /* 다른 요소들보다 위에 표시되도록 설정 */
-}
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #fff;
+        }
 
-.navbar-brand {
-    font-size: 1.5rem;
-    color: #fff; /* 네비게이션 바 브랜드 텍스트 색상 설정 */
-}
+        .navbar-nav .nav-item {
+            margin-right: 10px;
+        }
 
-.navbar-nav .nav-item {
-    margin-right: 10px;
-}
+        .nav-link {
+            color: #fff !important;
+            transition: all 0.3s ease;
+        }
 
-.nav-link {
-    color: #fff !important; /* 네비게이션 링크 색상 설정 */
-    transition: all 0.3s ease;
-}
+        .nav-link:hover {
+            color: #17a2b8 !important;
+        }
 
-.nav-link:hover {
-    color: #17a2b8 !important; /* 네비게이션 링크 호버 시 색상 설정 */
-}
+        .nav-link i {
+            margin-right: 5px;
+        }
 
-.nav-link i {
-    margin-right: 5px;
-}
+        /* 카드 및 카드 바디 스타일 */
+        .card {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 800px;
+            border-radius: 10px;
+            background-color: #444;
+            color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            border: transparent;
+        }
 
-/* 사이드바 스타일 */
+        .card:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
 
-/* 카드 스타일 */
-.card {
-    margin: 0px auto; /* 카드 가운데 정렬 및 여백 설정 */
-    width: 130%; /* 카드 너비를 100%로 설정 */
-    max-width: 1500px; /* 카드 최대 너비 설정 */
-    border-radius: 10px; /* 카드 모서리 둥글게 설정 */
-    background-color: #333; /* 카드 배경색 설정 */
-    color: #fff; /* 카드 텍스트 색상 설정 */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
-    border: transparent; /* 카드 테두리 제거 */
-}
+        .card-body {
+            padding: 15px;
+            font-size: 14px;
+        }
 
-/* 카드 호버 시 그림자 효과 */
-.card:hover {
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-}
+        /* 테이블 스타일 */
+        .table-container {
+            overflow-x: auto;
+            max-width: 100%;
+        }
 
-/* 카드 바디 스타일 */
-.card-body {
-    padding: 15px; /* 카드 내부 여백 설정 */
-    font-size: 14px; /* 카드 텍스트 크기 설정 */
-}
+        .table {
+            width: 100%;
+            color: #fff;
+            background-color: #333;
+        }
 
-/* 폼 및 버튼 스타일 */
-.form-group {
-    margin-bottom: 15px; /* 폼 그룹 사이의 여백 설정 */
-}
+        .table th,
+        .table td {
+            border: 1px solid #555;
+            padding: 8px;
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
 
-.search-section {
-    margin-bottom: 10px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 10px;
-}
+        .table th {
+            background-color: #444;
+        }
 
-.search-section input[type="text"],
-.search-section input[type="datetime-local"] {
-    width:100%;
-    padding: 8px;
-    font-size: 14px;
-    background-color: #444; /* 입력 필드 배경색 설정 */
-    color: #fff; /* 입력 필드 텍스트 색상 설정 */
-    border: 1px solid #555; /* 입력 필드 테두리 색상 설정 */
-}
+        .table tbody tr:nth-child(even) {
+            background-color: #333;
+        }
 
-.search-section button {
-    padding: 8px 16px;
-    font-size: 14px;
-}
+        .table tbody tr:hover {
+            background-color: #555;
+        }
 
-.btn-primary {
-    background-color: #007bff; /* 버튼 기본 색상 설정 */
-    border-color: #007bff;
-}
+        /* 버튼 스타일 */
+        .btn {
+            padding: 8px 12px;
+            font-size: 12px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
 
-.btn-secondary {
-    background-color: #6c757d; /* 보조 버튼 색상 설정 */
-    border-color: #6c757d;
-}
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: #fff;
+        }
 
-.btn-primary:hover,
-.btn-secondary:hover {
-    opacity: 0.9; /* 버튼 호버 시 불투명도 설정 */
-}
-.btn-warning {
-    background-color: #b372a2bd !important; /* 수정 버튼 배경색을 녹색으로 변경 */
-    border-color: #28a745 !important;    /* 수정 버튼 테두리색을 녹색으로 변경 */
-    color: #fff !important;              /* 수정 버튼 텍스트 색상을 흰색으로 변경 */
-}
-.btn-warning:hover {
-    background-color: #b372a2bd !important; /* 수정 버튼 호버 시 배경색을 조금 어두운 녹색으로 변경 */
-    border-color: #b372a2bd !important;     /* 수정 버튼 호버 시 테두리색을 조금 어두운 녹색으로 변경 */
-}
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+            transform: scale(1.05);
+        }
 
-/* 테이블 스타일 */
-.table-container {
-    overflow-x: auto;
-    max-width: 100%; /* 테이블 컨테이너의 최대 너비 설정 */
-}
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            color: #fff;
+        }
 
-.table {
-    width: 100%;
-    color: #fff; /* 테이블 텍스트 색상 설정 */
-    background-color: #333; /* 테이블 배경색 설정 */
-}
-
-.table th, .table td {
-    border: 1px solid #555; /* 셀 경계선 색상 설정 */
-    padding: 8px;
-    text-align: center;
-    vertical-align: middle;
-    white-space: nowrap; /* 글자가 너무 길어지면 줄바꿈을 하지 않도록 설정 */
-    text-overflow: ellipsis; /* 글자가 너무 길 경우 ...으로 생략 */
-}
-
-.table th {
-    background-color: #444; /* 테이블 헤더 배경색 설정 */
-}
-
-.table tbody tr:nth-child(even) {
-    background-color: #333; /* 테이블 짝수 행 배경색 설정 */
-}
-
-
-.table tbody tr:hover {
-    background-color: #555; /* 테이블 마우스 호버 시 배경색 설정 */
-}
-
-/* 페이지네이션 스타일 */
-.pagination {
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.pagination .page-link {
-    color: #007bff; /* 페이지네이션 링크 색상 설정 */
-    background-color: #000; /* 페이지네이션 배경색 설정 */
-    border: 1px solid #555; /* 페이지네이션 테두리 색상 설정 */
-}
-
-.pagination .page-link:hover {
-    color: #0056b3; /* 페이지네이션 링크 호버 시 색상 설정 */
-    background-color: #444; /* 페이지네이션 호버 시 배경색 설정 */
-    border-color: #555; /* 페이지네이션 호버 시 테두리 색상 설정 */
-}
-
-.pagination .page-item.active .page-link {
-    z-index: 1;
-    color: #fff; /* 활성 페이지 링크 색상 설정 */
-    background-color: #007bff; /* 활성 페이지 배경색 설정 */
-    border-color: #007bff; /* 활성 페이지 테두리 색상 설정 */
-}
-.container {
-    margin-left: -50px; /* 카드 왼쪽 여백 조정 */
-    padding-top: 50px; /* 네비게이션 바 높이만큼 상단 여백 추가 */
-}
-.dropdown-menu {
-    background-color: #222;
-    border: none;
-    position: relative; /* 드롭다운 메뉴의 위치 조정 */
-    z-index: 1050; /* 다른 요소 위에 표시되도록 z-index 설정 */
-}
-
-.dropdown-menu .dropdown-item {
-    color: #d1d1d1;
-}
-
-.dropdown-menu .dropdown-item:hover {
-    background-color: #333;
-    color: #fff;
-}
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 
-
-
 <body>
-<nav class="navbar navbar-expand-lg ">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/behaviorlog"><i class="fas fa-file-alt mr-1"></i>로그 관리</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/policylist"><i class="fas fa-shield-alt"></i> 정책 관리</a>
-            </li>
-        <li class="nav-item">
-        <a class="nav-link" href="/admin"><i class="fas fa-user-cog"></i> 관리자</a>
-    </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/dashboard"><i class="fas fa-home"></i> 홈</a>
-</li>
+    <nav class="navbar navbar-expand-lg ">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/behaviorlog"><i class="fas fa-file-alt mr-1"></i>로그 관리</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/policylist"><i class="fas fa-shield-alt"></i> 정책 관리</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin"><i class="fas fa-user-cog"></i> 관리자</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard"><i class="fas fa-home"></i> 홈</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signin"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-    <li class="nav-item">
-        <a class="nav-link" href="/signin"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
-    </li>
-</ul>
-    </div>
-</nav>
-
-
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-body">
-                    <div class="body-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-body">
                         <h5 class="card-title mb-4">User List</h5>
-						<div class="user-list">
-                            <table id="userTable" class="table table-bordered">
+                        <div class="user-list">
+                            <table id="userTable" class="table table-bordered table-hover">
                                 <thead>
-								    <tr>
-								        <th> user_number </th>
-								        <th> user_id </th>
-								        <th> user_privilege </th>
-								        <th> user_name </th>
-								        <th> 수정 / 삭제 </th>
-								    </tr>
-								</thead>
-								<tbody>
-								    <tr th:each="listUser : ${listUser}">
-								        <td th:text="${listUser.user_number}"></td>
-								        <td th:text="${listUser.user_id}"></td>
-								        <td th:text="${listUser.user_privilege}"></td>
-								        <td th:text="${listUser.user_name}"></td>
-								        <td>
-								            <div style="display: flex; justify-content: center; gap: 10px;">
-								                <form action="/updateUser" method="get" style="margin-bottom: 0;">
-								                    <input type="hidden" name="user_number" th:value="${listUser.user_number}">
-								                    <input type="submit" style="background-color: #007bff; border-color: #007bff; color: #fff;" value="수정">
-								                </form>
-								                <button type="button" style="background-color: #dc3545; border-color: #dc3545; color: #fff;" th:onclick="deleteFunction(event, [[${listUser.user_number}]]);">
-								                    삭제
-								                </button>
-								            </div>
-								        </td>
-								    </tr>
-								</tbody>
-								</table>
-                        	</div>
-                       	</div>
-                   	</div>
-               	</div>
-           	</div>
-       	</div>
-   	</div>
-   	
-<script>
-    // 삭제 버튼 클릭 시 호출되는 함수
-    function deleteFunction(event, user_number) {
-        // 기본 폼 제출 동작을 방지
-        event.preventDefault();
+                                    <tr>
+                                        <th>사용자 번호</th>
+                                        <th>사용자 ID</th>
+                                        <th>사용자 권한</th>
+                                        <th>사용자 이름</th>
+                                        <th>수정 / 삭제</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="listUser : ${listUser}">
+                                        <td th:text="${listUser.user_number}"></td>
+                                        <td th:text="${listUser.user_id}"></td>
+                                        <td th:text="${listUser.user_privilege}"></td>
+                                        <td th:text="${listUser.user_name}"></td>
+                                        <td>
+                                            <div style="display: flex; justify-content: center; gap: 10px;">
+                                                <form action="/updateUser" method="get" style="margin-bottom: 0;">
+                                                    <input type="hidden" name="user_number"
+                                                        th:value="${listUser.user_number}">
+                                                    <button type="submit" class="btn btn-primary">수정</button>
+                                                </form>
+                                                <button type="button" class="btn btn-danger"
+                                                    th:onclick="deleteFunction(event, [[${listUser.user_number}]]);">삭제</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        // 사용자에게 삭제 확인을 요청
-        if (!confirm("정말 삭제하시겠습니까?")) {
-            return; // 사용자가 취소를 클릭하면 함수 종료
-        }
+    <script>
+        // 삭제 버튼 클릭 시 호출되는 함수
+        function deleteFunction(event, user_number) {
+            // 기본 폼 제출 동작을 방지
+            event.preventDefault();
 
-        // AJAX 요청으로 삭제 처리
-        $.ajax({
-            type: 'POST',
-            url: '/deleteUser',
-            contentType: 'application/json',
-            data: JSON.stringify({ user_number: user_number }),
-            success: function() {
-                // 삭제 성공 시, 해당 행을 테이블에서 제거
-                var tr = event.target.closest('tr');
-                if (tr) {
-                    tr.remove();
-                }
-                alert("사용자가 삭제되었습니다.");
-            },
-            error: function(xhr, status, error) {
-                console.log("error : ", error);
-                alert("삭제 실패: " + error);
+            // 사용자에게 삭제 확인을 요청
+            if (!confirm("정말 삭제하시겠습니까?")) {
+                return; // 사용자가 취소를 클릭하면 함수 종료
             }
-        });
-    }
-</script>
 
-   	
-   	
+            // AJAX 요청으로 삭제 처리
+            $.ajax({
+                type: 'POST',
+                url: '/deleteUser',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    user_number: user_number
+                }),
+                success: function () {
+                    // 삭제 성공 시, 해당 행을 테이블에서 제거
+                    var tr = event.target.closest('tr');
+                    if (tr) {
+                        tr.remove();
+                    }
+                    alert("사용자가 삭제되었습니다.");
+                },
+                error: function (xhr, status, error) {
+                    console.log("error : ", error);
+                    alert("삭제 실패: " + error);
+                }
+            });
+        }
+    </script>
+
 </body>
+
 </html>
-
-
