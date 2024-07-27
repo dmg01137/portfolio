@@ -60,6 +60,24 @@ public class UserController
 	public String listUser(Model model, HttpSession session, RedirectAttributes redirectAttributes)
 	{
 		
+		
+		     // 세션에서 현재 로그인한 사용자 정보 가져오기
+		        Users currentUser = (Users) session.getAttribute("user");
+
+		        // 세션이 없거나 사용자 정보가 없으면 로그인 폼으로 리다이렉트
+		        if (currentUser == null) {
+		            redirectAttributes.addFlashAttribute("error", "로그인이 필요합니다.");
+		            return "redirect:/signin";
+		        }
+
+		        // 관리자 권한 검증: currentUser가 관리자인지 확인
+		        if (!currentUser.getUser_privilege().equals("admin")) {
+		            redirectAttributes.addFlashAttribute("error", "관리자만 접근할 수 있는 페이지입니다.");
+		            return "redirect:/adminerror"; // 관리자가 아니면 관리자 에러 페이지로 리다이렉트
+		        }
+
+		
+		
 		List<UserDto> listUser = userService.listUser();
 		model.addAttribute("listUser", listUser);
 		return "/listUser";

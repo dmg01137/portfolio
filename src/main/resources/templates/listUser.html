@@ -46,6 +46,7 @@
             padding-top: 80px;
         }
 
+        /* 네비게이션바 스타일 */
         .navbar {
             background-color: #222;
             padding: 14px 16px;
@@ -53,31 +54,61 @@
             position: fixed;
             width: 100%;
             top: 0;
-            z-index: 1000;
+            z-index: 1000; /* 다른 요소들보다 위에 표시되도록 설정 */
         }
-
         .navbar-brand {
             font-size: 1.5rem;
             color: #fff;
         }
-
         .navbar-nav .nav-item {
             margin-right: 10px;
         }
-
         .nav-link {
             color: #fff !important;
             transition: all 0.3s ease;
         }
-
         .nav-link:hover {
             color: #17a2b8 !important;
         }
-
         .nav-link i {
             margin-right: 5px;
         }
-
+        .nav-sidebar .nav-link {
+            color: #d1d1d1;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+        .nav-sidebar .nav-link:hover {
+            background-color: #222;
+            color: #fff;
+        }
+        .nav-sidebar .nav-link i {
+            margin-right: 10px;
+        }
+        /* 왼쪽 세로 메뉴바 스타일 */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 64px;
+            width: 200px; /* 사이드바 너비를 200px로 조정 */
+            background-color: #222;
+            height: 100%;
+            padding-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden; /* 가로 스크롤바를 숨기는 속성 */
+        }
+        .sidebar-heading {
+            font-size: 1.2rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .nav-sidebar .nav-link.active {
+            color: #17a2b8 !important; /* Active 상태에서의 텍스트 색상 변경 */
+        }  .nav-sidebar .nav-link-custom {
+            color: #17a2b8 !important; /* 텍스트 색상 변경 */
+        }
         /* 카드 및 카드 바디 스타일 */
         .card {
             margin: 0 auto;
@@ -169,14 +200,19 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg ">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
+  
+<nav class="navbar navbar-expand-lg fixed-top">
+    <a class="navbar-brand" href="#">사용자 관리</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
                     <a class="nav-link" href="/behaviorlog"><i class="fas fa-file-alt mr-1"></i>로그 관리</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/policylist"><i class="fas fa-shield-alt"></i> 정책 관리</a>
+                    <a class="nav-link" href="/listPatternPolicy"><i class="fas fa-shield-alt"></i> 정책 관리</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/admin"><i class="fas fa-user-cog"></i> 관리자</a>
@@ -190,6 +226,19 @@
             </ul>
         </div>
     </nav>
+
+<div class="sidebar">
+    <h5 class="sidebar-heading">메뉴</h5>
+    <ul class="nav flex-column nav-sidebar">
+        <li class="nav-item">
+            <a class="nav-link nav-link-custom" href="#"><i class="fas fa-users-cog" style="color: #17a2b8;"></i> 사용자 리스트</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/join"><i class="fas fa-plus"></i> 사용자 추가</a>
+        </li>
+      
+    </ul>
+</div>
 
     <div class="container">
         <div class="row justify-content-center">

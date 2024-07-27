@@ -19,6 +19,7 @@ public class BehaviorLogService {
     private BehaviorLogDAO behaviorLogDAO;
     LocalDate currentDate = LocalDate.now();
     String tableName = currentDate.toString().replace("-", "");
+    
 
     @Autowired
     public BehaviorLogService(BehaviorLogDAO behaviorLogDAO) {
