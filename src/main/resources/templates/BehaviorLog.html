@@ -97,7 +97,7 @@
      background-color: #333;
 }
    body {
-            background-color: #333;
+            background-color: #222;
             font-family: Arial, sans-serif;
             padding-top: 50px;
             margin: 0;
@@ -383,7 +383,7 @@ $(document).ready(function () {
         $("#logTableBody").empty(); // 기존 테이블 내용 지우기
 
         displayedLogs.forEach(function (log) {
-            let encodedPacket = log.packet ? btoa(log.packet) : ""; // Encode packet data
+            let encodedPacket = log.packet ? btoa(log.packet) : ""; // 패킷 데이터 인코딩
 
             let detailButton = '<button class="btn btn-info btn-sm btn-detail" ' +
                                'data-log-id="' + log.id + '" ' +
@@ -410,13 +410,13 @@ $(document).ready(function () {
                 '<td>' + log.pattern1 + '</td>' +
                 '<td>' + log.pattern2 + '</td>' +
                 '<td>' + log.pattern3 + '</td>' +
-                '<td>' + detailButton + '</td>' + // Append the button here
+                '<td>' + detailButton + '</td>' + // 상세조회 버튼 추가
                 '</tr>'
             );
         });
     }
 
-    // Click event handler for detail button
+    // Click 이벤트 핸들러 - 상세조회 버튼
     $("#logTableBody").off('click', '.btn-detail').on('click', '.btn-detail', function() {
         let logId = $(this).data('log-id');
         let logTime = $(this).data('log-time');
@@ -427,36 +427,45 @@ $(document).ready(function () {
         let logLen = $(this).data('log-len');
         let logEncodedPacket = $(this).data('log-encodedpacket');
 
-        // Construct URL for detailed view
+        // 상세 조회 페이지 URL 구성
         let detailUrl = `/packet?id=${logId}&time=${encodeURIComponent(logTime)}&sIp=${encodeURIComponent(logSip)}&sPort=${logSport}&dIp=${encodeURIComponent(logDip)}&dPort=${logDport}&len=${logLen}&encodedPacket=${encodeURIComponent(logEncodedPacket)}`;
 
-        // Redirect to detailed view
+        // 상세 조회 페이지로 리다이렉트
         window.location.href = detailUrl;
     });
-    // 페이지네이션을 렌더링하는 함수
+
+    // 페이지네이션 표시
     function renderPagination() {
-        let totalPages = Math.ceil(totalLogs / logsPerPage);
+        let totalPages = Math.ceil(totalLogs / logsPerPage); // 전체 페이지 수 계산
         let paginationHTML = "";
 
+        // 현재 페이지 그룹 계산
+        let currentGroup = Math.ceil(currentPage / 5);
+        let startPage = (currentGroup - 1) * 5 + 1;
+        let endPage = Math.min(startPage + 4, totalPages);
+
+        // 이전 페이지 버튼 추가
         paginationHTML += `<li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
                             <a class="page-link" href="#" aria-label="Previous" onclick="changePage(${currentPage - 1})">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                           </li>`;
 
-        for (let i = 1; i <= totalPages; i++) {
+        // 페이지 버튼 추가
+        for (let i = startPage; i <= endPage; i++) {
             paginationHTML += `<li class="page-item ${currentPage === i ? 'active' : ''}">
                                 <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
                               </li>`;
         }
 
+        // 다음 페이지 버튼 추가
         paginationHTML += `<li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
                             <a class="page-link" href="#" aria-label="Next" onclick="changePage(${currentPage + 1})">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                           </li>`;
 
-        $("#pagination").html(paginationHTML);
+        $("#pagination").html(paginationHTML); // 페이지네이션 엘리먼트에 HTML 추가
     }
 
     // 페이지 변경 함수
@@ -464,12 +473,12 @@ $(document).ready(function () {
         if (page < 1 || page > Math.ceil(totalLogs / logsPerPage)) {
             return;
         }
-        currentPage = page;
-        displayLogs();
-        renderPagination();
+        currentPage = page; // 현재 페이지 업데이트
+        displayLogs(); // 로그 표시
+        renderPagination(); // 페이지네이션 업데이트
     };
 
- // 검색 버튼 클릭 이벤트 핸들러
+    // 검색 버튼 클릭 이벤트 핸들러
     $("#searchButton").click(function () {
         handleSearch();
     });
@@ -477,8 +486,8 @@ $(document).ready(function () {
     // 검색 처리 함수
     function handleSearch() {
         let searchParams = {
-        		 "date": $("#date").val().trim(),
-        		 "id": $("#id").val().trim(),
+            "date": $("#date").val().trim(),
+            "id": $("#id").val().trim(),
             "time": $("#time").val().trim(),
             "s_ip": $("#s_ip").val().trim(),
             "s_port": $("#s_port").val().trim(),
@@ -511,7 +520,6 @@ $(document).ready(function () {
     $("#clearButton").click(function () {
         $(".searchInput").val(""); // 모든 검색 입력 필드 비우기
         fetchAndDisplayLogs();
-
     });
 });
 

@@ -85,7 +85,7 @@
      background-color: #333;
 }
    body {
-            background-color: #333;
+           background-color: #222; /* 어두운 배경색 */
             font-family: Arial, sans-serif;
             padding-top: 50px;
             margin: 0;
@@ -98,44 +98,47 @@
     max-width: 100%; /* 테이블 컨테이너의 최대 너비 설정 */
 }
 
-.table {
-    width: 100%;
-    color: #fff; /* 테이블 텍스트 색상 설정 */
-    background-color: #333; /* 테이블 배경색 설정 */
- 
-}
+        /* 테이블 스타일 */
+        .table {
+            width: 80%;
+            color: #fff;
+            background-color: #333;
+            border-collapse: collapse; /* 셀 경계선 합치기 */
+            margin-left:70px;
+        }
 
-.table th, .table td {
-    border: 1px solid #555; /* 셀 경계선 색상 설정 */
+       .table th,
+.table td {
+    border: 1px solid #555;
     padding: 8px;
     text-align: center;
     vertical-align: middle;
-    white-space: nowrap; /* 글자가 너무 길어지면 줄바꿈을 하지 않도록 설정 */
-    text-overflow: ellipsis; /* 글자가 너무 길 경우 ...으로 생략 */
-    font-size: 0.75rem; 
-}
-
-.table th {
-    background-color: #444; /* 테이블 헤더 배경색 설정 */
-}
-
-.table tbody tr:nth-child(even) {
-    background-color: #333; /* 테이블 짝수 행 배경색 설정 */
+    white-space: nowrap; /* 줄 바꿈 방지 */
+    overflow: hidden; /* 넘치는 부분 숨기기 */
+    text-overflow: ellipsis; /* 넘치는 부분에 대해 ... 표시 */
+    font-size: 0.75rem;
 }
 
 
-.table tbody tr:hover {
-    background-color: #555; /* 테이블 마우스 호버 시 배경색 설정 */
-}
+        .table th {
+            background-color: #444;
+        }
 
+        .table tbody tr:nth-child(even) {
+            background-color: #333;
+        }
+
+        .table tbody tr:hover {
+            background-color: #555;
+        }
     .searchForm {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-top: 20px;
         margin-bottom: 10px;
-        margin-left: 60px;
-        width: 900px;
+        margin-left: 70px;
+        width: 750px;
     }
 
     /* 검색 입력창 간격 조정 */
@@ -149,13 +152,15 @@
 
     /* 버튼 높이 및 폭 조정 */
     .searchForm button {
-        padding: 0.375rem 1.5rem; /* Adjusted padding for height and width */
+        padding: 0.375rem 0.375rem; /* Adjusted padding for height and width */
         font-size: 0.9rem;
         line-height: 1.5;
         border-radius: 0.25rem;
         cursor: pointer;
         transition: background-color 0.15s ease-in-out;
         height: auto; /* Allow height to adjust based on content */
+      width: 70px;
+      margin-top: 15px;
     }
 
     /* Clear 버튼 스타일 */
@@ -264,33 +269,33 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function () {
-    let currentPage = 1;
-    let logsPerPage = 10; // Number of logs per page
-    let totalLogs = 0;
-    let logsData = [];
+    let currentPage = 1; // 현재 페이지
+    let logsPerPage = 10; // 페이지당 로그 수
+    let totalLogs = 0; // 전체 로그 수
+    let logsData = []; // 로그 데이터 저장 배열
 
-    // Initial fetch and display logs
+    // 페이지 로딩 시 초기 로그 데이터 가져오기
     fetchAndDisplayLogs();
 
-    // Function to fetch logs from server and display
+    // 초기 로그 데이터 가져오기 및 표시
     function fetchAndDisplayLogs() {
         $.get("/api/dangerouslogs", function (data) {
             logsData = data;
             totalLogs = logsData.length;
             displayLogs();
             renderPagination();
-        }).fail(function() {
-            console.error("Failed to fetch data.");
+        }).fail(function () {
+            console.error("데이터를 가져오는 데 실패했습니다.");
         });
     }
 
-    // Function to display logs in the table
+    // 테이블에 로그 데이터 표시
     function displayLogs() {
         let startIndex = (currentPage - 1) * logsPerPage;
         let endIndex = startIndex + logsPerPage;
         let displayedLogs = logsData.slice(startIndex, endIndex);
 
-        $("#logTableBody").empty(); // Clear existing table rows
+        $("#logTableBody").empty(); // 기존 테이블 내용 지우기
 
         displayedLogs.forEach(function (log) {
             $("#logTableBody").append(
@@ -304,75 +309,88 @@ $(document).ready(function () {
         });
     }
 
+    // 페이지네이션 표시
     function renderPagination() {
-        let totalPages = Math.ceil(totalLogs / logsPerPage);
+        let totalPages = Math.ceil(totalLogs / logsPerPage); // 전체 페이지 수 계산
         let paginationHTML = "";
 
+        // 현재 페이지 그룹 계산
+        let currentGroup = Math.ceil(currentPage / 5);
+        let startPage = (currentGroup - 1) * 5 + 1;
+        let endPage = Math.min(startPage + 4, totalPages);
+
+        // 이전 페이지 버튼 추가
         paginationHTML += `<li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
                             <a class="page-link" href="#" aria-label="Previous" onclick="changePage(${currentPage - 1})">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                           </li>`;
 
-        for (let i = 1; i <= totalPages; i++) {
+        // 페이지 버튼 추가
+        for (let i = startPage; i <= endPage; i++) {
             paginationHTML += `<li class="page-item ${currentPage === i ? 'active' : ''}">
                                 <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
                               </li>`;
         }
 
+        // 다음 페이지 버튼 추가
         paginationHTML += `<li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
                             <a class="page-link" href="#" aria-label="Next" onclick="changePage(${currentPage + 1})">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                           </li>`;
 
-        $("#pagination").html(paginationHTML);
+        $("#pagination").html(paginationHTML); // 페이지네이션 엘리먼트에 HTML 추가
     }
 
+    // 페이지 변경 함수
     window.changePage = function (page) {
         if (page < 1 || page > Math.ceil(totalLogs / logsPerPage)) {
             return;
         }
-        currentPage = page;
-        displayLogs();
-        renderPagination();
+        currentPage = page; // 현재 페이지 업데이트
+        displayLogs(); // 로그 표시
+        renderPagination(); // 페이지네이션 업데이트
     };
 
-    $("#clearButton").click(function () {
-        $(".searchInput").val("");
-        fetchAndDisplayLogs();
-    });
-
+    // 검색 폼 제출 시
     $("#searchForm").submit(function (event) {
-        event.preventDefault(); // Prevent default form submission
-        handleSearch();
+        event.preventDefault(); // 기본 제출 동작 방지
+        handleSearch(); // 검색 처리 함수 호출
     });
 
+    // 검색 처리 함수
     function handleSearch() {
         let searchParams = {
-        		"date": $("#date").val().trim(),
+            "date": $("#date").val().trim(),
             "dangerous_number": $("#dangerous_number").val().trim(),
             "ip": $("#ip").val().trim(),
             "port": $("#port").val().trim(),
             "policy_name": $("#policy_name").val().trim()
         };
 
-        // Convert searchParams to URL query string
-        let queryString = $.param(searchParams);
+        let queryString = $.param(searchParams); // 검색 파라미터를 쿼리 문자열로 변환
 
         $.get("/dangerouslog/multipleSearch?" + queryString, function (data) {
-            logsData = data;
-            totalLogs = logsData.length;
-            currentPage = 1;
-            displayLogs();
-            renderPagination();
+            logsData = data; // 검색 결과 데이터 업데이트
+            totalLogs = logsData.length; // 전체 로그 수 업데이트
+            currentPage = 1; // 현재 페이지 초기화
+            displayLogs(); // 로그 표시
+            renderPagination(); // 페이지네이션 업데이트
         }).fail(function () {
-            console.error("Failed to search data.");
+            console.error("데이터 검색에 실패했습니다.");
         });
     }
+
+    // 클리어 버튼 클릭 시
+    $("#clearButton").click(function () {
+        $(".searchInput").val(""); // 검색 필드 초기화
+        fetchAndDisplayLogs(); // 초기 로그 데이터 다시 가져오기
+    });
 });
 
 </script>
+
 
 </body>
 </html>
