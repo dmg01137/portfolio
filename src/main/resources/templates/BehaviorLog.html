@@ -85,17 +85,21 @@
     margin-bottom: 20px;
 }
 
+  .container {
+        margin-top: 20px; /* 가운데 정렬을 위한 auto 설정 */
+           margin-left: 200px; /* 가운데 정렬을 위한 auto 설정 */
+            margin-right: auto; /* 가운데 정렬을 위한 auto 설정 */
+             width: 900px;
+          
+            padding-left: 20px;
+            padding-right: 20px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            color: #fff;
+            background-color: #333;
+            border-radius: 10px; /* 카드 모서리 둥글게 설정 */
+        }
 
-.container {
-    margin-top: 30px;
-    margin-left:  60px;
-    margin-bottom: 30px;
-    padding-left: 150px;
-    overflow-x: hidden;
-    overflow-y: auto; /* Add this line */
-    color: #fff; /* 테이블 텍스트 색상 설정 */
-     background-color: #333;
-}
    body {
             background-color: #222;
             font-family: Arial, sans-serif;
@@ -103,12 +107,12 @@
             margin: 0;
         }
 
-       
             
 /* 테이블 스타일 */
 .table-container {
     overflow-x: auto;
     max-width: 100%; /* 테이블 컨테이너의 최대 너비 설정 */
+    
 }
 
 .table {
@@ -125,7 +129,7 @@
     vertical-align: middle;
     white-space: nowrap; /* 글자가 너무 길어지면 줄바꿈을 하지 않도록 설정 */
     text-overflow: ellipsis; /* 글자가 너무 길 경우 ...으로 생략 */
-    font-size: 0.75rem; 
+    font-size: 0.7rem; 
 }
 
 .table th {
@@ -262,7 +266,7 @@
 
     <div class="container">
         <div class="searchContainer">
-            <h3 style="text-align: center; margin-top: 20px;">행동 로그</h3>
+            <h3 style="text-align: center; margin-top: 5px;">행동 로그</h3>
             
             <div class="searchForm">
                 <div class="form-group">
