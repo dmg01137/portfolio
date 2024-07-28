@@ -97,7 +97,7 @@ body {
 }
 
 .container {
-margin-top : 100px;
+margin-top : 80px;
  background-color: #333; /* 어두운 배경색 */
 padding: 10px 50px 10px 50px;
 
@@ -237,69 +237,84 @@ color: #fff; /* ascii 값 글자색 설정 */
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
-    $(document).ready(function () {
-        // URL에서 쿼리 매개변수를 읽어와서 변수에 저장
-        const urlParams = new URLSearchParams(window.location.search);
-        const id = urlParams.get('id');
-        const time = decodeURIComponent(urlParams.get('time'));
-        const sIp = decodeURIComponent(urlParams.get('sIp'));
-        const sPort = urlParams.get('sPort');
-        const dIp = decodeURIComponent(urlParams.get('dIp'));
-        const dPort = urlParams.get('dPort');
-        const len = urlParams.get('len');
-        const encodedPacket = decodeURIComponent(urlParams.get('encodedPacket'));
+$(document).ready(function () {
+    // URL에서 쿼리 매개변수를 읽어와서 변수에 저장
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+    const time = decodeURIComponent(urlParams.get('time'));
+    const sIp = decodeURIComponent(urlParams.get('sIp'));
+    const sPort = urlParams.get('sPort');
+    const dIp = decodeURIComponent(urlParams.get('dIp'));
+    const dPort = urlParams.get('dPort');
+    const len = urlParams.get('len');
+    const encodedPacket = decodeURIComponent(urlParams.get('encodedPacket'));
 
-        // 패킷 테이블 데이터 추가
-        function addTableRow(tableId, rowData) {
-            $('#' + tableId).append('<tr>' + rowData + '</tr>');
+    // 패킷 테이블 데이터 추가
+    function addTableRow(tableId, rowData) {
+        $('#' + tableId).append('<tr>' + rowData + '</tr>');
+    }
+
+    addTableRow('packetTableBody',
+        '<td>ID</td>' +
+        '<td>' + id + '</td>'
+    );
+    addTableRow('packetTableBody',
+        '<td>Time</td>' +
+        '<td>' + time + '</td>'
+    );
+    addTableRow('packetTableBody',
+        '<td>S_IP</td>' +
+        '<td>' + sIp + '</td>'
+    );
+    addTableRow('packetTableBody',
+        '<td>S_Port</td>' +
+        '<td>' + sPort + '</td>'
+    );
+    addTableRow('packetTableBody',
+        '<td>D_IP</td>' +
+        '<td>' + dIp + '</td>'
+    );
+    addTableRow('packetTableBody',
+        '<td>D_Port</td>' +
+        '<td>' + dPort + '</td>'
+    );
+    addTableRow('packetTableBody',
+        '<td>Length</td>' +
+        '<td>' + len + '</td>'
+    );
+
+    // 패킷 보기 함수
+  // 패킷 보기 함수
+window.showPacket = function () {
+    const decodedPacket = atob(encodedPacket);
+    const hexContent = bytesToHex(decodedPacket); // 변환된 16진수 값
+
+    $('#hexContent').text(hexContent);
+
+    // Convert to ASCII
+    let asciiContent = '';
+    for (let i = 0; i < decodedPacket.length; i++) {
+        const asciiChar = decodedPacket.charCodeAt(i);
+        // ASCII 범위 이외의 문자는 '.'으로 처리하지 않고 원래 문자로 유지
+        asciiContent += String.fromCharCode(asciiChar);
+    }
+    $('#asciiContent').text(asciiContent);
+};
+
+    // Helper function to convert bytes to hexadecimal string
+    function bytesToHex(bytes) {
+        let hex = '';
+        for (let i = 0; i < bytes.length; i++) {
+            let byte = bytes.charCodeAt(i);
+            hex += ('0' + byte.toString(16)).slice(-2); // Convert to hex string and ensure 2-digit format
         }
+        return hex;
+    }
 
-        addTableRow('packetTableBody',
-            '<td>ID</td>' +
-            '<td>' + id + '</td>'
-        );
-        addTableRow('packetTableBody',
-            '<td>Time</td>' +
-            '<td>' + time + '</td>'
-        );
-        addTableRow('packetTableBody',
-            '<td>S_IP</td>' +
-            '<td>' + sIp + '</td>'
-        );
-        addTableRow('packetTableBody',
-            '<td>S_Port</td>' +
-            '<td>' + sPort + '</td>'
-        );
-        addTableRow('packetTableBody',
-            '<td>D_IP</td>' +
-            '<td>' + dIp + '</td>'
-        );
-        addTableRow('packetTableBody',
-            '<td>D_Port</td>' +
-            '<td>' + dPort + '</td>'
-        );
-        addTableRow('packetTableBody',
-            '<td>Length</td>' +
-            '<td>' + len + '</td>'
-        );
+    // Call showPacket function to display packet content
+    showPacket();
+});
 
-        // 패킷 보기 함수
-        window.showPacket = function () {
-            const decodedPacket = atob(encodedPacket);
-            $('#hexContent').text(decodedPacket);
-
-            // Convert to ASCII
-            let asciiContent = '';
-            for (let i = 0; i < decodedPacket.length; i++) {
-                const asciiChar = decodedPacket.charCodeAt(i);
-                asciiContent += String.fromCharCode(asciiChar < 32 || asciiChar > 126 ? 46 : asciiChar); // Replace non-printable characters with '.'
-            }
-            $('#asciiContent').text(asciiContent);
-        };
-
-        // Call showPacket function to display packet content
-        showPacket();
-    });
 </script>
 </body>
 </html>
