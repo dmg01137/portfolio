@@ -34,7 +34,7 @@
     </update>
 
     <!-- 사용자 삭제 -->
-    <delete id="deleteUserById" parameterType="java.lang.String">
+    <delete id="deleteUserById" parameterType="com.example.demo.dto.detection.Users">
         DELETE FROM detection_db.user_data WHERE user_id = #{user_id}
     </delete>
 

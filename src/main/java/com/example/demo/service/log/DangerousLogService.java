@@ -39,9 +39,6 @@ public class DangerousLogService {
         return dangerousLogDAO.findAll(tableName);
     }
 
-
-   
-
     // Search logs by specific criteria
     @Transactional(readOnly = true)
     public List<DangerousLog> search(Integer dangerousNumber, String ip, Integer port, String policy_name) {

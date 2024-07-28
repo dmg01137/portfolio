@@ -55,6 +55,31 @@ public class UserController
 		return "/signin";
 	}
 	
+	
+	@GetMapping("/addNomalUser")
+	public String addNomalUser(Model model) 
+	{		
+		int lastUserNumber = userService.getLastUserNumber() + 1;
+		model.addAttribute("user_number", lastUserNumber);
+		 
+	    return "addNomalUser";
+	}
+
+	// html 회원 가입 정보 입력후 제출
+	@PostMapping("/addNomalUser")
+	public String postAddNomalUser(UserDto userDto, Model model)
+	{
+        BCryptPasswordEncoder bcryptPasswordEncoder = new BCryptPasswordEncoder();
+        userDto.setPassword(bcryptPasswordEncoder.encode(userDto.getPassword()));
+   
+		if(userService.addUser(userDto) > 0)
+		{
+			return "/signin";
+		}
+		
+		return "/signin";
+	}
+	
 	// html 회원 리스트 출력
 	@GetMapping("/listUser")
 	public String listUser(Model model, HttpSession session, RedirectAttributes redirectAttributes)

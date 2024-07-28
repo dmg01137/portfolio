@@ -314,7 +314,12 @@ body {
                             </tr> 
                             <tr>
                                 <td><label for="user_privilege">user_privilege:</label></td>
-                                <td><input type="text" class="form-control" name="user_privilege" th:value="${user_privilege}" id="user_privilege" required></td>
+                                <td>
+                                            <select class="form-control selectpicker" id="user_privilege" name="user_privilege" required>
+                                                <option value="admin">admin</option>
+                                                <option value="user">user</option>
+                                            </select>
+                                </td>
                             </tr>
                             <tr>
                                 <td><label for="password">password:</label></td>

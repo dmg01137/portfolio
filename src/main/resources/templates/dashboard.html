@@ -236,6 +236,21 @@
             margin: 0 5px; /* Adds space between pagination buttons */
         }
     }
+    .dropdown-menu {
+       background-color: #222;
+       border: none;
+       position: relative; /* 드롭다운 메뉴의 위치 조정 */
+       z-index: 1050; /* 다른 요소 위에 표시되도록 z-index 설정 */
+   }
+   
+   .dropdown-menu .dropdown-item {
+       color: #d1d1d1;
+   }
+   
+   .dropdown-menu .dropdown-item:hover {
+       background-color: #333;
+       color: #fff;
+   }
 </style>
 </head>
 <body>
@@ -260,74 +275,89 @@
     </div>
 </nav>
 
-	<div class="sidebar">
-		<h5 class="sidebar-heading">메뉴</h5>
-		<ul class="nav flex-column nav-sidebar">
-			<li class="nav-item"><a class="nav-link" href="/patternlog"><i
-					class="fas fa-file-alt mr-1"></i>로그 관리</a></li>
-			<li class="nav-item"><a class="nav-link" href="/listPatternPolicy"><i
-					class="fas fa-shield-alt mr-1"></i>정책 관리</a></li>
-		</ul>
-	</div>
+   <div class="sidebar">
+    <h5 class="sidebar-heading">메뉴</h5>
+    <ul class="nav flex-column nav-sidebar">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="pattern-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-shield-alt mr-1"></i> 로그 관리
+            </a>
+            <div class="dropdown-menu" aria-labelledby="pattern-dropdown">
+                <a class="dropdown-item" href="/patternlog">패턴 로그</a>
+                <a class="dropdown-item" href="/behaviorlog">행동 로그</a>
+                <a class="dropdown-item" href="/dangerouslog">위험 로그</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="behavior-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-shield-alt mr-1"></i> 정책 관리
+            </a>
+            <div class="dropdown-menu" aria-labelledby="behavior-dropdown">
+                <a class="dropdown-item" href="/listBehaviorPolicy">패턴 정책 리스트</a>
+                <a class="dropdown-item" href="/addBehaviorPolicy">행동 정책 리스트</a>
+            </div>
+        </li>
+    </ul>
+</div>
 
-	<div class="content-area">
-		<div class="container">
-			<div class="chart-container">
-				<div class="row">
-					<div class="col-md-6">
-						<h5 class="text-center mb-4">패턴 IP 탐지 이벤트 Top 5</h5>
-						<canvas id="sourceIPChart"></canvas>
-					</div>
-					<div class="col-md-6">
-						<h5 class="text-center mb-4">행동 IP 탐지 이벤트 Top 5</h5>
-						<canvas id="destinationIPChart"></canvas>
-					</div>
+   <div class="content-area">
+      <div class="container">
+         <div class="chart-container">
+            <div class="row">
+               <div class="col-md-6">
+                  <h5 class="text-center mb-4">패턴 IP 탐지 이벤트 Top 5</h5>
+                  <canvas id="sourceIPChart"></canvas>
+               </div>
+               <div class="col-md-6">
+                  <h5 class="text-center mb-4">행동 IP 탐지 이벤트 Top 5</h5>
+                  <canvas id="destinationIPChart"></canvas>
+               </div>
 
-				</div>
-				<div class="row mt-4">
-					<div class="col-md-5">
-						<h5 class="text-center mb-4">패턴 탐지 이벤트 Top 3</h5>
-						<canvas id="patternDetectionChart"></canvas>
-					</div>
-					<div class="col-md-7">
-						<h5 class="text-center mb-4">일일 경보 발생 현황</h5>
-						<div class="search-form">
-							<select id="searchType" class="form-control mb-2 mr-sm-2">
-								<option value="time">시간</option>
-								<option value="sIP">출발 IP</option>
-								<option value="sPort">출발 Port</option>
-								<option value="dIP">목적 IP</option>
-								<option value="dPort">목적 Port</option>
-								<option value="pattern1">패턴1</option>
-								<option value="pattern2">패턴2</option>
-								<option value="pattern3">패턴3</option>
-							</select> <input type="text" id="searchInput"
-								class="form-control mb-2 mr-sm-2" placeholder="검색어 입력">
-							<button type="button" class="btn btn-primary mb-2"
-								onclick="handleSearch()">Search</button>
-							<button type="button" class="btn btn-secondary mb-2 ml-2"
-								onclick="clearSearch()">Clear</button>
-						</div>
-						<div class="event-table">
-							<table class="table table-bordered">
-								<thead>
-									<tr>
-										<th>시간</th>
-										<th>출발 IP</th>
-										<th>sPort</th>
-										<th>목적 IP</th>
-										<th>dPort</th>
-										<th>1</th>
-										<th>2</th>
-										<th>3</th>
-									</tr>
-								</thead>
-								<tbody id="eventTableBody">
-									<!-- 여기에 서버에서 동적으로 데이터가 추가됩니다 -->
-								</tbody>
-							</table>
-					
-							 <div class="pagination-btns">
+            </div>
+            <div class="row mt-4">
+               <div class="col-md-5">
+                  <h5 class="text-center mb-4">패턴 탐지 이벤트 Top 3</h5>
+                  <canvas id="patternDetectionChart"></canvas>
+               </div>
+               <div class="col-md-7">
+                  <h5 class="text-center mb-4">일일 경보 발생 현황</h5>
+                  <div class="search-form">
+                     <select id="searchType" class="form-control mb-2 mr-sm-2">
+                        <option value="time">시간</option>
+                        <option value="sIP">출발 IP</option>
+                        <option value="sPort">출발 Port</option>
+                        <option value="dIP">목적 IP</option>
+                        <option value="dPort">목적 Port</option>
+                        <option value="pattern1">패턴1</option>
+                        <option value="pattern2">패턴2</option>
+                        <option value="pattern3">패턴3</option>
+                     </select> <input type="text" id="searchInput"
+                        class="form-control mb-2 mr-sm-2" placeholder="검색어 입력">
+                     <button type="button" class="btn btn-primary mb-2"
+                        onclick="handleSearch()">Search</button>
+                     <button type="button" class="btn btn-secondary mb-2 ml-2"
+                        onclick="clearSearch()">Clear</button>
+                  </div>
+                  <div class="event-table">
+                     <table class="table table-bordered">
+                        <thead>
+                           <tr>
+                              <th>시간</th>
+                              <th>출발 IP</th>
+                              <th>sPort</th>
+                              <th>목적 IP</th>
+                              <th>dPort</th>
+                              <th>1</th>
+                              <th>2</th>
+                              <th>3</th>
+                           </tr>
+                        </thead>
+                        <tbody id="eventTableBody">
+                           <!-- 여기에 서버에서 동적으로 데이터가 추가됩니다 -->
+                        </tbody>
+                     </table>
+               
+                      <div class="pagination-btns">
        <button class="btn btn-primary" id="previousBtn" onclick="loadPreviousData()">
     <i class="fas fa-chevron-left"></i> 
 </button>
@@ -337,16 +367,20 @@
 </button>
 
     </div>
-						</div>
-						
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                  </div>
+                  
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 
-	<!-- 필수 라이브러리 -->
+   <!-- 필수 라이브러리 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+ <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script>
     var currentPage = 1;
     var rowsPerPage = 3;
@@ -539,7 +573,7 @@
         var searchInput = document.getElementById('searchInput').value.trim().toLowerCase();
 
         var filteredData = eventDetailsData.filter(function(event) {
-        	switch (searchType) {
+           switch (searchType) {
             case 'time':
                 return event.time.toLowerCase().includes(searchInput);
             case 'sIP':

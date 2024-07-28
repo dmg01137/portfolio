@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -152,4 +154,32 @@ public class PatternPolicyController
 	}
 	
 	
+	@GetMapping("/detailsPatternPolicy")
+	public String detailsPatternPolicy(@RequestParam("detection_number") int detectionNumber, Model model) 
+	{
+	    PatternPolicyDto policy = patternPolicyService.findByDetectionNumber(detectionNumber);
+
+	    // 모델에 데이터 추가
+	    model.addAttribute("enable_disable", policy.getEnable_disable());
+	    model.addAttribute("detection_number", policy.getDetection_number());
+	    model.addAttribute("s_to_ip", policy.getS_to_ip());
+	    model.addAttribute("s_ip", policy.getS_ip());
+	    model.addAttribute("d_ip", policy.getD_ip());
+	    model.addAttribute("s_to_port", policy.getS_to_port());
+	    model.addAttribute("s_port", policy.getS_port());
+	    model.addAttribute("d_port", policy.getD_port());
+	    model.addAttribute("create_dt", policy.getCreate_dt());
+	    model.addAttribute("modify_dt", policy.getModify_dt());
+	    model.addAttribute("action_type", policy.getAction_type());
+	    model.addAttribute("policy_name", policy.getPolicy_name());
+	    model.addAttribute("policy_info", policy.getPolicy_info());
+	    model.addAttribute("pattern_1", policy.getPattern_1());
+	    model.addAttribute("pattern_2", policy.getPattern_2());
+	    model.addAttribute("pattern_3", policy.getPattern_3());
+	    model.addAttribute("dangerous", policy.getDangerous());
+
+	    return "/detailsPatternPolicy";
+	}
+
+
 }
