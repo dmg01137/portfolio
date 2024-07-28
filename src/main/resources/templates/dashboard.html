@@ -265,9 +265,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/listUser"><i class="fas fa-users-cog mr-1"></i>사용자 관리</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/admin"><i class="fas fa-user-cog mr-1"></i>관리자</a>
-            </li>
+            
             <li class="nav-item">
                 <a class="nav-link" href="/signin"><i class="fas fa-sign-out-alt mr-1"></i>로그아웃</a>
             </li>
@@ -305,22 +303,22 @@
          <div class="chart-container">
             <div class="row">
                <div class="col-md-6">
-                  <h5 class="text-center mb-4">패턴 IP 탐지 이벤트 Top 5</h5>
+                  <h5 class="text-center mb-4">오늘 패턴 IP 탐지 이벤트 Top 5</h5>
                   <canvas id="sourceIPChart"></canvas>
                </div>
                <div class="col-md-6">
-                  <h5 class="text-center mb-4">행동 IP 탐지 이벤트 Top 5</h5>
+                  <h5 class="text-center mb-4">오늘 행동 IP 탐지 이벤트 Top 5</h5>
                   <canvas id="destinationIPChart"></canvas>
                </div>
 
             </div>
             <div class="row mt-4">
                <div class="col-md-5">
-                  <h5 class="text-center mb-4">패턴 탐지 이벤트 Top 3</h5>
+                  <h5 class="text-center mb-4">오늘 패턴 탐지 이벤트 Top 3</h5>
                   <canvas id="patternDetectionChart"></canvas>
                </div>
                <div class="col-md-7">
-                  <h5 class="text-center mb-4">일일 경보 발생 현황</h5>
+                  <h5 class="text-center mb-4">오늘 일일 경보 발생 현황</h5>
                   <div class="search-form">
                      <select id="searchType" class="form-control mb-2 mr-sm-2">
                         <option value="time">시간</option>
@@ -334,9 +332,9 @@
                      </select> <input type="text" id="searchInput"
                         class="form-control mb-2 mr-sm-2" placeholder="검색어 입력">
                      <button type="button" class="btn btn-primary mb-2"
-                        onclick="handleSearch()">Search</button>
+                        onclick="handleSearch()">검색</button>
                      <button type="button" class="btn btn-secondary mb-2 ml-2"
-                        onclick="clearSearch()">Clear</button>
+                        onclick="clearSearch()">초기화</button>
                   </div>
                   <div class="event-table">
                      <table class="table table-bordered">
@@ -383,7 +381,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script>
     var currentPage = 1;
-    var rowsPerPage = 3;
+    var rowsPerPage = 6;
     var eventDetailsData = []; // 전체 이벤트 데이터를 저장하는 배열
 
     document.addEventListener('DOMContentLoaded', function() {
