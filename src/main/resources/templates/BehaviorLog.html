@@ -156,17 +156,18 @@
 .searchForm .btn-secondary:hover {
     background-color: #656565;
 }
-
 /* Search 버튼 스타일 */
-.searchForm .btn-primary {
-    background-color: #007bff;
+.searchForm .btn-info {
+    background-color: #17a2b8; /* 상세조회 버튼 색상 */
     color: #fff;
     border: none;
 }
 
-.searchForm .btn-primary:hover {
-    background-color: #0069d9;
+.searchForm .btn-info:hover {
+    background-color: #117a8b; /* 상세조회 버튼 호버 색상 */
 }
+
+
 
 /* Arrange search inputs into three rows with five inputs each */
 .searchForm .form-group {
@@ -212,7 +213,22 @@
           background-color: #333;
           color: #fff;
       }
-        
+                /* 페이지네이션 스타일 */
+.pagination {
+    background-color: #444; /* 배경색 */
+    border-radius: 5px; /* 모서리 둥글게 */
+}
+
+.pagination .page-item .page-link {
+    color: #fff; /* 글자색 */
+    background-color: #444; /* 배경색 */
+    border-color: #555; /* 테두리 색상 */
+}
+
+.pagination .page-item .page-link:hover {
+    background-color: #555; /* 호버 시 배경색 */
+    border-color: #555; /* 호버 시 테두리 색상 */
+}
     </style>
 </head>
 <body>
@@ -267,11 +283,12 @@
                 <div class="form-group">
                     <input type="date" id="date" class="form-control searchInput" placeholder="날짜">
                 </div>
-                 <div class="form-group">
-                    <input type="text" id="id" class="form-control searchInput" placeholder="번호">
-                </div>
+            <div class="form-group">
+    <input type="number" id="id" class="form-control searchInput" placeholder="번호" required>
+</div>
+
                 <div class="form-group">
-                    <input type="text" id="time" class="form-control searchInput" placeholder="탐지시간">
+                    <input type="date" id="time" class="form-control searchInput" placeholder="탐지시간">
                 </div>
                 <div class="form-group">
                     <input type="text" id="s_ip" class="form-control searchInput" placeholder="출발지IP">
@@ -311,8 +328,9 @@
                 </div>
             </div>
 			<div class="searchButtons">
-				<button id="searchButton" class="btn btn-primary">Search</button>
-				<button id="clearButton" class="btn btn-secondary">Clear</button>
+			<button id="searchButton" class="btn btn-info">검색</button>
+
+				<button id="clearButton" class="btn btn-secondary">초기화</button>
 			</div>
 			
 		</div>
@@ -361,7 +379,7 @@
 <script>
 $(document).ready(function () {
     let currentPage = 1;
-    let logsPerPage = 10; // 페이지 당 로그 개수
+    let logsPerPage = 15; // 페이지 당 로그 개수
     let totalLogs = 0;
     let logsData = [];
 
