@@ -8,12 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         /* 기본적인 스타일 */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-         background-color: #222;
-            margin: 0;
-            padding: 0;
-        }
+       body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #222; /* Dark background color */
+    margin: 0;
+    padding: 0;
+    color: #fff; /* Light text color */
+}
+
 
         .nav-link {
             color: #fff !important;
@@ -226,15 +228,39 @@
             width: 100%; /* Full width for input and select in small screens */
         }
 
-        .pagination-btns {
-            display: flex;
-            justify-content: center;
-            margin-top: 10px; /* Adds spacing above pagination buttons */
-        }
+       .pagination-btns {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px; /* Adds spacing above pagination buttons */
+}
 
-        .pagination-btns button {
-            margin: 0 5px; /* Adds space between pagination buttons */
-        }
+.pagination-btns button {
+    margin: 0 5px; /* Adds space between pagination buttons */
+    padding: 8px 16px; /* Adjust padding for button size */
+    background-color: #444; /* Dark background color */
+    color: #fff; /* Light text color */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-btns button:hover {
+    background-color: #007bff; /* Hover background color */
+}
+
+
+@media (max-width: 768px) {
+    .pagination-btns {
+        flex-direction: column; /* Stacks elements vertically on small screens */
+        align-items: center; /* Centers elements vertically */
+    }
+
+    .pagination-btns button {
+        margin: 2px 0; /* Adds space around buttons in vertical layout */
+        width: 100%; /* Full width for buttons on small screens */
+    }
+}
+
     }
     .dropdown-menu {
        background-color: #222;
@@ -388,6 +414,8 @@
         fetchDataAndRenderCharts();
         fetchAndPopulateEventTable();
     });
+    
+    
 
  // 서버에서 데이터를 가져와 차트를 업데이트하는 함수
     function fetchDataAndRenderCharts() {
@@ -593,7 +621,39 @@
         }
 
         });
+        function renderPagination() {
+            let totalPages = Math.ceil(totalLogs / logsPerPage);
+            let paginationHTML = "";
+            let startPage = Math.max(1, currentPage - 2);
+            let endPage = Math.min(totalPages, startPage + 4);
 
+            paginationHTML += `<li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                                <a class="page-link" href="#" aria-label="Previous" onclick="changePage(${currentPage - 1})">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                              </li>`;
+
+            for (let i = startPage; i <= endPage; i++) {
+                paginationHTML += `<li class="page-item ${currentPage === i ? 'active' : ''}">
+                                    <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
+                                  </li>`;
+            }
+
+            paginationHTML += `<li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                                <a class="page-link" href="#" aria-label="Next" onclick="changePage(${currentPage + 1})">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                              </li>`;
+
+            $("#pagination").html(paginationHTML);
+        }
+        window.changePage = function (page) {
+            if (page < 1 || page > Math.ceil(totalLogs / logsPerPage)) {
+                return;
+            }
+            currentPage = page;
+            displayLogs();
+        }; // changePage 함수 끝
         populateEventDetailsTable(filteredData.slice(0, rowsPerPage)); // 첫 페이지 데이터로 재설정
         currentPage = 1; // 페이지 번호 초기화
     }
