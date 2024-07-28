@@ -118,7 +118,7 @@
        .search-form {
     margin-bottom: 10px;
     background-color: #333; /* Dark background color */
-    padding: 10px;
+    padding: 2px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -406,14 +406,16 @@
 <!-- Bootstrap Bundle with Popper -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script>
-    var currentPage = 1;
-    var rowsPerPage = 5;
-    var eventDetailsData = []; // 전체 이벤트 데이터를 저장하는 배열
+var currentPage = 1;
+var rowsPerPage = 5;
+var totalLogs = 0; // Total number of logs fetched from server
+var logsPerPage = 5;
 
-    document.addEventListener('DOMContentLoaded', function() {
-        fetchDataAndRenderCharts();
-        fetchAndPopulateEventTable();
-    });
+document.addEventListener('DOMContentLoaded', function() {
+   fetchDataAndRenderCharts();
+   fetchAndPopulateEventTable();
+});
+
     
     
 
@@ -622,41 +624,49 @@
 
         });
         function renderPagination() {
-            let totalPages = Math.ceil(totalLogs / logsPerPage);
-            let paginationHTML = "";
-            let startPage = Math.max(1, currentPage - 2);
-            let endPage = Math.min(totalPages, startPage + 4);
+        	   var totalPages = Math.ceil(eventDetailsData.length / rowsPerPage);
+        	   var paginationHTML = '';
 
-            paginationHTML += `<li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
-                                <a class="page-link" href="#" aria-label="Previous" onclick="changePage(${currentPage - 1})">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                              </li>`;
+        	   paginationHTML += '<li class="page-item ' + (currentPage === 1 ? 'disabled' : '') + '">' +
+        	      '<a class="page-link" href="#" onclick="loadPreviousData()">Previous</a>' +
+        	      '</li>';
 
-            for (let i = startPage; i <= endPage; i++) {
-                paginationHTML += `<li class="page-item ${currentPage === i ? 'active' : ''}">
-                                    <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
-                                  </li>`;
-            }
+        	   for (var i = 1; i <= totalPages; i++) {
+        	      paginationHTML += '<li class="page-item ' + (currentPage === i ? 'active' : '') + '">' +
+        	         '<a class="page-link" href="#" onclick="changePage(' + i + ')">' + i + '</a>' +
+        	         '</li>';
+        	   }
 
-            paginationHTML += `<li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
-                                <a class="page-link" href="#" aria-label="Next" onclick="changePage(${currentPage + 1})">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                              </li>`;
+        	   paginationHTML += '<li class="page-item ' + (currentPage === totalPages ? 'disabled' : '') + '">' +
+        	      '<a class="page-link" href="#" onclick="loadMoreData()">Next</a>' +
+        	      '</li>';
 
-            $("#pagination").html(paginationHTML);
-        }
-        window.changePage = function (page) {
-            if (page < 1 || page > Math.ceil(totalLogs / logsPerPage)) {
-                return;
-            }
-            currentPage = page;
-            displayLogs();
-        }; // changePage 함수 끝
-        populateEventDetailsTable(filteredData.slice(0, rowsPerPage)); // 첫 페이지 데이터로 재설정
-        currentPage = 1; // 페이지 번호 초기화
-    }
+        	   document.getElementById('pagination').innerHTML = paginationHTML;
+        	}
+
+        	// Function to change page directly
+        	function changePage(page) {
+        	   currentPage = page;
+        	   displayLogs();
+        	}
+
+        	// Example of how to fetch data and populate eventDetailsData
+        	function fetchAndPopulateEventTable() {
+        	   // Replace with your actual fetch logic
+        	   fetch('/api/patternlogs/ordered-by-time')
+        	      .then(response => response.json())
+        	      .then(data => {
+        	         eventDetailsData = data;
+        	         displayLogs();
+        	      })
+        	      .catch(error => console.error('Error fetching event data:', error));
+        	}
+
+        	// Initial fetch and populate call
+        	document.addEventListener('DOMContentLoaded', function() {
+        	   fetchAndPopulateEventTable();
+        	});}
+
 </script>
 
 </body>
