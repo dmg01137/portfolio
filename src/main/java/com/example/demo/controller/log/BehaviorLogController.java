@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dto.log.BehaviorLog;
+import com.example.demo.dto.log.DangerousLog;
 import com.example.demo.service.log.BehaviorLogService;
 
 @Controller
@@ -54,12 +55,10 @@ public class BehaviorLogController {
         model.addAttribute("logs", logs);
         return "behaviorlog"; // Thymeleaf 템플릿 이름
     }
-    
 
     // API 엔드포인트: 모든 위험 로그 가져오기
- 
-    
-    @GetMapping
+    @GetMapping("/api/behaviorlogs")
+    @ResponseBody
     public ResponseEntity<List<BehaviorLog>> getAllBehaviorLogs() {
         try {
             List<BehaviorLog> logs = behaviorLogService.findAll(null);
@@ -68,7 +67,7 @@ public class BehaviorLogController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
+   
 
     // Top 5 s_ip 값 조회 API
     @GetMapping("/behaviorlog/top-sips")

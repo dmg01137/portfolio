@@ -31,7 +31,7 @@ public class BehaviorLogService {
     // 특정 테이블에서 모든 로그 조회
     @Transactional(readOnly = true)
     public List<BehaviorLog> findAll(String tableName) {
-        if (tableName == null) {
+        if (tableName == null || tableName.isEmpty()) {
             tableName = "behavior_log_" + LocalDate.now().toString().replace("-", "");
         }
         return behaviorLogDAO.findAll(tableName);

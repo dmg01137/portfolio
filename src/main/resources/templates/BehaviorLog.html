@@ -368,15 +368,36 @@ $(document).ready(function () {
 
     // 로그 데이터 불러오고 표시하는 함수
     function fetchAndDisplayLogs() {
-        $.get("/behaviorlog", function (data) {
+        $.get("/api/behaviorlogs", function (data) {
             logsData = data;
             totalLogs = logsData.length;
-            displayLogs();
-            renderPagination();
+            displayLogs(); // 데이터를 받은 후에 테이블에 표시
+            renderPagination(); // 페이지네이션 업데이트
         }).fail(function () {
             console.error("Failed to fetch data.");
         });
     }
+    
+ 
+        // 테이블에 로그 데이터 표시
+        function displayLogs() {
+            let startIndex = (currentPage - 1) * logsPerPage;
+            let endIndex = startIndex + logsPerPage;
+            let displayedLogs = logsData.slice(startIndex, endIndex);
+
+            $("#logTableBody").empty(); // 기존 테이블 내용 지우기
+
+            displayedLogs.forEach(function (log) {
+                $("#logTableBody").append(
+                    '<tr>' +
+                    '<td>' + log.dangerous_number + '</td>' +
+                    '<td>' + log.ip + '</td>' +
+                    '<td>' + log.port + '</td>' +
+                    '<td>' + log.policy_name + '</td>' +
+                    '</tr>'
+                );
+            });
+        }
 
     // 테이블에 로그 표시하는 함수
     function displayLogs() {
