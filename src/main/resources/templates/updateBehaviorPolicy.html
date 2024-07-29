@@ -354,7 +354,6 @@ window.onload = function() {
             <li class="nav-item">
                 <a class="nav-link" href="/userlist"><i class="fas fa-users-cog"></i> 사용자 관리</a>
             </li>
-           
             <li class="nav-item">
                 <a class="nav-link" href="/dashboard"><i class="fas fa-home"></i> 홈</a>
             </li>
@@ -388,8 +387,13 @@ window.onload = function() {
                         <input type="hidden" name="detection_number" th:value="${detection_number}">
                         <table class="table">
                             <tr>
-                                <td><label for="enable_disable">활성화(1) / 비활성화(0):</label></td>
-                                <td><input type="number" class="form-control" name="enable_disable" th:value="${enable_disable}" id="enable_disable" min="0" max="1" required></td>
+                                <td><label for="enable_disable">활성화 / 비활성화:</label></td>
+                                <td>
+							        <select class="form-control" name="enable_disable" id="enable_disable" th:value="${enable_disable}" required>
+							            <option value="0">비활성화</option>
+							            <option value="1">활성화</option>
+							        </select>
+								</td>
                             </tr>
                             <tr>
                                 <td><label for="detection_number">패턴 정책 번호:</label></td>
@@ -428,8 +432,13 @@ window.onload = function() {
                                 <td><input type="datetime-local" class="form-control" name="modify_dt" th:value="${modify_dt}" id="modify_dt" required></td>
                             </tr>
                             <tr>
-                                <td><label for="action_type">동작 유형 [ 로깅 + 차단(1) / 로깅(0) ]:</label></td>
-                                <td><input type="number" class="form-control" name="action_type" th:value="${action_type}" id="action_type" min="0" max="1" required></td>
+                                <td><label for="action_type">동작 유형:</label></td>
+                                <td>
+							        <select class="form-control" name="action_type" id="action_type" th:value="${action_type}" required>
+							            <option value="0">로깅</option>
+							            <option value="1">로깅 + 차단</option>
+							        </select>
+							    </td>
                             </tr>
                             <tr>
                                 <td><label for="policy_name">정책 이름:</label></td>
@@ -461,7 +470,13 @@ window.onload = function() {
                             </tr>
                             <tr>
                                 <td><label for="dangerous">위험도:</label></td>
-                                <td><input type="number" class="form-control" name="dangerous" th:value="${dangerous}" id="dangerous"  min="1" max="100" required></td>
+                                <td>
+							        <select class="form-control" name="dangerous" id="dangerous" th:value="${dangerous}" required>
+							            <option value="30">하</option>
+							            <option value="50">중</option>
+							            <option value="100">상</option>
+							        </select>
+							    </td>
                             </tr>
                             <tr>
                                <td colspan="2">

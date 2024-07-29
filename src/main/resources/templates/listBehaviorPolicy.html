@@ -14,29 +14,15 @@
 th {
     cursor: pointer;
     position: relative;
-    padding-left: 30px; /* 왼쪽 패딩을 늘려 화살표와 텍스트 간격 확보 */
-    min-width: 150px; /* 헤더 셀의 최소 너비 설정 */
+    padding-left: 15px; /* 왼쪽 패딩을 늘려 화살표와 텍스트 간격 확보 */
+    min-width: 100px; /* 헤더 셀의 최소 너비 설정 */
     box-sizing: border-box; /* 패딩과 보더를 포함한 크기 조정 */
 }
-
-th.sortable::before {
-    content: '\25B2'; /* 기본 화살표 아이콘 */
-    position: absolute;
-    left: 10px; /* 화살표를 텍스트 왼쪽에 위치 */
-    font-size: 0.8em;
-    color: black;
+th.sortable.asc {
+    color: #17a2b8; /* 오름차순 정렬 시 폰트 색상 (예: 녹색) */
 }
-
-th.sortable.asc::before {
-    content: '\25B2'; /* 오름차순 화살표 */
-    color: blue;
-    left: 10px; /* 오름차순 화살표 위치 조정 */
-}
-
-th.sortable.desc::before {
-    content: '\25BC'; /* 내림차순 화살표 */
-    color: blue;
-    left: 10px; /* 내림차순 화살표 위치 조정 */
+th.sortable.desc {
+    color: #dc3545; /* 내림차순 정렬 시 폰트 색상 (예: 빨간색) */
 }
 body {
     background-color: #222; /* 페이지 배경을 사이드바와 네비게이션 바와 같은 색상으로 설정 */
@@ -44,7 +30,6 @@ body {
     font-family: Arial, sans-serif;
     padding-top: 20px; /* 네비게이션 바의 높이에 맞추어 여백 추가 */
 }
-
 
 /* 네비게이션 바 스타일 */
 .navbar {
@@ -74,9 +59,7 @@ body {
 .nav-link:hover {
     color: #17a2b8 !important; /* 네비게이션 링크 호버 시 색상 설정 */
 }
- .nav-sidebar .nav-link-custom {
-        color: #17a2b8 !important;
-    }
+
 .nav-link i {
     margin-right: 5px;
 }
@@ -86,7 +69,7 @@ body {
     position: fixed;
     left: 0;
     top: 64px; /* 네비게이션 바 높이만큼 떨어지게 설정 */
-    width: 220px; /* 사이드바 너비 조정 */
+    width: 170px; /* 사이드바 너비 조정 */
     background-color: #222; /* 사이드바 배경색 설정 */
     height: calc(100% - 64px); /* 사이드바의 높이를 화면 전체 높이에서 네비게이션 바 높이만큼 빼서 설정 */
     padding-top: 20px;
@@ -122,7 +105,9 @@ body {
     padding: 10px 20px;
     transition: all 0.3s ease;
 }
-
+ .nav-sidebar .nav-link-custom {
+        color: #17a2b8 !important;
+    }
 .nav-sidebar .nav-link-custom:hover, .nav-sidebar .nav-link-custom:hover i {
     color: #17a2b8 !important; /* 호버 시 텍스트 및 아이콘 색상 설정 */
 }
@@ -132,7 +117,7 @@ body {
     margin: 0 0 0 0; /* 카드 가운데 정렬 및 여백 설정 */
     padding: 20px  50px  50px  50px;
     width: 100%; /* 카드 너비를 100%로 설정 */
-    max-width: 950px; /* 카드 최대 너비 설정 */
+    max-width: 1050px; /* 카드 최대 너비 설정 */
     border-radius: 10px; /* 카드 모서리 둥글게 설정 */
     background-color: #333; /* 카드 배경색 설정 */
     color: #fff; /* 카드 텍스트 색상 설정 */
@@ -154,17 +139,18 @@ body {
 
 /* 폼 및 버튼 스타일 */
 .form-group {
-    margin-bottom: 5px; /* 폼 그룹 사이의 여백 설정 */
+    margin-bottom: 2px; / /* 폼 그룹 사이의 여백 설정 */
 }
 
 .search-section {
-     margin-bottom: 5px; /* 폼 그룹 사이의 여백 설정 */
+    margin-bottom:  5px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 10px;
+    gap: 5px;
 }
 
 .search-section input[type="text"],
+.search-section input[type="number"],
 .search-section input[type="datetime-local"] {
     width:100%;
     padding: 8px;
@@ -172,7 +158,18 @@ body {
     background-color: #444; /* 입력 필드 배경색 설정 */
     color: #fff; /* 입력 필드 텍스트 색상 설정 */
     border: 1px solid #555; /* 입력 필드 테두리 색상 설정 */
-      font-size:11px;
+    font-size:11px;
+    -webkit-appearance: none; /* 브라우저 기본 스타일 제거 */
+    -moz-appearance: none; /* 브라우저 기본 스타일 제거 */
+    appearance: none; /* 브라우저 기본 스타일 제거 */
+}
+
+.search-section select {
+    background-color: #444; /* 셀렉트 배경색 */
+    color: #fff; /* 셀렉트 텍스트 색상 */
+    border: 1px solid #555; /* 셀렉트 테두리 색상 */
+    padding: 8px;
+    font-size: 11px;
 }
 
 .search-section button {
@@ -181,7 +178,7 @@ body {
 }
 
 .btn-primary {
-    background-color: #007bff; /* 버튼 기본 색상 설정 */
+    background-color: #17A2B8; /* 버튼 기본 색상 설정 */
     border-color: #007bff;
 }
 
@@ -204,6 +201,17 @@ body {
     border-color: #b372a2bd !important;     /* 수정 버튼 호버 시 테두리색을 조금 어두운 녹색으로 변경 */
 }
 
+.btn-info {
+    background-color: #17a2b8; /* 파란색 배경 */
+    border-color: #17a2b8;    /* 파란색 테두리 */
+    color: #fff;              /* 흰색 텍스트 */
+}
+.btn-info:hover {
+    background-color: #138496; /* 호버 시 어두운 파란색 배경 */
+    border-color: #117a8b;     /* 호버 시 어두운 파란색 테두리 */
+}
+
+
 /* 테이블 스타일 */
 .table-container {
     overflow-x: auto;
@@ -215,6 +223,7 @@ body {
     color: #fff;
     background-color: #333;
     table-layout: auto; /* Let the table adjust width based on content */
+    
 }
 
 .table th, .table td {
@@ -263,8 +272,8 @@ body {
     border-color: #007bff; /* 활성 페이지 테두리 색상 설정 */
 }
 .container {
-    margin-left: 220px; /* 사이드바 너비만큼 왼쪽 여백 추가 */
-    padding-top: 80px; /* 네비게이션 바 높이만큼 상단 여백 추가 */
+    margin-left: 145px; /* 사이드바 너비만큼 왼쪽 여백 추가 */
+    padding-top: 60px; /* 네비게이션 바 높이만큼 상단 여백 추가 */
 }
 .dropdown-menu {
     background-color: #222;
@@ -281,6 +290,7 @@ body {
     background-color: #333;
     color: #fff;
 }
+
     </style>
 </head>
 <body>
@@ -299,7 +309,6 @@ body {
                   class="fas fa-file-alt mr-1"></i>로그 관리</a></li>
             <li class="nav-item"><a class="nav-link" href="/listUser"><i
                   class="fas fa-users-cog"></i> 사용자 관리</a></li>
-           
             <li class="nav-item"><a class="nav-link" href="/dashboard"><i
                   class="fas fa-home"></i> 홈</a></li>
             <li class="nav-item"><a class="nav-link" href="/logout"><i
@@ -308,12 +317,12 @@ body {
       </div>   
       
    </nav>
-   <div class="sidebar">
+<div id="sidebar" class="sidebar">
     <h5 class="sidebar-heading">메뉴</h5>
     <ul class="nav flex-column nav-sidebar">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="pattern-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-shield-alt mr-1 "  ></i> 패턴 정책
+                <i class="fas fa-shield-alt mr-1"></i> 패턴 정책
             </a>
             <div class="dropdown-menu" aria-labelledby="pattern-dropdown">
                 <a class="dropdown-item" href="/listPatternPolicy">패턴 정책 리스트</a>
@@ -325,7 +334,7 @@ body {
                 <i class="fas fa-shield-alt mr-1"></i> 행동 정책
             </a>
             <div class="dropdown-menu" aria-labelledby="behavior-dropdown">
-                <a class="dropdown-item " href="/listBehaviorPolicy">행동 정책 리스트</a>
+                <a class="dropdown-item" href="/listBehaviorPolicy">행동 정책 리스트</a>
                 <a class="dropdown-item" href="/addBehaviorPolicy">행동 정책 추가</a>
             </div>
         </li>
@@ -337,108 +346,124 @@ body {
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title mb-16" style="text-align: center;">행동 정책 검색</h5>
+                    
+                    <button class="btn btn-primary mb-3" type="button" data-toggle="collapse" data-target="#searchForm" aria-expanded="false" aria-controls="searchForm" id="toggleButton">
+                        open / close
+                    </button>
+                    <label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label>
+                    <label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label>
+                    <label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label>
+                    <label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label>        
+	                <button id="resetSort" class="btn btn-primary mb-3" onclick="resetSort()">정렬 초기화</button>
+                    
+                    <div class="collapse" id="searchForm">
                     <form action="/searchBehaviorPolicy" method="get" class="search-form">
                         <div class="search-section">
                             <div class="form-group">
-                                <label for="detectionNumber">no.</label>
-                                <input type="text" class="form-control" id="detectionNumber" name="detection_number" placeholder="정책 번호">
+                                <label for="detection_number">행동 정책 번호</label>
+                                <input type="number" class="form-control" id="detection_number" name="detection_number" th:value="${param.detection_number}" placeholder="no.">
                             </div>
                             <div class="form-group">
-                                <label for="sToIp">s_to_ip</label>
-                                <input type="text" class="form-control" id="sToIp" name="s_to_ip" placeholder="출발지 범위 IP">
+                                <label for="s_to_ip">범위 IP</label>
+                                <input type="text" class="form-control" id="s_to_ip" name="s_to_ip" th:value="${param.s_to_ip}" placeholder="startIP~endIP">
                             </div>
                             <div class="form-group">
-                                <label for="sIp">s_ip</label>
-                                <input type="text" class="form-control" id="sIp" name="s_ip" placeholder="출발지 IP">
+                                <label for="s_ip">출발지 IP</label>
+                                <input type="text" class="form-control" id="s_ip" name="s_ip" th:value="${param.s_ip}" placeholder="s_ip">
                             </div>
                             <div class="form-group">
-                                <label for="dIp">d_ip</label>
-                                <input type="text" class="form-control" id="dIp" name="d_ip" placeholder="목적지 IP">
+                                <label for="d_ip">목적지 IP</label>
+                                <input type="text" class="form-control" id="d_ip" name="d_ip" th:value="${param.d_ip}" placeholder="d_ip">
                             </div>
                             <div class="form-group">
-                                <label for="sToPort">s_to_port</label>
-                                <input type="text" class="form-control" id="sToPort" name="s_to_port" placeholder="출발지 범위 PORT">
+                                <label for="sToPort">범위 PORT</label>
+                                <input type="text" class="form-control" id="sToPort" name="s_to_port" th:value="${param.s_to_port}" placeholder="startPORT~endPORT">
                             </div>
                             <div class="form-group">
-                                <label for="sPort">s_port</label>
-                                <input type="text" class="form-control" id="sPort" name="s_port" placeholder="출발지 PORT">
+                                <label for="s_port">출발지 PORT</label>
+                                <input type="number" class="form-control" id="s_port" name="s_port" th:value="${param.s_port}" placeholder="s_port">
                             </div>
                             <div class="form-group">
-                                <label for="dPort">d_port</label>
-                                <input type="text" class="form-control" id="dPort" name="d_port" placeholder="목적지 PORT">
+                                <label for="d_port">목적지 PORT</label>
+                                <input type="number" class="form-control" id="d_port" name="d_port" th:value="${param.d_port}" placeholder="d_port">
                             </div>
                             <div class="form-group">
-                                <label for="createDtFrom">create_dt_from</label>
-                                <input type="datetime-local" class="form-control" id="createDtFrom" name="create_dt_from">
+                                <label for="create_dt_from">생성 일자(from)</label>
+                                <input type="datetime-local" class="form-control" id="create_dt_from" th:value="${param.create_dt_from}" name="create_dt_from">
                             </div>
                             <div class="form-group">
-                                <label for="createDtTo">create_dt_to</label>
-                                <input type="datetime-local" class="form-control" id="createDtTo" name="create_dt_to">
+                                <label for="create_dt_to">생성 일자(to)</label>
+                                <input type="datetime-local" class="form-control" id="create_dt_to" th:value="${param.create_dt_to}" name="create_dt_to">
                             </div>
                             <div class="form-group">
-                                <label for="modifyDtFrom">modify_dt_from</label>
-                                <input type="datetime-local" class="form-control" id="modifyDtFrom" name="modify_dt_from">
+                                <label for="modify_dt_from">변경 일자(from)</label>
+                                <input type="datetime-local" class="form-control" id="modify_dt_from" th:value="${param.modify_dt_from}" name="modify_dt_from">
                             </div>
                             <div class="form-group">
-                                <label for="modifyDtTo">modify_dt_to</label>
-                                <input type="datetime-local" class="form-control" id="modifyDtTo" name="modify_dt_to">
+                                <label for="modify_dt_to">변경 일자(to)</label>
+                                <input type="datetime-local" class="form-control" id="modify_dt_to" th:value="${param.modify_dt_to}" name="modify_dt_to">
                             </div>
                             <div class="form-group">
-                                <label for="actionType">action_type</label>
-                                <input type="text" class="form-control" id="actionType" name="action_type" placeholder="동작 유형">
+                                <label for="action_type">동작 유형</label>
+                                    <select class="form-control" id="action_type" name="action_type">
+                                       <option value="" ></option>
+                                <option value="0" th:selected="${param.action_type == 0}">로깅</option>
+                                <option value="1" th:selected="${param.action_type == 1}">로깅 + 차단</option>
+                               </select>
                             </div>
                             <div class="form-group">
-                                <label for="policyName">policy_name</label>
-                                <input type="text" class="form-control" id="policyName" name="policy_name" placeholder="정책 이름">
+                                <label for="policy_name">정책 이름</label>
+                                <input type="text" class="form-control" id="policy_name" name="policy_name" th:value="${param.policy_name}" placeholder="policy_name">
                             </div>
                             <div class="form-group">
-                                <label for="policyInfo">policy_info</label>
-                                <input type="text" class="form-control" id="policyInfo" name="policy_info" placeholder="정책 정보">
+                                <label for="policy_info">정책 정보</label>
+                                <input type="text" class="form-control" id="policy_info" name="policy_info"  th:value="${param.policy_info}" placeholder="policy_info">
                             </div>
                             <div class="form-group">
-                                <label for="baseCnt">base_cnt</label>
-                                <input type="text" class="form-control" id="baseCnt" name="base_cnt" placeholder="탐지 횟수">
+                                <label for="baseCnt">탐지 횟수</label>
+                                <input type="number" class="form-control" id="baseCnt" name="base_cnt" th:value="${param.base_cnt}" placeholder="base_cnt">
                             </div>
                             <div class="form-group">
-                                <label for="baseTime">base_time</label>
-                                <input type="text" class="form-control" id="baseTime" name="base_time" placeholder="탐지 시간">
+                               <label for="baseTime">탐지 시간</label>
+                               <input type="number" class="form-control" id="baseTime" name="base_time" th:value="${param.base_time}" placeholder="base_time">
+                           </div>
+                           <div class="form-group">
+                               <label for="pattern_1">패턴 1</label>
+                               <input type="text" class="form-control" id="pattern_1" name="pattern_1" th:value="${param.pattern_1}" placeholder="pattern 1">
+                           </div>
+                           <div class="form-group">
+                               <label for="pattern_2">패턴 2</label>
+                               <input type="text" class="form-control" id="pattern_2" name="pattern_2" th:value="${param.pattern_2}" placeholder="pattern 2">
+                           </div>
+                           <div class="form-group">
+                               <label for="pattern_3">패턴 3</label>
+                               <input type="text" class="form-control" id="pattern_3" name="pattern_3" th:value="${param.pattern_3}" placeholder="pattern 3">
+                           </div>
+                           <div class="form-group">
+                               <label for="dangerous">위험도</label>
+                                <select class="form-control" id="dangerous" name="dangerous">
+                           <option value="" ></option>
+                           <option value="30" th:selected="${param.dangerous == 30}">하</option>
+                           <option value="50" th:selected="${param.dangerous == 50}">중</option>
+                           <option value="100" th:selected="${param.dangerous == 100}">상</option>
+                        </select>
+                           </div>
+                            <div class="form-group">
+                                     <label>&nbsp;</label>
                             </div>
                             <div class="form-group">
-                                <label for="pattern1">pattern1</label>
-                                <input type="text" class="form-control" id="pattern1" name="pattern_1" placeholder="패턴 1">
+                                <label>&nbsp;</label>
+                                <button class="btn btn-primary btn-block" type="submit">검색</button>
                             </div>
                             <div class="form-group">
-                                <label for="pattern2">pattern2</label>
-                                <input type="text" class="form-control" id="pattern2" name="pattern_2" placeholder="패턴 2">
+                                 <label>&nbsp;</label>
+                                <button class="btn btn-secondary btn-block" type="button" onclick="location.href='/listBehaviorPolicy'">초기화</button>
                             </div>
-                            <div class="form-group">
-                                <label for="pattern3">pattern3</label>
-                                <input type="text" class="form-control" id="pattern3" name="pattern_3" placeholder="패턴 3">
-                            </div>
-                            <div class="form-group">
-                                <label for="dangerous">dangerous</label>
-                                <input type="text" class="form-control" id="dangerous" name="dangerous" placeholder="위험도">
-                            </div>
-                               <div class="form-group">
-                       		  		<label>&nbsp;</label>
-                               </div>
-                            <div class="form-group">
-                              		<label>&nbsp;</label>
-                                    <button class="btn btn-primary btn-block" type="submit">검색</button>
-                        
-                                </div>
-                                <div class="form-group">
-                       		  		<label>&nbsp;</label>
-                                    <button class="btn btn-secondary btn-block" type="button" onclick="location.href='/listBehaviorPolicy'">초기화</button>
-                               </div>
-                            
-                            
-                                <div class="form-group">
-                               		<label>&nbsp;</label>	
-                        			<button id="resetSort" class="btn btn-secondary btn-block" onclick="resetSort()">정렬 초기화</button>        
-                                </div>
+                  
                             </div>
                         </form>
+                        </div>
+                        <br>
                     <div class="table-container">
                         <table class="table table-striped" id="policyTable">
                             <thead>
@@ -463,12 +488,13 @@ body {
                                     <th class="sortable" onclick="addSort(17)">패턴 3</th>
                                     <th class="sortable" onclick="addSort(18)">위험도</th>
                                     <th>정책 수정</th>
+                                    <th>정책 조회</th>
                                 </tr>
                             </thead>
                             <tbody id="policyTableBody">
                                 <tr th:each="listBehaviorPolicy : ${listBehaviorPolicy}">
                                   <td>
-                                        <img th:src="${listBehaviorPolicy.enable_disable} == 0 ? '/on-button.png' : '/off-button.png'"
+                                        <img th:src="${listBehaviorPolicy.enable_disable} == 0 ? '/off.png' : '/on.png'"
                                    th:attr="onclick='clickBehaviorPolicy(' + ${listBehaviorPolicy.detection_number} + ')'"
                                    alt="상태 전환"
                                    style="width: 50%; height: 50%; cursor: pointer;"/>
@@ -482,7 +508,10 @@ body {
                                     <td th:text="${listBehaviorPolicy.d_port}"></td>
                                     <td th:text="${listBehaviorPolicy.create_dt}"></td>
                                     <td th:text="${listBehaviorPolicy.modify_dt}"></td>
-                                    <td th:text="${listBehaviorPolicy.action_type}"></td>
+                                    <td>
+                               <span th:if="${listBehaviorPolicy.action_type} == 0">로깅</span>
+                               <span th:if="${listBehaviorPolicy.action_type} == 1">로깅 + 차단</span>
+                           </td>
                                     <td th:text="${listBehaviorPolicy.policy_name}"></td>
                                     <td th:text="${listBehaviorPolicy.policy_info}"></td>
                                     <td th:text="${listBehaviorPolicy.base_cnt}"></td>
@@ -490,13 +519,23 @@ body {
                                     <td th:text="${listBehaviorPolicy.pattern_1}"></td>
                                     <td th:text="${listBehaviorPolicy.pattern_2}"></td>
                                     <td th:text="${listBehaviorPolicy.pattern_3}"></td>
-                                    <td th:text="${listBehaviorPolicy.dangerous}"></td>
+                                    <td>
+                               <span th:if="${listBehaviorPolicy.dangerous} == 30">하</span>
+                               <span th:if="${listBehaviorPolicy.dangerous} == 50">중</span>
+                               <span th:if="${listBehaviorPolicy.dangerous} == 100">상</span>
+                           </td>
                                     <td>
                                         <form action="/updateBehaviorPolicy" method="get">
                                             <input type="hidden" name="detection_number" th:value="${listBehaviorPolicy.detection_number}">
                                             <input type="submit" class="btn btn-warning btn-sm" value="수정">
                                         </form>
                                     </td>
+                                    <td>
+                               <form action="/detailsBehaviorPolicy" method="get">
+                                   <input type="hidden" name="detection_number" th:value="${listBehaviorPolicy.detection_number}">
+                                   <input type="submit" class="btn btn-info btn-sm" value="상세 조회">
+                               </form>
+                           </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -519,6 +558,26 @@ body {
             initialRows = Array.from(tableBody.rows);
         });
 
+        document.addEventListener("DOMContentLoaded", function() {
+            // 로컬 스토리지에서 상태를 읽어옴
+            const searchFormState = localStorage.getItem("searchFormState");
+            const searchForm = document.getElementById("searchForm");
+            const toggleButton = document.getElementById("toggleButton");
+
+            // 상태가 열림으로 저장되어 있으면 폼을 열림 상태로 변경
+            if (searchFormState === "open") {
+                searchForm.classList.add("show");
+                toggleButton.setAttribute("aria-expanded", "true");
+            }
+
+            // 버튼 클릭 시 상태 저장
+            toggleButton.addEventListener("click", function() {
+                const isExpanded = toggleButton.getAttribute("aria-expanded") === "true";
+                localStorage.setItem("searchFormState", isExpanded ? "closed" : "open");
+            });
+        });
+        
+        
         function clickBehaviorPolicy(detectionNumber) {
             $.ajax({
                 type: 'POST',
@@ -606,6 +665,8 @@ body {
             sortColumns = [];
             updateHeaders();
         }
+
+        
     </script>
 </body>
 </html>

@@ -89,10 +89,10 @@
                 AND action_type = #{action_type}
             </if>
             <if test="policy_name != null and policy_name != ''">
-                AND policy_name = #{policy_name}
+                AND policy_name LIKE CONCAT(#{policy_name}, '%')
             </if>
             <if test="policy_info != null and policy_info != ''">
-                AND policy_info = #{policy_info}
+                AND policy_info LIKE CONCAT(#{policy_info}, '%')
             </if>
             <if test="base_cnt != null">
                 AND base_cnt = #{base_cnt}

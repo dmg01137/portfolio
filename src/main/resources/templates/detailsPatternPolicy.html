@@ -242,17 +242,20 @@
                 <td th:text="${d_port}"></td>
             </tr>
             <tr>
-                <td>Create Date From</td>
+                <td>Create Date</td>
                 <td th:text="${create_dt}"></td>
             </tr>
             <tr>
-                <td>Modify Date From</td>
+                <td>Modify Date</td>
                 <td th:text="${modify_dt}"></td>
             </tr>
             <tr>
-                <td>Action Type</td>
-                <td th:text="${action_type}"></td>
-            </tr>
+			    <td>Action Type</td>
+			    <td>
+			        <span th:if="${action_type == 0}">로깅</span>
+			        <span th:if="${action_type == 1}">로깅 + 차단</span>
+			    </td>
+			</tr>
             <tr>
                 <td>Policy Name</td>
                 <td th:text="${policy_name}"></td>
@@ -275,7 +278,11 @@
             </tr>
             <tr>
                 <td>Dangerous</td>
-                <td th:text="${dangerous}"></td>
+                <td>
+			        <span th:if="${dangerous == 30}">하</span>
+			        <span th:if="${dangerous == 50}">중</span>
+			        <span th:if="${dangerous == 100}">상</span>
+			    </td>
             </tr>
         </tbody>
     </table>

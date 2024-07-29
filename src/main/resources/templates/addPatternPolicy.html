@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modify Policy</title>
+    <title>Add Policy</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <style>
@@ -320,7 +320,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="/listUser"><i class="fas fa-users-cog"></i> 사용자 관리</a>
             </li>
-           
             <li class="nav-item">
                 <a class="nav-link" href="/dashboard"><i class="fas fa-home"></i> 홈</a>
             </li>
@@ -351,8 +350,13 @@
                         <table class="table table-dark">
                             <tbody>
                                 <tr>
-                                    <td><label for="enable_disable">활성화(1) / 비활성화(0):</label></td>
-                                    <td><input type="number" class="form-control" name="enable_disable" id="enable_disable" min="0" max="1" required></td>
+                                    <td><label for="enable_disable">활성화 / 비활성화:</label></td>
+                                    <td>
+								        <select class="form-control" name="enable_disable" id="enable_disable" required>
+								            <option value="0">비활성화</option>
+								            <option value="1">활성화</option>
+								        </select>
+								    </td>
                                 </tr>
                                 <tr>
                                     <td><label for="detection_number">패턴 정책 번호:</label></td>
@@ -391,8 +395,13 @@
 								    <td><input type="datetime-local" class="form-control" name="modify_dt" id="modify_dt" readonly></td>
 								</tr>
                                 <tr>
-                                    <td><label for="action_type">동작 유형 [ 로깅 + 차단(1) / 로깅(0) ]:</label></td>
-                                    <td><input type="number" class="form-control" name="action_type" id="action_type" min="0" max="1" required></td>
+                                    <td><label for="action_type">동작 유형:</label></td>
+                                    <td>
+								        <select class="form-control" name="action_type" id="action_type" required>
+								            <option value="0">로깅</option>
+								            <option value="1">로깅 + 차단</option>
+								        </select>
+								    </td>
                                 </tr>
                                 <tr>
                                     <td><label for="policy_name">정책 이름:</label></td>
@@ -415,9 +424,15 @@
                                     <td><input type="text" class="form-control" name="pattern_3" id="pattern_3"></td>
                                 </tr>
                                 <tr>
-                                    <td><label for="dangerous">위험도:</label></td>
-                                    <td><input type="number" class="form-control" name="dangerous" id="dangerous" min="1" max="100" required></td>
-                                </tr>
+								    <td><label for="dangerous">위험도:</label></td>
+								    <td>
+								        <select class="form-control" name="dangerous" id="dangerous" required>
+								            <option value="30">하</option>
+								            <option value="50">중</option>
+								            <option value="100">상</option>
+								        </select>
+								    </td>
+								</tr>
                                 <tr>
                                     <td colspan="2" class="text-center">
                                         <button type="submit" class="btn btn-primary btn-block">추가</button>
