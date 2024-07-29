@@ -321,9 +321,13 @@
                 <div class="form-group">
                     <input type="text" id="packet" class="form-control searchInput" placeholder="패킷">
                 </div>
-                <div class="form-group">
-                    <input type="text" id="action_type" class="form-control searchInput" placeholder="액션타입">
-                </div>
+            <div style="flex: 1;">
+    <select id="action_type" class="form-control searchInput">
+        <option value="">액션타입</option>
+        <option value="0">로깅</option>
+        <option value="1">로깅 + 차단</option>
+    </select>
+</div>
             </div>
 			<div class="searchButtons">
 			<button id="searchButton" class="btn btn-info">검색</button>

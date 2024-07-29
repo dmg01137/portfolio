@@ -6,17 +6,14 @@
     <title>CentrinOs DBMS Solution</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
-        /* 기본적인 스타일 */
-       body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #222; /* Dark background color */
-    margin: 0;
-    padding: 0;
-    color: #fff; /* Light text color */
-}
-
-
+ <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #222;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
         .nav-link {
             color: #fff !important;
             transition: all 0.3s ease;
@@ -24,260 +21,194 @@
         .nav-link:hover {
             color: #17a2b8 !important;
         }
-        .nav-link i {
-            margin-right: 5px;
-        }
-
         .navbar {
             background-color: #222;
             padding: 14px 16px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            position: relative; /* 네비게이션 바를 상대적으로 위치 지정 */
-            z-index: 1; /* 네비게이션 바를 가장 위에 위치시킴 */
+            position: relative;
+            z-index: 1050; /* Higher than sidebar */
         }
-
         .navbar-brand {
             font-size: 1.5rem;
-            color: #fff; /* 원하는 색상으로 설정 */
+            color: #fff;
         }
-
         .navbar-brand:hover {
-            color: #fff; /* 마우스를 올렸을 때 색상 변경 없음 */
+            color: #fff;
         }
-
-        .navbar-nav .nav-item {
-            margin-right: 10px;
-        }
-
         .sidebar {
             position: fixed;
             left: 0;
-            top: 64px; /* 네비게이션 바 높이에 맞춰 조정 */
+            top: 64px; /* Adjust as needed */
             width: 220px;
             background-color: #222;
             padding-top: 20px;
             transition: all 0.3s ease;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-           
-            height: 100vh; /* 뷰포트 높이에 맞추어 조정 */
+            height: 100vh;
+            z-index: 1160; /* Ensure it's above other content */
+            overflow: auto; /* 추가된 스타일 */
         }
-
         .sidebar-heading {
             font-size: 1.2rem;
             color: #fff;
             text-align: center;
             margin-bottom: 20px;
         }
-
         .nav-sidebar .nav-link {
             color: #d1d1d1;
             padding: 10px 20px;
             transition: all 0.3s ease;
         }
-
         .nav-sidebar .nav-link:hover {
             background-color: #222;
             color: #fff;
         }
-
         .content-area {
-        
-          background-color: #222; /* 어두운 배경색 */
-         
-            margin-left: 220px; /* Adjust margin for sidebar width */
+            background-color: #222;
+            margin-left: 220px; /* 사이드바의 너비에 맞춰서 설정 */
             padding: 5px;
             transition: all 0.3s ease;
-            overflow-y: hidden; /* 내용이 뷰포트를 초과할 경우 스크롤 허용 */
-            height: calc(100vh - 100px); /* Adjust for the top navbar height */
+            overflow-y: auto;
+            height: calc(100vh - 100px);
+            position: relative;
+            z-index: 900; /* 사이드바와 드롭다운 메뉴보다 아래에 있도록 */
         }
-
         .chart-container {
-
-            background-color: #333; /* 차트 배경색 변경 */
+            background-color: #333;
             color: #fff;
-            padding: 40px 20px 20px 10px;
+            padding: 10px 20px 10px 10px;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             margin-bottom: 10px;
-             margin-left: 10px;
-          
+            margin-left: 10px;
         }
-
         .chart-container h4 {
-        
-            color: #fff; /* 텍스트 색상 변경 */
-              background-color: #222;
-        }
-
-        .chart-container canvas {
-            background-color: #333; /* 차트 배경색 변경 */
             color: #fff;
-            border-radius: 5px; /* 차트 둥근 모서리 추가 */
+            background-color: #222;
         }
-
-       .search-form {
-    margin-bottom: 10px;
-    background-color: #333; /* Dark background color */
-    padding: 2px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-}
-
-.search-form select,
-.search-form input[type="text"],
-.search-form button {
-    border-radius: 3px;
-    min-width: 100px;
-    background-color: #444;
-    color: #fff; /* Text color for input and buttons */
-}
-
-.search-form select {
-    flex: 1;
-    margin-right: 5px;
-    background-color: #444; /* Darker background for select */
-    border: 1px solid #555; /* Border color */
-    padding: 8px;
-}
-
-.search-form input[type="text"] {
-    flex: 2;
-    border: 1px solid #444; /* Border color */
-    padding: 8px;
-    margin-right: 5px;
-    background-color: #333; /* Darker background for input */
-     color: #fff;
-}
-
-.search-form button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 8px  8px 8px 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border: none;
-  
-    
-}
-
-.search-form button:hover {
-    background-color: #0056b3;
-}
-
-.search-form button.btn-secondary {
-    background-color: #6c757d; /* Secondary button color */
-}
-
-.search-form button.btn-secondary:hover {
-    background-color: #5a6268; /* Hover color for secondary button */
-}
-
-
-.event-table {
-   background-color: #333;
-    color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    overflow: auto;
-    width: 100%;
-    max-width: 100%;
-    max-height: 400px;
-}
-
-.event-table th,
-.event-table td {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    vertical-align: middle;
-    font-size: 12px; /* Increased font size slightly for better readability */
-    white-space: nowrap; /* Prevents table content from wrapping */
-    padding: 8px; /* Added padding for cell content */
-}
-
-.event-table thead {
-   background-color: #333;
-     color: #fff;
-}
-
-.event-table tbody tr:hover {
-    background-color: #333;
-}
-    @media (max-width: 768px) {
-        .sidebar {
-            position: static;
-            width: 100%;
-            margin-top: 20px;
-            box-shadow: none;
-            z-index: 0;
+        .chart-container canvas {
+            background-color: #333;
+            color: #fff;
+            border-radius: 5px;
         }
-
-        .content-area {
-            margin-left: 0;
-        }
-
         .search-form {
-            flex-direction: column; /* Stacks elements vertically on small screens */
+            margin-bottom: 2px;
+            background-color: #333;
+            padding: 2px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
         }
-
         .search-form select,
-        .search-form input[type="text"] {
-            margin-bottom: 5px;
-            width: 100%; /* Full width for input and select in small screens */
+        .search-form input[type="text"],
+        .search-form button {
+            border-radius: 3px;
+            min-width: 60px;
+            background-color: #444;
+            color: #fff;
         }
-
-       .pagination-btns {
-    display: flex;
-    justify-content: center;
-    margin-top: 2px; /* Adds spacing above pagination buttons */
-}
-
-.pagination-btns button {
-    margin: 0 5px; /* Adds space between pagination buttons */
-    padding: 8px 8px; /* Adjust padding for button size */
-    background-color: #444; /* Dark background color */
-    color: #fff; /* Light text color */
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.pagination-btns button:hover {
-    background-color: #007bff; /* Hover background color */
-}
-
-
-@media (max-width: 768px) {
-    .pagination-btns {
-        flex-direction: column; /* Stacks elements vertically on small screens */
-        align-items: center; /* Centers elements vertically */
-    }
-
-    .pagination-btns button {
-        margin: 2px 0; /* Adds space around buttons in vertical layout */
-        width: 100%; /* Full width for buttons on small screens */
-    }
-}
-
-    }
-    .dropdown-menu {
-       background-color: #222;
-       border: none;
-       position: relative; /* 드롭다운 메뉴의 위치 조정 */
-       z-index: 1050; /* 다른 요소 위에 표시되도록 z-index 설정 */
-   }
-   
-   .dropdown-menu .dropdown-item {
-       color: #d1d1d1;
-   }
-   
-   .dropdown-menu .dropdown-item:hover {
-       background-color: #333;
-       color: #fff;
-   }
-</style>
+        .search-form select {
+            flex: 1;
+            margin-right: 5px;
+            background-color: #444;
+            border: 1px solid #555;
+            padding: 8px;
+        }
+        .search-form input[type="text"] {
+            flex: 2;
+            border: 1px solid #444;
+            padding: 8px;
+            margin-right: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+        .search-form button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 8px 8px 8px 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border: none;
+        }
+        .search-form button:hover {
+            background-color: #0056b3;
+        }
+        .search-form button.btn-secondary {
+            background-color: #6c757d;
+        }
+        .search-form button.btn-secondary:hover {
+            background-color: #5a6268;
+        }
+        .event-table {
+            background-color: #333;
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: auto; /* Changed to auto for scroll */
+            width: 100%;
+            max-width: 100%;
+            max-height: 400px;
+        }
+        .event-table th,
+        .event-table td {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 12px;
+            white-space: nowrap;
+            padding: 8px;
+        }
+        .event-table thead {
+            background-color: #333;
+            color: #fff;
+        }
+        .event-table tbody tr:hover {
+            background-color: #333;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                position: static;
+                width: 100%;
+                margin-top: 20px;
+                box-shadow: none;
+                z-index: 0;
+            }
+            .content-area {
+                margin-left: 0;
+            }
+            .search-form {
+                flex-direction: column;
+            }
+            .search-form select,
+            .search-form input[type="text"] {
+                margin-bottom: 5px;
+                width: 100%;
+            }
+            .pagination-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            .pagination-btns button {
+                margin: 2px 0;
+                width: 100%;
+            }
+        }
+        .dropdown-menu {
+            background-color: #222;
+            border: none;
+            position: absolute;
+            z-index: 1150;
+        }
+        .dropdown-menu .dropdown-item {
+            color: #d1d1d1;
+        }
+        .dropdown-menu .dropdown-item:hover {
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg">
@@ -381,6 +312,7 @@
                         </tbody>
                      </table>
                
+      </div>
                       <div class="pagination-btns">
        <button class="btn btn-primary" id="previousBtn" onclick="loadPreviousData()">
     <i class="fas fa-chevron-left"></i> 
@@ -391,8 +323,7 @@
 </button>
 
     </div>
-                  </div>
-                  
+                              
                </div>
             </div>
          </div>
@@ -407,7 +338,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script>
 var currentPage = 1;
-var rowsPerPage = 5;
+var rowsPerPage = 10;
 var totalLogs = 0; // Total number of logs fetched from server
 var logsPerPage = 5;
 

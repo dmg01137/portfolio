@@ -82,7 +82,7 @@
             
 /* 테이블 스타일 */
 .table-container {
- width: 750px;
+ width: 600px;
     overflow-x: auto;
     max-width: 100%; /* 테이블 컨테이너의 최대 너비 설정 */
 }
@@ -120,6 +120,7 @@
 .searchContainer {
     text-align: center;
     margin-top: 20px;
+    
 }
 
 .searchForm {
@@ -255,7 +256,7 @@
                 <input type="date" id="date" class="form-control searchInput" placeholder="날짜">
             </div>
             <div style="flex: 1;">
-                <input type="number" id="id" class="form-control searchInput" placeholder="로그번호" required>
+                <input type="number" id="id" class="form-control searchInput" placeholder="번호" required>
             </div>
        
             <div style="flex: 1;">
@@ -274,8 +275,13 @@
                 <input type="text" id="dPort" class="form-control searchInput" placeholder="dPORT">
             </div>
             <div style="flex: 1;">
-                <input type="text" id="actionType" class="form-control searchInput" placeholder="액션타입">
-            </div>
+    <select id="actionType" class="form-control searchInput">
+        <option value="">액션타입</option>
+        <option value="0">로깅</option>
+        <option value="1">로깅 + 차단</option>
+    </select>
+</div>
+
             <div style="flex: 1;">
                 <input type="text" id="len" class="form-control searchInput" placeholder="패킷길이">
             </div>
@@ -304,12 +310,12 @@
         <table id="logTable" class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
-                    <th>로그번호</th>
+                    <th>번호</th>
                     <th>탐지시간</th>
                     <th>출발지IP</th>
-                    <th>출발지PORT</th>
+                    <th>sPORT</th>
                     <th>도착지IP</th>
-                    <th>도착지PORT</th>
+                    <th>dPORT</th>
                     <th>액션 타입</th>
                     <th>패킷길이</th>
                     <th>정책이름</th>
