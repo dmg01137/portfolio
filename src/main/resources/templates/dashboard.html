@@ -140,16 +140,16 @@
         .search-form button.btn-secondary:hover {
             background-color: #5a6268;
         }
-        .event-table {
-            background-color: #333;
-            color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            overflow: auto; /* Changed to auto for scroll */
-            width: 100%;
-            max-width: 100%;
-            max-height: 400px;
-        }
+      .event-table {
+    background-color: #343a40; /* Dark background */
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+    width: 100%;
+    max-width: 100%;
+    max-height: 400px;
+}
         .event-table th,
         .event-table td {
             background-color: #333;
@@ -186,14 +186,36 @@
                 margin-bottom: 5px;
                 width: 100%;
             }
-            .pagination-btns {
-                flex-direction: column;
-                align-items: center;
-            }
-            .pagination-btns button {
-                margin: 2px 0;
-                width: 100%;
-            }
+   .pagination-btns {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+        background-color: #343a40; /* 어두운 배경 */
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .pagination-btns button {
+        color: #fff;
+        background-color: #6c757d; /* 어두운 회색 */
+        border: none;
+        padding: 8px 12px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .pagination-btns button:hover {
+        background-color: #555; /* 더 어두운 회색 (호버 시) */
+    }
+
+    .pagination-btns button:disabled {
+        background-color: #555; /* 비활성 상태에서의 어두운 회색 */
+        cursor: not-allowed;
+    }
+
+
         }
         .dropdown-menu {
             background-color: #222;
@@ -208,6 +230,7 @@
             background-color: #333;
             color: #fff;
         }
+        
     </style>
 </head>
 <body>
@@ -313,16 +336,16 @@
                      </table>
                
       </div>
-                      <div class="pagination-btns">
-       <button class="btn btn-primary" id="previousBtn" onclick="loadPreviousData()">
-    <i class="fas fa-chevron-left"></i> 
-</button>
+                  <div class="pagination-btns">
+    <button class="btn btn-primary" id="previousBtn" onclick="loadPreviousData()" disabled>
+        <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="btn btn-primary" id="loadMoreBtn" onclick="loadMoreData()">
+       <i class="fas fa-chevron-right"></i>
+    </button>
+</div>
 
-<button class="btn btn-primary" id="loadMoreBtn" onclick="loadMoreData()">
-   <i class="fas fa-chevron-right"></i>
-</button>
 
-    </div>
                               
                </div>
             </div>
