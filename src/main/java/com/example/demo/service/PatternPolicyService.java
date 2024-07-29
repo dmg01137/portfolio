@@ -71,7 +71,7 @@ public class PatternPolicyService
     public int udpPatternPolicy() {
         try (DatagramSocket datagramSocket = new DatagramSocket()) 
         {
-            String serverAddress = "192.168.1.26";
+            String serverAddress = "192.168.1.27";
             String message = "pattern_change";
 
             DatagramPacket datagramPacket = new DatagramPacket(message.getBytes(), message.length(), InetAddress.getByName(serverAddress), 9090);
