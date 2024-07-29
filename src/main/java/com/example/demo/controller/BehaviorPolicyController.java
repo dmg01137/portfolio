@@ -12,9 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.dto.BehaviorPolicyDto;
+import com.example.demo.dto.detection.Users;
 import com.example.demo.service.BehaviorPolicyService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class BehaviorPolicyController 
@@ -29,8 +33,15 @@ public class BehaviorPolicyController
     
     // 행동 정책 리스트 출력
     @GetMapping("/listBehaviorPolicy")
-    public String listBehaviorPolicy(Model model) 
-    {
+    public String listBehaviorPolicy(Model model,HttpSession session, RedirectAttributes redirectAttributes) {
+        // 세션에서 사용자 정보 가져오기
+        Users user = (Users) session.getAttribute("user");
+
+        // 세션이 없거나 사용자 정보가 없으면 로그인 폼으로 리다이렉트
+        if (user == null) {
+            redirectAttributes.addFlashAttribute("error", "로그인이 필요합니다.");
+            return "redirect:/signin";
+        } 
         List<BehaviorPolicyDto> listBehaviorPolicy = behaviorPolicyService.listBehaviorPolicy();
         model.addAttribute("listBehaviorPolicy", listBehaviorPolicy);
         return "/listBehaviorPolicy";
@@ -38,8 +49,16 @@ public class BehaviorPolicyController
 
     // 행동 정책 추가
 	@GetMapping("/addBehaviorPolicy")
-	public String addBehaviorPolicy(Model model) 
-	{
+	public String addBehaviorPolicy(Model model,HttpSession session, RedirectAttributes redirectAttributes) {
+        // 세션에서 사용자 정보 가져오기
+        Users user = (Users) session.getAttribute("user");
+
+        // 세션이 없거나 사용자 정보가 없으면 로그인 폼으로 리다이렉트
+        if (user == null) {
+            redirectAttributes.addFlashAttribute("error", "로그인이 필요합니다.");
+            return "redirect:/signin";
+        } 
+
 		// primary key인 디텍션 넘버를 + 1해서 넘겨준다
 		
 		  int lastDetectionNumber = behaviorPolicyService.getLastDetectionNumber() + 1;
@@ -62,8 +81,15 @@ public class BehaviorPolicyController
     
     // 행동 정책 수정
     @GetMapping("/updateBehaviorPolicy")
-    public String updateBehaviorPolicy(@RequestParam("detection_number") int detectionNumber, Model model) 
-    {
+    public String updateBehaviorPolicy(@RequestParam("detection_number") int detectionNumber, Model model,HttpSession session, RedirectAttributes redirectAttributes) {
+        // 세션에서 사용자 정보 가져오기
+        Users user = (Users) session.getAttribute("user");
+
+        // 세션이 없거나 사용자 정보가 없으면 로그인 폼으로 리다이렉트
+        if (user == null) {
+            redirectAttributes.addFlashAttribute("error", "로그인이 필요합니다.");
+            return "redirect:/signin";
+        } 
         BehaviorPolicyDto policy = behaviorPolicyService.findByDetectionNumber(detectionNumber);
 
         // 모델에 데이터 추가
@@ -158,8 +184,15 @@ public class BehaviorPolicyController
 	}
 	
 	@GetMapping("/detailsBehaviorPolicy")
-    public String detailsBehaviorPolicy(@RequestParam("detection_number") int detectionNumber, Model model) 
-    {
+    public String detailsBehaviorPolicy(@RequestParam("detection_number") int detectionNumber, Model model,HttpSession session, RedirectAttributes redirectAttributes) {
+        // 세션에서 사용자 정보 가져오기
+        Users user = (Users) session.getAttribute("user");
+
+        // 세션이 없거나 사용자 정보가 없으면 로그인 폼으로 리다이렉트
+        if (user == null) {
+            redirectAttributes.addFlashAttribute("error", "로그인이 필요합니다.");
+            return "redirect:/signin";
+        } 
         BehaviorPolicyDto policy = behaviorPolicyService.findByDetectionNumber(detectionNumber);
 
         // 모델에 데이터 추가

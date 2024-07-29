@@ -13,9 +13,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.demo.dto.detection.Users;
 import com.example.demo.dto.log.PatternLog;
 import com.example.demo.service.log.PatternLogService;
+
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/api/patternlogs")
@@ -55,7 +59,15 @@ public class PatternLogController {
     
  // 웹 페이지: 모든 패턴 로그 조회
     @GetMapping("/patternlog")
-    public String showPatternLogPage(Model model) {
+    public String showPatternLogPage(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+        // 세션에서 사용자 정보 가져오기
+        Users user = (Users) session.getAttribute("user");
+
+        // 세션이 없거나 사용자 정보가 없으면 로그인 폼으로 리다이렉트
+        if (user == null) {
+            redirectAttributes.addFlashAttribute("error", "로그인이 필요합니다.");
+            return "redirect:/signin";
+        }
         List<PatternLog> logs = patternLogService.findAll(null);
         model.addAttribute("logs", logs);
         return "patternlog"; // Assuming "patternlog" is your Thymeleaf template name

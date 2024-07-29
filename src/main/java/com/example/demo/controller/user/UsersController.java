@@ -74,7 +74,15 @@ public class UsersController {
 
     // 사용자 정보 수정 폼으로 이동
     @GetMapping("/modifyuser")
-    public String modify() {
+    public String modify(HttpSession session, RedirectAttributes redirectAttributes) {
+        // 세션에서 사용자 정보 가져오기
+        Users user = (Users) session.getAttribute("user");
+
+        // 세션이 없거나 사용자 정보가 없으면 로그인 폼으로 리다이렉트
+        if (user == null) {
+            redirectAttributes.addFlashAttribute("error", "로그인이 필요합니다.");
+            return "redirect:/signin";
+        }
         return "modifyuser";
     }
     // 사용자 정보 수정 처리
@@ -177,7 +185,15 @@ public class UsersController {
 
     // 회원가입 페이지로 이동
     @GetMapping("/join")
-    public String joinForm() {
+    public String joinForm(HttpSession session, RedirectAttributes redirectAttributes) {
+        // 세션에서 사용자 정보 가져오기
+        Users user = (Users) session.getAttribute("user");
+
+        // 세션이 없거나 사용자 정보가 없으면 로그인 폼으로 리다이렉트
+        if (user == null) {
+            redirectAttributes.addFlashAttribute("error", "로그인이 필요합니다.");
+            return "redirect:/signin";
+        }
         return "join";
     }
 
@@ -276,37 +292,33 @@ public class UsersController {
         return "deleteuser";
     }
 
-    // 관리자 페이지로 이동
-    @GetMapping("/admin")
-    public String admin(HttpSession session, RedirectAttributes redirectAttributes) {
-        // 세션에서 현재 로그인한 사용자 정보 가져오기
-        Users currentUser = (Users) session.getAttribute("user");
 
-        // 세션이 없거나 사용자 정보가 없으면 로그인 폼으로 리다이렉트
-        if (currentUser == null) {
-            redirectAttributes.addFlashAttribute("error", "로그인이 필요합니다.");
-            return "redirect:/signin";
-        }
-
-        // 관리자 권한 검증: currentUser가 관리자인지 확인
-        if (!currentUser.getUser_privilege().equals("admin")) {
-            redirectAttributes.addFlashAttribute("error", "관리자만 접근할 수 있는 페이지입니다.");
-            return "redirect:/adminerror"; // 관리자가 아니면 관리자 에러 페이지로 리다이렉트
-        }
-
-        // 관리자 페이지로 이동
-        return "admin";
-    }
 
     // 로그 관리/패턴 로그 페이지로 이동
     @GetMapping("/patternlog")
-    public String patternlog() {
+    public String patternlog(HttpSession session, RedirectAttributes redirectAttributes) {
+        // 세션에서 사용자 정보 가져오기
+        Users user = (Users) session.getAttribute("user");
+
+        // 세션이 없거나 사용자 정보가 없으면 로그인 폼으로 리다이렉트
+        if (user == null) {
+            redirectAttributes.addFlashAttribute("error", "로그인이 필요합니다.");
+            return "redirect:/signin";
+        }
         return "patternlog";
     }
 
     // 위험 로그 페이지로 이동
     @GetMapping("/dangerouslog")
-    public String dangerouslog() {
+    public String dangerouslog(HttpSession session, RedirectAttributes redirectAttributes) {
+        // 세션에서 사용자 정보 가져오기
+        Users user = (Users) session.getAttribute("user");
+
+        // 세션이 없거나 사용자 정보가 없으면 로그인 폼으로 리다이렉트
+        if (user == null) {
+            redirectAttributes.addFlashAttribute("error", "로그인이 필요합니다.");
+            return "redirect:/signin";
+        }
         return "dangerouslog";
     }
 
@@ -314,17 +326,41 @@ public class UsersController {
   
     // 관리자가 아닐 경우 관리자 에러 페이지로 이동
     @GetMapping("/adminerror")
-    public String adminerror() {
+    public String adminerror(HttpSession session, RedirectAttributes redirectAttributes) {
+        // 세션에서 사용자 정보 가져오기
+        Users user = (Users) session.getAttribute("user");
+
+        // 세션이 없거나 사용자 정보가 없으면 로그인 폼으로 리다이렉트
+        if (user == null) {
+            redirectAttributes.addFlashAttribute("error", "로그인이 필요합니다.");
+            return "redirect:/signin";
+        }
         return "adminerror";
     }
     
     @GetMapping("/patternpacket")
-    public String showPatternPacketPage() {
+    public String showPatternPacketPage(HttpSession session, RedirectAttributes redirectAttributes) {
+        // 세션에서 사용자 정보 가져오기
+        Users user = (Users) session.getAttribute("user");
+
+        // 세션이 없거나 사용자 정보가 없으면 로그인 폼으로 리다이렉트
+        if (user == null) {
+            redirectAttributes.addFlashAttribute("error", "로그인이 필요합니다.");
+            return "redirect:/signin";
+        }
         // 여기서는 페이지 이름을 반환합니다. Thymeleaf 템플릿 이름이라고 가정합니다.
         return "patternpacket"; 
     }
     @GetMapping("/packet")
-    public String showPacketPage() {
+    public String showPacketPage( HttpSession session, RedirectAttributes redirectAttributes) {
+        // 세션에서 사용자 정보 가져오기
+        Users user = (Users) session.getAttribute("user");
+
+        // 세션이 없거나 사용자 정보가 없으면 로그인 폼으로 리다이렉트
+        if (user == null) {
+            redirectAttributes.addFlashAttribute("error", "로그인이 필요합니다.");
+            return "redirect:/signin";
+        }
         // 여기서는 페이지 이름을 반환합니다. Thymeleaf 템플릿 이름이라고 가정합니다.
         return "packet"; 
     }

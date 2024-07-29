@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.dto.PatternPolicyDto;
+import com.example.demo.dto.detection.Users;
 import com.example.demo.service.PatternPolicyService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class PatternPolicyController 
@@ -32,8 +34,16 @@ public class PatternPolicyController
 	
 	// 패턴 정책 리스트 출력
 	@GetMapping("/listPatternPolicy")
-	public String listPatternPolicy(Model model) 
-	{
+	public String listPatternPolicy(Model model,HttpSession session, RedirectAttributes redirectAttributes) {
+        // 세션에서 사용자 정보 가져오기
+        Users user = (Users) session.getAttribute("user");
+
+        // 세션이 없거나 사용자 정보가 없으면 로그인 폼으로 리다이렉트
+        if (user == null) {
+            redirectAttributes.addFlashAttribute("error", "로그인이 필요합니다.");
+            return "redirect:/signin";
+        }  
+	
 		List<PatternPolicyDto> listPatternPolicy = patternPolicyService.listPatternPolicy();
 		model.addAttribute("listPatternPolicy", listPatternPolicy);
 		return "/listPatternPolicy";
@@ -41,8 +51,16 @@ public class PatternPolicyController
 
 	// 패턴 정책 추가
 	@GetMapping("/addPatternPolicy")
-	public String addPatternPolicy(Model model) 
-	{
+	public String addPatternPolicy(Model model,HttpSession session, RedirectAttributes redirectAttributes) {
+        // 세션에서 사용자 정보 가져오기
+        Users user = (Users) session.getAttribute("user");
+
+        // 세션이 없거나 사용자 정보가 없으면 로그인 폼으로 리다이렉트
+        if (user == null) {
+            redirectAttributes.addFlashAttribute("error", "로그인이 필요합니다.");
+            return "redirect:/signin";
+        } 
+	
 		// primary key인 디텍션 넘버를 + 1해서 넘겨준다
 		
 		  int lastDetectionNumber = patternPolicyService.getLastDetectionNumber() + 1;
@@ -65,8 +83,15 @@ public class PatternPolicyController
 
 	// 패턴 정책 수정
 	@GetMapping("/updatePatternPolicy")
-	public String updatePatternPolicy(@RequestParam("detection_number") int detectionNumber, Model model) 
-	{
+	public String updatePatternPolicy(@RequestParam("detection_number") int detectionNumber, Model model,HttpSession session, RedirectAttributes redirectAttributes) {
+        // 세션에서 사용자 정보 가져오기
+        Users user = (Users) session.getAttribute("user");
+
+        // 세션이 없거나 사용자 정보가 없으면 로그인 폼으로 리다이렉트
+        if (user == null) {
+            redirectAttributes.addFlashAttribute("error", "로그인이 필요합니다.");
+            return "redirect:/signin";
+        } 
 		PatternPolicyDto policy = patternPolicyService.findByDetectionNumber(detectionNumber);
 
 		// 모델에 데이터 추가
@@ -155,8 +180,15 @@ public class PatternPolicyController
 	
 	
 	@GetMapping("/detailsPatternPolicy")
-	public String detailsPatternPolicy(@RequestParam("detection_number") int detectionNumber, Model model) 
-	{
+	public String detailsPatternPolicy(@RequestParam("detection_number") int detectionNumber, Model model,HttpSession session, RedirectAttributes redirectAttributes) {
+        // 세션에서 사용자 정보 가져오기
+        Users user = (Users) session.getAttribute("user");
+
+        // 세션이 없거나 사용자 정보가 없으면 로그인 폼으로 리다이렉트
+        if (user == null) {
+            redirectAttributes.addFlashAttribute("error", "로그인이 필요합니다.");
+            return "redirect:/signin";
+        } 
 	    PatternPolicyDto policy = patternPolicyService.findByDetectionNumber(detectionNumber);
 
 	    // 모델에 데이터 추가

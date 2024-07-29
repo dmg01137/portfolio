@@ -14,10 +14,14 @@ import org.springframework.util.StringUtils; // StringUtils import 추가
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.demo.dto.detection.Users;
 import com.example.demo.dto.log.BehaviorLog;
 import com.example.demo.dto.log.DangerousLog;
 import com.example.demo.service.log.BehaviorLogService;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class BehaviorLogController {
@@ -50,7 +54,16 @@ public class BehaviorLogController {
   
     // 페이지: 모든 위험 로그 보기
     @GetMapping("/behaviorlog")
-    public String showBehaviorLogPage(Model model) {
+    public String showBehaviorLogPage(Model model,HttpSession session, RedirectAttributes redirectAttributes) {
+        // 세션에서 사용자 정보 가져오기
+        Users user = (Users) session.getAttribute("user");
+
+        // 세션이 없거나 사용자 정보가 없으면 로그인 폼으로 리다이렉트
+        if (user == null) {
+            redirectAttributes.addFlashAttribute("error", "로그인이 필요합니다.");
+            return "redirect:/signin";
+        } 
+
         List<BehaviorLog> logs = behaviorLogService.findAll(null);
         model.addAttribute("logs", logs);
         return "behaviorlog"; // Thymeleaf 템플릿 이름

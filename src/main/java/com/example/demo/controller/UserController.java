@@ -139,13 +139,14 @@ public class UserController
 	  
 	  
 	  
-	  @GetMapping("/logout") 
-	  public String userLogout(HttpSession session) 
-	  {
-		  session.invalidate(); 
-		  return "/userLogin"; 
-	  }
-	 
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+	    // 세션에서 사용자 정보 삭제
+	    session.removeAttribute("user");
+	    session.invalidate(); // 세션 완전히 무효화
+	    return "redirect:/signin"; // 로그인 페이지로 리다이렉트
+	}
+
 	
 	@GetMapping("/updateUser")
 	public String updateUser(@RequestParam("user_number") int userNumber, Model model, HttpSession session, RedirectAttributes redirectAttributes) 
