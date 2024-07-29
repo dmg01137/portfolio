@@ -582,32 +582,52 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         });
-        function renderPagination() {
-        	   var totalPages = Math.ceil(eventDetailsData.length / rowsPerPage);
-        	   var paginationHTML = '';
 
-        	   paginationHTML += '<li class="page-item ' + (currentPage === 1 ? 'disabled' : '') + '">' +
-        	      '<a class="page-link" href="#" onclick="loadPreviousData()">Previous</a>' +
-        	      '</li>';
+     // Function to render pagination links
+     function renderPagination() {
+         var totalPages = Math.ceil(totalLogs / rowsPerPage);
+         var paginationHTML = '';
 
-        	   for (var i = 1; i <= totalPages; i++) {
-        	      paginationHTML += '<li class="page-item ' + (currentPage === i ? 'active' : '') + '">' +
-        	         '<a class="page-link" href="#" onclick="changePage(' + i + ')">' + i + '</a>' +
-        	         '</li>';
-        	   }
+         paginationHTML += '<li class="page-item ' + (currentPage === 1 ? 'disabled' : '') + '">' +
+             '<a class="page-link" href="#" onclick="loadPreviousData()">Previous</a>' +
+             '</li>';
 
-        	   paginationHTML += '<li class="page-item ' + (currentPage === totalPages ? 'disabled' : '') + '">' +
-        	      '<a class="page-link" href="#" onclick="loadMoreData()">Next</a>' +
-        	      '</li>';
+         for (var i = 1; i <= totalPages; i++) {
+             paginationHTML += '<li class="page-item ' + (currentPage === i ? 'active' : '') + '">' +
+                 '<a class="page-link" href="#" onclick="changePage(' + i + ')">' + i + '</a>' +
+                 '</li>';
+         }
 
-        	   document.getElementById('pagination').innerHTML = paginationHTML;
-        	}
+         paginationHTML += '<li class="page-item ' + (currentPage === totalPages ? 'disabled' : '') + '">' +
+             '<a class="page-link" href="#" onclick="loadMoreData()">Next</a>' +
+             '</li>';
 
-        	// Function to change page directly
-        	function changePage(page) {
-        	   currentPage = page;
-        	   displayLogs();
-        	}
+         document.getElementById('pagination').innerHTML = paginationHTML;
+     }
+
+
+  // Function to load previous page data
+  function loadPreviousData() {
+      if (currentPage > 1) {
+          currentPage--;
+          displayLogs();
+      }
+  }
+
+  // Function to load next page data
+  function loadMoreData() {
+      var totalPages = Math.ceil(totalLogs / rowsPerPage);
+      if (currentPage < totalPages) {
+          currentPage++;
+          displayLogs();
+      }
+  }
+
+  // Function to change page directly
+  function changePage(page) {
+      currentPage = page;
+      displayLogs();
+  }
 
         	// Example of how to fetch data and populate eventDetailsData
         	function fetchAndPopulateEventTable() {
