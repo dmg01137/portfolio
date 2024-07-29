@@ -43,7 +43,7 @@
         LIMIT 5;
     </select>
 
-    <!-- Top 3 패턴 조합 조회 -->
+    <!-- Top 5 패턴 조합 조회 -->
     <select id="findTopPatternCombinations"
             resultType="java.util.Map">
         SELECT CONCAT(pattern1, ',', pattern2, ',', pattern3) AS combined_pattern,
@@ -51,7 +51,7 @@
         FROM log_db.${tableName}
         GROUP BY combined_pattern
         ORDER BY pattern_count DESC
-        LIMIT 3;
+        LIMIT 5;
     </select>
 
     <!-- 모든 패턴 로그를 최신 순으로 조회 -->

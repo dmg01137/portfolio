@@ -6,7 +6,7 @@
     <title>CentrinOs DBMS Solution</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
- <style>
+   <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #222;
@@ -46,7 +46,7 @@
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             height: 100vh;
             z-index: 1160; /* Ensure it's above other content */
-            overflow: auto; /* 추가된 스타일 */
+            overflow: auto;
         }
         .sidebar-heading {
             font-size: 1.2rem;
@@ -64,16 +64,19 @@
             color: #fff;
         }
         .content-area {
+            margin-top: 10px;
+            margin-bottom: 50px;
             background-color: #222;
-            margin-left: 220px; /* 사이드바의 너비에 맞춰서 설정 */
+            margin-left: 220px; /* Adjusted to match sidebar width */
             padding: 5px;
             transition: all 0.3s ease;
             overflow-y: auto;
-            height: calc(100vh - 100px);
             position: relative;
-            z-index: 900; /* 사이드바와 드롭다운 메뉴보다 아래에 있도록 */
+            z-index: 900; /* Ensure it's above other content */
+            border-radius: 10px; /* Rounded corners for the container */
         }
         .chart-container {
+            margin-top: 20px;
             background-color: #333;
             color: #fff;
             padding: 10px 20px 10px 10px;
@@ -83,6 +86,7 @@
             margin-left: 10px;
         }
         .chart-container h4 {
+            margin-top: 50px;
             color: #fff;
             background-color: #222;
         }
@@ -92,6 +96,8 @@
             border-radius: 5px;
         }
         .search-form {
+        font-size:10px;
+            margin-left: 20px;
             margin-bottom: 2px;
             background-color: #333;
             padding: 2px;
@@ -104,7 +110,7 @@
         .search-form input[type="text"],
         .search-form button {
             border-radius: 3px;
-            min-width: 60px;
+            min-width: 30px;
             background-color: #444;
             color: #fff;
         }
@@ -140,16 +146,18 @@
         .search-form button.btn-secondary:hover {
             background-color: #5a6268;
         }
-      .event-table {
-     background-color: #333;
-    color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    overflow: auto;
-    width: 100%;
-    max-width: 100%;
-    max-height: 400px;
-}
+        .event-table {
+            background-color: #333;
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: auto;
+            margin: 0 auto; /* Center the table horizontally */
+            width: 100%; /* Adjust width as needed */
+            max-width: 100%; /* Ensure it doesn't overflow horizontally */
+            height: 300px; /* Fixed height for the table */
+            font-size:10px;
+        }
         .event-table th,
         .event-table td {
             background-color: #333;
@@ -158,14 +166,13 @@
             vertical-align: middle;
             font-size: 12px;
             white-space: nowrap;
-            padding: 8px;
+            padding: 12px;
         }
         .event-table thead {
             background-color: #333;
-            color: #fff;
         }
         .event-table tbody tr:hover {
-            background-color: #333;
+            background-color: #444;
         }
         @media (max-width: 768px) {
             .sidebar {
@@ -186,21 +193,19 @@
                 margin-bottom: 5px;
                 width: 100%;
             }
-.pagination {
-    background-color: #444; /* 배경색 */
-    border-radius: 5px; /* 모서리 둥글게 */
-}
-
-.pagination .page-item .page-link {
-    color: #fff; /* 글자색 */
-    background-color: #444; /* 배경색 */
-    border-color: #555; /* 테두리 색상 */
-}
-
-.pagination .page-item .page-link:hover {
-    background-color: #555; /* 호버 시 배경색 */
-    border-color: #555; /* 호버 시 테두리 색상 */
-}
+            .pagination {
+                background-color: #444; /* 배경색 */
+                border-radius: 5px; /* 모서리 둥글게 */
+            }
+            .pagination .page-item .page-link {
+                color: #fff; /* 글자색 */
+                background-color: #444; /* 배경색 */
+                border-color: #555; /* 테두리 색상 */
+            }
+            .pagination .page-item .page-link:hover {
+                background-color: #555; /* 호버 시 배경색 */
+                border-color: #555; /* 호버 시 테두리 색상 */
+            }
         }
         .dropdown-menu {
             background-color: #222;
@@ -216,26 +221,20 @@
             color: #fff;
         }
         .pagination-btns .btn-primary {
-    background-color: #333; /* 배경색 */
-    border-color: #333; /* 테두리 색상 */
-    color: #fff; /* 글자색 */
-}
-
-.pagination-btns .btn-primary:hover {
-    background-color: #444; /* 호버 시 배경색 */
-    border-color: #444; /* 호버 시 테두리 색상 */
-}
-
-.pagination-btns #previousBtn:hover {
-    border-color: #444; /* 이전 버튼 호버 시 테두리 색상 */
-}
-
-.pagination-btns #loadMoreBtn:hover {
-    border-color: #444; /* 다음 버튼 호버 시 테두리 색상 */
-}
-
-        
-        
+            background-color: #333; /* 배경색 */
+            border-color: #333; /* 테두리 색상 */
+            color: #fff; /* 글자색 */
+        }
+        .pagination-btns .btn-primary:hover {
+            background-color: #444; /* 호버 시 배경색 */
+            border-color: #444; /* 호버 시 테두리 색상 */
+        }
+        .pagination-btns #previousBtn:hover {
+            border-color: #444; /* 이전 버튼 호버 시 테두리 색상 */
+        }
+        .pagination-btns #loadMoreBtn:hover {
+            border-color: #444; /* 다음 버튼 호버 시 테두리 색상 */
+        }
     </style>
 </head>
 <body>
@@ -283,27 +282,27 @@
     </ul>
 </div>
 
-   <div class="content-area">
-      <div class="container">
-         <div class="chart-container">
+  <div class="content-area">
+    <div class="container">
+        <div class="chart-container">
             <div class="row">
-               <div class="col-md-6">
-                  <h5 class="text-center mb-4">오늘 패턴 IP 탐지 이벤트 Top 5</h5>
-                  <canvas id="sourceIPChart"></canvas>
-               </div>
-               <div class="col-md-6">
-                  <h5 class="text-center mb-4">오늘 행동 IP 탐지 이벤트 Top 5</h5>
-                  <canvas id="destinationIPChart"></canvas>
-               </div>
-
+                <div class="col-md-4">
+                    <h5 class="text-center mb-4">오늘 패턴 탐지 이벤트 Top 5</h5>
+                    <canvas id="patternDetectionChart" style="height: 2000px;"></canvas>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-center mb-4">오늘 패턴 IP 탐지 이벤트 Top 5</h5>
+                    <canvas id="sourceIPChart" style="height: 2000px;"></canvas>
+                </div>
+                
+                <div class="col-md-4">
+                    <h5 class="text-center mb-4">오늘 행동 IP 탐지 이벤트 Top 5</h5>
+                    <canvas id="destinationIPChart" style="height: 2000px;"></canvas>
+                </div>
             </div>
-            <div class="row mt-4">
-               <div class="col-md-5">
-                  <h5 class="text-center mb-4">오늘 패턴 탐지 이벤트 Top 3</h5>
-                  <canvas id="patternDetectionChart"></canvas>
-               </div>
-               <div class="col-md-7">
-                  <h5 class="text-center mb-4">오늘 일일 경보 발생 현황</h5>
+               <div class="row">
+               <div class="col-md-10" >
+                  <h5 class="text-center mb-9"  >오늘 일일 경보 발생 현황</h5>
                   <div class="search-form">
                      <select id="searchType" class="form-control mb-2 mr-sm-2">
                         <option value="time">시간</option>
@@ -326,13 +325,13 @@
                         <thead>
                            <tr>
                               <th>시간</th>
-                              <th>출발 IP</th>
-                              <th>sPort</th>
-                              <th>목적 IP</th>
-                              <th>dPort</th>
-                              <th>1</th>
-                              <th>2</th>
-                              <th>3</th>
+                              <th>출발지IP</th>
+                              <th>출발지Port</th>
+                              <th>목적지IP</th>
+                              <th>목적지Port</th>
+                              <th>패턴1</th>
+                              <th>패턴2</th>
+                              <th>패턴3</th>
                            </tr>
                         </thead>
                         <tbody id="eventTableBody">
@@ -349,14 +348,13 @@
        <i class="fas fa-chevron-right"></i>
     </button>
 </div>
+        </div>
+    </div>
+</div>
+
+          
 
 
-                              
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
 	 <!-- 필수 라이브러리 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
  <!-- jQuery -->
@@ -397,61 +395,67 @@
             .catch(error => console.error('데이터 가져오기 오류:', error));
     }
     // 출발지 IP 탐지 이벤트 Top 5 차트 업데이트 함수
-    function updateSourceIPChart(topSIPs) {
-        var labels = topSIPs.map(item => item.s_ip);
-        var data = topSIPs.map(item => item.ip_count);
+   function updateSourceIPChart(topSIPs) {
+    var labels = topSIPs.map(item => item.s_ip);
+    var data = topSIPs.map(item => item.ip_count);
 
-        var ctxSourceIP = document.getElementById('sourceIPChart').getContext('2d');
-        var sourceIPChart = new Chart(ctxSourceIP, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: '출발지 IP 이벤트',
-                    data: data,
-                    backgroundColor: '#3498db', // 색상 변경
-                    borderWidth: 1
+    var ctxSourceIP = document.getElementById('sourceIPChart').getContext('2d');
+    var gradient = ctxSourceIP.createLinearGradient(0, 0, 400, 0); // Adjust gradient direction
+    gradient.addColorStop(0, '#85c1e9'); // 첫 번째 색상
+    gradient.addColorStop(1, '#3498db'); // 두 번째 색상
+    var sourceIPChart = new Chart(ctxSourceIP, {
+        type: 'horizontalBar', // Change type to horizontalBar
+        data: {
+            labels: labels,
+            datasets: [{
+                label: '출발지 IP 이벤트',
+                data: data,
+                backgroundColor: gradient, // 그라데이션 색상 적용
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
                 }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
             }
-        });
-    }
+        }
+    });
+}
  // 행동지 IP 탐지 이벤트 Top 5 차트 업데이트 함수
-    function updateDestinationIPChart(topSIPs) {
-        var labels = topSIPs.map(item => item.s_ip);
-        var data = topSIPs.map(item => item.ip_count);
+  function updateDestinationIPChart(topSIPs) {
+    var labels = topSIPs.map(item => item.s_ip);
+    var data = topSIPs.map(item => item.ip_count);
 
-        var ctxDestinationIP = document.getElementById('destinationIPChart').getContext('2d');
-        var destinationIPChart = new Chart(ctxDestinationIP, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: '행동지 IP 탐지 이벤트',
-                    data: data,
-                    backgroundColor: '#e74c3c', // 막대 색상
-                    borderWidth: 1
+    var ctxDestinationIP = document.getElementById('destinationIPChart').getContext('2d');
+    var gradientDestinationIP = ctxDestinationIP.createLinearGradient(0, 0, 400, 0); // Adjust gradient direction
+    gradientDestinationIP.addColorStop(0, '#f1948a'); // 첫 번째 색상
+    gradientDestinationIP.addColorStop(1, '#e74c3c'); // 두 번째 색상
+    var destinationIPChart = new Chart(ctxDestinationIP, {
+        type: 'horizontalBar', // Change type to horizontalBar
+        data: {
+            labels: labels,
+            datasets: [{
+                label: '행동지 IP 탐지 이벤트',
+                data: data,
+                backgroundColor: gradientDestinationIP, // 그라데이션 색상 적용
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
                 }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
             }
-        });
-    }
+        }
+    });
+}
 
     // Call the update function on page load
     document.addEventListener('DOMContentLoaded', function() {
@@ -461,8 +465,7 @@
 
 
 
-
-    // 패턴 탐지 이벤트 Top 3 차트 업데이트 함수
+ // 패턴 탐지 이벤트 Top 3 차트 업데이트 함수
     function updatePatternDetectionChart(topPatterns) {
         var labels = topPatterns.map(item => item.combined_pattern);
         var data = topPatterns.map(item => item.pattern_count);
@@ -475,12 +478,13 @@
                 datasets: [{
                     label: '패턴 이벤트',
                     data: data,
-                    backgroundColor: ['#f39c12', '#e74c3c', '#f1c40f'], // 색상 변경
+                    backgroundColor: ['#f1948a', '#f7dc6f', '#85c1e9'], // 변경할 색상을 여기에 추가 (파스텔톤 색상)
                     borderWidth: 1
                 }]
             }
         });
     }
+
 
     // 서버에서 데이터를 가져와 이벤트 테이블을 채우는 함수
     function fetchAndPopulateEventTable() {
