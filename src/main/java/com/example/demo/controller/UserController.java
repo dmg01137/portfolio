@@ -64,18 +64,9 @@ public class UserController
 	
 	
 	@GetMapping("/addNomalUser")
-	public String addNomalUser(HttpSession session, Model model) 
+	public String addNomalUser() 
 	{		
-		Users user = (Users)session.getAttribute("user");
-		  
-		  if(user == null) 
-		  { 
-			  return "signin"; 
-		  } 
 		
-		int lastUserNumber = userService.getLastUserNumber() + 1;
-		model.addAttribute("user_number", lastUserNumber);
-		 
 	    return "addNomalUser";
 	}
 
