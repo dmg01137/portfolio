@@ -65,9 +65,9 @@
         }
         .content-area {
             margin-top: 10px;
-            margin-bottom: 50px;
+         
             background-color: #222;
-            margin-left: 220px; /* Adjusted to match sidebar width */
+            margin-left: 200px; /* Adjusted to match sidebar width */
             padding: 5px;
             transition: all 0.3s ease;
             overflow-y: auto;
@@ -96,8 +96,7 @@
             border-radius: 5px;
         }
         .search-form {
-        font-size:10px;
-            margin-left: 20px;
+            margin-left: 200px;
             margin-bottom: 2px;
             background-color: #333;
             padding: 2px;
@@ -110,7 +109,7 @@
         .search-form input[type="text"],
         .search-form button {
             border-radius: 3px;
-            min-width: 30px;
+            min-width: 60px;
             background-color: #444;
             color: #fff;
         }
@@ -146,33 +145,58 @@
         .search-form button.btn-secondary:hover {
             background-color: #5a6268;
         }
-        .event-table {
+       .event-table {
+            margin: 10px 150px  50px 150px; /* Center vertically and horizontally */
             background-color: #333;
             color: #fff;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             overflow: auto;
-            margin: 0 auto; /* Center the table horizontally */
-            width: 100%; /* Adjust width as needed */
-            max-width: 100%; /* Ensure it doesn't overflow horizontally */
-            height: 300px; /* Fixed height for the table */
-            font-size:10px;
+            width: 95%;
+            max-width: 100%;
+            font-size: 12px; /* Adjusted font size for better readability */
+            max-height: 300px; /* Max height for the table */
+            
         }
+.center-text {
+margin-left: 150px;
+    text-align: center;
+    margin-bottom: 20px; /* Adjust margin as needed */
+}
+
         .event-table th,
         .event-table td {
+         width: 900px;
+        
             background-color: #333;
             color: #fff;
-            text-align: center;
-            vertical-align: middle;
-            font-size: 12px;
+             text-align: center;
+    vertical-align: middle;
+    padding: 12px 8px; /* Adjusted padding */
+            font-size: 10px;
             white-space: nowrap;
-            padding: 12px;
+           
         }
         .event-table thead {
             background-color: #333;
         }
         .event-table tbody tr:hover {
             background-color: #444;
+        }
+        .pagination-btns .btn-primary {
+            background-color: #333; /* 배경색 */
+            border-color: #333; /* 테두리 색상 */
+            color: #fff; /* 글자색 */
+        }
+        .pagination-btns .btn-primary:hover {
+            background-color: #444; /* 호버 시 배경색 */
+            border-color: #444; /* 호버 시 테두리 색상 */
+        }
+        .pagination-btns #previousBtn:hover {
+            border-color: #444; /* 이전 버튼 호버 시 테두리 색상 */
+        }
+        .pagination-btns #loadMoreBtn:hover {
+            border-color: #444; /* 다음 버튼 호버 시 테두리 색상 */
         }
         @media (max-width: 768px) {
             .sidebar {
@@ -183,8 +207,10 @@
                 z-index: 0;
             }
             .content-area {
-                margin-left: 0;
+                margin-left: 200px; /* Adjusted to match sidebar width */
+                /* Other existing styles */
             }
+
             .search-form {
                 flex-direction: column;
             }
@@ -194,6 +220,7 @@
                 width: 100%;
             }
             .pagination {
+            
                 background-color: #444; /* 배경색 */
                 border-radius: 5px; /* 모서리 둥글게 */
             }
@@ -219,21 +246,6 @@
         .dropdown-menu .dropdown-item:hover {
             background-color: #333;
             color: #fff;
-        }
-        .pagination-btns .btn-primary {
-            background-color: #333; /* 배경색 */
-            border-color: #333; /* 테두리 색상 */
-            color: #fff; /* 글자색 */
-        }
-        .pagination-btns .btn-primary:hover {
-            background-color: #444; /* 호버 시 배경색 */
-            border-color: #444; /* 호버 시 테두리 색상 */
-        }
-        .pagination-btns #previousBtn:hover {
-            border-color: #444; /* 이전 버튼 호버 시 테두리 색상 */
-        }
-        .pagination-btns #loadMoreBtn:hover {
-            border-color: #444; /* 다음 버튼 호버 시 테두리 색상 */
         }
     </style>
 </head>
@@ -302,7 +314,8 @@
             </div>
                <div class="row">
                <div class="col-md-10" >
-                  <h5 class="text-center mb-9"  >오늘 일일 경보 발생 현황</h5>
+               <h5 class="center-text">오늘 일일 경보 발생 현황</h5>
+
                   <div class="search-form">
                      <select id="searchType" class="form-control mb-2 mr-sm-2">
                         <option value="time">시간</option>
@@ -338,8 +351,7 @@
                            <!-- 여기에 서버에서 동적으로 데이터가 추가됩니다 -->
                         </tbody>
                      </table>
-               
-      </div>
+                   
 <div class="pagination-btns">
     <button class="btn btn-primary" id="previousBtn" onclick="loadPreviousData()" disabled>
         <i class="fas fa-chevron-left"></i>
@@ -351,7 +363,8 @@
         </div>
     </div>
 </div>
-
+ </div>
+      </div> </div>  
           
 
 

@@ -120,7 +120,6 @@
 .searchContainer {
     text-align: center;
     margin-top: 20px;
-    
 }
 
 .searchForm {
@@ -134,8 +133,7 @@
 
 .searchForm .searchInput {
     margin-bottom: 2px;
-    font-size: 0.5rem;
-    
+    font-size: 0.6rem;
      background-color: #444; /* 입력 필드 배경색 설정 */
     color: #fff; /* 입력 필드 텍스트 색상 설정 */
     border: 1px solid #555; /* 입력 필드 테두리 색상 설정 */
@@ -143,6 +141,82 @@
 .btn-detail {
     padding: 0.25rem 0.5rem; /* 버튼 내부 패딩 설정 */
     font-size: 0.75rem; /* 버튼 텍스트 사이즈 설정 */
+}
+
+/* Clear 버튼 스타일 */
+.searchForm .btn-secondary {
+    background-color: #8a8888;
+    color: #fff;
+    border: none;
+}
+
+.searchForm .btn-secondary:hover {
+    background-color: #656565;
+}
+/* Search 버튼 스타일 */
+.searchForm .btn-info {
+    background-color: #17a2b8; /* 상세조회 버튼 색상 */
+    color: #fff;
+    border: none;
+}
+
+.searchForm .btn-info:hover {
+    background-color: #117a8b; /* 상세조회 버튼 호버 색상 */
+}
+
+
+.searchForm .form-group {
+    width: calc(25% - 10px); /* Adjusted width for medium screens */
+    margin-bottom: 10px; /* Space between each form group vertically */
+    margin-right: 10px; /* Space between each form group horizontally */
+}
+
+@media (max-width: 1200px) {
+    .searchForm .form-group {
+        width: calc(25% - 10px); /* Adjusted width for medium screens */
+    }
+}
+
+@media (max-width: 992px) {
+    .searchForm .form-group {
+         width: calc(25% - 10px); /* Adjusted width for medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .searchForm .form-group {
+       width: calc(25% - 10px); /* Adjusted width for medium screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .searchForm .form-group {
+        width: 100%; /* Full width for extra small screens */
+    }
+}
+
+.searchButtons {
+
+    text-align: center; /* Center align the buttons */
+    margin-top: 10px; /* Space from the form groups */
+}
+
+.searchButtons .btn {
+    margin-right: 5px; /* Space between buttons */
+}
+.btn {
+    padding: 0.375rem 1rem 0.375rem 1rem; /* Adjusted button padding for consistency */
+    font-size: 0.85rem; /* Adjusted button font size */
+    line-height: 1;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+      
+}
+
+.btn-detail {
+    padding: 0.25rem 0.5rem; /* Slightly adjusted padding for detail button */
+    font-size: 0.75rem; /* Adjusted font size for detail button */
 }
 
         .clearButton, .searchButton {
@@ -205,6 +279,18 @@
     background-color: #555; /* 호버 시 배경색 */
     border-color: #555; /* 호버 시 테두리 색상 */
 }
+        .searchForm .form-group:nth-child(3) {
+    margin-bottom: 10px; /* Adjust the margin-bottom for the third form group */
+}
+
+.searchButtons {
+    text-align: center;
+  
+}
+
+.searchButtons .btn {
+    margin-right: 10px; /* Adjust the margin between the buttons */
+}
         
     </style>
 </head>
@@ -252,59 +338,61 @@
 <div class="container">
     <div class="searchContainer">
         <h3 style="text-align: center; margin-top: 20px;">패턴 로그</h3>
-        <div class="searchForm">
-            <div style="flex: 1;">
-                <input type="date" id="date" class="form-control searchInput" placeholder="날짜">
-            </div>
-            <div style="flex: 1;">
-                <input type="number" id="id" class="form-control searchInput" placeholder="번호" required>
-            </div>
-       
-            <div style="flex: 1;">
-                <input type="date" id="time" class="form-control searchInput" placeholder="탐지시간">
-            </div>
-            <div style="flex: 1;">
-                <input type="text" id="sIp" class="form-control searchInput" placeholder="출발지IP">
-            </div>
-            <div style="flex: 1;">
-                <input type="text" id="sPort" class="form-control searchInput" placeholder="sPORT">
-            </div>
-            <div style="flex: 1;">
-                <input type="text" id="dIp" class="form-control searchInput" placeholder="도착지IP">
-            </div>
-            <div style="flex: 1;">
-                <input type="text" id="dPort" class="form-control searchInput" placeholder="dPORT">
-            </div>
-            <div style="flex: 1;">
-    <select id="actionType" class="form-control searchInput">
-        <option value="">액션타입</option>
-        <option value="0">로깅</option>
-        <option value="1">로깅 + 차단</option>
-    </select>
+      <div class="searchForm">
+    <div class="form-group">
+        <input type="date" id="date" class="form-control searchInput" placeholder="날짜">
+    </div>
+    <div class="form-group">
+        <input type="number" id="id" class="form-control searchInput" placeholder="번호" required>
+    </div>
+    <div class="form-group">
+        <input type="date" id="time" class="form-control searchInput" placeholder="탐지시간">
+    </div>
+    <div class="form-group">
+        <input type="text" id="sIp" class="form-control searchInput" placeholder="출발지IP">
+    </div>
+    <div class="form-group">
+        <input type="text" id="sPort" class="form-control searchInput" placeholder="sPORT">
+    </div>
+    <div class="form-group">
+        <input type="text" id="dIp" class="form-control searchInput" placeholder="도착지IP">
+    </div>
+    <div class="form-group">
+        <input type="text" id="dPort" class="form-control searchInput" placeholder="dPORT">
+    </div>
+    <div class="form-group">
+        <select id="actionType" class="form-control searchInput">
+            <option value="">액션타입</option>
+            <option value="0">로깅</option>
+            <option value="1">로깅 + 차단</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="text" id="len" class="form-control searchInput" placeholder="패킷길이">
+    </div>
+    <div class="form-group">
+        <input type="text" id="policy_name" class="form-control searchInput" placeholder="정책이름">
+    </div>
+    <div class="form-group">
+        <input type="text" id="pattern1" class="form-control searchInput" placeholder="패턴1">
+    </div>
+    <div class="form-group">
+        <input type="text" id="pattern2" class="form-control searchInput" placeholder="패턴2">
+    </div>
+    <div class="form-group">
+        <input type="text" id="pattern3" class="form-control searchInput" placeholder="패턴3">
+    </div>
+    <div class="searchButtons">
+    <button id="searchButton" class="btn btn-info">검색</button>
+    <button id="clearButton" class="btn btn-secondary">초기화</button>
+
+</div>
+     <div class="form-group"></div>
+          <div class="form-group"></div>
+             
 </div>
 
-            <div style="flex: 1;">
-                <input type="text" id="len" class="form-control searchInput" placeholder="패킷길이">
-            </div>
-            <div style="flex: 1;">
-                <input type="text" id="policy_name" class="form-control searchInput" placeholder="정책이름">
-            </div>
-            <div style="flex: 1;">
-                <input type="text" id="pattern1" class="form-control searchInput" placeholder="패턴1">
-            </div>
-            <div style="flex: 1;">
-                <input type="text" id="pattern2" class="form-control searchInput" placeholder="패턴2">
-            </div>
-            <div style="flex: 1;">
-                <input type="text" id="pattern3" class="form-control searchInput" placeholder="패턴3">
-            </div>
-           
-        </div>
-        <div class="searchButtons" style="text-align: center; margin-top: 10px;">
-          <button id="searchButton" class="btn btn-info">검색</button>
-
-				<button id="clearButton" class="btn btn-secondary">초기화</button>
-        </div>
+      
     </div>
     <!-- 로그를 표시할 테이블 -->
     <div class="table-responsive">
