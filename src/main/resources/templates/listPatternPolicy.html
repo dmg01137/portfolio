@@ -8,7 +8,7 @@
 <link rel="stylesheet"
    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <style>
+   <style>
 /* 기본 스타일 설정 */
 th {
     cursor: pointer;
@@ -274,21 +274,6 @@ body {
     margin-left: 145px; /* 사이드바 너비만큼 왼쪽 여백 추가 */
     padding-top: 60px; /* 네비게이션 바 높이만큼 상단 여백 추가 */
 }
-.dropdown-menu {
-    background-color: #222;
-    border: none;
-    position: relative; /* 드롭다운 메뉴의 위치 조정 */
-    z-index: 1050; /* 다른 요소 위에 표시되도록 z-index 설정 */
-}
-
-.dropdown-menu .dropdown-item {
-    color: #d1d1d1;
-}
-
-.dropdown-menu .dropdown-item:hover {
-    background-color: #333;
-    color: #fff;
-}
 
     </style>
 </head>
@@ -319,29 +304,19 @@ body {
       </div>   
       
    </nav>
-  <div class="sidebar">
-    <h5 class="sidebar-heading">메뉴</h5>
-    <ul class="nav flex-column nav-sidebar">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="pattern-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-shield-alt mr-1"></i> 패턴 정책
-            </a>
-            <div class="dropdown-menu" aria-labelledby="pattern-dropdown">
-                <a class="dropdown-item" href="/listPatternPolicy">패턴 정책 리스트</a>
-                <a class="dropdown-item" href="/addPatternPolicy">패턴 정책 추가</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="behavior-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-shield-alt mr-1"></i> 행동 정책
-            </a>
-            <div class="dropdown-menu" aria-labelledby="behavior-dropdown">
-                <a class="dropdown-item" href="/listBehaviorPolicy">행동 정책 리스트</a>
-                <a class="dropdown-item" href="/addBehaviorPolicy">행동 정책 추가</a>
-            </div>
-        </li>
-    </ul>
-</div>
+<div class="sidebar">
+		<h5 class="sidebar-heading">메뉴</h5>
+		<ul class="nav flex-column nav-sidebar">
+			<li class="nav-item"><a class="nav-link" href="/listPatternPolicy"><i
+					class="fas fa-file-alt mr-1"></i>패턴 정책 관리</a></li>
+			<li class="nav-item"><a class="nav-link" href="/addPatternPolicy"><i
+					class="fas fa-file-alt mr-1"></i>패턴 정책 추가</a></li>
+			<li class="nav-item"><a class="nav-link" href="/listBehaviorPolicy"><i
+					class="fas fa-file-alt mr-1"></i>행동 정책 관리</a></li>
+			<li class="nav-item"><a class="nav-link" href="/addBehaviorPolicy"><i
+					class="fas fa-file-alt mr-1"></i>행동 정책 추가</a></li>						
+		</ul>
+	</div>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -363,7 +338,7 @@ body {
                             <div class="search-section">
                                 <div class="form-group">
                                     <label for="detection_number">패턴 정책 번호</label>
-                                    <input type="number" class="form-control" id="detection_number" name="detection_number" th:value="${param.detection_number}" placeholder="no.">
+                                    <input type="number" step="1" class="form-control" id="detection_number" name="detection_number" th:value="${param.detection_number}" min="1" placeholder="no.">
                                 </div>
                                 <div class="form-group">
                                     <label for="s_to_ip">범위 IP</label>
@@ -383,11 +358,11 @@ body {
                                 </div>
                                 <div class="form-group">
                                     <label for="s_port">출발지 PORT</label>
-                                    <input type="number" class="form-control" id="s_port" name="s_port" th:value="${param.s_port}" placeholder="s_port">
+                                    <input type="number" step="1" class="form-control" id="s_port" name="s_port" th:value="${param.s_port}" min="1" placeholder="s_port">
                                 </div>
                                 <div class="form-group">
                                     <label for="d_port">목적지 PORT</label>
-                                    <input type="number" class="form-control" id="d_port" name="d_port" th:value="${param.d_port}" placeholder="d_port">
+                                    <input type="number" step="1" class="form-control" id="d_port" name="d_port" th:value="${param.d_port}" min="1" placeholder="d_port">
                                 </div>
                                 <div class="form-group">
                                     <label for="create_dt_from">생성 일자(from)</label>
@@ -410,7 +385,7 @@ body {
                                      	<select class="form-control" id="action_type" name="action_type">
                                      		<option value="" ></option>
 								        	<option value="0" th:selected="${param.action_type == 0}">로깅</option>
-								        	<option value="1" th:selected="${param.action_type == 1}">로깅 + 차단</option>
+								        	<option value="1" th:selected="${param.action_type == 1}"></option>
 								   	 	</select>
                                 </div>
                                 <div class="form-group">
@@ -561,7 +536,7 @@ body {
                 searchForm.classList.add("show");
                 toggleButton.setAttribute("aria-expanded", "true");
             }
-
+           
             // 버튼 클릭 시 상태 저장
             toggleButton.addEventListener("click", function() {
                 const isExpanded = toggleButton.getAttribute("aria-expanded") === "true";
@@ -658,6 +633,7 @@ body {
             sortColumns = [];
             updateHeaders();
         }
+        
     </script>
 </body>
 </html>

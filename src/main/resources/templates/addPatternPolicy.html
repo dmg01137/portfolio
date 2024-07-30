@@ -35,6 +35,9 @@
     .nav-link:hover {
         color: #17a2b8 !important;
     }
+      .nav-sidebar .nav-link-custom {
+        color: #17a2b8 !important; /* 텍스트 색상 변경 */
+    }
 
     .nav-link i {
         margin-right: 5px;
@@ -50,9 +53,7 @@
         background-color: #222;
         color: #fff;
     }
-  .nav-sidebar .nav-link-custom {
-        color: #17a2b8 !important; /* 텍스트 색상 변경 */
-    }
+
     .nav-sidebar .nav-link i {
         margin-right: 10px;
     }
@@ -85,19 +86,21 @@
     body {
         background-color: #222;
         font-family: Arial, sans-serif;
-        padding-top: 80px;
+        padding-top: -100px;
     }
 
-    .container {
-        margin-top: 0px;
-    }
+.container {
+    margin-left: 0px; /* 사이드바 너비만큼 왼쪽 여백 추가 */
+    padding-top: 0px; /* 네비게이션 바 높이만큼 상단 여백 추가 */
+}
 
      .card {
-        margin-top: 10px;
+        margin-top: 100px;
+        margin-bottom: 100px;
         margin-left: auto; /* 카드 가운데 정렬 */
         margin-right: auto; /* 카드 가운데 정렬 */
-        width: 95%;
-        max-width: 1100px;
+        width: 90%;
+        max-width: 800px;
         border-radius: 15px;
         background-color: #3a3a3a; /* 카드 배경색 조정 */
         color: #fff;
@@ -112,8 +115,8 @@
     }
 
       .card-body {
-        padding: 20px;
-        font-size: 13px;
+        padding: 10px;
+        font-size: 10px;
         word-break: break-word;
     }
     .form-group {
@@ -147,24 +150,6 @@
         line-height: 24px;
     }
 
-    .search-section {
-        margin-bottom: 20px;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 10px;
-    }
-
-    .search-section input[type="text"] {
-        width: 100%;
-        padding: 8px;
-        font-size: 14px;
-    }
-
-    .search-section button {
-        padding: 8px 16px;
-        font-size: 14px;
-    }
-
     /* 추가한 부분: 테이블 스타일 수정 */
     .table-container {
         overflow-x: auto;
@@ -181,11 +166,13 @@
 
 .table th, .table td {
     border: 1px solid #444;
-    padding: 8px;
+    padding: 1px 1px; /* 위아래 padding을 2px로 설정 */
     text-align: center;
     vertical-align: middle;
     white-space: nowrap;
     text-overflow: ellipsis;
+    font-size: 15px;
+    margin: 0; /* 추가: 셀 사이의 마진 간격을 없앰 */
 }
 
 .table th {
@@ -315,7 +302,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/listPatternPolicy"><i class="fas fa-file-alt mr-1"></i>정책 관리</a>
+                <a class="nav-link" href="/patternlog"><i class="fas fa-file-alt mr-1"></i>로그 관리</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/listUser"><i class="fas fa-users-cog"></i> 사용자 관리</a>
@@ -354,7 +341,6 @@
                                     <td>
 								        <select class="form-control" name="enable_disable" id="enable_disable" required>
 								            <option value="0">비활성화</option>
-								            <option value="1">활성화</option>
 								        </select>
 								    </td>
                                 </tr>
@@ -434,9 +420,11 @@
 								    </td>
 								</tr>
                                 <tr>
-                                    <td colspan="2" class="text-center">
+                                    <td colspan="1" class="text-center">
                                         <button type="submit" class="btn btn-primary btn-block">추가</button>
-                                        <a href="listPatternPolicy" class="btn btn-secondary btn-block">취소</a>
+                                    </td>
+                                    <td colspan="1" class="text-center">
+                                    <a href="listPatternPolicy" class="btn btn-secondary btn-block">취소</a>
                                     </td>
                                 </tr>
                             </tbody>

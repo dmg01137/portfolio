@@ -131,11 +131,21 @@ public class UsersController {
         
     }
 
-
     // 로그인 페이지로 이동
     @GetMapping("/signin")
-    public String loginForm() {
-        return "signin";
+    public String loginForm(HttpSession session) {
+    	
+    	Users user = (Users)session.getAttribute("user");
+		  
+		  if(user == null) 
+		  { 
+			  return "signin"; 
+		  } 
+		  else 
+		  {
+			  System.out.println("이미 로그인 한 사용자 임 : " + user); 
+			  return "dashboard"; 
+		  } 
     }
 
     // 로그인 처리

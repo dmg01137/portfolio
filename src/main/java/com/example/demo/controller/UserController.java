@@ -32,8 +32,15 @@ public class UserController
 
 	
 	@GetMapping("/addUser")
-	public String addUser(Model model) 
-	{		
+	public String addUser(HttpSession session, Model model) 
+	{	
+		Users user = (Users)session.getAttribute("user");
+		  
+		  if(user == null) 
+		  { 
+			  return "signin"; 
+		  } 
+	
 		int lastUserNumber = userService.getLastUserNumber() + 1;
 		model.addAttribute("user_number", lastUserNumber);
 		 
@@ -57,8 +64,15 @@ public class UserController
 	
 	
 	@GetMapping("/addNomalUser")
-	public String addNomalUser(Model model) 
+	public String addNomalUser(HttpSession session, Model model) 
 	{		
+		Users user = (Users)session.getAttribute("user");
+		  
+		  if(user == null) 
+		  { 
+			  return "signin"; 
+		  } 
+		
 		int lastUserNumber = userService.getLastUserNumber() + 1;
 		model.addAttribute("user_number", lastUserNumber);
 		 
@@ -150,7 +164,7 @@ public class UserController
 	
 	@GetMapping("/updateUser")
 	public String updateUser(@RequestParam("user_number") int userNumber, Model model, HttpSession session, RedirectAttributes redirectAttributes) 
-	{	
+	{		
 		UserDto user = userService.findByUserNumber(userNumber);
 
 		// 모델에 데이터 추가
@@ -173,15 +187,6 @@ public class UserController
 		}
 		return "redirect:/listUser";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	@GetMapping("/deleteUser")
 	public String getDeleteUser()
