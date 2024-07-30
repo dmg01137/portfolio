@@ -40,7 +40,7 @@
         FROM log_db.${tableName}
         GROUP BY s_ip
         ORDER BY ip_count DESC
-        LIMIT 5;
+        LIMIT 10;
     </select>
 
     <!-- Top 5 패턴 조합 조회 -->
@@ -51,7 +51,7 @@
         FROM log_db.${tableName}
         GROUP BY combined_pattern
         ORDER BY pattern_count DESC
-        LIMIT 5;
+        LIMIT 10;
     </select>
 
     <!-- 모든 패턴 로그를 최신 순으로 조회 -->

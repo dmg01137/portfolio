@@ -13,6 +13,7 @@
             margin: 0;
             padding: 0;
             color: #fff;
+            height: 800px;
         }
         .nav-link {
             color: #fff !important;
@@ -35,19 +36,20 @@
         .navbar-brand:hover {
             color: #fff;
         }
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 64px; /* Adjust as needed */
-            width: 220px;
-            background-color: #222;
-            padding-top: 20px;
-            transition: all 0.3s ease;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-            height: 100vh;
-            z-index: 1160; /* Ensure it's above other content */
-            overflow: auto;
-        }
+     .sidebar {
+    position: fixed;
+    left: 0;
+    top: 64px; /* 필요에 따라 조정 */
+    width: 220px;
+    background-color: #222;
+    padding-top: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    height: 100vh; /* 화면 높이에 맞춤 */
+    z-index: 1160; /* 다른 콘텐츠 위로 배치 */
+    overflow-y: auto; /* 사이드바 내 스크롤 처리 */
+}
+
         .sidebar-heading {
             font-size: 1.2rem;
             color: #fff;
@@ -63,18 +65,20 @@
             background-color: #222;
             color: #fff;
         }
-      .content-area {
-    margin-top: 10px;
+    .content-area {
     background-color: #222;
-    margin-left: 240px; /* Adjusted to match sidebar width */
+    margin-left: 240px; /* 사이드바 너비에 맞게 조정 */
+    margin-right: 240px; /* 사이드바 너비에 맞게 조정 */
+    margin-bottom: 240px; /* 사이드바 너비에 맞게 조정 */
     padding: 5px;
     transition: all 0.3s ease;
-    overflow-y: auto;
+    overflow-y: auto; /* 세로 스크롤 자동 */
     position: relative;
-    z-index: 900; /* Ensure it's above other content */
-    border-radius: 10px; /* Rounded corners for the container */
-    width: calc(100% - 240px); /* Calculate the width excluding the sidebar */
+    z-index: 900; /* 다른 콘텐츠 위로 배치 */
+    border-radius: 10px; /* 컨테이너 둥글게 처리 */
+    width: calc(100% - 240px); /* 사이드바 너비 제외한 전체 너비 계산 */
 }
+
 
         .chart-container {
            margin-top: 10px;
@@ -100,57 +104,136 @@
             border-radius: 5px;
              height: 800px;
         }
-        .search-form {
-            margin-left: 200px;
-            margin-bottom: 2px;
-            background-color: #333;
-            padding: 2px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-        }
-        .search-form select,
-        .search-form input[type="text"],
-        .search-form button {
-            border-radius: 3px;
-            min-width: 60px;
-            background-color: #444;
-            color: #fff;
-        }
-        .search-form select {
-            flex: 1;
-            margin-right: 5px;
-            background-color: #444;
-            border: 1px solid #555;
-            padding: 8px;
-        }
-        .search-form input[type="text"] {
-            flex: 2;
-            border: 1px solid #444;
-            padding: 8px;
-            margin-right: 5px;
-            background-color: #333;
-            color: #fff;
-        }
-        .search-form button {
-            background-color: #007bff;
-            color: #fff;
-            padding: 8px 8px 8px 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            border: none;
-        }
-        .search-form button:hover {
-            background-color: #0056b3;
-        }
-        .search-form button.btn-secondary {
-            background-color: #6c757d;
-        }
-        .search-form button.btn-secondary:hover {
-            background-color: #5a6268;
-        }
-  .event-table {
+    
+ .search-form {
+  margin-left: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #333;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin: 20px 0 0 0; /* 상단 마진 조정 */
+        width: 950px; 
+    }
+
+    .search-form select{
+    margin-left: 70px;
+        border-radius: 3px;
+        min-width: 100px; /* 입력 필드의 최소 너비 조정 */
+        background-color: #444;
+        color: #fff;
+        border: none; /* 테두리 제거 */
+        padding: 8px;
+        margin-right: 10px; /* 각 요소 간 간격 조정 */
+        font-size: 14px; /* 폰트 크기 조정 */
+    }
+    .search-form input[type="text"] {
+    margin-left: 5px;
+        border-radius: 3px;
+        min-width: 100px; /* 입력 필드의 최소 너비 조정 */
+        background-color: #444;
+        color: #fff;
+        border: none; /* 테두리 제거 */
+        padding: 8px;
+        margin-right: 10px; /* 각 요소 간 간격 조정 */
+        font-size: 14px; /* 폰트 크기 조정 */
+    }
+    .search-form button {
+    margin-left: 3px;
+        border-radius: 3px;
+        min-width: 100px; /* 입력 필드의 최소 너비 조정 */
+        background-color: #444;
+        color: #fff;
+        border: none; /* 테두리 제거 */
+        padding: 3px;
+        margin-right: 3px; /* 각 요소 간 간격 조정 */
+        font-size: 14px; /* 폰트 크기 조정 */
+    }
+
+    .search-form select {
+        flex: 1; /* 남은 공간을 확보하기 위해 확장 */
+    }
+
+    .search-form input[type="text"] {
+        flex: 2; /* 남은 공간을 확보하기 위해 확장 */
+    }
+
+    .search-form button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 8px 20px; /* 패딩 수정 */
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .search-form button:hover {
+        background-color: #0056b3;
+    }
+
+    .search-form button.btn-secondary {
+        background-color: #6c757d;
+    }
+
+    .search-form button.btn-secondary:hover {
+        background-color: #5a6268;
+    }
+
+ @media (max-width: 768px) {
+    .sidebar {
+        position: static;
+        width: 100%;
+        margin-top: 20px;
+        box-shadow: none;
+        z-index: 0;
+        height: auto; /* 작은 화면에서 사이드바 높이 자동 조정 */
+        overflow-y: auto; /* 사이드바 내 스크롤 처리 */
+    }
+    .content-area {
+        margin-left: 0; /* 작은 화면에서 왼쪽 여백 제거 */
+        width: 100%; /* 작은 화면에서 전체 너비로 설정 */
+    }
+}
+
+.search-form select {
+    flex: 1;
+    margin-right: 5px;
+    background-color: #444;
+    border: 1px solid #555;
+    padding: 8px;
+}
+
+.search-form input[type="text"] {
+    flex: 2;
+    border: 1px solid #444;
+    padding: 8px;
+    margin-right: 5px;
+    background-color: #333;
+    color: #fff;
+}
+
+.search-form button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 12px; /* Adjusted padding for better button size */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+}
+
+.search-form button:hover {
+    background-color: #0056b3;
+}
+
+.search-form button.btn-secondary {
+    background-color: #6c757d;
+}
+
+.search-form button.btn-secondary:hover {
+    background-color: #5a6268;
+}
+ .event-table {
     margin: 5px 10px 10px 10px; /* Center horizontally */
     background-color: #333;
     color: #fff;
@@ -163,15 +246,15 @@
     max-height: 300px; /* Max height for the table */
     table-layout: fixed; /* Fixed table layout */
     min-width: 950px;
+    border: 1px solid #555; /* New border color */
 }
 .center-text {
-margin-left: 150px;
-    text-align: center;
-    margin-bottom: 20px; /* Adjust margin as needed */
-    
+    text-align: center; /* Center the text horizontally */
+    margin-top: 20px; /* Adjusted margin-top */
 }
 
-      
+
+   
 .event-table th,
 .event-table td {
     background-color: #333;
@@ -182,6 +265,7 @@ margin-left: 150px;
     font-size: 10px;
     white-space: nowrap; /* Prevent text wrapping */
     min-width: 10px; /* Adjust as per your content */
+    border: 1px solid #555; /* New border color */
 }
 
 .event-table thead {
@@ -312,24 +396,25 @@ margin-left: 150px;
         <div class="chart-container">
             <div class="row">
                 <div class="col-md-4">
-                    <h5 class="text-center mb-4">오늘 패턴 탐지 이벤트 Top 5</h5>
+                    <h5 class="text-center mb-4">오늘 패턴 탐지 Top 10 </h5>
                     <canvas id="patternDetectionChart" style="height: 200px;"></canvas>
                 </div>
                 <div class="col-md-4">
-                    <h5 class="text-center mb-4">오늘 패턴 IP 탐지 이벤트 Top 5</h5>
+                    <h5 class="text-center mb-4">오늘 패턴 IP Top10</h5>
                     <canvas id="sourceIPChart" style="height: 200px;"></canvas>
                 </div>
                 
                 <div class="col-md-4">
-                    <h5 class="text-center mb-4">오늘 행동 IP 탐지 이벤트 Top 5</h5>
+                    <h5 class="text-center mb-4">오늘 행동 IP Top10</h5>
                     <canvas id="destinationIPChart" style="height:200px;"></canvas>
                 </div>
             </div>
                <div class="row">
                <div class="col-md-10" >
-               <h5 class="center-text">오늘 일일 경보 발생 현황</h5>
+               
 
                   <div class="search-form">
+               <h5 class="center-text">오늘 일일 경보 발생 현황</h5>
                      <select id="searchType" class="form-control mb-2 mr-sm-2">
                         <option value="time">시간</option>
                         <option value="sIP">출발 IP</option>
@@ -494,10 +579,7 @@ margin-left: 150px;
         fetchDataAndRenderCharts(); // 데이터 가져오기 및 차트 렌더링
     });
 
-
-
-
- // 패턴 탐지 이벤트 Top 3 차트 업데이트 함수
+ // 패턴 탐지 이벤트 Top 10 차트 업데이트 함수
     function updatePatternDetectionChart(topPatterns) {
         var labels = topPatterns.map(item => item.combined_pattern);
         var data = topPatterns.map(item => item.pattern_count);
@@ -510,13 +592,33 @@ margin-left: 150px;
                 datasets: [{
                     label: '패턴 이벤트',
                     data: data,
-                    backgroundColor: ['#82ccdd', '#78e08f', '#badc58', '#f9ca24', '#f0932b'], // 다섯 가지 패스텔톤 색상
-                    borderWidth: 1
+                    backgroundColor: [
+                        '#82ccdd', '#78e08f', '#badc58', '#f9ca24', '#f0932b', // 다섯 가지 패스텔톤 색상
+                        '#6ab04c', '#7ed6df', '#b8e994', '#f6b93b', '#e056fd'  // 추가 다섯 가지 색상
+                    ],
+                    borderWidth: 0
                 }]
+            },
+            options: {
+                tooltips: {
+                    enabled: true, // 툴팁 활성화
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            var label = data.labels[tooltipItem.index] || '';
+                            var value = data.datasets[0].data[tooltipItem.index] || '';
+
+                            return label + ': ' + value;
+                        }
+                    }
+                },
+                legend: {
+                    display: false // 범례 숨기기
+                },
+                responsive: false, // 반응형 해제
+                maintainAspectRatio: true // 종횡비 유지
             }
         });
     }
-
 
     // 서버에서 데이터를 가져와 이벤트 테이블을 채우는 함수
     function fetchAndPopulateEventTable() {

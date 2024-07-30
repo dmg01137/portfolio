@@ -191,7 +191,7 @@
         FROM log_db.${tableName}
         GROUP BY s_ip
         ORDER BY ip_count DESC
-        LIMIT 5;
+        LIMIT 10;
     </select>
 
 </mapper>
