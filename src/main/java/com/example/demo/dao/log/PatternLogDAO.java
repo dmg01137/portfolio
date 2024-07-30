@@ -15,8 +15,10 @@ public interface PatternLogDAO {
     // Top 5 s_ip 값 조회
     List<Map<String, Object>> findTopSIPs(@Param("tableName") String tableName);
 
-    // Top 3 패턴 조합 조회
-    List<Map<String, Object>> findTopPatternCombinations(@Param("tableName") String tableName);
+ // Top 3 패턴 조합 조회
+ // findTopPatternCombinations 메서드 추가
+    List<Map<String, Object>> findTopPatternCombinations(@Param("tableName") String tableName, @Param("tableName1") String tableName1);
+
 
     // 모든 패턴 로그 리스트 조회
     List<PatternLog> findAll(@Param("tableName") String tableName);

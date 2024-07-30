@@ -19,6 +19,8 @@
         <result property="packet" column="packet" />
         <result property="actionType" column="action_type" />
     </resultMap>
+    
+
 
     <!-- ID를 기반으로 패턴 로그를 조회합니다 -->
     <select id="findById" resultMap="patternLogResultMap"
@@ -43,16 +45,36 @@
         LIMIT 10;
     </select>
 
-    <!-- Top 10 패턴 조합 조회 -->
-    <select id="findTopPatternCombinations"
-            resultType="java.util.Map">
-        SELECT CONCAT(pattern1, ',', pattern2, ',', pattern3) AS combined_pattern,
-               COUNT(*) AS pattern_count
-        FROM log_db.${tableName}
-        GROUP BY combined_pattern
-        ORDER BY pattern_count DESC
-        LIMIT 10;
-    </select>
+ 
+
+<!-- Top 10 패턴 조합 조회 -->
+<select id="findTopPatternCombinations" resultType="java.util.Map">
+    SELECT combined_pattern, SUM(pattern_count) AS pattern_count
+    FROM (
+        (
+            SELECT CONCAT(pattern1, ',', pattern2, ',', pattern3) AS combined_pattern,
+                   COUNT(*) AS pattern_count
+            FROM log_db.${tableName}
+            GROUP BY combined_pattern
+            ORDER BY pattern_count DESC
+            LIMIT 10
+        )
+        UNION ALL
+        (
+            SELECT CONCAT(pattern1, ',', pattern2, ',', pattern3) AS combined_pattern,
+                   COUNT(*) AS pattern_count
+            FROM log_db.${tableName1}
+            GROUP BY combined_pattern
+            ORDER BY pattern_count DESC
+            LIMIT 10
+        )
+    ) AS combined_patterns
+    GROUP BY combined_pattern
+    ORDER BY pattern_count DESC
+    LIMIT 10;
+</select>
+
+
 
     <!-- 모든 패턴 로그를 최신 순으로 조회 -->
     <select id="findAllOrderedByTimeDesc"

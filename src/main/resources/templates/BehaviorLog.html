@@ -229,7 +229,12 @@
 .pagination .page-item .page-link:hover {
     background-color: #555; /* 호버 시 배경색 */
     border-color: #555; /* 호버 시 테두리 색상 */
-}
+}  .toggle-button {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
@@ -277,8 +282,8 @@
     <div class="container">
         <div class="searchContainer">
             <h3 style="text-align: center; margin-top: 5px;">행동 로그</h3>
-            
-            <div class="searchForm">
+             <button id="toggleButton" class="btn btn-info toggle-button"><i class="fas fa-search"></i> 검색창 On/Off</button>
+              <div class="searchForm" id="searchForm">
                 <div class="form-group">
                     <input type="date" id="date" class="form-control searchInput" placeholder="날짜">
                 </div>
@@ -388,9 +393,24 @@ $(document).ready(function () {
     let totalLogs = 0;
     let logsData = [];
 
-    // 초기 로그 데이터 불러오기
+    
+  // 초기 로그 데이터 불러오기
     fetchAndDisplayLogs();
 
+    let searchFormVisible = true;
+
+    // Toggle button click event
+    $("#toggleButton").click(function () {
+        if (searchFormVisible) {
+            $("#searchForm").hide(); // Hide search form
+            $(this).html('<i class="fas fa-search"></i> 검색창 On/Off'); // Change button text/icon
+        } else {
+            $("#searchForm").show(); // Show search form
+            $(this).html('<i class="fas fa-times"></i> 검색창 On/Off'); // Change button text/icon
+        }
+        searchFormVisible = !searchFormVisible; // Toggle visibility flag
+    });
+  
     // 로그 데이터 불러오고 표시하는 함수
     function fetchAndDisplayLogs() {
         $.get("/api/behaviorlogs", function (data) {

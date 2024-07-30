@@ -44,12 +44,14 @@ public class PatternLogService {
         return patternLogDAO.findTopSIPs("pattern_log_" + LocalDate.now().toString().replace("-", ""));
     }
 
-    // Find top 3 pattern combinations
-    @Transactional(readOnly = true)
-    public List<Map<String, Object>> findTopPatternCombinations() {
-        return patternLogDAO.findTopPatternCombinations("pattern_log_" + LocalDate.now().toString().replace("-", ""));
-    }
 
+ // findTopPatternCombinations 메서드 수정
+ @Transactional(readOnly = true)
+ public List<Map<String, Object>> findTopPatternCombinations() {
+     String patternLogTableName = "pattern_log_" + LocalDate.now().toString().replace("-", "");
+     String behaviorLogTableName = "behavior_log_" + LocalDate.now().toString().replace("-", "");
+     return patternLogDAO.findTopPatternCombinations(patternLogTableName, behaviorLogTableName);
+ }
     // Find all pattern logs ordered by time descending
     @Transactional(readOnly = true)
     public List<PatternLog> findAllOrderedByTimeDesc() {
