@@ -402,7 +402,7 @@
         <div class="chart-container">
             <div class="row">
                 <div class="col-md-4">
-                    <h5 class="text-center mb-4">오늘 패턴 탐지 Top 10 </h5>
+                    <h5 class="text-center mb-4">오늘 탐지 Top 10 </h5>
                     <canvas id="patternDetectionChart" style="height: 200px;"></canvas>
                 </div>
                 <div class="col-md-4">
@@ -475,6 +475,9 @@
     var rowsPerPage = 10;
     var eventDetailsData = []; // 전체 이벤트 데이터를 저장하는 배열
 
+    
+    
+    
     document.addEventListener('DOMContentLoaded', function() {
         fetchDataAndRenderCharts();
         fetchAndPopulateEventTable();
