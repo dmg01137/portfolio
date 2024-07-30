@@ -179,6 +179,22 @@
             padding: 8px 16px;                  /* 버튼의 패딩을 늘려서 크기를 키움 */
             font-size: 16px;                     /* 버튼의 글자 크기를 키움 */
         }
+        
+         .dropdown-menu {
+          background-color: #222;
+          border: none;
+          position: relative; /* 드롭다운 메뉴의 위치 조정 */
+          z-index: 1050; /* 다른 요소 위에 표시되도록 z-index 설정 */
+      }
+      
+      .dropdown-menu .dropdown-item {
+          color: #d1d1d1;
+      }
+      
+      .dropdown-menu .dropdown-item:hover {
+          background-color: #333;
+          color: #fff;
+      }
     </style>
 </head>
 
@@ -252,8 +268,14 @@
 </div>
 
 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
 <script>
 $(document).ready(function () {
     const urlParams = new URLSearchParams(window.location.search);
