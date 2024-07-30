@@ -290,8 +290,26 @@
 
 .searchButtons .btn {
     margin-right: 10px; /* Adjust the margin between the buttons */
+}  
+       
+   #toggleSearchForm {
+    margin-left: 750px;
+    background-color: #17a2b8; /* 수정된 배경색 */
+    color: #fff; /* Text color */
+    border: none;
+    padding: 0.5rem 0.5rem; /* Adjusted padding for button size */
+    font-size: 1rem; /* Font size */
+    border-radius: 0.25rem; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition */
+    margin-top: 10px; /* Adjusted margin */
+    margin-bottom: 10px; /* Adjusted margin */
 }
-        
+
+#toggleSearchForm:hover {
+    background-color: #117a8b; /* Lighter shade on hover for the desired color */
+}
+
     </style>
 </head>
 <body>
@@ -338,6 +356,7 @@
 <div class="container">
     <div class="searchContainer">
         <h3 style="text-align: center; margin-top: 20px;">패턴 로그</h3>
+          <button id="toggleSearchForm" class="btn btn-secondary">search</button>
       <div class="searchForm">
     <div class="form-group">
         <input type="date" id="date" class="form-control searchInput" placeholder="날짜">
@@ -443,6 +462,13 @@ $(document).ready(function () {
 
     fetchAndDisplayLogs();
 
+    $(".searchForm").hide();
+
+    // Toggle button click event
+    $("#toggleSearchForm").click(function () {
+        $(".searchForm").toggle(); // Toggle visibility of search form
+    });
+    
     function fetchAndDisplayLogs() {
         $.get("/api/patternlogs", function (data) {
             logsData = data;

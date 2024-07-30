@@ -229,12 +229,27 @@
 .pagination .page-item .page-link:hover {
     background-color: #555; /* 호버 시 배경색 */
     border-color: #555; /* 호버 시 테두리 색상 */
-}  .toggle-button {
-            position: absolute;
-            right: 20px;
-            top: 10px;
-            z-index: 1000;
-        }
+}   
+     /* Search Button Styling */
+#toggleSearchForm {
+    margin-left: 750px;
+    background-color: #17a2b8; /* 수정된 배경색 */
+    color: #fff; /* Text color */
+    border: none;
+    padding: 0.5rem 0.5rem; /* Adjusted padding for button size */
+    font-size: 1rem; /* Font size */
+    border-radius: 0.25rem; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition */
+    margin-top: 10px; /* Adjusted margin */
+    margin-bottom: 10px; /* Adjusted margin */
+}
+
+#toggleSearchForm:hover {
+    background-color: #117a8b; /* Lighter shade on hover for the desired color */
+}
+
+
     </style>
 </head>
 <body>
@@ -282,7 +297,7 @@
     <div class="container">
         <div class="searchContainer">
             <h3 style="text-align: center; margin-top: 5px;">행동 로그</h3>
-             <button id="toggleButton" class="btn btn-info toggle-button"><i class="fas fa-search"></i> 검색창 On/Off</button>
+              <button id="toggleSearchForm" class="btn btn-secondary">search</button>
               <div class="searchForm" id="searchForm">
                 <div class="form-group">
                     <input type="date" id="date" class="form-control searchInput" placeholder="날짜">
@@ -335,7 +350,7 @@
     </select>
 </div>
 
-            </div>
+            
 			<div class="searchButtons">
 			<button id="searchButton" class="btn btn-info">검색</button>
 
@@ -343,7 +358,7 @@
 			</div>
 			
 		</div>
-
+</div>
 		<div style="overflow-x: auto;">
 			<table id="logTable" class="table">
 				<thead>
@@ -397,18 +412,11 @@ $(document).ready(function () {
   // 초기 로그 데이터 불러오기
     fetchAndDisplayLogs();
 
-    let searchFormVisible = true;
+    $(".searchForm").hide();
 
     // Toggle button click event
-    $("#toggleButton").click(function () {
-        if (searchFormVisible) {
-            $("#searchForm").hide(); // Hide search form
-            $(this).html('<i class="fas fa-search"></i> 검색창 On/Off'); // Change button text/icon
-        } else {
-            $("#searchForm").show(); // Show search form
-            $(this).html('<i class="fas fa-times"></i> 검색창 On/Off'); // Change button text/icon
-        }
-        searchFormVisible = !searchFormVisible; // Toggle visibility flag
+    $("#toggleSearchForm").click(function () {
+        $(".searchForm").toggle(); // Toggle visibility of search form
     });
   
     // 로그 데이터 불러오고 표시하는 함수
