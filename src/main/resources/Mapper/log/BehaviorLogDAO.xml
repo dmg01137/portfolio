@@ -185,7 +185,7 @@
 
 </select>
 
-    <!-- Top 5 s_ip 값 조회 -->
+    <!-- Top 10 s_ip 값 조회 -->
     <select id="findTopSIPs" resultType="java.util.Map">
         SELECT s_ip, COUNT(*) AS ip_count
         FROM log_db.${tableName}

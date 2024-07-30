@@ -34,7 +34,7 @@
 
   
 
-    <!-- Top 5 s_ip 값 조회 -->
+    <!-- Top 10 s_ip 값 조회 -->
     <select id="findTopSIPs" resultType="java.util.Map">
         SELECT s_ip, COUNT(*) AS ip_count
         FROM log_db.${tableName}
@@ -43,7 +43,7 @@
         LIMIT 10;
     </select>
 
-    <!-- Top 5 패턴 조합 조회 -->
+    <!-- Top 10 패턴 조합 조회 -->
     <select id="findTopPatternCombinations"
             resultType="java.util.Map">
         SELECT CONCAT(pattern1, ',', pattern2, ',', pattern3) AS combined_pattern,

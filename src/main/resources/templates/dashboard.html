@@ -13,6 +13,7 @@
             margin: 0;
             padding: 0;
             color: #fff;
+             overflow-y: hidden; /* 사이드바 내 스크롤 처리 */
            
         }
         .nav-link {
@@ -65,71 +66,75 @@
             background-color: #222;
             color: #fff;
         }
-    .content-area {
-  
+.content-area {
     background-color: #222;
-    margin-left: 200px; /* 사이드바 너비에 맞게 조정 */
-    margin-right: 200px; /* 사이드바 너비에 맞게 조정 */
-  height: 780px;
-    padding: 5px;
+    padding: 20px;
+    margin-left: 210px; /* Adjust as per sidebar width */
+    margin-right: 20px; /* Adjust as per design */
+    min-height: calc(100vh - 50px); /* Adjust for header height */
     transition: all 0.3s ease;
-    overflow-y: hidden; /* 세로 스크롤 자동 */
-    position: relative;
-    z-index: 900; /* 다른 콘텐츠 위로 배치 */
-    border-radius: 10px; /* 컨테이너 둥글게 처리 */
-    width: calc(100% - 200px); /* 사이드바 너비 제외한 전체 너비 계산 */
+    border-radius: 10px;
+    margin-bottom:0px;
+    height:500px;
 }
 
-
-        .chart-container {
-           margin-top: 10px;
-           margin-bottom:30px;
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px 10px 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-           height: 50%;
-            margin-left: 5px;
-           
-        }
-        .chart-container h4 {
-            margin-top: 50px;
-            margin-bottom:50px;
-            color: #fff;
-            background-color: #222;
-        }
-        .chart-container canvas {
-            background-color: #333;
-            color: #fff;
-            border-radius: 5px;
-             height: 800px;
-        }
+.chart-container {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    margin-bottom: 0px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     
- .search-form {
-  margin-left: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background-color: #333;
-        padding: 10px;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        margin: 20px 0 0 0; /* 상단 마진 조정 */
-        width: 950px; 
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0px;
+    width: 100%; /* Ensures it spans the content area */
+}
+
+.search-form select,
+.search-form input[type="text"] {
+    flex: 1;
+    margin-right: 10px;
+    background-color: #444;
+    border: 1px solid #555;
+    padding: 8px;
+    color: #fff;
+}
+
+.search-form button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 20px;
+    cursor: pointer;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .content-area {
+        margin-left: 0;
+        margin-right: 0;
     }
 
-    .search-form select{
-    margin-left: 70px;
-        border-radius: 3px;
-        min-width: 100px; /* 입력 필드의 최소 너비 조정 */
-        background-color: #444;
-        color: #fff;
-        border: none; /* 테두리 제거 */
-        padding: 8px;
-        margin-right: 10px; /* 각 요소 간 간격 조정 */
-        font-size: 14px; /* 폰트 크기 조정 */
+    .search-form {
+        flex-direction: column;
     }
+
+    .search-form select,
+    .search-form input[type="text"],
+    .search-form button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
     .search-form input[type="text"] {
     margin-left: 5px;
         border-radius: 3px;
@@ -242,11 +247,11 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     overflow: auto;
     width: 100%; /* Adjusted width */
-    max-width: 1000px; /* Max width for responsiveness */
+    max-width: 900px; /* Max width for responsiveness */
     font-size: 12px; /* Adjusted font size for better readability */
-    max-height: 380px; /* Max height for the table */
+    max-height: 280px; /* Max height for the table */
     table-layout: fixed; /* Fixed table layout */
-    min-width: 950px;
+    min-width: 900px;
     border: 1px solid #555; /* New border color */
 }
 .center-text {
@@ -341,8 +346,8 @@
         }
         
         canvas {
-    height: 200px !important; /* 필요한 높이로 설정 */
-    width : 300px !important; /* 필요한 높이로 설정 */
+    height: 260px !important; /* 필요한 높이로 설정 */
+    width : 280px !important; /* 필요한 높이로 설정 */
 }
         
     </style>
