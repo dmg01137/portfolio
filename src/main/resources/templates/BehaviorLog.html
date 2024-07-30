@@ -462,7 +462,7 @@ $(document).ready(function () {
         $("#logTableBody").empty(); // 기존 테이블 내용 지우기
 
         displayedLogs.forEach(function (log) {
-            let encodedPacket = log.packet ? btoa(log.packet) : ""; // 패킷 데이터 인코딩
+            let encodedPacket = log.packet; // 패킷 데이터 인코딩
 
             let detailButton = '<button class="btn btn-info btn-sm btn-detail" ' +
                                'data-log-id="' + log.id + '" ' +

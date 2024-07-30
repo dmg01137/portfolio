@@ -497,7 +497,7 @@ $(document).ready(function () {
         $("#logTableBody").empty();
 
         displayedLogs.forEach(function (log) {
-             let encodedPacket = log.packet ? btoa(log.packet) : "";
+             let encodedPacket = log.packet;
 
               let detailButton = `<button class="btn btn-info btn-sm btn-detail" style="color: #ffffff; background-color: #17a2b8; font-size: 10px;"
                   data-log-id="${log.id}"

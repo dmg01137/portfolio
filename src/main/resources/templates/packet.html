@@ -11,191 +11,175 @@
 <!-- Bootstrap Bundle with Popper -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
-<style>
-/* 네비게이션바 스타일 */
-.navbar {
-    background-color: #222;
-    padding: 14px 16px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+    <style>
+        /* 네비게이션바 스타일 */
+        .navbar {
+            background-color: #222;
+            padding: 14px 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
 
-.navbar-brand {
-    font-size: 1.5rem;
-    color: #fff;
-}
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #fff;
+        }
 
-.navbar-nav .nav-item {
-    margin-right: 10px;
-}
+        .navbar-nav .nav-item {
+            margin-right: 10px;
+        }
 
-.nav-link {
-    color: #fff !important;
-    transition: all 0.3s ease;
-}
+        .nav-link {
+            color: #fff !important;
+            transition: all 0.3s ease;
+        }
 
-.nav-link:hover {
-    color: #17a2b8 !important;
-}
+        .nav-link:hover {
+            color: #17a2b8 !important;
+        }
 
-.nav-link i {
-    margin-right: 5px;
-}
+        .nav-link i {
+            margin-right: 5px;
+        }
 
-.nav-sidebar .nav-link {
-    color: #d1d1d1;
-    padding: 10px 20px;
-    transition: all 0.3s ease;
-}
+        .nav-sidebar .nav-link {
+            color: #d1d1d1;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
 
-.nav-sidebar .nav-link-custom {
-    color: #ffffff; /* 기본 텍스트 색상 */
-}
+        .nav-sidebar .nav-link-custom {
+            color: #ffffff; /* 기본 텍스트 색상 */
+        }
 
-.nav-sidebar .nav-link-custom i {
-    color: #17a2b8; /* 기본 아이콘 색상 */
-    margin-right: 10px; /* 기본 아이콘 오른쪽 마진 설정 */
-}
+        .nav-sidebar .nav-link-custom i {
+            color: #17a2b8; /* 기본 아이콘 색상 */
+            margin-right: 10px; /* 기본 아이콘 오른쪽 마진 설정 */
+        }
 
-/* 마우스 호버 또는 활성 상태에 따라 일관된 아이콘 색상 설정 */
-.nav-sidebar .nav-link-custom:hover, .nav-sidebar .nav-link-custom.active {
-    /* 현재 활성화된 항목에 대해서도 적용 */
-    background-color: #222; /* 배경색 변경 */
-    color: #ffffff; /* 텍스트 색상 변경 */
-}
+        /* 마우스 호버 또는 활성 상태에 따라 일관된 아이콘 색상 설정 */
+        .nav-sidebar .nav-link-custom:hover, .nav-sidebar .nav-link-custom.active {
+            /* 현재 활성화된 항목에 대해서도 적용 */
+            background-color: #222; /* 배경색 변경 */
+            color: #ffffff; /* 텍스트 색상 변경 */
+        }
 
-/* Icon color adjustment specifically for pattern-icon */
-.pattern-icon {
-    color: #17a2b8; /* 아이콘 색상을 특정 색상으로 설정 */
-}
+        /* Icon color adjustment specifically for pattern-icon */
+        .pattern-icon {
+            color: #17a2b8; /* 아이콘 색상을 특정 색상으로 설정 */
+        }
 
-.nav-sidebar .nav-link-custom {
-    color: #17a2b8 !important; /* 텍스트 색상 변경 */
-}
+        .nav-sidebar .nav-link-custom {
+            color: #17a2b8 !important; /* 텍스트 색상 변경 */
+        }
 
-/* 왼쪽 세로 메뉴바 스타일 */
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 64px;
-    width: 180px; /* 사이드바 너비를 180px로 조정 */
-    background-color: #222;
-    height: 100%;
-    padding-top: 20px;
-    transition: all 0.3s ease;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    overflow-x: hidden; /* 가로 스크롤바를 숨기는 속성 */
-}
+        /* 왼쪽 세로 메뉴바 스타일 */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 64px;
+            width: 180px; /* 사이드바 너비를 180px로 조정 */
+            background-color: #222;
+            height: 100%;
+            padding-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            overflow-x: hidden; /* 가로 스크롤바를 숨기는 속성 */
+        }
 
-.sidebar-heading {
-    font-size: 1.2rem;
-    color: #fff;
-    text-align: center;
-    margin-bottom: 20px;
-}
+        .sidebar-heading {
+            font-size: 1.2rem;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-body {
-    background-color: #222; /* 어두운 배경색 */
-    font-family: Arial, sans-serif;
-    color: #fff; /* 흰색 글자색 */
-    padding-top: 50px;
-    margin: 0; /* 페이지 전체 마진 초기화 */
-}
+        body {
+            background-color: #222; /* 어두운 배경색 */
+            font-family: Arial, sans-serif;
+            color: #fff; /* 흰색 글자색 */
+            padding-top: 50px;
+            margin: 0; /* 페이지 전체 마진 초기화 */
+        }
 
-.container {
-margin-top : 30px;
-    background-color: #333; /* 어두운 배경색 */
-    padding: 5px 50px 10px 50px;
-   
+        .container {
+            margin-top : 100px;
+            background-color: #333; /* 어두운 배경색 */
+            padding: 10px 50px 10px 30px;
+			border-radius: 10px; /* 카드 모서리 둥글게 설정 */
+            margin-top: 50px;
+            margin-left: 300px; /* 왼쪽 사이드바 너비 만큼 마진 추가 */
+            width: 800px;
+        }
 
-    margin-top: 50px;
-    margin-left: 200px; /* 왼쪽 사이드바 너비 만큼 마진 추가 */
-    width: 800px;
-     border-radius: 10px; /* 카드 모서리 둥글게 설정 */
-}
+        .btn-info {
+            background-color: #17a2b8 !important;
+            border-color: #17a2b8 !important;
+        }
 
-.btn-info {
-    background-color: #17a2b8 !important;
-    border-color: #17a2b8 !important;
-}
+        /* 패킷 테이블 스타일 */
+        .packet-table {
+            width: 100%;
+            margin-bottom: 1rem;
+            background-color: transparent;
+            color: #fff;
+        }
 
-/* 패킷 테이블 스타일 */
-.packet-table {
-    width: 100%;
-    margin-bottom: 1rem;
-    background-color: transparent;
-    color: #fff;
-}
+        .packet-table th, .packet-table td {
+            padding: 0.3rem 0.5rem; /* 위아래 padding을 0.3rem로 설정, 좌우 padding을 0.5rem로 설정 */
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+            font-size: 13px;
+        }
 
-.packet-table th, .packet-table td {
-    padding: 0.75rem;
-    vertical-align: top;
-    border-top: 1px solid #dee2e6;
-    font-size: 13px;
-}
+        .packet-table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dee2e6;
+            background-color: #17a2b8; /* 테이블 머리글 배경색 설정 */
+            color: #fff; /* 테이블 머리글 글자색 설정 */
+        }
 
-.packet-table thead th {
-    vertical-align: bottom;
-    border-bottom: 2px solid #dee2e6;
-    background-color: #17a2b8; /* 테이블 머리글 배경색 설정 */
-    color: #fff; /* 테이블 머리글 글자색 설정 */
-}
+        /* 패킷 Hex 값 스타일 */
+        .hex-content {
+            background-color: #272b30; /* hex 값 배경색 설정 */
+            color: #fff; /* hex 값 글자색 설정 */
+            padding: 10px; /* hex 값 패딩 설정 */
+            margin-top: 10px; /* hex 값 상단 마진 설정 */
+            overflow: auto; /* hex 값 스크롤 설정 */
+        }
 
-/* 패킷 Hex 값 스타일 */
-.hex-content {
-    background-color: #272b30; /* hex 값 배경색 설정 */
-    color: #fff; /* hex 값 글자색 설정 */
-    padding: 2px; /* hex 값 패딩 설정 */
-    margin-top: 10px; /* hex 값 상단 마진 설정 */
-   
-}
+        .hex-content pre {
+            color: #fff; /* hex 값 글자색 설정 */
+            font-family: monospace;
+            white-space: pre-wrap;
+            line-height: 1.4;
+            font-size: 13px; /* hex 값 폰트 크기 설정 */
+        }
 
-.hex-content pre {
-    background-color: #272b30; /* 배경색 설정 */
-    color: #fff; /* 글자색 설정 */
-    padding: 10px; /* 패딩 설정 */
-    margin-top: 10px; /* 상단 마진 설정 */
-    overflow: auto; /* 스크롤 설정 */
-    white-space: pre-wrap; /* 줄 바꿈 처리 */
-    line-height: 1.4; /* 줄 높이 설정 */
-    font-size: 13px; /* 글자 크기 설정 */
-}
+        /* 패킷 Ascii 값 스타일 */
+        .ascii-content {
+            background-color: #272b30; /* ascii 값 배경색 설정 */
+            color: #fff; /* ascii 값 글자색 설정 */
+            padding: 10px; /* ascii 값 패딩 설정 */
+            margin-top: 10px; /* ascii 값 상단 마진 설정 */
+            overflow: auto; /* ascii 값 스크롤 설정 */
+        }
 
-/* 패킷 Ascii 값 스타일 */
-.ascii-content {
-    background-color: #272b30; /* ascii 값 배경색 설정 */
-    color: #fff; /* ascii 값 글자색 설정 */
-  padding: 2px; /* hex 값 패딩 설정 */
-    margin-top: 10px; /* ascii 값 상단 마진 설정 */
-  
-}
-.ascii-content pre {
-    background-color: #272b30; /* 배경색 설정 */
-    color: #fff; /* 글자색 설정 */
-    padding: 10px; /* 패딩 설정 */
-    margin-top: 10px; /* 상단 마진 설정 */
-    overflow: auto; /* 스크롤 설정 */
-    white-space: pre-wrap; /* 줄 바꿈 처리 */
-    line-height: 1.4; /* 줄 높이 설정 */
-    font-size: 13px; /* 글자 크기 설정 */
-}
+        .ascii-content pre {
+            color: #fff; /* ascii 값 글자색 설정 */
+            font-family: monospace;
+            white-space: pre-wrap;
+            line-height: 1.4;
+            font-size: 13px; /* hex 값 폰트 크기 설정 */
+        }
 
-  .dropdown-menu {
-          background-color: #222;
-          border: none;
-          position: relative; /* 드롭다운 메뉴의 위치 조정 */
-          z-index: 1050; /* 다른 요소 위에 표시되도록 z-index 설정 */
-      }
-      
-      .dropdown-menu .dropdown-item {
-          color: #d1d1d1;
-      }
-      
-      .dropdown-menu .dropdown-item:hover {
-          background-color: #333;
-          color: #fff;
-      }
-
-</style>
+        .btn-warning {
+            background-color: #b372a2bd !important; /* 수정 버튼 배경색을 변경 */
+            border-color: #28a745 !important;    /* 수정 버튼 테두리색을 변경 */
+            color: #fff !important;              /* 수정 버튼 텍스트 색상을 흰색으로 변경 */
+            padding: 8px 16px;                  /* 버튼의 패딩을 늘려서 크기를 키움 */
+            font-size: 16px;                     /* 버튼의 글자 크기를 키움 */
+        }
+    </style>
 </head>
 
 <body>
@@ -272,7 +256,6 @@ margin-top : 30px;
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function () {
-    // URL에서 쿼리 매개변수를 읽어와서 변수에 저장
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
     const time = decodeURIComponent(urlParams.get('time'));
@@ -283,72 +266,45 @@ $(document).ready(function () {
     const len = urlParams.get('len');
     const encodedPacket = decodeURIComponent(urlParams.get('encodedPacket'));
 
-    // 패킷 테이블 데이터 추가
     function addTableRow(tableId, rowData) {
         $('#' + tableId).append('<tr>' + rowData + '</tr>');
     }
 
-    addTableRow('packetTableBody',
-        '<td>ID</td>' +
-        '<td>' + id + '</td>'
-    );
-    addTableRow('packetTableBody',
-        '<td>Time</td>' +
-        '<td>' + time + '</td>'
-    );
-    addTableRow('packetTableBody',
-        '<td>S_IP</td>' +
-        '<td>' + sIp + '</td>'
-    );
-    addTableRow('packetTableBody',
-        '<td>S_Port</td>' +
-        '<td>' + sPort + '</td>'
-    );
-    addTableRow('packetTableBody',
-        '<td>D_IP</td>' +
-        '<td>' + dIp + '</td>'
-    );
-    addTableRow('packetTableBody',
-        '<td>D_Port</td>' +
-        '<td>' + dPort + '</td>'
-    );
-    addTableRow('packetTableBody',
-        '<td>Length</td>' +
-        '<td>' + len + '</td>'
-    );
+    addTableRow('packetTableBody', '<td>ID</td><td>' + id + '</td>');
+    addTableRow('packetTableBody', '<td>Time</td><td>' + time + '</td>');
+    addTableRow('packetTableBody', '<td>S_IP</td><td>' + sIp + '</td>');
+    addTableRow('packetTableBody', '<td>S_Port</td><td>' + sPort + '</td>');
+    addTableRow('packetTableBody', '<td>D_IP</td><td>' + dIp + '</td>');
+    addTableRow('packetTableBody', '<td>D_Port</td><td>' + dPort + '</td>');
+    addTableRow('packetTableBody', '<td>Length</td><td>' + len + '</td>');
 
-    // 패킷 보기 함수
-  // 패킷 보기 함수
-window.showPacket = function () {
-    const decodedPacket = atob(encodedPacket);
-    const hexContent = bytesToHex(decodedPacket); // 변환된 16진수 값
+    function showPacket() {
+        const decodedPacket = atob(encodedPacket);
 
-    $('#hexContent').text(hexContent);
+        // Hex Content
+        const hexContent = bytesToHex(decodedPacket);
+        $('#hexContent').html(hexContent.replace(/(Payload)/g, '<span class="payload">$1</span>'));
 
-    // Convert to ASCII
-    let asciiContent = '';
-    for (let i = 0; i < decodedPacket.length; i++) {
-        const asciiChar = decodedPacket.charCodeAt(i);
-        // ASCII 범위 이외의 문자는 '.'으로 처리하지 않고 원래 문자로 유지
-        asciiContent += String.fromCharCode(asciiChar);
+        // ASCII Content
+        let asciiContent = '';
+        for (let i = 0; i < decodedPacket.length; i++) {
+            const asciiChar = decodedPacket.charCodeAt(i);
+            asciiContent += (asciiChar < 32 || asciiChar > 126) ? '.' : String.fromCharCode(asciiChar);
+        }
+        $('#asciiContent').html(asciiContent.replace(/(Payload)/g, '<span class="payload">$1</span>'));
     }
-    $('#asciiContent').text(asciiContent);
-};
 
-    // Helper function to convert bytes to hexadecimal string
     function bytesToHex(bytes) {
         let hex = '';
         for (let i = 0; i < bytes.length; i++) {
             let byte = bytes.charCodeAt(i);
-            hex += ('0' + byte.toString(16)).slice(-2); // Convert to hex string and ensure 2-digit format
+            hex += ('0' + byte.toString(16)).slice(-2) + ' ';
         }
-        return hex;
+        return hex.trim().match(/.{1,96}/g).join('\n'); // 32 bytes (64 hex characters) per line, plus spaces
     }
 
-    // Call showPacket function to display packet content
     showPacket();
 });
-
 </script>
 </body>
 </html>
