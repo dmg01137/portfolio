@@ -63,30 +63,34 @@
             background-color: #222;
             color: #fff;
         }
-        .content-area {
-            margin-top: 10px;
-         
-            background-color: #222;
-            margin-left: 200px; /* Adjusted to match sidebar width */
-            padding: 5px;
-            transition: all 0.3s ease;
-            overflow-y: auto;
-            position: relative;
-            z-index: 900; /* Ensure it's above other content */
-            border-radius: 10px; /* Rounded corners for the container */
-        }
+      .content-area {
+    margin-top: 10px;
+    background-color: #222;
+    margin-left: 240px; /* Adjusted to match sidebar width */
+    padding: 5px;
+    transition: all 0.3s ease;
+    overflow-y: auto;
+    position: relative;
+    z-index: 900; /* Ensure it's above other content */
+    border-radius: 10px; /* Rounded corners for the container */
+    width: calc(100% - 240px); /* Calculate the width excluding the sidebar */
+}
+
         .chart-container {
-            margin-top: 20px;
+           margin-top: 10px;
+           margin-bottom:30px;
             background-color: #333;
             color: #fff;
             padding: 10px 20px 10px 10px;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-bottom: 10px;
-            margin-left: 10px;
+           height: 50%;
+            margin-left: 5px;
+           
         }
         .chart-container h4 {
             margin-top: 50px;
+            margin-bottom:50px;
             color: #fff;
             background-color: #222;
         }
@@ -94,6 +98,7 @@
             background-color: #333;
             color: #fff;
             border-radius: 5px;
+             height: 800px;
         }
         .search-form {
             margin-left: 200px;
@@ -145,44 +150,47 @@
         .search-form button.btn-secondary:hover {
             background-color: #5a6268;
         }
-       .event-table {
-            margin: 10px 150px  50px 150px; /* Center vertically and horizontally */
-            background-color: #333;
-            color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            overflow: auto;
-            width: 95%;
-            max-width: 100%;
-            font-size: 12px; /* Adjusted font size for better readability */
-            max-height: 300px; /* Max height for the table */
-            
-        }
+  .event-table {
+    margin: 5px 10px 10px 10px; /* Center horizontally */
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+    width: 100%; /* Adjusted width */
+    max-width: 1000px; /* Max width for responsiveness */
+    font-size: 12px; /* Adjusted font size for better readability */
+    max-height: 300px; /* Max height for the table */
+    table-layout: fixed; /* Fixed table layout */
+    min-width: 950px;
+}
 .center-text {
 margin-left: 150px;
     text-align: center;
     margin-bottom: 20px; /* Adjust margin as needed */
+    
 }
 
-        .event-table th,
-        .event-table td {
-         width: 900px;
-        
-            background-color: #333;
-            color: #fff;
-             text-align: center;
+      
+.event-table th,
+.event-table td {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
     vertical-align: middle;
     padding: 12px 8px; /* Adjusted padding */
-            font-size: 10px;
-            white-space: nowrap;
-           
-        }
-        .event-table thead {
-            background-color: #333;
-        }
-        .event-table tbody tr:hover {
-            background-color: #444;
-        }
+    font-size: 10px;
+    white-space: nowrap; /* Prevent text wrapping */
+    min-width: 10px; /* Adjust as per your content */
+}
+
+.event-table thead {
+    background-color: #333;
+}
+
+.event-table tbody tr:hover {
+    background-color: #444;
+}
         .pagination-btns .btn-primary {
             background-color: #333; /* 배경색 */
             border-color: #333; /* 테두리 색상 */
@@ -198,19 +206,18 @@ margin-left: 150px;
         .pagination-btns #loadMoreBtn:hover {
             border-color: #444; /* 다음 버튼 호버 시 테두리 색상 */
         }
-        @media (max-width: 768px) {
-            .sidebar {
-                position: static;
-                width: 100%;
-                margin-top: 20px;
-                box-shadow: none;
-                z-index: 0;
-            }
-            .content-area {
-                margin-left: 200px; /* Adjusted to match sidebar width */
-                /* Other existing styles */
-            }
-
+     @media (max-width: 768px) {
+    .sidebar {
+        position: static;
+        width: 100%;
+        margin-top: 20px;
+        box-shadow: none;
+        z-index: 0;
+    }
+    .content-area {
+        margin-left: 0; /* Adjust as per your responsive design */
+        width: 100%; /* Full width on smaller screens */
+    }
             .search-form {
                 flex-direction: column;
             }
@@ -247,6 +254,11 @@ margin-left: 150px;
             background-color: #333;
             color: #fff;
         }
+        
+        canvas {
+    height: 200px !important; /* 필요한 높이로 설정 */
+}
+        
     </style>
 </head>
 <body>
@@ -300,16 +312,16 @@ margin-left: 150px;
             <div class="row">
                 <div class="col-md-4">
                     <h5 class="text-center mb-4">오늘 패턴 탐지 이벤트 Top 5</h5>
-                    <canvas id="patternDetectionChart" style="height: 2000px;"></canvas>
+                    <canvas id="patternDetectionChart" style="height: 200px;"></canvas>
                 </div>
                 <div class="col-md-4">
                     <h5 class="text-center mb-4">오늘 패턴 IP 탐지 이벤트 Top 5</h5>
-                    <canvas id="sourceIPChart" style="height: 2000px;"></canvas>
+                    <canvas id="sourceIPChart" style="height: 200px;"></canvas>
                 </div>
                 
                 <div class="col-md-4">
                     <h5 class="text-center mb-4">오늘 행동 IP 탐지 이벤트 Top 5</h5>
-                    <canvas id="destinationIPChart" style="height: 2000px;"></canvas>
+                    <canvas id="destinationIPChart" style="height:200px;"></canvas>
                 </div>
             </div>
                <div class="row">
@@ -337,20 +349,27 @@ margin-left: 150px;
                      <table class="table table-bordered">
                         <thead>
                            <tr>
-                              <th>시간</th>
-                              <th>출발지IP</th>
-                              <th>출발지Port</th>
-                              <th>목적지IP</th>
-                              <th>목적지Port</th>
-                              <th>패턴1</th>
-                              <th>패턴2</th>
-                              <th>패턴3</th>
+                              <th>번호</th>
+                    <th>탐지시간</th>
+                    <th>출발지IP</th>
+                    <th>sPORT</th>
+                    <th>도착지IP</th>
+                    <th>dPORT</th>
+                    <th>액션 타입</th>
+                    <th>패킷길이</th>
+                    <th>정책이름</th>
+                    <th>패턴1</th>
+                    <th>패턴2</th>
+                    <th>패턴3</th>
+                    
                            </tr>
                         </thead>
                         <tbody id="eventTableBody">
                            <!-- 여기에 서버에서 동적으로 데이터가 추가됩니다 -->
                         </tbody>
                      </table>
+   
+        </div>
                    
 <div class="pagination-btns">
     <button class="btn btn-primary" id="previousBtn" onclick="loadPreviousData()" disabled>
@@ -360,7 +379,6 @@ margin-left: 150px;
        <i class="fas fa-chevron-right"></i>
     </button>
 </div>
-        </div>
     </div>
 </div>
  </div>
@@ -491,7 +509,7 @@ margin-left: 150px;
                 datasets: [{
                     label: '패턴 이벤트',
                     data: data,
-                    backgroundColor: ['#f1948a', '#f7dc6f', '#85c1e9'], // 변경할 색상을 여기에 추가 (파스텔톤 색상)
+                    backgroundColor: ['#82ccdd', '#78e08f', '#badc58', '#f9ca24', '#f0932b'], // 다섯 가지 패스텔톤 색상
                     borderWidth: 1
                 }]
             }
@@ -514,14 +532,18 @@ margin-left: 150px;
     function populateEventDetailsTable(data) {
         var tableBody = document.getElementById('eventTableBody');
         tableBody.innerHTML = ''; // 이전 데이터 삭제
-
+       
         data.forEach(function(event) {
             var row = '<tr>' +
+            '<td>' + event.id + '</td>' +
                 '<td>' + event.time + '</td>' +
                 '<td>' + event.sIp + '</td>' +
                 '<td>' + event.sPort + '</td>' +
                 '<td>' + event.dIp + '</td>' +
                 '<td>' + event.dPort + '</td>' +
+                '<td>' + event.actionType + '</td>' +
+                '<td>' + event.len + '</td>' +
+                '<td>' + event.policy_name + '</td>' +
                 '<td>' + event.pattern1 + '</td>' +
                 '<td>' + event.pattern2 + '</td>' +
                 '<td>' + event.pattern3 + '</td>' +
