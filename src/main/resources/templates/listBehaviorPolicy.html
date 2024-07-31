@@ -274,7 +274,19 @@ body {
 .container {
     margin-left: 145px; /* 사이드바 너비만큼 왼쪽 여백 추가 */
     padding-top: 60px; /* 네비게이션 바 높이만큼 상단 여백 추가 */
-}
+} .dropdown-menu {
+            background-color: #222;
+            border: none;
+            position: absolute;
+            z-index: 1150;
+        }
+        .dropdown-menu .dropdown-item {
+            color: #d1d1d1;
+        }
+        .dropdown-menu .dropdown-item:hover {
+            background-color: #333;
+            color: #fff;
+        }
 
     </style>
 </head>
@@ -302,35 +314,34 @@ body {
       </div>   
       
    </nav>
-<div class="sidebar">
-		<h5 class="sidebar-heading">메뉴</h5>
-		<ul class="nav flex-column nav-sidebar">
-			<li class="nav-item"><a class="nav-link" href="/listPatternPolicy"><i
-					class="fas fa-file-alt mr-1"></i>패턴 정책 관리</a></li>
-			<li class="nav-item"><a class="nav-link" href="/addPatternPolicy"><i
-					class="fas fa-file-alt mr-1"></i>패턴 정책 추가</a></li>
-			<li class="nav-item"><a class="nav-link" href="/listBehaviorPolicy"><i
-					class="fas fa-file-alt mr-1"></i>행동 정책 관리</a></li>
-			<li class="nav-item"><a class="nav-link" href="/addBehaviorPolicy"><i
-					class="fas fa-file-alt mr-1"></i>행동 정책 추가</a></li>						
-		</ul>
-	</div>
-  <div class="container">
+ <div class="sidebar">
+    <h5 class="sidebar-heading">메뉴</h5>
+    <ul class="nav flex-column nav-sidebar">
+      
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="behavior-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-shield-alt mr-1"></i> 정책 관리
+            </a>
+            <div class="dropdown-menu" aria-labelledby="behavior-dropdown">
+             <a class="dropdown-item" href="/addBehaviorPolicy">행동 정책 추가</a>
+                <a class="dropdown-item" href="/listPatternPolicy">패턴 정책 리스트</a>
+                 <a class="dropdown-item" href="/addPatternPolicy">패턴 정책 추가</a>
+               
+            </div>
+        </li>
+    </ul>
+</div>
+ <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-body">
-                
-                    
-                    <button class="btn btn-primary mb-3" type="button" data-toggle="collapse" data-target="#searchForm" aria-expanded="false" aria-controls="searchForm" id="toggleButton">
-                       Search
-                    </button>
-                    <label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label>
-                    <label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label>
-                    <label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label>
-                    <label>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</label>        
-	                <button id="resetSort" class="btn btn-primary mb-3" onclick="resetSort()">정렬 초기화</button>
-                    
+      <div class="card-body">
+    <div class="d-flex justify-content-end mb-3 align-items-center">
+        <button class="btn btn-primary mr-2" type="button" data-toggle="collapse" data-target="#searchForm" aria-expanded="false" aria-controls="searchForm" id="toggleButton">
+            Search
+        </button>
+        <button id="resetSort" class="btn btn-primary" onclick="resetSort()">resetSort</button>
+    </div>
                     <div class="collapse" id="searchForm">
                     <form action="/searchBehaviorPolicy" method="get" class="search-form">
                         <div class="search-section">

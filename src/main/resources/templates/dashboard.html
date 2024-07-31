@@ -347,9 +347,59 @@
         
         canvas {
     height: 260px !important; /* 필요한 높이로 설정 */
-    width : 280px !important; /* 필요한 높이로 설정 */
+    width : 280px !important; /* 필요한 높이로 설정 */   
 }
-        
+
+.pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.pagination-numbers {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.pagination-numbers .page-link {
+    background-color: #333; /* 기본 배경색 */
+    color: #fff; /* 기본 글자색 */
+    border: 1px solid #444; /* 기본 테두리 색상 */
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.pagination-numbers .page-link.active {
+    background-color: #777; /* 활성 페이지 색상 */
+    border-color: #777; /* 활성 페이지 테두리 색상 */
+}
+
+.pagination-numbers .page-link:hover {
+    background-color: #444; /* 호버 시 배경색 */
+    border-color: #555; /* 호버 시 테두리 색상 */
+}
+
+.pagination-container button {
+    background-color: #333; /* 이전 및 다음 버튼 배경색 */
+    border-color: #444; /* 이전 및 다음 버튼 테두리 색상 */
+    color: #fff; /* 글자색 */
+}
+
+.pagination-container button:hover {
+    background-color: #444; /* 호버 시 배경색 */
+    border-color: #555; /* 호버 시 테두리 색상 */
+}
+.btn-primary.disabled, .btn-primary:disabled {
+    color: #bbb; /* 텍스트 색상 (연한 회색) */
+    background-color: #777; /* 비활성화된 버튼 배경색 (어두운 회색) */
+    border-color: #555; /* 비활성화된 버튼 테두리 색상 (중간 회색) */
+    cursor: not-allowed; /* 커서 모양을 변경하여 비활성 상태를 나타냄 */
+    opacity: 0.65; /* 비활성화된 상태를 강조하기 위한 투명도 조정 */
+}
     </style>
 </head>
 <body>
@@ -449,22 +499,24 @@
    
         </div>
                    
-<div class="pagination-btns">
+<div class="pagination-container">
     <button class="btn btn-primary" id="previousBtn" onclick="loadPreviousData()" disabled>
         <i class="fas fa-chevron-left"></i>
     </button>
+    <div class="pagination-numbers" id="paginationNumbers">
+        <!-- 페이지 번호 버튼이 동적으로 추가됩니다 -->
+    </div>
     <button class="btn btn-primary" id="loadMoreBtn" onclick="loadMoreData()">
-       <i class="fas fa-chevron-right"></i>
+        <i class="fas fa-chevron-right"></i>
     </button>
 </div>
+
     </div>
 </div>
  </div>
-      </div> </div>  
-          
-
-
-	 <!-- 필수 라이브러리 -->
+      </div> 
+      </div>  
+    <!-- 필수 라이브러리 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
  <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -615,25 +667,13 @@
         });
     }
 
-    // 서버에서 데이터를 가져와 이벤트 테이블을 채우는 함수
-    function fetchAndPopulateEventTable() {
-        fetch('/api/patternlogs/ordered-by-time') // 이벤트 테이블 데이터 조회 API 엔드포인트
-            .then(response => response.json())
-            .then(data => {
-                eventDetailsData = data; // 전체 데이터 저장
-                populateEventDetailsTable(data.slice(0, rowsPerPage)); // 첫 페이지 데이터 채우기
-            })
-            .catch(error => console.error('데이터 가져오기 오류:', error));
-    }
-
-    // 테이블 행을 채우는 함수
     function populateEventDetailsTable(data) {
         var tableBody = document.getElementById('eventTableBody');
         tableBody.innerHTML = ''; // 이전 데이터 삭제
-       
+
         data.forEach(function(event) {
             var row = '<tr>' +
-            '<td>' + event.id + '</td>' +
+                '<td>' + event.id + '</td>' +
                 '<td>' + event.time + '</td>' +
                 '<td>' + event.sIp + '</td>' +
                 '<td>' + event.sPort + '</td>' +
@@ -649,6 +689,17 @@
             tableBody.innerHTML += row;
         });
     }
+
+    function fetchAndPopulateEventTable() {
+        fetch('/api/patternlogs/ordered-by-time') // 이벤트 테이블 데이터 조회 API 엔드포인트
+            .then(response => response.json())
+            .then(data => {
+                eventDetailsData = data.sort((a, b) => a.id - b.id); // ID를 기준으로 오름차순 정렬
+                populateEventDetailsTable(eventDetailsData.slice(0, rowsPerPage)); // 첫 페이지 데이터 채우기
+            })
+            .catch(error => console.error('데이터 가져오기 오류:', error));
+    }
+
     function loadPreviousData() {
         if (currentPage > 1) {
             currentPage--;
@@ -667,6 +718,7 @@
         }
     }
 
+    // Function to load next data
     function loadMoreData() {
         var startIndex = currentPage * rowsPerPage;
         var endIndex = startIndex + rowsPerPage;
@@ -691,7 +743,7 @@
         var searchInput = document.getElementById('searchInput').value.trim().toLowerCase();
 
         var filteredData = eventDetailsData.filter(function(event) {
-        	switch (searchType) {
+           switch (searchType) {
             case 'time':
                 return event.time.toLowerCase().includes(searchInput);
             case 'sIP':
@@ -717,6 +769,76 @@
         populateEventDetailsTable(filteredData.slice(0, rowsPerPage)); // 첫 페이지 데이터로 재설정
         currentPage = 1; // 페이지 번호 초기화
     }
+    
+    var totalPages = 1; // 전체 페이지 수
+    var currentPage = 1;
+    var rowsPerPage = 10;
+    var eventDetailsData = []; // 전체 이벤트 데이터를 저장하는 배열
+
+    document.addEventListener('DOMContentLoaded', function() {
+        fetchDataAndRenderCharts();
+        fetchAndPopulateEventTable();
+        updatePaginationButtons(); // 페이지 버튼 초기화
+    });
+
+    // 페이지 버튼을 업데이트하는 함수
+    function updatePaginationButtons() {
+        var paginationNumbers = document.getElementById('paginationNumbers');
+        paginationNumbers.innerHTML = ''; // 기존 버튼 제거
+
+        for (var i = 1; i <= totalPages; i++) {
+            var button = document.createElement('button');
+            button.className = 'page-link' + (i === currentPage ? ' active' : '');
+            button.textContent = i;
+            button.onclick = (function(page) {
+                return function() {
+                    goToPage(page);
+                };
+            })(i);
+
+            paginationNumbers.appendChild(button);
+        }
+    }
+
+    // 페이지 이동 함수
+    function goToPage(page) {
+        if (page >= 1 && page <= totalPages) {
+            currentPage = page;
+            var startIndex = (currentPage - 1) * rowsPerPage;
+            var endIndex = startIndex + rowsPerPage;
+            var pageData = eventDetailsData.slice(startIndex, endIndex);
+            populateEventDetailsTable(pageData);
+            
+            updatePaginationButtons(); // 페이지 버튼 업데이트
+            document.getElementById('previousBtn').disabled = (currentPage === 1);
+            document.getElementById('loadMoreBtn').disabled = (currentPage === totalPages);
+        }
+    }
+
+    function fetchAndPopulateEventTable() {
+        fetch('/api/patternlogs/ordered-by-time') // 이벤트 테이블 데이터 조회 API 엔드포인트
+            .then(response => response.json())
+            .then(data => {
+                eventDetailsData = data.sort((a, b) => a.id - b.id); // ID를 기준으로 오름차순 정렬
+                totalPages = Math.ceil(eventDetailsData.length / rowsPerPage);
+                goToPage(1); // 첫 페이지 데이터 채우기
+            })
+            .catch(error => console.error('데이터 가져오기 오류:', error));
+    }
+
+    function loadPreviousData() {
+        if (currentPage > 1) {
+            goToPage(currentPage - 1);
+        }
+    }
+
+    function loadMoreData() {
+        if (currentPage < totalPages) {
+            goToPage(currentPage + 1);
+        }
+    }
+    
+    
 </script>
 
 </body>
