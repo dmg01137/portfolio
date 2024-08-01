@@ -331,6 +331,9 @@
                 <div class="form-group">
                     <input type="text" id="base_time" class="form-control searchInput" placeholder="base_time">
                 </div>
+                  <div class="form-group">
+                    <input type="text" id="policy_name" class="form-control searchInput" placeholder="정책이름">
+                </div>
                 <div class="form-group">
                     <input type="text" id="pattern1" class="form-control searchInput" placeholder="패턴1">
                 </div>
@@ -374,6 +377,7 @@
 						<th>패턴 길이</th>
 						<th>base_cnt</th>
 						<th>base_time</th>
+						<th>정책이름</th>
 						<th>패턴1</th>
 						<th>패턴2</th>
 						<th>패턴3</th>
@@ -433,26 +437,6 @@ $(document).ready(function () {
     }
     
  
-        // 테이블에 로그 데이터 표시
-        function displayLogs() {
-            let startIndex = (currentPage - 1) * logsPerPage;
-            let endIndex = startIndex + logsPerPage;
-            let displayedLogs = logsData.slice(startIndex, endIndex);
-
-            $("#logTableBody").empty(); // 기존 테이블 내용 지우기
-
-            displayedLogs.forEach(function (log) {
-                $("#logTableBody").append(
-                    '<tr>' +
-                    '<td>' + log.dangerous_number + '</td>' +
-                    '<td>' + log.ip + '</td>' +
-                    '<td>' + log.port + '</td>' +
-                    '<td>' + log.policy_name + '</td>' +
-                    '</tr>'
-                );
-            });
-        }
-
     // 테이블에 로그 표시하는 함수
     function displayLogs() {
         let startIndex = (currentPage - 1) * logsPerPage;
@@ -486,6 +470,7 @@ $(document).ready(function () {
                 '<td>' + log.len + '</td>' +
                 '<td>' + log.base_cnt + '</td>' +
                 '<td>' + log.base_time + '</td>' +
+                '<td>' + log.policy_name + '</td>' +
                 '<td>' + log.pattern1 + '</td>' +
                 '<td>' + log.pattern2 + '</td>' +
                 '<td>' + log.pattern3 + '</td>' +
@@ -573,6 +558,7 @@ $(document).ready(function () {
             "d_ip": $("#d_ip").val().trim(),
             "d_port": $("#d_port").val().trim(),
             "len": $("#len").val().trim(),
+            "policy_name": $("#policy_name").val().trim(),
             "pattern1": $("#pattern1").val().trim(),
             "pattern2": $("#pattern2").val().trim(),
             "pattern3": $("#pattern3").val().trim(),
